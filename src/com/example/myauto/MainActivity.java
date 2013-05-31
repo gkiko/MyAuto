@@ -44,6 +44,7 @@ public class MainActivity extends Activity {
 		carDownloader = new CarDownloader();
 		carDownloader.addObserver(carInitializer);
 
+		
 		// DBManager.insertTestValuesMan();
 		// DBManager.insertTestValuesMod();
 		// DBManager.clearNEW();
