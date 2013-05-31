@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MyAuto</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">asdasd</string>
+    <string name="year">Year</string>
+    <string name="price">Price</string>
+    <string name="hint1">From</string>
+    <string name="hint2">To</string>
+    <string name="clearance">Customs</string>
+    <string name="steer">Right Steering Wheel</string>
+    <string name="button">Filter</string>
+    <string name="transmission_null">Transmission</string>
+
+    <string-array name="transmission_arrays">
+        <item>Transmission</item>
+        <item>Manual</item>
+        <item>Automatic</item>
+        <item>Tiptronic</item>
+    </string-array>
+
+    <string name="fuel_null">Fuel type</string>
+
+    <string-array name="fuel_arrays">
+        <item>Fuel type</item>
+        <item>Petrol</item>
+        <item>Diesel</item>
+        <item>Gas/Petrol</item>
+        <item>Hybrid</item>
+        <item>Electric</item>
+    </string-array>
+
+    <string name="title_activity_filtered">FilteredActivity</string>
+
+</resources>
