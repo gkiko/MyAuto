@@ -1,7 +1,7 @@
 package com.example.myauto;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.ArrayList;//
 
 import com.example.myauto.item.Car;
 
