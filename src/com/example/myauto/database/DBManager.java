@@ -23,61 +23,8 @@ public class DBManager {
 			dbHelper = new DBHelper(context);
 			db = dbHelper.getWritableDatabase();
 			if (DBChecker.firstTimeLaunch(context))
-				putTestData();
+				fillTables();
 		}
-	}
-
-	private static void putTestData() {
-		System.out.println("0000000");
-		db.execSQL("drop table if exists "+dbHelper.MODELS_TABLE);
-		db.execSQL(dbHelper.MODELS_CREATE);
-		insertTestValuesMod();
-		System.out.println("11111111");
-		db.execSQL("drop table if exists "+dbHelper.MANUFACTURERS_TABLE);
-		db.execSQL(dbHelper.MANUFACTURERS_CREATE);
-		insertTestValuesMan();
-		System.out.println("22222222");
-	}
-
-	public static void insertTestValuesMan() {
-		for (int i = 0; i < asd.length - 1; i += 2) {
-			db.execSQL("INSERT INTO " + dbHelper.MANUFACTURERS_TABLE + " ("
-					+ dbHelper.MAN_ID + "," + dbHelper.MAN_NAME + ") VALUES "
-					+ asd[i] + "," + asd[i + 1]);
-		}
-	}
-
-	public static void insertTestValuesMod() {
-		for (int i = 0; i < qwe.length - 3; i += 4) {
-			db.execSQL("INSERT INTO " + dbHelper.MODELS_TABLE + " ("
-					+ dbHelper.MOD_ID + "," + dbHelper.MOD_ID_MAN + ","
-					+ dbHelper.MOD_NAME + "," + dbHelper.MOD_GROUP
-					+ ") VALUES " + qwe[i] + "," + qwe[i + 1] + ","
-					+ qwe[i + 2] + "," + qwe[i + 3]);
-		}
-	}
-
-	public static void insertTestValuesNEW() {
-		db.execSQL("INSERT INTO " + dbHelper.NEW_TABLE + " VALUES (" + 2 + ",'"
-				+ "NISSAN GTR" + "','" + "91000$" + "','" + 2013 + "','"
-				+ "photos/thumbs/upl_cars/0504/6081635_1.jpg" + "')");
-		db.execSQL("INSERT INTO " + dbHelper.NEW_TABLE + " VALUES (" + 1 + ",'"
-				+ "MERCEDES class Chuchu" + "','" + "55500$" + "','" + 1900
-				+ "','" + "photos/thumbs/upl_cars/0504/6048401_1.jpg" + "')");
-	}
-
-	public static void insertTestValuesFuelGear() {
-		db.execSQL(dbHelper.FUEL_CREATE);
-		db.execSQL(dbHelper.GEAR_CREATE);
-		String[] arr = new String[] { "(2,'Petrol')", "(3,'Diesel')",
-				"(5,'Gas/Petrol')", "(6,'Hybrid')", "(7,'Electric')" };
-		for (String a : arr) {
-			db.execSQL("insert into " + dbHelper.FUEL_TABLE + " values" + a);
-		}
-		String[] arr1 = new String[] { "(1,'Manual')", "(2,'Automatic')",
-				"(3,'Tiptronic')" };
-		for (String a : arr1)
-			db.execSQL("insert into " + dbHelper.GEAR_TABLE + " values" + a);
 	}
 
 	public static void clearTable() {
@@ -96,12 +43,12 @@ public class DBManager {
 	}
 
 	public static void dropTable() {
-		db.execSQL("drop table " + dbHelper.MANUFACTURERS_TABLE);
+		db.execSQL("drop table " + dbHelper.MAKE_TABLE);
 	}
 
 	public static List<String> getManufacturers() {
 		List<String> list = new ArrayList<String>();
-		String selectQuery = "select * from " + dbHelper.MANUFACTURERS_TABLE;
+		String selectQuery = "select * from " + dbHelper.MAKE_TABLE;
 
 		Cursor cursor = db.rawQuery(selectQuery, null);
 		if (cursor.moveToFirst()) {
@@ -114,10 +61,11 @@ public class DBManager {
 	}
 
 	public static Cursor getManufacturersRaw() {
-		String[] tableColumns = new String[] { dbHelper.MAN_ID_SPINNER+" as _id", dbHelper.MAN_NAME };
+		String[] tableColumns = new String[] {
+				dbHelper.MAKE_ID_SPINNER + " as _id", dbHelper.MAKE_NAME };
 		SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
 
-		queryBuilder.setTables(dbHelper.MANUFACTURERS_TABLE);
+		queryBuilder.setTables(dbHelper.MAKE_TABLE);
 		queryBuilder.appendColumns(new StringBuilder(), tableColumns);
 		Cursor cursor = queryBuilder.query(db, tableColumns, null, null, null,
 				null, null);
@@ -125,13 +73,13 @@ public class DBManager {
 	}
 
 	public static Cursor filterModelsByManufacturersRaw(String manufacturer) {
-		String selectManufacturerId = "select " + dbHelper.MAN_ID + " from "
-				+ dbHelper.MANUFACTURERS_TABLE + " where " + dbHelper.MAN_NAME
-				+ " = '" + manufacturer + "'";
+		String selectManufacturerId = "select " + dbHelper.MAKE_ID + " from "
+				+ dbHelper.MAKE_TABLE + " where " + dbHelper.MAKE_NAME + " = '"
+				+ manufacturer + "'";
 		String selectQuery = "select " + dbHelper.MOD_ID + " as _id, "
 				+ dbHelper.MOD_NAME + " from " + dbHelper.MODELS_TABLE
-				+ " where " + dbHelper.MOD_ID_MAN + " in (" + selectManufacturerId
-				+ ")";
+				+ " where " + dbHelper.MOD_ID_MAN + " in ("
+				+ selectManufacturerId + ")";
 		Cursor cursor = db.rawQuery(selectQuery, null);
 		return cursor;
 	}
@@ -165,4 +113,49 @@ public class DBManager {
 				+ ",'" + name + "','" + price + "','" + year + "','" + img_url
 				+ "');");
 	}
+
+	public static void fillTables() {
+		putTestData();
+	}
+
+	private static void putTestData() {
+		putTestMake();
+		putTestModel();
+		putTestFuel();
+		putTestGear();
+	}
+
+	private static void putTestMake() {
+		for (int i = 0; i < asd.length - 1; i += 2) {
+			db.execSQL("INSERT INTO " + dbHelper.MAKE_TABLE + " ("
+					+ dbHelper.MAKE_ID + "," + dbHelper.MAKE_NAME + ") VALUES "
+					+ asd[i] + "," + asd[i + 1]);
+		}
+	}
+
+	private static void putTestModel() {
+		for (int i = 0; i < qwe.length - 3; i += 4) {
+			db.execSQL("INSERT INTO " + dbHelper.MODELS_TABLE + " ("
+					+ dbHelper.MOD_ID + "," + dbHelper.MOD_ID_MAN + ","
+					+ dbHelper.MOD_NAME + "," + dbHelper.MOD_GROUP
+					+ ") VALUES " + qwe[i] + "," + qwe[i + 1] + ","
+					+ qwe[i + 2] + "," + qwe[i + 3]);
+		}
+	}
+
+	private static void putTestFuel() {
+		String[] arr = new String[] { "(2,'Petrol')", "(3,'Diesel')",
+				"(5,'Gas/Petrol')", "(6,'Hybrid')", "(7,'Electric')" };
+		for (String a : arr) {
+			db.execSQL("insert into " + dbHelper.FUEL_TABLE + " values" + a);
+		}
+	}
+
+	private static void putTestGear() {
+		String[] arr1 = new String[] { "(1,'Manual')", "(2,'Automatic')",
+				"(3,'Tiptronic')" };
+		for (String a : arr1)
+			db.execSQL("insert into " + dbHelper.GEAR_TABLE + " values" + a);
+	}
+
 }
