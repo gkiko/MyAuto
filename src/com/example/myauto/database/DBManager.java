@@ -61,14 +61,9 @@ public class DBManager {
 	}
 
 	public static Cursor getManufacturersRaw() {
-		String[] tableColumns = new String[] {
-				dbHelper.MAKE_ID_SPINNER + " as _id", dbHelper.MAKE_NAME };
-		SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
+		Cursor cursor = db.rawQuery("select "+dbHelper.MAKE_ID_SPINNER+" as _id," + dbHelper.MAKE_NAME + " from "
+				+ dbHelper.MAKE_TABLE + " order by "+dbHelper.MAKE_NAME, null);
 
-		queryBuilder.setTables(dbHelper.MAKE_TABLE);
-		queryBuilder.appendColumns(new StringBuilder(), tableColumns);
-		Cursor cursor = queryBuilder.query(db, tableColumns, null, null, null,
-				null, null);
 		return cursor;
 	}
 
