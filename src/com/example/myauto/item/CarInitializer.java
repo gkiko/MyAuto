@@ -97,7 +97,7 @@ public class CarInitializer implements Observer, ImgDownloadListener{
 	private ArrayList<Car> parseList(ArrayList<String> ls){
 		ArrayList<Car> qwe = new ArrayList<Car>();
 		for (String a : ls) {
-			String[] data = a.split(XMLReader.stpitBy);
+			String[] data = a.split(XMLReader.splitBy);
 			putDataInList(data,qwe);
 		}
 		return qwe;

@@ -59,7 +59,7 @@ public class CarDownloader extends Observable {
 	private void updateTableVVIP() {
 		DBManager.clearVVIP();
 		for (String a : parsedDataVVIP) {
-			String[] data = a.split(XMLReader.stpitBy);
+			String[] data = a.split(XMLReader.splitBy);
 			DBManager.insertIntoVVIP(data[0], data[1], data[2], data[3] + " "
 					+ data[4], data[5]);
 		}

@@ -13,7 +13,7 @@ public class XMLReader {
 	private SAXParser saxParser;
 	private DefaultHandler handler;
 	private ArrayList<String> elements;
-	public static String stpitBy = ",";
+	public static String splitBy = ",";
 
 	private final String idTag = "id";
 	private final String photoTag = "photo";
@@ -103,7 +103,7 @@ public class XMLReader {
 
 				private void appendElement(String string) {
 					String old = elements.get(elements.size()-1);
-					elements.set(elements.size()-1, old+stpitBy+string);
+					elements.set(elements.size()-1, old+splitBy+string);
 				}
 
 			};
