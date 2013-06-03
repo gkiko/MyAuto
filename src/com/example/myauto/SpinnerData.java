@@ -146,7 +146,7 @@ public class SpinnerData {
 	}
 
 	private void setUpArrayAdapter(Spinner sp, Cursor c) {
-		String[] from = new String[] { DBHelper.MAN_NAME };
+		String[] from = new String[] { DBHelper.MAKE_NAME };
 		int[] to = new int[] { android.R.id.text1 };
 		SimpleCursorAdapter sca = new SimpleCursorAdapter(context,
 				android.R.layout.simple_spinner_item, c, from, to, 0);

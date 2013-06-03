@@ -44,13 +44,6 @@ public class MainActivity extends Activity {
 		carDownloader = new CarDownloader();
 		carDownloader.addObserver(carInitializer);
 
-		
-		// DBManager.insertTestValuesMan();
-		// DBManager.insertTestValuesMod();
-		// DBManager.clearNEW();
-		// DBManager.insertTestValuesNEW();
-//		DBManager.insertTestValuesFuelGear();
-
 		if (internetAvailable())
 			updateTables();
 		else {

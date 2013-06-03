@@ -16,10 +16,10 @@ public class DBManagerFilter {
 	}
 	
 	public static String getManIdByName(String name) {
-		String[] tableColumns = new String[] { dbHelper.MAN_ID+" as _id" };
-		String whereClause = dbHelper.MAN_NAME+" = ?";
+		String[] tableColumns = new String[] { dbHelper.MAKE_ID+" as _id" };
+		String whereClause = dbHelper.MAKE_NAME+" = ?";
 		String[] whereArgs = new String[] { name };
-		Cursor c = db.query(dbHelper.MANUFACTURERS_TABLE, tableColumns, whereClause,
+		Cursor c = db.query(dbHelper.MAKE_TABLE, tableColumns, whereClause,
 				whereArgs, null, null, null);
 		
 		String res = "";
