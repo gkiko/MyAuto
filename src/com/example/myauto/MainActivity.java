@@ -42,7 +42,6 @@ public class MainActivity extends Activity {
 		carInitializer = new CarInitializer(getApplicationContext(),
 				(ListView) findViewById(R.id.tab1));
 		carDownloader = new CarDownloader();
-//		carDownloader.addObserver(carInitializer);
 		carDownloader.addMyChangeListener(carInitializer);
 
 		if (internetAvailable())
@@ -88,7 +87,7 @@ public class MainActivity extends Activity {
 	}
 
 	private void updateTables() {
-		carDownloader.updateVVIPTable();
+		carDownloader.downloadCarList(null);
 	}
 
 	private void setUpTabs() {
