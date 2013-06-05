@@ -42,7 +42,8 @@ public class MainActivity extends Activity {
 		carInitializer = new CarInitializer(getApplicationContext(),
 				(ListView) findViewById(R.id.tab1));
 		carDownloader = new CarDownloader();
-		carDownloader.addObserver(carInitializer);
+//		carDownloader.addObserver(carInitializer);
+		carDownloader.addMyChangeListener(carInitializer);
 
 		if (internetAvailable())
 			updateTables();
