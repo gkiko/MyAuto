@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBHelper extends SQLiteOpenHelper {
 	private static final String DATABASE_NAME = "MyAutoDatabase";
-	private static final int DATABASE_VERSION = 1;
+	private static final int DATABASE_VERSION = 2;
 
 	// Table MANUFACTURERS (spinner)
 	public static final String MAKE_TABLE = "MANUFACTURERS";
@@ -21,15 +21,6 @@ public class DBHelper extends SQLiteOpenHelper {
 	public static final String MOD_NAME = "name";
 	public static final String MOD_GROUP = "group_mod";
 
-	// Table VVIP and NEW
-	public static final String VVIP_TABLE = "VVIP";
-	public static final String NEW_TABLE = "NEW";
-	public static final String VVIP_ID = "id";
-	public static final String VVIP_NAME = "name";
-	public static final String VVIP_PRICE = "price";
-	public static final String VVIP_YEAR = "year";
-	public static final String VVIP_IMG_URL = "img_url";
-
 	// Table Fuel and Gear (spinners)
 	public static final String FUEL_TABLE = "FUEL";
 	public static final String GEAR_TABLE = "GEAR";
@@ -42,14 +33,6 @@ public class DBHelper extends SQLiteOpenHelper {
 	public static final String MODELS_CREATE = "create table " + MODELS_TABLE
 			+ " (" + MOD_ID + " integer primary key, " + MOD_ID_MAN + " integer, "
 			+ MOD_NAME + " text not null, " + MOD_GROUP + " text);";
-	public static final String TABLE_DESC = " (" + VVIP_ID
-			+ " integer primary key," + VVIP_NAME + " text not null,"
-			+ VVIP_PRICE + " text not null," + VVIP_YEAR + " text not null,"
-			+ VVIP_IMG_URL + " text);";
-	public static final String VVIP_CREATE = "create table if not exists "
-			+ VVIP_TABLE + TABLE_DESC;
-	public static final String NEW_CREATE = "create table if not exists "
-			+ NEW_TABLE + TABLE_DESC;
 	public static final String FUEL_CREATE = "create table if not exists "
 			+ FUEL_TABLE + "(" + FUEL_ID + " integer primary key," + FUEL_NAME
 			+ " text not null);";
@@ -69,8 +52,6 @@ public class DBHelper extends SQLiteOpenHelper {
 	public static void createTables(SQLiteDatabase db) {
 		db.execSQL(MANUFACTURERS_CREATE);
 		db.execSQL(MODELS_CREATE);
-		db.execSQL(VVIP_CREATE);
-		db.execSQL(NEW_CREATE);
 		db.execSQL(FUEL_CREATE);
 		db.execSQL(GEAR_CREATE);
 	}
@@ -84,8 +65,6 @@ public class DBHelper extends SQLiteOpenHelper {
 	public static void dropTables(SQLiteDatabase db) {
 		db.execSQL("DROP TABLE IF EXISTS " + MAKE_TABLE);
 		db.execSQL("DROP TABLE IF EXISTS " + MODELS_TABLE);
-		db.execSQL("DROP TABLE IF EXISTS " + VVIP_TABLE);
-		db.execSQL("DROP TABLE IF EXISTS " + NEW_TABLE);
 		db.execSQL("DROP TABLE IF EXISTS " + FUEL_TABLE);
 		db.execSQL("DROP TABLE IF EXISTS " + GEAR_TABLE);
 	}
