@@ -3,27 +3,27 @@ package com.example.myauto.net;
 import java.io.IOException;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import com.example.myauto.event.ImgDownloadListener;
 import com.example.myauto.event.MyChangeEvent;
 import com.example.myauto.item.Car;
+import com.example.myauto.listener.ImageDownloadListener;
 
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 
 public class ImageFetcher extends AsyncTask<String, Void, Bitmap> {
 	private Car car;
-	private final CopyOnWriteArrayList<ImgDownloadListener> listeners;
+	private final CopyOnWriteArrayList<ImageDownloadListener> listeners;
 
 	public ImageFetcher(Car car) {
 		this.car = car;
-		this.listeners = new CopyOnWriteArrayList<ImgDownloadListener>();
+		this.listeners = new CopyOnWriteArrayList<ImageDownloadListener>();
 	}
 
-	public void addMyChangeListener(ImgDownloadListener l) {
+	public void addMyChangeListener(ImageDownloadListener l) {
 		this.listeners.add(l);
 	}
 
-	public void removeMyChangeListener(ImgDownloadListener l) {
+	public void removeMyChangeListener(ImageDownloadListener l) {
 		this.listeners.remove(l);
 	}
 
@@ -48,7 +48,7 @@ public class ImageFetcher extends AsyncTask<String, Void, Bitmap> {
 	protected void fireChangeEvent() {
 		MyChangeEvent evt = new MyChangeEvent(this);
 
-		for (ImgDownloadListener l : listeners) {
+		for (ImageDownloadListener l : listeners) {
 			l.imageDownloaded(evt);
 		}
 	}
