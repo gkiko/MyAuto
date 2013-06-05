@@ -3,12 +3,14 @@ package com.example.myauto.parser;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Observable;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.os.Build;
 
-import com.example.myauto.database.DBManager;
+import com.example.myauto.event.MyChangeEvent;
+import com.example.myauto.listener.CarListDownloadListener;
 import com.example.myauto.net.HttpClient;
 
 public class CarDownloader extends Observable {
@@ -16,7 +18,20 @@ public class CarDownloader extends Observable {
 	private String VVIP_XML = "";
 	private ArrayList<String> parsedDataVVIP;
 	private XMLReader reader = new XMLReader();
+	private CopyOnWriteArrayList<CarListDownloadListener> listeners;
 
+	public CarDownloader(){
+		listeners = new CopyOnWriteArrayList<CarListDownloadListener>();
+	}
+	
+	public void addMyChangeListener(CarListDownloadListener l) {
+		this.listeners.add(l);
+	}
+
+	public void removeMyChangeListener(CarListDownloadListener l) {
+		this.listeners.remove(l);
+	}
+	
 	public void updateVVIPTable() {
 		checkForUpdate();
 	}
@@ -46,22 +61,21 @@ public class CarDownloader extends Observable {
 				e.printStackTrace();
 			}
 			parsedDataVVIP = reader.parse(VVIP_XML);
-			updateTableVVIP();
 			return null;
 		}
 		
 		@Override
 		protected void onPostExecute(Void result) {
-			triggerCarInitializer();
+			fireListDownloadEvent();
+//			triggerCarInitializer();
 		}
 	}
 
-	private void updateTableVVIP() {
-		DBManager.clearVVIP();
-		for (String a : parsedDataVVIP) {
-			String[] data = a.split(XMLReader.splitBy);
-			DBManager.insertIntoVVIP(data[0], data[1], data[2], data[3] + " "
-					+ data[4], data[5]);
+	private void fireListDownloadEvent() {
+		MyChangeEvent evt = new MyChangeEvent(parsedDataVVIP);
+
+		for (CarListDownloadListener l : listeners) {
+			l.carListDownloaded(evt);
 		}
 	}
 
@@ -104,11 +118,11 @@ public class CarDownloader extends Observable {
 			return ls;
 		}
 		
-		@Override
-		protected void onPostExecute(ArrayList<String> ls) {
-			if(dataPresents(ls))
-				triggerCarInitializer2(ls);
-		}
+//		@Override
+//		protected void onPostExecute(ArrayList<String> ls) {
+//			if(dataPresents(ls))
+//				triggerCarInitializer2(ls);
+//		}
 		
 		private boolean dataPresents(ArrayList<String> ls){
 			return ls.size()>0;
