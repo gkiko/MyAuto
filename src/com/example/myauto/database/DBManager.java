@@ -27,21 +27,6 @@ public class DBManager {
 		}
 	}
 
-	public static void clearTable() {
-		db.execSQL("DROP TABLE IF EXISTS " + dbHelper.VVIP_TABLE);
-		db.execSQL("create table " + dbHelper.VVIP_TABLE + " ("
-				+ dbHelper.VVIP_ID + " integer primary key,"
-				+ dbHelper.VVIP_NAME + " text not null," + dbHelper.VVIP_PRICE
-				+ " text not null," + dbHelper.VVIP_YEAR + " text not null,"
-				+ dbHelper.VVIP_IMG_URL + " text);");
-		System.out.println("create table " + dbHelper.VVIP_TABLE + " ("
-				+ dbHelper.VVIP_ID + " integer primary key,"
-				+ dbHelper.VVIP_NAME + " text not null," + dbHelper.VVIP_PRICE
-				+ " text not null," + dbHelper.VVIP_YEAR + " text not null,"
-				+ dbHelper.VVIP_IMG_URL + " text);");
-		// db.execSQL("delete from " + dbHelper.VVIP_TABLE);
-	}
-
 	public static void dropTable() {
 		db.execSQL("drop table " + dbHelper.MAKE_TABLE);
 	}
@@ -79,14 +64,6 @@ public class DBManager {
 		return cursor;
 	}
 
-	public static Cursor getVVIPRaw() {
-		return getData(dbHelper.VVIP_TABLE);
-	}
-
-	public static Cursor getNEWRaw() {
-		return getData(dbHelper.NEW_TABLE);
-	}
-
 	private static Cursor getData(String tableName) {
 		String[] tableColumns = new String[] { "id as _id", "img_url", "price",
 				"name", "year" };
@@ -96,17 +73,6 @@ public class DBManager {
 		Cursor cursor = queryBuilder.query(db, tableColumns, null, null, null,
 				null, null);
 		return cursor;
-	}
-
-	public static void clearVVIP() {
-		db.execSQL("delete from " + dbHelper.VVIP_TABLE);
-	}
-
-	public static void insertIntoVVIP(String id, String img_url, String price,
-			String name, String year) {
-		db.execSQL("INSERT INTO " + dbHelper.VVIP_TABLE + " VALUES (" + id
-				+ ",'" + name + "','" + price + "','" + year + "','" + img_url
-				+ "');");
 	}
 
 	public static void fillTables() {
