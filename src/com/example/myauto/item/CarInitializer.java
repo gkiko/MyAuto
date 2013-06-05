@@ -13,13 +13,14 @@ import android.widget.ListView;
 
 import com.example.myauto.ListAdapter;
 import com.example.myauto.database.DBManager;
-import com.example.myauto.event.ImgDownloadListener;
 import com.example.myauto.event.MyChangeEvent;
+import com.example.myauto.listener.CarListDownloadListener;
+import com.example.myauto.listener.ImageDownloadListener;
 import com.example.myauto.net.ImageFetcher;
 import com.example.myauto.parser.CarDownloader;
 import com.example.myauto.parser.XMLReader;
 
-public class CarInitializer implements Observer, ImgDownloadListener{
+public class CarInitializer implements Observer, ImageDownloadListener, CarListDownloadListener{
 	private static final String hostURL = "http://myauto.ge/";
 	private Context context;
 	private ListView list1;
@@ -56,7 +57,6 @@ public class CarInitializer implements Observer, ImgDownloadListener{
 		car.setValueToProperty("price", c.getString(2));
 		car.setValueToProperty("year", c.getString(4));
 		fetchImageBitmap(c.getString(1), car);
-//		System.out.println("-- "+c.getInt(0)+" "+c.getString(1)+" "+c.getString(2)+" "+c.getString(3)+" "+c.getString(4));
 		return car;
 	}
 	
@@ -118,4 +118,11 @@ public class CarInitializer implements Observer, ImgDownloadListener{
 	public void imageDownloaded(MyChangeEvent evt) {
 		a.notifyDataSetChanged();
 	}
+
+	@Override
+	public void carListDownloaded(MyChangeEvent evt) {
+		ArrayList<String> parsedData = (ArrayList<String>)evt.source;
+		populateListNoDB(parsedData);
+	}
+	
 }
