@@ -1,8 +1,6 @@
 package com.example.myauto.item;
 
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -20,7 +18,7 @@ import com.example.myauto.net.ImageFetcher;
 import com.example.myauto.parser.CarDownloader;
 import com.example.myauto.parser.XMLReader;
 
-public class CarInitializer implements Observer, ImageDownloadListener, CarListDownloadListener{
+public class CarInitializer implements ImageDownloadListener, CarListDownloadListener{
 	private static final String hostURL = "http://myauto.ge/";
 	private Context context;
 	private ListView list1;
@@ -50,7 +48,7 @@ public class CarInitializer implements Observer, ImageDownloadListener, CarListD
 	}
 	
 	private Car getItemFromRow(Cursor c){
-		Car car = new Car(this);
+		Car car = new Car();
 		
 		car.setValueToProperty("id", ""+c.getInt(0));
 		car.setValueToProperty("name", c.getString(3));
@@ -76,18 +74,7 @@ public class CarInitializer implements Observer, ImageDownloadListener, CarListD
 		return hostURL + url;
 	}
 
-	@Override
-	public void update(Observable arg0, Object arg1) {
-		if(arg0 instanceof CarDownloader){
-			if(arg1 == null)
-				populateList();
-			else
-				populateListNoDB((ArrayList<String>) arg1);
-		}
-	}
-	
 	private void populateListNoDB(ArrayList<String> ls){
-		System.out.println(ls.get(0));
 		ArrayList<Car> carList;
 		carList = parseList(ls);
 		a = new ListAdapter(carList, context);
@@ -98,13 +85,13 @@ public class CarInitializer implements Observer, ImageDownloadListener, CarListD
 		ArrayList<Car> qwe = new ArrayList<Car>();
 		for (String a : ls) {
 			String[] data = a.split(XMLReader.splitBy);
-			putDataInList(data,qwe);
+			putDataInList(qwe,data);
 		}
 		return qwe;
 	}
 	
-	private void putDataInList(String[] src, ArrayList<Car> dst){
-		Car car = new Car(this);
+	private void putDataInList(ArrayList<Car> dst, String[] src){
+		Car car = new Car();
 		car.setValueToProperty("id", ""+src[0]);
 		car.setValueToProperty("name", src[3]+" "+src[4]);
 		car.setValueToProperty("price", src[2]);

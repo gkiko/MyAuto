@@ -32,13 +32,8 @@ public class CarDownloader extends Observable {
 		this.listeners.remove(l);
 	}
 	
-	public void updateVVIPTable() {
-		checkForUpdate();
-	}
-
 	@SuppressLint("NewApi")
-	private void checkForUpdate() {
-		HashMap<String, String> params = new HashMap<String, String>();
+	public void downloadCarList(HashMap<String, String> params) {
 		XMLFetcher f = new XMLFetcher(params);
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
 		    f.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, VVIP_URL);
@@ -67,7 +62,6 @@ public class CarDownloader extends Observable {
 		@Override
 		protected void onPostExecute(Void result) {
 			fireListDownloadEvent();
-//			triggerCarInitializer();
 		}
 	}
 
@@ -77,60 +71,5 @@ public class CarDownloader extends Observable {
 		for (CarListDownloadListener l : listeners) {
 			l.carListDownloaded(evt);
 		}
-	}
-
-	private void triggerCarInitializer() {
-		super.setChanged();
-		super.notifyObservers();
-	}
-	
-	@SuppressLint("NewApi")
-	public void getCarList(HashMap<String, String> params){
-		XMLFetcher2 f = new XMLFetcher2(params);
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
-		    f.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, VVIP_URL);
-		else
-		    f.execute(VVIP_URL);
-//		f.execute(VVIP_URL);
-	}
-	
-	private class XMLFetcher2 extends AsyncTask<String, String, ArrayList<String>> {
-		HashMap<String, String> params;
-		public XMLFetcher2(HashMap<String, String> params){
-			this.params = params;
-		}
-		
-		@Override
-		protected void onPreExecute() {
-			System.out.println("XUI");
-		}
-
-		@Override
-		protected ArrayList<String> doInBackground(String... arg0) {
-			System.out.println("mivediiii");
-			String asd = null;
-			try {
-				asd = HttpClient.getHttpClientDoGetResponse(arg0[0], params);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			ArrayList<String> ls = reader.parse(asd);
-			return ls;
-		}
-		
-//		@Override
-//		protected void onPostExecute(ArrayList<String> ls) {
-//			if(dataPresents(ls))
-//				triggerCarInitializer2(ls);
-//		}
-		
-		private boolean dataPresents(ArrayList<String> ls){
-			return ls.size()>0;
-		}
-	}
-	
-	private void triggerCarInitializer2(ArrayList<String> ls) {
-		super.setChanged();
-		super.notifyObservers(ls);
 	}
 }
