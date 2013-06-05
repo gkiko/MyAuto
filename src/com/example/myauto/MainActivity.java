@@ -44,11 +44,8 @@ public class MainActivity extends Activity {
 		carDownloader = new CarDownloader();
 		carDownloader.addMyChangeListener(carInitializer);
 
-		if (internetAvailable())
-			updateTables();
-		else {
-			setUpTabs();
-		}
+		carDownloader.downloadCarList(null);
+
 		drawTabs();
 		tab3Layout = (LinearLayout) findViewById(R.id.tab3_linear);
 		spinnerData = new SpinnerData(this, tab3Layout);
@@ -84,15 +81,6 @@ public class MainActivity extends Activity {
 		NetworkInfo activeNetworkInfo = connectivityManager
 				.getActiveNetworkInfo();
 		return activeNetworkInfo != null && activeNetworkInfo.isConnected();
-	}
-
-	private void updateTables() {
-		carDownloader.downloadCarList(null);
-	}
-
-	private void setUpTabs() {
-		carInitializer.populateList();
-		// carInitializer.populateNEW();
 	}
 
 	private void drawTabs() {

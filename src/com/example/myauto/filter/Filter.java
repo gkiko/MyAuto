@@ -37,7 +37,6 @@ public class Filter {
 		CarInitializer ci = new CarInitializer(c, v);
 		CarDownloader cd = new CarDownloader();
 		cd.addMyChangeListener(ci);
-//		cd.addObserver(ci);
 		cd.downloadCarList(parameters);
 	}
 
