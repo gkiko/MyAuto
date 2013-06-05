@@ -4,18 +4,15 @@ import java.util.ArrayList;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.widget.ListView;
 
 import com.example.myauto.ListAdapter;
-import com.example.myauto.database.DBManager;
 import com.example.myauto.event.MyChangeEvent;
 import com.example.myauto.listener.CarListDownloadListener;
 import com.example.myauto.listener.ImageDownloadListener;
 import com.example.myauto.net.ImageFetcher;
-import com.example.myauto.parser.CarDownloader;
 import com.example.myauto.parser.XMLReader;
 
 public class CarInitializer implements ImageDownloadListener, CarListDownloadListener{
@@ -28,34 +25,6 @@ public class CarInitializer implements ImageDownloadListener, CarListDownloadLis
 	public CarInitializer(Context context, ListView VVIPList){
 		this.context = context;
 		list1 = VVIPList;
-	}
-	
-	public void populateList(){
-		ArrayList<Car> carList;
-		carList = fetchVVIPListFromDB();
-		a = new ListAdapter(carList, context);
-		list1.setAdapter(a);
-	}
-	
-	private ArrayList<Car> fetchVVIPListFromDB(){
-		ArrayList<Car> list = new ArrayList<Car>();
-		Cursor c = DBManager.getVVIPRaw();
-		while(c.moveToNext()){
-			Car singleItem = getItemFromRow(c);
-			list.add(singleItem);
-		}
-		return list;
-	}
-	
-	private Car getItemFromRow(Cursor c){
-		Car car = new Car();
-		
-		car.setValueToProperty("id", ""+c.getInt(0));
-		car.setValueToProperty("name", c.getString(3));
-		car.setValueToProperty("price", c.getString(2));
-		car.setValueToProperty("year", c.getString(4));
-		fetchImageBitmap(c.getString(1), car);
-		return car;
 	}
 	
 	@SuppressLint("NewApi")
