@@ -35,11 +35,13 @@ public class HttpClient {
 			final Map<String, String> params) {
 		StringBuilder strBld = new StringBuilder(url);
 		strBld.append("?");
-		for (String key : params.keySet()) {
-			strBld.append(key);
-			strBld.append("=");
-			strBld.append(params.get(key));
-			strBld.append("&");
+		if(params != null){
+			for (String key : params.keySet()) {
+				strBld.append(key);
+				strBld.append("=");
+				strBld.append(params.get(key));
+				strBld.append("&");
+			}
 		}
 		strBld.deleteCharAt(strBld.length() - 1);
 		System.out.println(strBld.toString());
