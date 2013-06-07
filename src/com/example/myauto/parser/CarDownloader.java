@@ -5,9 +5,7 @@ import java.util.HashMap;
 import java.util.Observable;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import android.annotation.SuppressLint;
 import android.os.AsyncTask;
-import android.os.Build;
 
 import com.example.myauto.event.MyChangeEvent;
 import com.example.myauto.listener.CarListDownloadListener;
@@ -32,14 +30,9 @@ public class CarDownloader extends Observable {
 		this.listeners.remove(l);
 	}
 	
-	@SuppressLint("NewApi")
 	public void downloadCarList(HashMap<String, String> params) {
 		XMLFetcher f = new XMLFetcher(params);
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
-		    f.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, VVIP_URL);
-		else
-		    f.execute(VVIP_URL);
-//		f.execute(VVIP_URL);
+	    f.execute(VVIP_URL);
 	}
 
 	private class XMLFetcher extends AsyncTask<String, String, Void> {
