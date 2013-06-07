@@ -5,11 +5,8 @@ import com.example.myauto.filter.FilteredActivity;
 import com.example.myauto.item.CarInitializer;
 import com.example.myauto.parser.CarDownloader;
 
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
@@ -21,8 +18,7 @@ import android.widget.TabHost;
 
 public class MainActivity extends Activity {
 	private TabHost tabhost;
-	private final String tab1Name = "VVIP";
-	private final String tab2Name = "NEW";
+	private final String tab1Name = "NEW";
 	private final String tab3Name = "Filter";
 	public static final String BUNDLE_KEY = "keyB";
 	public static final String INTENT_KEY = "keyI";
@@ -76,13 +72,6 @@ public class MainActivity extends Activity {
 		startActivity(intent);
 	}
 
-	private boolean internetAvailable() {
-		ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-		NetworkInfo activeNetworkInfo = connectivityManager
-				.getActiveNetworkInfo();
-		return activeNetworkInfo != null && activeNetworkInfo.isConnected();
-	}
-
 	private void drawTabs() {
 		tabhost = (TabHost) findViewById(R.id.tabhost);
 		tabhost.setup();
@@ -91,11 +80,6 @@ public class MainActivity extends Activity {
 		spec = tabhost.newTabSpec("tab1");
 		spec.setContent(R.id.tab1);
 		spec.setIndicator(tab1Name, null);
-		tabhost.addTab(spec);
-
-		spec = tabhost.newTabSpec("tab2");
-		spec.setContent(R.id.tab2);
-		spec.setIndicator(tab2Name, null);
 		tabhost.addTab(spec);
 
 		spec = tabhost.newTabSpec("tab3");
