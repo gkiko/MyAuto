@@ -20,8 +20,6 @@
 
         <include layout="@layout/tab1" />
 
-        <include layout="@layout/tab2" />
-
         <include layout="@layout/tab3" />
     </FrameLayout>
 
