@@ -4,8 +4,13 @@
     <string name="app_name">MyAuto</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">asdasd</string>
-    <string name="year">Year</string>
+    <string name="year_f">Year From</string>
+    <string name="year_t">Year To</string>
+    <string name="butt_negative">Cancel</string>
+    <string name="butt_positive">Set</string>
     <string name="price">Price</string>
+    <string name="price_f">Price From</string>
+    <string name="price_t">Price To</string>
     <string name="hint1">From</string>
     <string name="hint2">To</string>
     <string name="clearance">Customs</string>

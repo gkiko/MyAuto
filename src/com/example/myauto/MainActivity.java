@@ -1,13 +1,16 @@
 package com.example.myauto;
 
 import com.example.myauto.database.DBManager;
+import com.example.myauto.dialog.PriceDialog;
+import com.example.myauto.dialog.PriceDialog.EditNameDialogListener;
 import com.example.myauto.filter.FilteredActivity;
 import com.example.myauto.item.CarInitializer;
 import com.example.myauto.parser.CarDownloader;
 
 import android.os.Bundle;
-import android.app.Activity;
 import android.content.Intent;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -15,8 +18,9 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TabHost;
+import android.widget.Toast;
 
-public class MainActivity extends Activity {
+public class MainActivity extends FragmentActivity implements EditNameDialogListener{
 	private TabHost tabhost;
 	private final String tab1Name = "NEW";
 	private final String tab3Name = "Filter";
@@ -62,6 +66,16 @@ public class MainActivity extends Activity {
 				redirectToNextPage(values);
 			}
 		});
+		
+		/* test */
+		Button btn1 = (Button) findViewById(R.id.button1);
+		btn1.setOnClickListener(new OnClickListener() {
+
+			public void onClick(View v) {
+				DialogFragment yearDialog = new PriceDialog();
+				yearDialog.show(getSupportFragmentManager(), "price");
+			}
+		});
 	}
 
 	private void redirectToNextPage(String[] data) {
@@ -94,11 +108,16 @@ public class MainActivity extends Activity {
 		spinnerData.setUpManufacturersSpinner();
 		spinnerData.setUpYearSpinners();
 	}
-
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
+	}
+
+	@Override
+	public void onFinishEditDialog(String inputText) {
+		Toast.makeText(this, "Hi, " + inputText, Toast.LENGTH_LONG).show();
 	}
 }
