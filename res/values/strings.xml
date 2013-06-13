@@ -9,8 +9,8 @@
     <string name="butt_negative">Cancel</string>
     <string name="butt_positive">Set</string>
     <string name="price">Price</string>
-    <string name="price_f">Price From</string>
-    <string name="price_t">Price To</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
     <string name="hint1">From</string>
     <string name="hint2">To</string>
     <string name="clearance">Customs</string>

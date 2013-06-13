@@ -72,8 +72,8 @@ public class MainActivity extends FragmentActivity implements EditNameDialogList
 		btn1.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
-				DialogFragment yearDialog = new PriceDialog();
-				yearDialog.show(getSupportFragmentManager(), "price");
+				DialogFragment priceDialog = new PriceDialog();
+				priceDialog.show(getSupportFragmentManager(), "price");
 			}
 		});
 	}

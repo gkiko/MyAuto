@@ -214,15 +214,15 @@ public final class R {
         public static final int butt_positive=0x7f060006;
         public static final int button=0x7f06000e;
         public static final int clearance=0x7f06000c;
+        public static final int from=0x7f060008;
         public static final int fuel_null=0x7f060010;
         public static final int hello_world=0x7f060002;
         public static final int hint1=0x7f06000a;
         public static final int hint2=0x7f06000b;
         public static final int price=0x7f060007;
-        public static final int price_f=0x7f060008;
-        public static final int price_t=0x7f060009;
         public static final int steer=0x7f06000d;
         public static final int title_activity_filtered=0x7f060011;
+        public static final int to=0x7f060009;
         public static final int transmission_null=0x7f06000f;
         public static final int year_f=0x7f060003;
         public static final int year_t=0x7f060004;
