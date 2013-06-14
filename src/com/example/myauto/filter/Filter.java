@@ -35,7 +35,7 @@ public class Filter {
 	public void filterAndDownload(String[] data) {
 		HashMap<String, String> parameters = prepareParametersToPass(data);
 		CarInitializer ci = new CarInitializer(c, v);
-		CarDownloader cd = new CarDownloader();
+		CarDownloader cd = new CarDownloader(c);
 		cd.addMyChangeListener(ci);
 		cd.downloadCarList(parameters);
 	}
