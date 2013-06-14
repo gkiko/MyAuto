@@ -28,7 +28,7 @@ public class CarInitializer implements ImageDownloadListener, CarListDownloadLis
 	}
 	
 	@SuppressLint("NewApi")
-	private void fetchImageBitmap(String imageURL, Car car){
+	private void fetchImageBitmap(String imageURL, Imagable car){
 		String fullURL = composeImageUrl(imageURL);
 		fetcher = new ImageFetcher(car);
 		fetcher.addMyChangeListener(this);
@@ -44,14 +44,14 @@ public class CarInitializer implements ImageDownloadListener, CarListDownloadLis
 	}
 
 	private void populateListNoDB(ArrayList<String> ls){
-		ArrayList<Car> carList;
+		ArrayList<Item> carList;
 		carList = parseList(ls);
 		a = new ListAdapter(carList, context);
 		list1.setAdapter(a);
 	}
 	
-	private ArrayList<Car> parseList(ArrayList<String> ls){
-		ArrayList<Car> qwe = new ArrayList<Car>();
+	private ArrayList<Item> parseList(ArrayList<String> ls){
+		ArrayList<Item> qwe = new ArrayList<Item>();
 		for (String a : ls) {
 			String[] data = a.split(XMLReader.splitBy);
 			putDataInList(qwe,data);
@@ -59,7 +59,7 @@ public class CarInitializer implements ImageDownloadListener, CarListDownloadLis
 		return qwe;
 	}
 	
-	private void putDataInList(ArrayList<Car> dst, String[] src){
+	private void putDataInList(ArrayList<Item> dst, String[] src){
 		Car car = new Car();
 		car.setValueToProperty("id", ""+src[0]);
 		car.setValueToProperty("name", src[3]+" "+src[4]);

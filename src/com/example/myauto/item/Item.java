@@ -3,7 +3,7 @@ package com.example.myauto.item;
 import java.util.HashMap;
 import java.util.Observable;
 
-public abstract class Item extends Observable{
+public abstract class Item extends Observable implements Imagable{
 	private HashMap<String, String> itemData = new HashMap<String, String>();
 	
 	public void setValueToProperty(String property, String value){
