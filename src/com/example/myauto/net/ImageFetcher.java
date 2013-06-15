@@ -4,17 +4,17 @@ import java.io.IOException;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.example.myauto.event.MyChangeEvent;
-import com.example.myauto.item.Car;
+import com.example.myauto.item.CarFacade;
 import com.example.myauto.listener.ImageDownloadListener;
 
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 
 public class ImageFetcher extends AsyncTask<String, Void, Bitmap> {
-	private Car car;
+	private CarFacade car;
 	private final CopyOnWriteArrayList<ImageDownloadListener> listeners;
 
-	public ImageFetcher(Car car) {
+	public ImageFetcher(CarFacade car) {
 		this.car = car;
 		this.listeners = new CopyOnWriteArrayList<ImageDownloadListener>();
 	}

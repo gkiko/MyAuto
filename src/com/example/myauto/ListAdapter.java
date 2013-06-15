@@ -3,7 +3,7 @@ package com.example.myauto;
 import java.io.Serializable;
 import java.util.ArrayList;//
 
-import com.example.myauto.item.Car;
+import com.example.myauto.item.CarFacade;
 
 import android.content.Context;
 import android.view.View;
@@ -13,10 +13,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ListAdapter extends BaseAdapter{
-	private ArrayList<Car> ls;
+	private ArrayList<CarFacade> ls;
 	private Context c;
 	
-	public ListAdapter(ArrayList<Car> list, Context context){
+	public ListAdapter(ArrayList<CarFacade> list, Context context){
 		ls = list;
 		c = context;
 	}
@@ -53,7 +53,7 @@ public class ListAdapter extends BaseAdapter{
 			cont = (Container) v.getTag();
 		}
 		
-		Car cr = ls.get(arg0);
+		CarFacade cr = ls.get(arg0);
 		if(cr.hasImage())
 			(cont.img).setImageBitmap(cr.getImage());
 		(cont.name).setText(cr.getValueFromProperty("name"));

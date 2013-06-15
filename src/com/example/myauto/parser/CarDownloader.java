@@ -14,8 +14,8 @@ import com.example.myauto.listener.CarListDownloadListener;
 import com.example.myauto.net.HttpClient;
 
 public class CarDownloader extends Observable {
-	private final String VVIP_URL = "http://myauto.ge/car_list_xml.php";
-	private String VVIP_XML = "";
+	private final String DWNLOAD_URL = "http://myauto.ge/car_list_xml.php";
+	private String RESULT_XML = "";
 	private ArrayList<String> parsedDataVVIP;
 	private XMLReader reader = new XMLReader();
 	private CopyOnWriteArrayList<CarListDownloadListener> listeners;
@@ -36,7 +36,7 @@ public class CarDownloader extends Observable {
 	
 	public void downloadCarList(HashMap<String, String> params) {
 		XMLFetcher f = new XMLFetcher(params);
-	    f.execute(VVIP_URL);
+	    f.execute(DWNLOAD_URL);
 	}
 
 	private class XMLFetcher extends AsyncTask<String, String, Void> {
@@ -58,11 +58,11 @@ public class CarDownloader extends Observable {
 		@Override
 		protected Void doInBackground(String... arg0) {
 			try {
-				VVIP_XML = HttpClient.getHttpClientDoGetResponse(arg0[0], params);
+				RESULT_XML = HttpClient.getHttpClientDoGetResponse(arg0[0], params);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			parsedDataVVIP = reader.parse(VVIP_XML);
+			parsedDataVVIP = reader.parse(RESULT_XML);
 			return null;
 		}
 		
