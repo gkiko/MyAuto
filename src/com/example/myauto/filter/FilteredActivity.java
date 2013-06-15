@@ -26,7 +26,7 @@ public class FilteredActivity extends Activity {
 	
 	private void downloadDataByFilter(){
 		String[] data = getStringArrayFromBundle();
-		Filter f = new Filter(getApplicationContext(), (ListView) findViewById(R.id.filtered));
+		Filter f = new Filter(getApplicationContext(), (ListView) findViewById(R.id.filtered), this);
 		f.filterAndDownload(data);
 	}
 	

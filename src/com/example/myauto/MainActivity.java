@@ -41,7 +41,7 @@ public class MainActivity extends FragmentActivity implements EditNameDialogList
 		initializeOnClickListener();
 		carInitializer = new CarInitializer(getApplicationContext(),
 				(ListView) findViewById(R.id.tab1));
-		carDownloader = new CarDownloader();
+		carDownloader = new CarDownloader(this);
 		carDownloader.addMyChangeListener(carInitializer);
 
 		carDownloader.downloadCarList(null);

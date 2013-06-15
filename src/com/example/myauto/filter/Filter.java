@@ -2,6 +2,7 @@ package com.example.myauto.filter;
 
 import java.util.HashMap;
 
+import android.app.Activity;
 import android.content.Context;
 import android.widget.ListView;
 
@@ -15,6 +16,7 @@ public class Filter {
 			"right_wheel" };
 	private Context c;
 	private ListView v;
+	private Activity a;
 
 	public final String MANUFACTURER_DEFAULT = "72";
 	public final String MODEL_DEFAULT = "0";
@@ -27,15 +29,16 @@ public class Filter {
 	public final String CUSTOMS_DEFAULT = "0";
 	public final String WHEEL_DEFAULT = "0";
 
-	public Filter(Context c, ListView v) {
+	public Filter(Context c, ListView v, Activity a) {
 		this.c = c;
 		this.v = v;
+		this.a = a;
 	}
 
 	public void filterAndDownload(String[] data) {
 		HashMap<String, String> parameters = prepareParametersToPass(data);
 		CarInitializer ci = new CarInitializer(c, v);
-		CarDownloader cd = new CarDownloader();
+		CarDownloader cd = new CarDownloader(a);
 		cd.addMyChangeListener(ci);
 		cd.downloadCarList(parameters);
 	}
