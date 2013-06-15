@@ -16,7 +16,21 @@ public class FirstPageActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.firstpage);
 		
-		mainButton = (Button)findViewById(R.id.main_button);
+		getButtons();
+		setButtonClickListeners();
+	}
+	
+	/*
+	 * Button-ebis View-s vigeb da inicializacias vuketeb
+	 * 
+	 */
+	private void getButtons(){
+		mainButton = (Button) findViewById(R.id.main_button);
+		searchButton = (Button) findViewById(R.id.search_button);
+		catalogButton = (Button) findViewById(R.id.catalog_button);
+	}
+	
+	private void setButtonClickListeners(){
 		mainButton.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
