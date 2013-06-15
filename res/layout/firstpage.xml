@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Orange"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dip"
+        android:layout_marginTop="20dip"
+        android:text="My Auto"
+        android:textColor="@color/White"
+        android:textSize="60dip"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dip"
+        android:layout_marginTop="100dip"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/main_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/Orange"
+            android:text="Main"
+            android:textColor="@color/White"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/search_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:background="@color/Orange"
+            android:text="Search"
+            android:textColor="@color/White"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/catalog_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:background="@color/Orange"
+            android:text="Catalog"
+            android:textColor="@color/White"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</LinearLayout>
