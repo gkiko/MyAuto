@@ -36,3 +36,8 @@
 Icon?
 ehthumbs.db
 Thumbs.db
+.classpath
+*.class
+*.dex
+*.class
+*.cache
