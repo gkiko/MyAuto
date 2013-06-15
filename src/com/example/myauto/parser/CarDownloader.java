@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Observable;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 
 import com.example.myauto.event.MyChangeEvent;
@@ -17,9 +19,11 @@ public class CarDownloader extends Observable {
 	private ArrayList<String> parsedDataVVIP;
 	private XMLReader reader = new XMLReader();
 	private CopyOnWriteArrayList<CarListDownloadListener> listeners;
+	private Activity activity;
 
-	public CarDownloader(){
+	public CarDownloader(Activity activity){
 		listeners = new CopyOnWriteArrayList<CarListDownloadListener>();
+		this.activity = activity;
 	}
 	
 	public void addMyChangeListener(CarListDownloadListener l) {
@@ -37,10 +41,20 @@ public class CarDownloader extends Observable {
 
 	private class XMLFetcher extends AsyncTask<String, String, Void> {
 		HashMap<String, String> params;
+		private ProgressDialog mDialog;
+		
 		public XMLFetcher(HashMap<String, String> params){
 			this.params = params;
+			mDialog = new ProgressDialog(activity);
 		}
 
+		@Override
+		protected void onPreExecute() {
+			mDialog.setMessage("Loading...");
+            mDialog.setCancelable(false);
+            mDialog.show();
+		}
+		
 		@Override
 		protected Void doInBackground(String... arg0) {
 			try {
@@ -55,6 +69,7 @@ public class CarDownloader extends Observable {
 		@Override
 		protected void onPostExecute(Void result) {
 			fireListDownloadEvent();
+			mDialog.dismiss();
 		}
 	}
 
