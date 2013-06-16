@@ -48,6 +48,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.myauto.FirstPageActivity" />
         </activity>
+        <activity 
+            android:name=".AboutPageActivity">
+        </activity>
     </application>
 
 </manifest>

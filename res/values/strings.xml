@@ -39,5 +39,11 @@
     <string name="title_activity_filtered">FilteredActivity</string>
     <string name="title_activity_catalog_page">CatalogPageActivity</string>
     <string name="title_activity_search">SearchActivity</string>
+    
+    <!-- Menu Bar Strings -->
+    <string name="menu_main">Car List</string>
+    <string name="menu_search">Search</string>
+    <string name="menu_catalog">Catalog</string>
+    <string name="menu_about">About</string>
 
 </resources>

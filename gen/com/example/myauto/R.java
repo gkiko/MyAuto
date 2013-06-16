@@ -199,15 +199,16 @@ public final class R {
         public static final int tabhost=0x7f0a0001;
     }
     public static final class layout {
-        public static final int activity_catalog_page=0x7f030000;
-        public static final int activity_filtered=0x7f030001;
-        public static final int activity_main=0x7f030002;
-        public static final int activity_search=0x7f030003;
-        public static final int component=0x7f030004;
-        public static final int firstpage=0x7f030005;
-        public static final int fragment_price=0x7f030006;
-        public static final int tab1=0x7f030007;
-        public static final int tab3=0x7f030008;
+        public static final int activity_about_page=0x7f030000;
+        public static final int activity_catalog_page=0x7f030001;
+        public static final int activity_filtered=0x7f030002;
+        public static final int activity_main=0x7f030003;
+        public static final int activity_search=0x7f030004;
+        public static final int component=0x7f030005;
+        public static final int firstpage=0x7f030006;
+        public static final int fragment_price=0x7f030007;
+        public static final int tab1=0x7f030008;
+        public static final int tab3=0x7f030009;
     }
     public static final class menu {
         public static final int catalog_page=0x7f090000;
@@ -227,6 +228,12 @@ public final class R {
         public static final int hello_world=0x7f060002;
         public static final int hint1=0x7f06000a;
         public static final int hint2=0x7f06000b;
+        public static final int menu_about=0x7f060017;
+        public static final int menu_catalog=0x7f060016;
+        /**  Menu Bar Strings 
+         */
+        public static final int menu_main=0x7f060014;
+        public static final int menu_search=0x7f060015;
         public static final int price=0x7f060007;
         public static final int steer=0x7f06000d;
         public static final int title_activity_catalog_page=0x7f060012;
