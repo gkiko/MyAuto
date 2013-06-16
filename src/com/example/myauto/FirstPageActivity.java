@@ -54,7 +54,7 @@ public class FirstPageActivity extends Activity{
 		searchButton.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
-				Intent searchActivity = new Intent(FirstPageActivity.this, SearchActivity.class);
+				Intent searchActivity = new Intent(FirstPageActivity.this, SearchPageActivity.class);
 				startActivity(searchActivity);
 			}
 		});
@@ -90,7 +90,7 @@ public class FirstPageActivity extends Activity{
 			nextIntent = new Intent(FirstPageActivity.this, MainActivity.class);
 			break;
 		case M_I_ID_SEARCH:
-			nextIntent = new Intent(FirstPageActivity.this, SearchActivity.class);
+			nextIntent = new Intent(FirstPageActivity.this, SearchPageActivity.class);
 			break;
 		case M_I_ID_CATALOG:
 			nextIntent = new Intent(FirstPageActivity.this, CatalogPageActivity.class);

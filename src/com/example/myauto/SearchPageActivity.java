@@ -1,28 +1,26 @@
 package com.example.myauto;
 
-import com.example.myauto.filter.SearchActivity;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class AboutPageActivity extends Activity{
+public class SearchPageActivity extends Activity{
 	
 	public static final int M_I_ID_CAR_LIST = 1;
 	public static final int M_I_ID_SEARCH = 2;
 	public static final int M_I_ID_CATALOG = 3;
 	public static final int M_I_ID_ABOUT = 4;
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		setContentView(R.layout.activity_search_page);
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_about_page);
 	}
-
+	
 	/**
-	 * Menu Itemebis Damateba
+	 * Menu Itemebis Sehvseba
 	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -32,31 +30,32 @@ public class AboutPageActivity extends Activity{
 		menu.add(0, M_I_ID_ABOUT, 1, R.string.menu_about);
 		
 		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
+		return super.onCreateOptionsMenu(menu);
 	}
 	
 	/**
-	 * Menu Itemebis Implementacia
+	 * Menu itemebis implementacia
 	 */
 	@Override
 	public boolean onMenuItemSelected(int featureId, MenuItem item) {
 		Intent nextIntent = null;
 		switch(item.getItemId()){
 		case M_I_ID_CAR_LIST:
-			nextIntent = new Intent(AboutPageActivity.this, MainActivity.class);
+			nextIntent = new Intent(SearchPageActivity.this, MainActivity.class);
 			break;
 		case M_I_ID_SEARCH:
-			nextIntent = new Intent(AboutPageActivity.this, SearchPageActivity.class);
+			nextIntent = new Intent(SearchPageActivity.this, SearchPageActivity.class);
 			break;
 		case M_I_ID_CATALOG:
-			nextIntent = new Intent(AboutPageActivity.this, CatalogPageActivity.class);
+			nextIntent = new Intent(SearchPageActivity.this, CatalogPageActivity.class);
 			break;
 		case M_I_ID_ABOUT:
-			nextIntent = new Intent(AboutPageActivity.this, AboutPageActivity.class);
+			nextIntent = new Intent(SearchPageActivity.this, AboutPageActivity.class);
 		default:
 			break;
 		}
 		startActivity(nextIntent);
 		return super.onMenuItemSelected(featureId, item);
 	}
+
 }

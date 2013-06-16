@@ -51,6 +51,9 @@
         <activity 
             android:name=".AboutPageActivity">
         </activity>
+        <activity
+            android:name=".SearchPageActivity">
+        </activity>
     </application>
 
 </manifest>
