@@ -1,13 +1,13 @@
-package com.example.myauto;
+package com.example.myauto.filter;
 
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 
+import com.example.myauto.R;
 import com.example.myauto.database.DBHelper;
 import com.example.myauto.database.DBManager;
 import com.example.myauto.database.DBManagerFilter;
-import com.example.myauto.filter.Filter;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -66,6 +66,9 @@ public class SpinnerData {
 	}
 
 	public String[] getDatasFromTab3() {
+		System.out.println("TEST");
+		System.out.println(context);
+		System.out.println("TTT");
 		DBManagerFilter.init(context);
 		String[] arr = new String[SPINNER_COUNT + NO_SPINNERS];
 		getManAndModel(arr);

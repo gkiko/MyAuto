@@ -1,6 +1,5 @@
 package com.example.myauto.filter;
 
-import com.example.myauto.MainActivity;
 import com.example.myauto.R;
 
 import android.os.Bundle;
@@ -9,9 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 import android.support.v4.app.NavUtils;
-import android.annotation.TargetApi;
 import android.content.Intent;
-import android.os.Build;
 
 public class FilteredActivity extends Activity {
 
@@ -19,7 +16,6 @@ public class FilteredActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_filtered);
-		setupActionBar();
 		
 		downloadDataByFilter();
 	}
@@ -32,19 +28,9 @@ public class FilteredActivity extends Activity {
 	
 	private String[] getStringArrayFromBundle() {
 		Intent intent = getIntent();
-		Bundle b = intent.getBundleExtra(MainActivity.INTENT_KEY);
-		String[] values = (String[]) b.getSerializable(MainActivity.BUNDLE_KEY);
+		Bundle b = intent.getBundleExtra(SearchActivity.INTENT_KEY);
+		String[] values = (String[]) b.getSerializable(SearchActivity.BUNDLE_KEY);
 		return values;
-	}
-
-	/**
-	 * Set up the {@link android.app.ActionBar}, if the API is available.
-	 */
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
-	private void setupActionBar() {
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-			getActionBar().setDisplayHomeAsUpEnabled(true);
-		}
 	}
 
 	@Override

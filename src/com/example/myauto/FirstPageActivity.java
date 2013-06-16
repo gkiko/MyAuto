@@ -1,5 +1,7 @@
 package com.example.myauto;
 
+import com.example.myauto.filter.SearchActivity;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -36,6 +38,14 @@ public class FirstPageActivity extends Activity{
 			public void onClick(View v) {
 				Intent mainActivity = new Intent(FirstPageActivity.this, MainActivity.class);
 				startActivity(mainActivity);
+			}
+		});
+		
+		searchButton.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				Intent searchActivity = new Intent(FirstPageActivity.this, SearchActivity.class);
+				startActivity(searchActivity);
 			}
 		});
 		

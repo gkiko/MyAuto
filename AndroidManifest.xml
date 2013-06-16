@@ -40,6 +40,14 @@
             android:name="com.example.myauto.CatalogPageActivity"
             android:label="@string/title_activity_catalog_page" >
         </activity>
+        <activity
+            android:name="com.example.myauto.filter.SearchActivity"
+            android:label="@string/title_activity_search"
+            android:parentActivityName="com.example.myauto.FirstPageActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.myauto.FirstPageActivity" />
+        </activity>
     </application>
 
 </manifest>
