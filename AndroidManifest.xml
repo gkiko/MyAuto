@@ -54,6 +54,9 @@
         <activity
             android:name=".SearchPageActivity">
         </activity>
+        <activity
+            android:name=".CarPageActivity">
+        </activity>
     </application>
 
 </manifest>
