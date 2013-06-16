@@ -37,5 +37,6 @@
     </string-array>
 
     <string name="title_activity_filtered">FilteredActivity</string>
+    <string name="title_activity_catalog_page">CatalogPageActivity</string>
 
 </resources>

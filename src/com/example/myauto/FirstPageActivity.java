@@ -38,6 +38,14 @@ public class FirstPageActivity extends Activity{
 				startActivity(mainActivity);
 			}
 		});
+		
+		catalogButton.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				Intent mainActivity = new Intent(FirstPageActivity.this, CatalogPageActivity.class);
+				startActivity(mainActivity);
+			}
+		});
 	}
 	
 	@Override
