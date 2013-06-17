@@ -57,6 +57,9 @@
         <activity
             android:name=".CarPageActivity">
         </activity>
+        <activity
+            android:name=".CarMarkAndModelFilterPage">
+        </activity>
     </application>
 
 </manifest>
