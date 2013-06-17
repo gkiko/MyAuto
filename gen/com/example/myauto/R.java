@@ -183,6 +183,11 @@ public final class R {
         public static final int filtered=0x7f0a0000;
         public static final int image=0x7f0a0002;
         public static final int main_button=0x7f0a0006;
+        public static final int menu_about=0x7f0a001f;
+        public static final int menu_carList=0x7f0a001c;
+        public static final int menu_catalog=0x7f0a001e;
+        public static final int menu_main=0x7f0a001b;
+        public static final int menu_search=0x7f0a001d;
         public static final int product_description=0x7f0a0004;
         public static final int product_name=0x7f0a0003;
         public static final int product_price=0x7f0a0005;
@@ -216,7 +221,8 @@ public final class R {
         public static final int catalog_page=0x7f090000;
         public static final int filtered=0x7f090001;
         public static final int main=0x7f090002;
-        public static final int search=0x7f090003;
+        public static final int myauto_menu=0x7f090003;
+        public static final int search=0x7f090004;
     }
     public static final class string {
         public static final int action_settings=0x7f060001;
@@ -230,12 +236,13 @@ public final class R {
         public static final int hello_world=0x7f060002;
         public static final int hint1=0x7f06000a;
         public static final int hint2=0x7f06000b;
-        public static final int menu_about=0x7f060017;
-        public static final int menu_catalog=0x7f060016;
+        public static final int menu_about=0x7f060018;
+        public static final int menu_catalog=0x7f060017;
         /**  Menu Bar Strings 
          */
-        public static final int menu_main=0x7f060014;
-        public static final int menu_search=0x7f060015;
+        public static final int menu_first=0x7f060014;
+        public static final int menu_main=0x7f060015;
+        public static final int menu_search=0x7f060016;
         public static final int price=0x7f060007;
         public static final int steer=0x7f06000d;
         public static final int title_activity_catalog_page=0x7f060012;

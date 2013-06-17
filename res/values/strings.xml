@@ -41,6 +41,7 @@
     <string name="title_activity_search">SearchActivity</string>
     
     <!-- Menu Bar Strings -->
+    <string name="menu_first">Main</string>
     <string name="menu_main">Car List</string>
     <string name="menu_search">Search</string>
     <string name="menu_catalog">Catalog</string>
