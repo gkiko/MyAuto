@@ -41,9 +41,21 @@
     <string name="title_activity_search">SearchActivity</string>
     
     <!-- Menu Bar Strings -->
+    <string name="menu_first">Main</string>
     <string name="menu_main">Car List</string>
     <string name="menu_search">Search</string>
     <string name="menu_catalog">Catalog</string>
     <string name="menu_about">About</string>
+    
+    <!-- SearchPageActivity Strings -->
+    <string name="search_carModel">Model And Mark</string>
+    <string name="search_carPrice">Price</string>
+    <string name="search_carYear">Year</string>
+    <string name="search_carCategory">Category</string>
+    <string name="search_carLocation">Location</string>
+    <string name="search_carTransmission">Transmission</string>
+    <string name="search_carFuel">Fuel Type</string>
+    <string name="search_carWheel">Steering-Wheel</string>
+    <string name="search_carDays">Days</string>
 
 </resources>

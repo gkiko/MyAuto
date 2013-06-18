@@ -8,11 +8,6 @@ import android.view.MenuItem;
 
 public class CatalogPageActivity extends Activity {
 	
-	public static final int M_I_ID_CAR_LIST = 1;
-	public static final int M_I_ID_SEARCH = 2;
-	public static final int M_I_ID_CATALOG = 3;
-	public static final int M_I_ID_ABOUT = 4;
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -24,12 +19,7 @@ public class CatalogPageActivity extends Activity {
 	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		menu.add(0, M_I_ID_CAR_LIST, 1, R.string.menu_main);
-		menu.add(0, M_I_ID_SEARCH, 1, R.string.menu_search);
-		menu.add(0, M_I_ID_CATALOG, 1, R.string.menu_catalog);
-		menu.add(0, M_I_ID_ABOUT, 1, R.string.menu_about);
-		
-		getMenuInflater().inflate(R.menu.catalog_page, menu);
+		getMenuInflater().inflate(R.menu.myauto_menu, menu);
 		return true;
 	}
 	
@@ -40,16 +30,19 @@ public class CatalogPageActivity extends Activity {
 	public boolean onMenuItemSelected(int featureId, MenuItem item) {
 		Intent nextIntent = null;
 		switch(item.getItemId()){
-		case M_I_ID_CAR_LIST:
+		case R.id.menu_main:
+			nextIntent = new Intent(CatalogPageActivity.this, FirstPageActivity.class);
+			break;
+		case R.id.menu_carList:
 			nextIntent = new Intent(CatalogPageActivity.this, MainActivity.class);
 			break;
-		case M_I_ID_SEARCH:
+		case R.id.menu_search:
 			nextIntent = new Intent(CatalogPageActivity.this, SearchPageActivity.class);
 			break;
-		case M_I_ID_CATALOG:
+		case R.id.menu_catalog:
 			nextIntent = new Intent(CatalogPageActivity.this, CatalogPageActivity.class);
 			break;
-		case M_I_ID_ABOUT:
+		case R.id.menu_about:
 			nextIntent = new Intent(CatalogPageActivity.this, AboutPageActivity.class);
 		default:
 			break;

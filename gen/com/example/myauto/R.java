@@ -167,56 +167,75 @@ public final class R {
         public static final int activity_vertical_margin=0x7f050001;
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
+        public static final int button_selector=0x7f020000;
+        public static final int gradient_bg=0x7f020001;
+        public static final int gradient_bg_hover=0x7f020002;
+        public static final int ic_launcher=0x7f020003;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a001a;
-        public static final int button=0x7f0a0018;
-        public static final int button1=0x7f0a0019;
-        public static final int bx1=0x7f0a0016;
-        public static final int bx2=0x7f0a0017;
-        public static final int catalog_button=0x7f0a0008;
-        public static final int editText1=0x7f0a0009;
-        public static final int editText2=0x7f0a000a;
-        public static final int field1=0x7f0a0012;
-        public static final int field2=0x7f0a0013;
+        public static final int action_settings=0x7f0a0023;
+        public static final int button=0x7f0a0021;
+        public static final int button1=0x7f0a0022;
+        public static final int bx1=0x7f0a001f;
+        public static final int bx2=0x7f0a0020;
+        public static final int catalog_button=0x7f0a0011;
+        public static final int editText1=0x7f0a0012;
+        public static final int editText2=0x7f0a0013;
+        public static final int field1=0x7f0a001b;
+        public static final int field2=0x7f0a001c;
         public static final int filtered=0x7f0a0000;
-        public static final int image=0x7f0a0002;
-        public static final int main_button=0x7f0a0006;
-        public static final int product_description=0x7f0a0004;
-        public static final int product_name=0x7f0a0003;
-        public static final int product_price=0x7f0a0005;
-        public static final int search_button=0x7f0a0007;
-        public static final int spinner1=0x7f0a000e;
-        public static final int spinner2=0x7f0a000f;
-        public static final int spinner4=0x7f0a0010;
-        public static final int spinner5=0x7f0a0011;
-        public static final int spinner7=0x7f0a0014;
-        public static final int spinner8=0x7f0a0015;
-        public static final int tab1=0x7f0a000b;
-        public static final int tab3=0x7f0a000c;
-        public static final int tab3_linear=0x7f0a000d;
+        public static final int image=0x7f0a000b;
+        public static final int main_button=0x7f0a000f;
+        public static final int menu_about=0x7f0a0028;
+        public static final int menu_carList=0x7f0a0025;
+        public static final int menu_catalog=0x7f0a0027;
+        public static final int menu_main=0x7f0a0024;
+        public static final int menu_search=0x7f0a0026;
+        public static final int product_description=0x7f0a000d;
+        public static final int product_name=0x7f0a000c;
+        public static final int product_price=0x7f0a000e;
+        public static final int search_button=0x7f0a0010;
+        public static final int search_carCategory=0x7f0a0005;
+        public static final int search_carDays=0x7f0a000a;
+        public static final int search_carFuel=0x7f0a0008;
+        public static final int search_carLocation=0x7f0a0006;
+        public static final int search_carMark=0x7f0a0002;
+        public static final int search_carPrice=0x7f0a0003;
+        public static final int search_carTransmission=0x7f0a0007;
+        public static final int search_carWheel=0x7f0a0009;
+        public static final int search_carYear=0x7f0a0004;
+        public static final int spinner1=0x7f0a0017;
+        public static final int spinner2=0x7f0a0018;
+        public static final int spinner4=0x7f0a0019;
+        public static final int spinner5=0x7f0a001a;
+        public static final int spinner7=0x7f0a001d;
+        public static final int spinner8=0x7f0a001e;
+        public static final int tab1=0x7f0a0014;
+        public static final int tab3=0x7f0a0015;
+        public static final int tab3_linear=0x7f0a0016;
         public static final int tabhost=0x7f0a0001;
     }
     public static final class layout {
         public static final int activity_about_page=0x7f030000;
-        public static final int activity_car_page=0x7f030001;
-        public static final int activity_catalog_page=0x7f030002;
-        public static final int activity_filtered=0x7f030003;
-        public static final int activity_main=0x7f030004;
-        public static final int activity_search=0x7f030005;
-        public static final int activity_search_page=0x7f030006;
-        public static final int component=0x7f030007;
-        public static final int firstpage=0x7f030008;
-        public static final int fragment_price=0x7f030009;
-        public static final int tab1=0x7f03000a;
-        public static final int tab3=0x7f03000b;
+        public static final int activity_car_mark_and_model_filter=0x7f030001;
+        public static final int activity_car_page=0x7f030002;
+        public static final int activity_catalog_page=0x7f030003;
+        public static final int activity_filtered=0x7f030004;
+        public static final int activity_main=0x7f030005;
+        public static final int activity_search=0x7f030006;
+        public static final int activity_search_page=0x7f030007;
+        public static final int component=0x7f030008;
+        public static final int firstpage=0x7f030009;
+        public static final int fragment_price=0x7f03000a;
+        public static final int tab1=0x7f03000b;
+        public static final int tab3=0x7f03000c;
     }
     public static final class menu {
         public static final int catalog_page=0x7f090000;
         public static final int filtered=0x7f090001;
         public static final int main=0x7f090002;
-        public static final int search=0x7f090003;
+        public static final int myauto_menu=0x7f090003;
+        public static final int search=0x7f090004;
     }
     public static final class string {
         public static final int action_settings=0x7f060001;
@@ -230,13 +249,25 @@ public final class R {
         public static final int hello_world=0x7f060002;
         public static final int hint1=0x7f06000a;
         public static final int hint2=0x7f06000b;
-        public static final int menu_about=0x7f060017;
-        public static final int menu_catalog=0x7f060016;
+        public static final int menu_about=0x7f060018;
+        public static final int menu_catalog=0x7f060017;
         /**  Menu Bar Strings 
          */
-        public static final int menu_main=0x7f060014;
-        public static final int menu_search=0x7f060015;
+        public static final int menu_first=0x7f060014;
+        public static final int menu_main=0x7f060015;
+        public static final int menu_search=0x7f060016;
         public static final int price=0x7f060007;
+        public static final int search_carCategory=0x7f06001c;
+        public static final int search_carDays=0x7f060021;
+        public static final int search_carFuel=0x7f06001f;
+        public static final int search_carLocation=0x7f06001d;
+        /**  SearchPageActivity Strings 
+         */
+        public static final int search_carModel=0x7f060019;
+        public static final int search_carPrice=0x7f06001a;
+        public static final int search_carTransmission=0x7f06001e;
+        public static final int search_carWheel=0x7f060020;
+        public static final int search_carYear=0x7f06001b;
         public static final int steer=0x7f06000d;
         public static final int title_activity_catalog_page=0x7f060012;
         public static final int title_activity_filtered=0x7f060011;

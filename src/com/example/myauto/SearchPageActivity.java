@@ -5,18 +5,48 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 
 public class SearchPageActivity extends Activity{
-	
-	public static final int M_I_ID_CAR_LIST = 1;
-	public static final int M_I_ID_SEARCH = 2;
-	public static final int M_I_ID_CATALOG = 3;
-	public static final int M_I_ID_ABOUT = 4;
+	private Button carMark, carPrice, carYear, carCategory, carLocation, carTransmission, carFuel, carWheel, carDays; 
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.activity_search_page);
 		super.onCreate(savedInstanceState);
+		
+		getButtonViews();
+	}
+	
+	/**
+	 * ვაყენებ ღილაკების ლისენერებს დაჭერაზე
+	 */
+	private void setButtonClickListeners(){
+		carMark.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent markFilter = new Intent(SearchPageActivity.this, CarMarkAndModelFilterPage.class);
+				startActivity(markFilter);
+			}
+		});
+	}
+	
+	/**
+	 * ვიღებ ღილაკების View-ებს და აღწერილ ღილაკებს ვუკეთებ ინიციალიზაციას, შემდეგ ვაბავ ლისენერებს.
+	 */
+	private void getButtonViews(){
+		carMark = (Button) findViewById(R.id.search_carMark);
+		carPrice = (Button) findViewById(R.id.search_carPrice);
+		carYear = (Button) findViewById(R.id.search_carYear);
+		carCategory = (Button) findViewById(R.id.search_carCategory);
+		carLocation = (Button) findViewById(R.id.search_carLocation);
+		carFuel = (Button) findViewById(R.id.search_carFuel);
+		carWheel = (Button) findViewById(R.id.search_carWheel);
+		carDays = (Button) findViewById(R.id.search_carDays);
+		
+		setButtonClickListeners();
 	}
 	
 	/**
@@ -24,12 +54,7 @@ public class SearchPageActivity extends Activity{
 	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		menu.add(0, M_I_ID_CAR_LIST, 1, R.string.menu_main);
-		menu.add(0, M_I_ID_SEARCH, 1, R.string.menu_search);
-		menu.add(0, M_I_ID_CATALOG, 1, R.string.menu_catalog);
-		menu.add(0, M_I_ID_ABOUT, 1, R.string.menu_about);
-		
-		getMenuInflater().inflate(R.menu.main, menu);
+		getMenuInflater().inflate(R.menu.myauto_menu, menu);
 		return super.onCreateOptionsMenu(menu);
 	}
 	
@@ -40,16 +65,19 @@ public class SearchPageActivity extends Activity{
 	public boolean onMenuItemSelected(int featureId, MenuItem item) {
 		Intent nextIntent = null;
 		switch(item.getItemId()){
-		case M_I_ID_CAR_LIST:
+		case R.id.menu_main:
+			nextIntent = new Intent(SearchPageActivity.this, FirstPageActivity.class);
+			break;
+		case R.id.menu_carList:
 			nextIntent = new Intent(SearchPageActivity.this, MainActivity.class);
 			break;
-		case M_I_ID_SEARCH:
+		case R.id.menu_search:
 			nextIntent = new Intent(SearchPageActivity.this, SearchPageActivity.class);
 			break;
-		case M_I_ID_CATALOG:
+		case R.id.menu_catalog:
 			nextIntent = new Intent(SearchPageActivity.this, CatalogPageActivity.class);
 			break;
-		case M_I_ID_ABOUT:
+		case R.id.menu_about:
 			nextIntent = new Intent(SearchPageActivity.this, AboutPageActivity.class);
 		default:
 			break;
