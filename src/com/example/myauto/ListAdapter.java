@@ -56,6 +56,7 @@ public class ListAdapter extends BaseAdapter{
 		CarFacade cr = ls.get(arg0);
 		if(cr.hasImage())
 			(cont.img).setImageBitmap(cr.getImage());
+		else (cont.img).setImageResource(R.drawable.ic_launcher);
 		(cont.name).setText(cr.getValueFromProperty("name"));
 		(cont.year).setText(cr.getValueFromProperty("year"));
 		(cont.price).setText(cr.getValueFromProperty("price"));
