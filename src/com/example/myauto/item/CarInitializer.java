@@ -12,6 +12,7 @@ import com.example.myauto.ListAdapter;
 import com.example.myauto.event.MyChangeEvent;
 import com.example.myauto.listener.CarListDownloadListener;
 import com.example.myauto.listener.ImageDownloadListener;
+import com.example.myauto.net.ImageDownloader;
 import com.example.myauto.net.ImageFetcher;
 import com.example.myauto.parser.XMLReader;
 
@@ -21,22 +22,15 @@ public class CarInitializer implements ImageDownloadListener, CarListDownloadLis
 	private ListView list1;
 	private ListAdapter a;
 	private ImageFetcher fetcher;
+	private ImageDownloader imageDownloader;
 	
 	public CarInitializer(Context context, ListView VVIPList){
 		this.context = context;
 		list1 = VVIPList;
-	}
-	
-	@SuppressLint("NewApi")
-	private void fetchImageBitmap(String imageURL, CarFacade car){
-		String fullURL = composeImageUrl(imageURL);
-		fetcher = new ImageFetcher(car);
-		fetcher.addMyChangeListener(this);
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
-			fetcher.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, fullURL);
-		else
-			fetcher.execute(fullURL);
-//		fetcher.execute(fullURL);
+		
+		imageDownloader = new ImageDownloader();
+		imageDownloader.addMyChangeListener(this);
+//		(new Thread(imageDownloader)).start();
 	}
 	
 	private String composeImageUrl(String url){
@@ -68,6 +62,24 @@ public class CarInitializer implements ImageDownloadListener, CarListDownloadLis
 		fetchImageBitmap(src[1], car);
 		
 		dst.add(car);
+	}
+	
+	@SuppressLint("NewApi")
+	private void fetchImageBitmap(String imageURL, CarFacade car){
+		String fullURL = composeImageUrl(imageURL);
+		
+		try {
+			imageDownloader.addTask(car, fullURL);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+//		fetcher = new ImageFetcher(car);
+//		fetcher.addMyChangeListener(this);
+//		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
+//			fetcher.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, fullURL);
+//		else
+//			fetcher.execute(fullURL);
+//		fetcher.execute(fullURL);
 	}
 
 	@Override
