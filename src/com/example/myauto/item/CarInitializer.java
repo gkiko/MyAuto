@@ -10,10 +10,10 @@ import android.widget.ListView;
 
 import com.example.myauto.ListAdapter;
 import com.example.myauto.event.MyChangeEvent;
+import com.example.myauto.fetcher.ImageFetcher;
 import com.example.myauto.listener.CarListDownloadListener;
 import com.example.myauto.listener.ImageDownloadListener;
-import com.example.myauto.net.ImageFetcher;
-import com.example.myauto.parser.XMLReader;
+import com.example.myauto.net.Parser;
 
 public class CarInitializer implements ImageDownloadListener, CarListDownloadListener{
 	private static final String hostURL = "http://myauto.ge/";
@@ -43,9 +43,9 @@ public class CarInitializer implements ImageDownloadListener, CarListDownloadLis
 		return hostURL + url;
 	}
 
-	private void populateListNoDB(ArrayList<String> ls){
-		ArrayList<CarFacade> carList;
-		carList = parseList(ls);
+	private void populateListNoDB(ArrayList<CarFacade> carList){
+//		ArrayList<CarFacade> carList;
+//		carList = parseList(ls);
 		a = new ListAdapter(carList, context);
 		list1.setAdapter(a);
 	}
@@ -53,7 +53,7 @@ public class CarInitializer implements ImageDownloadListener, CarListDownloadLis
 	private ArrayList<CarFacade> parseList(ArrayList<String> ls){
 		ArrayList<CarFacade> qwe = new ArrayList<CarFacade>();
 		for (String a : ls) {
-			String[] data = a.split(XMLReader.splitBy);
+			String[] data = a.split(Parser.splitBy);
 			putDataInList(qwe,data);
 		}
 		return qwe;
@@ -72,13 +72,20 @@ public class CarInitializer implements ImageDownloadListener, CarListDownloadLis
 
 	@Override
 	public void imageDownloaded(MyChangeEvent evt) {
-		a.notifyDataSetChanged();
+		a.notifyDataSetInvalidated();
 	}
 
 	@Override
 	public void carListDownloaded(MyChangeEvent evt) {
-		ArrayList<String> parsedData = (ArrayList<String>)evt.source;
+		ArrayList<CarFacade> parsedData = (ArrayList<CarFacade>)evt.source;
 		populateListNoDB(parsedData);
 	}
 	
+	
+	public void clearBitmap(){
+		ArrayList<CarFacade> ls = a.getList();
+		for(CarFacade cf : ls){
+			cf.getImage().recycle();
+		}
+	}
 }

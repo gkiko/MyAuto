@@ -1,7 +1,7 @@
 package com.example.myauto;
 
+import com.example.myauto.fetcher.ListFetcher;
 import com.example.myauto.item.CarInitializer;
-import com.example.myauto.parser.CarDownloader;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -13,7 +13,7 @@ import android.widget.ListView;
 public class MainActivity extends Activity{
 	
 	private CarInitializer carInitializer;
-	private CarDownloader carDownloader;
+	private ListFetcher carDownloader;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -22,12 +22,12 @@ public class MainActivity extends Activity{
 		
 		carInitializer = new CarInitializer(getApplicationContext(),
 				(ListView) findViewById(R.id.tab1));
-		carDownloader = new CarDownloader(this);
+		carDownloader = new ListFetcher(this);
 		carDownloader.addMyChangeListener(carInitializer);
 
 		carDownloader.downloadCarList(null);
 	}
-
+	
 	/**
 	 * Menu-s itemebit shevseba
 	 */

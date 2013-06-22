@@ -1,4 +1,4 @@
-package com.example.myauto.parser;
+package com.example.myauto.fetcher;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,18 +10,17 @@ import android.app.ProgressDialog;
 import android.os.AsyncTask;
 
 import com.example.myauto.event.MyChangeEvent;
+import com.example.myauto.item.CarFacade;
 import com.example.myauto.listener.CarListDownloadListener;
 import com.example.myauto.net.HttpClient;
+import com.example.myauto.net.Parser;
+import com.example.myauto.net.TransportManager;
 
-public class CarDownloader extends Observable {
-	private final String DWNLOAD_URL = "http://myauto.ge/car_list_xml.php";
-	private String RESULT_XML = "";
-	private ArrayList<String> parsedDataVVIP;
-	private XMLReader reader = new XMLReader();
+public class ListFetcher extends Observable {
 	private CopyOnWriteArrayList<CarListDownloadListener> listeners;
 	private Activity activity;
 
-	public CarDownloader(Activity activity){
+	public ListFetcher(Activity activity){
 		listeners = new CopyOnWriteArrayList<CarListDownloadListener>();
 		this.activity = activity;
 	}
@@ -36,10 +35,10 @@ public class CarDownloader extends Observable {
 	
 	public void downloadCarList(HashMap<String, String> params) {
 		XMLFetcher f = new XMLFetcher(params);
-	    f.execute(DWNLOAD_URL);
+	    f.execute();
 	}
 
-	private class XMLFetcher extends AsyncTask<String, String, Void> {
+	private class XMLFetcher extends AsyncTask<String, String, ArrayList<CarFacade>> {
 		HashMap<String, String> params;
 		private ProgressDialog mDialog;
 		
@@ -56,25 +55,25 @@ public class CarDownloader extends Observable {
 		}
 		
 		@Override
-		protected Void doInBackground(String... arg0) {
+		protected ArrayList<CarFacade> doInBackground(String... arg0) {
+			ArrayList<CarFacade> carList = null;
 			try {
-				RESULT_XML = HttpClient.getHttpClientDoGetResponse(arg0[0], params);
+				carList = TransportManager.downloadCarList(params);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			parsedDataVVIP = reader.parse(RESULT_XML);
-			return null;
+			return carList;
 		}
 		
 		@Override
-		protected void onPostExecute(Void result) {
-			fireListDownloadEvent();
+		protected void onPostExecute(ArrayList<CarFacade> result) {
+			fireListDownloadEvent(result);
 			mDialog.dismiss();
 		}
 	}
 
-	private void fireListDownloadEvent() {
-		MyChangeEvent evt = new MyChangeEvent(parsedDataVVIP);
+	private void fireListDownloadEvent(ArrayList<CarFacade> carList) {
+		MyChangeEvent evt = new MyChangeEvent(carList);
 
 		for (CarListDownloadListener l : listeners) {
 			l.carListDownloaded(evt);

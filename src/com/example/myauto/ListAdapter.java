@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;//
 
 import com.example.myauto.item.CarFacade;
+import com.example.myauto.item.CarItem;
 
 import android.content.Context;
 import android.view.View;
@@ -57,9 +58,9 @@ public class ListAdapter extends BaseAdapter{
 		if(cr.hasImage())
 			(cont.img).setImageBitmap(cr.getImage());
 		else (cont.img).setImageResource(R.drawable.ic_launcher);
-		(cont.name).setText(cr.getValueFromProperty("name"));
-		(cont.year).setText(cr.getValueFromProperty("year"));
-		(cont.price).setText(cr.getValueFromProperty("price"));
+		(cont.name).setText(cr.getValueFromProperty(CarItem.MAKE) + cr.getValueFromProperty(CarItem.MODEL));
+		(cont.year).setText(cr.getValueFromProperty(CarItem.YEAR));
+		(cont.price).setText(cr.getValueFromProperty(CarItem.PRICE));
 		return v;
 	}
 
@@ -71,4 +72,7 @@ public class ListAdapter extends BaseAdapter{
 		TextView price;
 	}
 	
+	public ArrayList<CarFacade> getList(){
+		return ls;
+	}
 }

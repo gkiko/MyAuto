@@ -6,4 +6,6 @@ public interface Imageable {
 	public void setImage(Bitmap img);
 	public boolean hasImage();
 	public Bitmap getImage();
+	public void setURL(String url);
+	public String getURL();
 }

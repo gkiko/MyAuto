@@ -1,4 +1,4 @@
-package com.example.myauto.net;
+package com.example.myauto.fetcher;
 
 import java.io.IOException;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -6,6 +6,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import com.example.myauto.event.MyChangeEvent;
 import com.example.myauto.item.CarFacade;
 import com.example.myauto.listener.ImageDownloadListener;
+import com.example.myauto.net.HttpClient;
 
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
@@ -13,6 +14,7 @@ import android.os.AsyncTask;
 public class ImageFetcher extends AsyncTask<String, Void, Bitmap> {
 	private CarFacade car;
 	private final CopyOnWriteArrayList<ImageDownloadListener> listeners;
+	private static Bitmap IMG = null;
 
 	public ImageFetcher(CarFacade car) {
 		this.car = car;
@@ -30,7 +32,6 @@ public class ImageFetcher extends AsyncTask<String, Void, Bitmap> {
 	@Override
 	protected Bitmap doInBackground(String... params) {
 		String imgFullURL = params[0];
-		Bitmap IMG = null;
 		try {
 			IMG = HttpClient.getDoGetResponseBitmap(imgFullURL);
 		} catch (IOException e) {

@@ -44,7 +44,6 @@ public class HttpClient {
 			}
 		}
 		strBld.deleteCharAt(strBld.length() - 1);
-		System.out.println(strBld.toString());
 		return strBld.toString();
 
 		// Logger.d(URLEncoder.encode(strBld.toString()));

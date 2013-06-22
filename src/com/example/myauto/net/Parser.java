@@ -1,4 +1,4 @@
-package com.example.myauto.parser;
+package com.example.myauto.net;
 
 import java.io.StringReader;
 import java.util.ArrayList;
@@ -9,10 +9,14 @@ import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.helpers.DefaultHandler;
 import org.xml.sax.*;
 
-public class XMLReader {
+import com.example.myauto.item.CarFacade;
+import com.example.myauto.item.CarImageable;
+import com.example.myauto.item.CarItem;
+
+public class Parser {
 	private SAXParser saxParser;
 	private DefaultHandler handler;
-	private ArrayList<String> elements;
+	private ArrayList<CarFacade> elements;
 	public static String splitBy = ",";
 
 	private final String idTag = "id";
@@ -22,17 +26,18 @@ public class XMLReader {
 	private final String modelTag = "model";
 	private final String yearTag = "year";
 
-	public XMLReader() {
-		elements = new ArrayList<String>();
+	public Parser() {
+		elements = new ArrayList<CarFacade>();
 		SAXParserFactory factory = SAXParserFactory.newInstance();
 		try {
 			saxParser = factory.newSAXParser();
 			handler = new DefaultHandler() {
+				CarFacade cf;
 
 				boolean tId = false;
 				boolean tPhoto = false;
 				boolean tPrice = false;
-				boolean tManufacturer = false;
+				boolean tMake = false;
 				boolean tModel = false;
 				boolean tYear = false;
 
@@ -40,6 +45,7 @@ public class XMLReader {
 						String qName, Attributes attributes)
 						throws SAXException {
 					if (qName.equalsIgnoreCase(idTag)) {
+						cf = new CarFacade(new CarImageable(), new CarItem());
 						tId = true;
 					} else {
 						if (qName.equalsIgnoreCase(photoTag)) {
@@ -49,7 +55,7 @@ public class XMLReader {
 								tPrice = true;
 							} else {
 								if (qName.equalsIgnoreCase(manufacturerTag)) {
-									tManufacturer = true;
+									tMake = true;
 								} else {
 									if (qName.equalsIgnoreCase(modelTag)) {
 										tModel = true;
@@ -70,28 +76,34 @@ public class XMLReader {
 
 				public void characters(char ch[], int start, int length)
 						throws SAXException {
+					String value = new String(ch, start, length);
+					setValToField(value, cf);
+				}
+				
+				private void setValToField(String value, CarFacade cf){
 					if (tId) {
-						elements.add(new String(ch, start, length));
+						elements.add(cf);
+						cf.setValueToProperty(CarItem.ID, value);
 						tId = false;
 					} else {
 						if (tPhoto) {
-							appendElement(new String(ch, start, length));
+							cf.setURL(value);
 							tPhoto = false;
 						} else {
 							if (tPrice) {
-								appendElement(new String(ch, start, length));
+								cf.setValueToProperty(CarItem.PRICE, value);
 								tPrice = false;
 							} else {
-								if (tManufacturer) {
-									appendElement(new String(ch, start, length));
-									tManufacturer = false;
+								if (tMake) {
+									cf.setValueToProperty(CarItem.MAKE, value);
+									tMake = false;
 								} else {
 									if (tModel) {
-										appendElement(new String(ch, start, length));
+										cf.setValueToProperty(CarItem.MODEL, value);
 										tModel = false;
 									} else {
 										if (tYear) {
-											appendElement(new String(ch, start, length));
+											cf.setValueToProperty(CarItem.YEAR, value);
 											tYear = false;
 										}
 									}
@@ -100,19 +112,14 @@ public class XMLReader {
 						}
 					}
 				}
-
-				private void appendElement(String string) {
-					String old = elements.get(elements.size()-1);
-					elements.set(elements.size()-1, old+splitBy+string);
-				}
-
 			};
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+	
 
-	public ArrayList<String> parse(String srcToParse) {
+	public ArrayList<CarFacade> parse(String srcToParse) {
 		elements.clear();
 		try {
 			saxParser.parse(new InputSource(new StringReader(srcToParse)), handler);
