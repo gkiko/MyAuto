@@ -10,11 +10,11 @@ import android.os.AsyncTask;
 
 import com.example.myauto.event.MyChangeEvent;
 import com.example.myauto.item.CarFacade;
-import com.example.myauto.listener.CarListDownloadListener;
+import com.example.myauto.listener.CallbackListener;
 import com.example.myauto.net.TransportManager;
 
 public class ListFetcher extends AsyncTask<HashMap<String, String>, String, ArrayList<CarFacade>>{
-	private CopyOnWriteArrayList<CarListDownloadListener> listeners;
+	private CopyOnWriteArrayList<CallbackListener> listeners;
 	private ProgressDialog mDialog;
 
 	/**
@@ -23,15 +23,15 @@ public class ListFetcher extends AsyncTask<HashMap<String, String>, String, Arra
 	 * @param params used to filter data in HTTP request. null if no filter is needed 
 	 */
 	public ListFetcher(Activity activity){
-		listeners = new CopyOnWriteArrayList<CarListDownloadListener>();
+		listeners = new CopyOnWriteArrayList<CallbackListener>();
 		mDialog = new ProgressDialog(activity);
 	}
 	
-	public void addMyChangeListener(CarListDownloadListener l) {
+	public void addMyChangeListener(CallbackListener l) {
 		this.listeners.add(l);
 	}
 
-	public void removeMyChangeListener(CarListDownloadListener l) {
+	public void removeMyChangeListener(CallbackListener l) {
 		this.listeners.remove(l);
 	}
 	
@@ -62,8 +62,8 @@ public class ListFetcher extends AsyncTask<HashMap<String, String>, String, Arra
 	private void fireListDownloadEvent(ArrayList<CarFacade> carList) {
 		MyChangeEvent evt = new MyChangeEvent(carList);
 
-		for (CarListDownloadListener l : listeners) {
-			l.carListDownloaded(evt);
+		for (CallbackListener l : listeners) {
+			l.onFinished(evt);
 		}
 	}
 }

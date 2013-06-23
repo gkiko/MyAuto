@@ -11,11 +11,11 @@ import android.widget.ListView;
 import com.example.myauto.ListAdapter;
 import com.example.myauto.event.MyChangeEvent;
 import com.example.myauto.fetcher.ImageFetcher;
-import com.example.myauto.listener.CarListDownloadListener;
+import com.example.myauto.listener.CallbackListener;
 import com.example.myauto.listener.ImageDownloadListener;
 import com.example.myauto.net.Parser;
 
-public class CarInitializer implements ImageDownloadListener, CarListDownloadListener{
+public class CarInitializer implements ImageDownloadListener, CallbackListener{
 	private static final String hostURL = "http://myauto.ge/";
 	private Context context;
 	private ListView list1;
@@ -76,7 +76,7 @@ public class CarInitializer implements ImageDownloadListener, CarListDownloadLis
 	}
 
 	@Override
-	public void carListDownloaded(MyChangeEvent evt) {
+	public void onFinished(MyChangeEvent evt) {
 		ArrayList<CarFacade> parsedData = (ArrayList<CarFacade>)evt.source;
 		populateListNoDB(parsedData);
 	}
