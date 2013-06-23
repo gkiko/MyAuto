@@ -61,5 +61,11 @@
     <!-- SearchPageActivity Dialog Strings -->
     <string name="search_dialog_price_from">From: </string>
     <string name="search_dialog_price_to">To: </string>
+    <string name="search_dialog_price_cancel">Cancel</string>
+    <string name="search_dialog_price_ok">OK</string>
+    <string name="search_dialog_year_from">From: </string>
+    <string name="search_dialog_year_to">To: </string>
+    <string name="search_dialog_year_cancel">Cancel</string>
+    <string name="search_dialog_year_ok">OK</string>
 
 </resources>

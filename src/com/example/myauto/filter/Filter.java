@@ -19,8 +19,8 @@ public class Filter {
 
 	public final String MANUFACTURER_DEFAULT = "72";
 	public final String MODEL_DEFAULT = "0";
-	public static final String FROM_YEAR_DEFAULT = "From year";
-	public static final String TO_YEAR_DEFAULT = "To year";
+	public static final String FROM_YEAR_DEFAULT = "Any";
+	public static final String TO_YEAR_DEFAULT = "Any";
 	public final String PRICE_FROM_DEFAULT = "";
 	public final String PRICE_TO_DEFAULT = "";
 	public final String TRANSMISSION_DEFAULT = "Transmission";

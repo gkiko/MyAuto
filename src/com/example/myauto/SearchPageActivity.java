@@ -1,5 +1,8 @@
 package com.example.myauto;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+
 import com.example.myauto.filter.CarMarkFilterPage;
 
 import android.app.Activity;
@@ -11,15 +14,21 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 public class SearchPageActivity extends Activity{
+	private static final int STARTING_YEAR = 1960;
 	private static final int MARK_FILTER = 1001;
 	private Button carMark, carPrice, carYear, carCategory, carLocation, carTransmission, carFuel, carWheel, carDays; 
 	private String [] filteredData;
 	private Context ctx;
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +60,69 @@ public class SearchPageActivity extends Activity{
 			}
 		});
 		
+		carYear.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				carYearDialog();
+			}
+		});
+	}
+	
+	private void carYearDialog(){
+		final Dialog dialog = new Dialog(ctx);
+		dialog.setContentView(R.layout.dialog_car_year);
+		dialog.setTitle("Car Year");
 		
+		fillTheSpinners(dialog);
+		
+		Button cancel = (Button) dialog.findViewById(R.id.dialog_year_btn_cancel);
+		Button ok = (Button) dialog.findViewById(R.id.dialog_year_btn_ok);
+		
+		ok.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Spinner spinner1 = (Spinner) dialog.findViewById(R.id.dialog_year_from);
+				Spinner spinner2 = (Spinner) dialog.findViewById(R.id.dialog_year_to);
+				String from = (String) spinner1.getSelectedItem();
+				String to = (String) spinner2.getSelectedItem();
+				filteredData[2] = from;
+				filteredData[3] = to;
+				dialog.dismiss();
+			}
+		});
+		
+		cancel.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				dialog.dismiss();
+			}
+		});
+		
+		dialog.show();
+	}
+	
+	private void fillTheSpinners(Dialog dialog){
+		Spinner from = (Spinner) dialog.findViewById(R.id.dialog_year_from);
+		Spinner to = (Spinner) dialog.findViewById(R.id.dialog_year_to);
+		
+		ArrayList<String> listFrom = new ArrayList<String>();
+		ArrayList<String> listTo = new ArrayList<String>();
+		Calendar c = Calendar.getInstance();
+		int currentYear = c.get(Calendar.YEAR);
+		
+		listFrom.add("Any");
+		listTo.add("Any");
+		
+		for(int i=currentYear; i >= STARTING_YEAR; i--){
+			listFrom.add(""+i);
+			listTo.add(""+i);
+		}
+		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(ctx, android.R.layout.simple_spinner_dropdown_item, listFrom);
+		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		from.setAdapter(dataAdapter);
+		dataAdapter = new ArrayAdapter<String>(ctx, android.R.layout.simple_spinner_dropdown_item, listTo);
+		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		to.setAdapter(dataAdapter);
 	}
 	
 	/**
@@ -63,8 +134,8 @@ public class SearchPageActivity extends Activity{
 		dialog.setContentView(R.layout.dialog_car_price);
 		dialog.setTitle("Car Price ($)");
 		
-		Button cancel = (Button) dialog.findViewById(R.id.dialog_btn_cancel);
-		Button ok = (Button) dialog.findViewById(R.id.dialog_btn_ok);
+		Button cancel = (Button) dialog.findViewById(R.id.dialog_price_btn_cancel);
+		Button ok = (Button) dialog.findViewById(R.id.dialog_price_btn_ok);
 		
 		ok.setOnClickListener(new OnClickListener() {
 			@Override
