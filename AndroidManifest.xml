@@ -57,8 +57,11 @@
         <activity
             android:name=".CarPageActivity">
         </activity>
-        <activity
-            android:name=".CarMarkAndModelFilterPage">
+        <activity 
+            android:name="com.example.myauto.filter.CarMarkFilterPage">
+        </activity>
+        <activity 
+            android:name="com.example.myauto.filter.CarModelFilterPage">
         </activity>
     </application>
 

@@ -1,5 +1,7 @@
 package com.example.myauto;
 
+import com.example.myauto.filter.CarMarkFilterPage;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +12,8 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 public class SearchPageActivity extends Activity{
+	private static final int MARK_FILTER = 1001;
+	
 	private Button carMark, carPrice, carYear, carCategory, carLocation, carTransmission, carFuel, carWheel, carDays; 
 	
 	@Override
@@ -27,8 +31,8 @@ public class SearchPageActivity extends Activity{
 		carMark.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent markFilter = new Intent(SearchPageActivity.this, CarMarkAndModelFilterPage.class);
-				startActivity(markFilter);
+				Intent markFilter = new Intent(SearchPageActivity.this, CarMarkFilterPage.class);
+				startActivityForResult(markFilter, MARK_FILTER);
 			}
 		});
 	}

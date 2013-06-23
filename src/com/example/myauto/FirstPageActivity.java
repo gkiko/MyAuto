@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.example.myauto.data.DataContainer;
+import com.example.myauto.database.DBManager;
 import com.example.myauto.event.MyChangeEvent;
 import com.example.myauto.fetcher.ListFetcher;
 import com.example.myauto.item.CarFacade;
@@ -26,6 +27,7 @@ public class FirstPageActivity extends Activity implements CallbackListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.firstpage);
+		DBManager.init(getApplicationContext());
 		
 		getButtons();
 		setButtonClickListeners();
