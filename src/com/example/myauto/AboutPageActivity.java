@@ -1,6 +1,5 @@
 package com.example.myauto;
 
-import com.example.myauto.filter.SearchActivity;
 
 import android.app.Activity;
 import android.content.Intent;

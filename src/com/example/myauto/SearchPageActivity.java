@@ -19,6 +19,8 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -66,6 +68,48 @@ public class SearchPageActivity extends Activity{
 				carYearDialog();
 			}
 		});
+		
+		carTransmission.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				carTransmissionDialog();
+			}
+		});
+		
+	}
+	
+	/**
+	 * ვქმნი ტრანსმისიის დიალოგს, თავისი ფუნქციონალით
+	 */
+	private void carTransmissionDialog(){
+		final Dialog dialog = new Dialog(ctx);
+		dialog.setContentView(R.layout.dialog_car_transmission);
+		dialog.setTitle("Transmission");
+		
+		Button cancel = (Button) dialog.findViewById(R.id.dialog_trans_btn_cancel);
+		Button ok = (Button) dialog.findViewById(R.id.dialog_trans_btn_ok);
+		
+		ok.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				RadioGroup group = (RadioGroup) dialog.findViewById(R.id.dialog_trans_rdgroup);
+				int id = group.getCheckedRadioButtonId();
+				RadioButton trans = (RadioButton) dialog.findViewById(id);
+				
+				String transmission = trans.getText().toString();
+				filteredData[6] = transmission;
+				dialog.dismiss();
+			}
+		});
+		
+		cancel.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				dialog.dismiss();
+			}
+		});
+		
+		dialog.show();
 	}
 	
 	/**
@@ -200,6 +244,7 @@ public class SearchPageActivity extends Activity{
 		carFuel = (Button) findViewById(R.id.search_carFuel);
 		carWheel = (Button) findViewById(R.id.search_carWheel);
 		carDays = (Button) findViewById(R.id.search_carDays);
+		carTransmission = (Button) findViewById(R.id.search_carTransmission);
 		
 		setButtonClickListeners();
 	}

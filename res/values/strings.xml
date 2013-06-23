@@ -59,6 +59,8 @@
     <string name="search_carDays">Days</string>
     
     <!-- SearchPageActivity Dialog Strings -->
+    <string name="search_dialog_btn_cancel">Cancel</string>
+    <string name="search_dialog_btn_ok">OK</string>
     <string name="search_dialog_price_from">From: </string>
     <string name="search_dialog_price_to">To: </string>
     <string name="search_dialog_price_cancel">Cancel</string>
@@ -67,5 +69,9 @@
     <string name="search_dialog_year_to">To: </string>
     <string name="search_dialog_year_cancel">Cancel</string>
     <string name="search_dialog_year_ok">OK</string>
+    <string name="search_dialog_trans_manual">Manual</string>
+    <string name="search_dialog_trans_automatic">Automatic</string>
+    <string name="search_dialog_trans_tiptronic">Tiptronic</string>
+    <string name="search_dialog_trans_autotipt">Auto or Tipt</string>
 
 </resources>
