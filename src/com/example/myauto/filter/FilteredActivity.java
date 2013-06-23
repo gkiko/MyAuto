@@ -17,21 +17,21 @@ public class FilteredActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_filtered);
 		
-		downloadDataByFilter();
+	//	downloadDataByFilter();
 	}
 	
-	private void downloadDataByFilter(){
-		String[] data = getStringArrayFromBundle();
-		Filter f = new Filter(getApplicationContext(), (ListView) findViewById(R.id.filtered), this);
-		f.filterAndDownload(data);
-	}
+//	private void downloadDataByFilter(){
+//		String[] data = getStringArrayFromBundle();
+//		Filter f = new Filter(getApplicationContext(), (ListView) findViewById(R.id.filtered), this);
+//		f.filterAndDownload(data);
+//	}
 	
-	private String[] getStringArrayFromBundle() {
-		Intent intent = getIntent();
-		Bundle b = intent.getBundleExtra(SearchActivity.INTENT_KEY);
-		String[] values = (String[]) b.getSerializable(SearchActivity.BUNDLE_KEY);
-		return values;
-	}
+//	private String[] getStringArrayFromBundle() {
+//		Intent intent = getIntent();
+//		Bundle b = intent.getBundleExtra(SearchActivity.INTENT_KEY);
+//		String[] values = (String[]) b.getSerializable(SearchActivity.BUNDLE_KEY);
+//		return values;
+//	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

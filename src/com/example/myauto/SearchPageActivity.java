@@ -68,6 +68,10 @@ public class SearchPageActivity extends Activity{
 		});
 	}
 	
+	/**
+	 * ვქმნი წლების ფილტრის დიალოგს.
+	 * წლების არჩევა ხდება სპინერებით.
+	 */
 	private void carYearDialog(){
 		final Dialog dialog = new Dialog(ctx);
 		dialog.setContentView(R.layout.dialog_car_year);
@@ -101,6 +105,10 @@ public class SearchPageActivity extends Activity{
 		dialog.show();
 	}
 	
+	/**
+	 * ვავსებ სპინერებს საჭირო მონაცემებით
+	 * @param dialog
+	 */
 	private void fillTheSpinners(Dialog dialog){
 		Spinner from = (Spinner) dialog.findViewById(R.id.dialog_year_from);
 		Spinner to = (Spinner) dialog.findViewById(R.id.dialog_year_to);
@@ -160,6 +168,13 @@ public class SearchPageActivity extends Activity{
 		dialog.show();
 	}
 	
+	/**
+	 * მარკის და მოდელის ფილტრის შედეგის მიღება.
+	 * 
+	 * @param requestCode
+	 * @param resultCode
+	 * @param data
+	 */
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
