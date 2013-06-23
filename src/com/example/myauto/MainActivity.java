@@ -1,5 +1,7 @@
 package com.example.myauto;
 
+import java.util.HashMap;
+
 import com.example.myauto.fetcher.ListFetcher;
 import com.example.myauto.item.CarInitializer;
 
@@ -25,7 +27,7 @@ public class MainActivity extends Activity{
 		carDownloader = new ListFetcher(this);
 		carDownloader.addMyChangeListener(carInitializer);
 
-		carDownloader.downloadCarList(null);
+		carDownloader.execute((HashMap<String, String>) null);
 	}
 	
 	/**

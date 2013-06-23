@@ -1,4 +1,4 @@
-package com.example.myauto.net;
+package com.example.myauto.fetcher;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 

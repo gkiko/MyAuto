@@ -40,7 +40,7 @@ public class Filter {
 		CarInitializer ci = new CarInitializer(c, v);
 		ListFetcher cd = new ListFetcher(a);
 		cd.addMyChangeListener(ci);
-		cd.downloadCarList(parameters);
+		cd.execute(parameters);
 	}
 
 	private HashMap<String, String> prepareParametersToPass(String[] data) {
