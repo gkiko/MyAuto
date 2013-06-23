@@ -1,5 +1,14 @@
 package com.example.myauto;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import com.example.myauto.data.DataContainer;
+import com.example.myauto.event.MyChangeEvent;
+import com.example.myauto.fetcher.ListFetcher;
+import com.example.myauto.item.CarFacade;
+import com.example.myauto.listener.CallbackListener;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,11 +18,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-
-
-
-public class FirstPageActivity extends Activity{
+public class FirstPageActivity extends Activity implements CallbackListener{
 	private Button mainButton, searchButton, catalogButton;
+	public static final String bundleKey = "myKey";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +45,19 @@ public class FirstPageActivity extends Activity{
 		mainButton.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
+				ArrayList<CarFacade> ls = null;
+				if(listAlreadyDownloaded())
+					ls = DataContainer.getNewList();
+				else {
+					runDownloader();
+					return;
+				}
+				
 				Intent mainActivity = new Intent(FirstPageActivity.this, MainActivity.class);
+				Bundle extras = new Bundle();
+				extras.putSerializable(bundleKey, ls);
+				mainActivity.putExtras(extras);
+				
 				startActivity(mainActivity);
 			}
 		});
@@ -58,6 +77,16 @@ public class FirstPageActivity extends Activity{
 				startActivity(mainActivity);
 			}
 		});
+	}
+	
+	private boolean listAlreadyDownloaded(){
+		return DataContainer.hasNewList();
+	}
+	
+	private void runDownloader(){
+		ListFetcher lf = new ListFetcher(this);
+		lf.addMyChangeListener(this);
+		lf.execute((HashMap<String, String>) null);
 	}
 	
 	/**
@@ -93,5 +122,12 @@ public class FirstPageActivity extends Activity{
 		}
 		startActivity(nextIntent);
 		return super.onMenuItemSelected(featureId, item);
+	}
+
+	@Override
+	public void onFinished(MyChangeEvent evt) {
+		ArrayList<CarFacade> carList = (ArrayList<CarFacade>)evt.source;
+		DataContainer.setNewList(carList);
+		mainButton.performClick();
 	}
 }

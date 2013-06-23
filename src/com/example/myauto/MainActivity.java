@@ -1,9 +1,8 @@
 package com.example.myauto;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
-import com.example.myauto.fetcher.ListFetcher;
-import com.example.myauto.item.CarInitializer;
+import com.example.myauto.item.CarFacade;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -14,20 +13,17 @@ import android.widget.ListView;
 
 public class MainActivity extends Activity{
 	
-	private CarInitializer carInitializer;
-	private ListFetcher carDownloader;
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.tab1);
 		
-		carInitializer = new CarInitializer(getApplicationContext(),
-				(ListView) findViewById(R.id.tab1));
-		carDownloader = new ListFetcher(this);
-		carDownloader.addMyChangeListener(carInitializer);
-
-		carDownloader.execute((HashMap<String, String>) null);
+		ArrayList<CarFacade> ls = (ArrayList<CarFacade>) getIntent().getExtras().getSerializable(FirstPageActivity.bundleKey);
+		
+		ListAdapter adapter = new ListAdapter(ls, this);
+		ListView lv = (ListView)findViewById(R.id.tab1);
+		lv.setAdapter(adapter);
+		
 	}
 	
 	/**

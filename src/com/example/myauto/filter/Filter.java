@@ -7,7 +7,6 @@ import android.content.Context;
 import android.widget.ListView;
 
 import com.example.myauto.fetcher.ListFetcher;
-import com.example.myauto.item.CarInitializer;
 
 public class Filter {
 	private static String[] keys = new String[] { "man_id",
@@ -36,11 +35,12 @@ public class Filter {
 	}
 
 	public void filterAndDownload(String[] data) {
-		HashMap<String, String> parameters = prepareParametersToPass(data);
-		CarInitializer ci = new CarInitializer(c, v);
-		ListFetcher cd = new ListFetcher(a);
-		cd.addMyChangeListener(ci);
-		cd.execute(parameters);
+//		gasasworebelia es
+//		HashMap<String, String> parameters = prepareParametersToPass(data);
+//		CarInitializer ci = new CarInitializer(c, v);
+//		ListFetcher cd = new ListFetcher(a);
+//		cd.addMyChangeListener(ci);
+//		cd.execute(parameters);
 	}
 
 	private HashMap<String, String> prepareParametersToPass(String[] data) {

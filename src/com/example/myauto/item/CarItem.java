@@ -1,9 +1,11 @@
 package com.example.myauto.item;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Observable;
 
-public class CarItem extends Observable implements Item {
+public class CarItem extends Observable implements Item, Serializable {
+	private static final long serialVersionUID = 1L;
 	public static final String ID = "id";
 	public static final String MAKE = "make";
 	public static final String MODEL = "model";

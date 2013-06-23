@@ -1,8 +1,11 @@
 package com.example.myauto.item;
 
+import java.io.Serializable;
+
 import android.graphics.Bitmap;
 
-public class CarFacade implements Imageable, Item{
+public class CarFacade implements Imageable, Item, Serializable{
+	private static final long serialVersionUID = 1L;
 	private CarImageable cIm;
 	private CarItem cIt;
 	
