@@ -10,17 +10,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class SearchPageActivity extends Activity{
 	private static final int MARK_FILTER = 1001;
-	
 	private Button carMark, carPrice, carYear, carCategory, carLocation, carTransmission, carFuel, carWheel, carDays; 
+	private String [] filteredData;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.activity_search_page);
 		super.onCreate(savedInstanceState);
 		
+		filteredData = new String [10];
 		getButtonViews();
 	}
 	
@@ -35,6 +37,19 @@ public class SearchPageActivity extends Activity{
 				startActivityForResult(markFilter, MARK_FILTER);
 			}
 		});
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		switch(requestCode){
+		case(MARK_FILTER):
+			if(resultCode == Activity.RESULT_OK){
+				String [] markAndModel = (String[]) data.getSerializableExtra("MarkAndModel");
+				filteredData[0] = markAndModel[0];
+				filteredData[1] = markAndModel[1];
+			}
+		}
 	}
 	
 	/**

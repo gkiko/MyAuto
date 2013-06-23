@@ -24,7 +24,7 @@ import android.widget.Toast;
 
 public class CarMarkFilterPage extends Activity{
 	
-	private static final int MODEL_FILTER = 1001;
+	private static final int MODEL_FILTER = 1002;
 	private ListView list;
 	private Adapter adapter;
 	private String mark;

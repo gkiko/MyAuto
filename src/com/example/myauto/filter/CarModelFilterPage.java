@@ -8,19 +8,21 @@ import com.example.myauto.database.DBManager;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
 public class CarModelFilterPage extends Activity{
 	
-//	private static final int MODEL_FILTER = 1001;
 	private ListView list;
 	private Adapter adapter;
-	private String model;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +34,31 @@ public class CarModelFilterPage extends Activity{
 		
 		((TextView) findViewById(R.id.markName)).setText(mark);
 		
-		List <String> ls = DBManager.getManufacturers();
+	//	List <String> ls = DBManager.getManufacturers();
+		List<String> ls = new ArrayList<String>();
+		Cursor cursor = DBManager.filterModelsByManufacturersRaw(mark);
+		if (cursor.moveToFirst()) {
+			do {
+				ls.add(cursor.getString(1));
+			} while (cursor.moveToNext());
+		}
+		
 		
 		list = (ListView) findViewById(R.id.model_listView);
 		adapter = new Adapter(this, ls);
 		list.setAdapter(adapter);
 		
+		list.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> av, View v, int position,
+					long id) {
+				String model = (String) adapter.getItem(position);
+				Intent backToMark = new Intent(CarModelFilterPage.this, CarMarkFilterPage.class);
+				backToMark.putExtra("Model", model);
+				setResult(RESULT_OK, backToMark);
+				finish();
+			}	
+		});
 	}
 	
 	
