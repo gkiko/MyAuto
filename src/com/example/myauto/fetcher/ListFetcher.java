@@ -35,11 +35,6 @@ public class ListFetcher extends AsyncTask<HashMap<String, String>, String, Arra
 		this.listeners.remove(l);
 	}
 	
-//	public void downloadCarList(HashMap<String, String> params) {
-//		XMLFetcher f = new XMLFetcher(params);
-//	    f.execute();
-//	}
-	
 	@Override
 	protected void onPreExecute() {
 		mDialog.setMessage("Loading...");
@@ -63,40 +58,6 @@ public class ListFetcher extends AsyncTask<HashMap<String, String>, String, Arra
 		fireListDownloadEvent(result);
 		mDialog.dismiss();
 	}
-
-//	private class XMLFetcher extends AsyncTask<String, String, ArrayList<CarFacade>> {
-//		HashMap<String, String> params;
-//		private ProgressDialog mDialog;
-//		
-//		public XMLFetcher(HashMap<String, String> params){
-//			this.params = params;
-//			mDialog = new ProgressDialog(activity);
-//		}
-//
-//		@Override
-//		protected void onPreExecute() {
-//			mDialog.setMessage("Loading...");
-//            mDialog.setCancelable(false);
-//            mDialog.show();
-//		}
-//		
-//		@Override
-//		protected ArrayList<CarFacade> doInBackground(String... arg0) {
-//			ArrayList<CarFacade> carList = null;
-//			try {
-//				carList = TransportManager.downloadCarList(params);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//			return carList;
-//		}
-//		
-//		@Override
-//		protected void onPostExecute(ArrayList<CarFacade> result) {
-//			fireListDownloadEvent(result);
-//			mDialog.dismiss();
-//		}
-//	}
 
 	private void fireListDownloadEvent(ArrayList<CarFacade> carList) {
 		MyChangeEvent evt = new MyChangeEvent(carList);
