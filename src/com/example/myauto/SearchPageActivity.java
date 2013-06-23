@@ -3,6 +3,8 @@ package com.example.myauto;
 import com.example.myauto.filter.CarMarkFilterPage;
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,17 +12,21 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 public class SearchPageActivity extends Activity{
 	private static final int MARK_FILTER = 1001;
 	private Button carMark, carPrice, carYear, carCategory, carLocation, carTransmission, carFuel, carWheel, carDays; 
 	private String [] filteredData;
+	private Context ctx;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.activity_search_page);
 		super.onCreate(savedInstanceState);
+		
+		ctx = this;
 		
 		filteredData = new String [10];
 		getButtonViews();
@@ -37,6 +43,50 @@ public class SearchPageActivity extends Activity{
 				startActivityForResult(markFilter, MARK_FILTER);
 			}
 		});
+		
+		carPrice.setOnClickListener(new OnClickListener () {
+			@Override
+			public void onClick(View v) {
+				carPriceDialog();
+			}
+		});
+		
+		
+	}
+	
+	/**
+	 * ფასის ფილტრის დიალოგი . . .
+	 * ინიციალიზაცია და ღილაკების იმპლემენტაცია.
+	 */
+	private void carPriceDialog(){
+		final Dialog dialog = new Dialog(ctx);
+		dialog.setContentView(R.layout.dialog_car_price);
+		dialog.setTitle("Car Price ($)");
+		
+		Button cancel = (Button) dialog.findViewById(R.id.dialog_btn_cancel);
+		Button ok = (Button) dialog.findViewById(R.id.dialog_btn_ok);
+		
+		ok.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				EditText editFrom = (EditText) dialog.findViewById(R.id.dialog_price_from);
+				EditText editTo = (EditText) dialog.findViewById(R.id.dialog_price_to);
+				String from = editFrom.getText().toString();
+				String to = editTo.getText().toString();
+				filteredData[4] = from;
+				filteredData[5] = to;
+				dialog.dismiss();
+			}
+		});
+		
+		cancel.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				dialog.dismiss();
+			}
+		});
+		
+		dialog.show();
 	}
 	
 	@Override

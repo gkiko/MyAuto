@@ -57,5 +57,9 @@
     <string name="search_carFuel">Fuel Type</string>
     <string name="search_carWheel">Steering-Wheel</string>
     <string name="search_carDays">Days</string>
+    
+    <!-- SearchPageActivity Dialog Strings -->
+    <string name="search_dialog_price_from">From: </string>
+    <string name="search_dialog_price_to">To: </string>
 
 </resources>
