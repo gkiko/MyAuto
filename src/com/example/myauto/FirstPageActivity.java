@@ -23,12 +23,15 @@ public class FirstPageActivity extends Activity implements CallbackListener{
 	private Button mainButton, searchButton, catalogButton;
 	public static final String bundleKey = "myKey";
 	
+	private ListFetcher lf;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.firstpage);
 		DBManager.init(getApplicationContext());
 		
+		lf = new ListFetcher(this);
 		getButtons();
 		setButtonClickListeners();
 	}
@@ -86,7 +89,6 @@ public class FirstPageActivity extends Activity implements CallbackListener{
 	}
 	
 	private void runDownloader(){
-		ListFetcher lf = new ListFetcher(this);
 		lf.addMyChangeListener(this);
 		lf.execute((HashMap<String, String>) null);
 	}
@@ -128,6 +130,7 @@ public class FirstPageActivity extends Activity implements CallbackListener{
 
 	@Override
 	public void onFinished(MyChangeEvent evt) {
+		lf.removeMyChangeListener(this);
 		ArrayList<CarFacade> carList = (ArrayList<CarFacade>)evt.source;
 		DataContainer.setNewList(carList);
 		mainButton.performClick();

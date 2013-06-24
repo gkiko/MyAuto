@@ -2,7 +2,10 @@ package com.example.myauto;
 
 import java.util.ArrayList;
 
+import com.example.myauto.event.MyChangeEvent;
+import com.example.myauto.fetcher.ImageDownloader;
 import com.example.myauto.item.CarFacade;
+import com.example.myauto.listener.ImageDownloadListener;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -11,7 +14,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 
-public class MainActivity extends Activity{
+public class MainActivity extends Activity implements ImageDownloadListener{
+	private ListAdapter adapter;
+	private static ImageDownloader downloader = new ImageDownloader();
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -20,10 +25,21 @@ public class MainActivity extends Activity{
 		
 		ArrayList<CarFacade> ls = (ArrayList<CarFacade>) getIntent().getExtras().getSerializable(FirstPageActivity.bundleKey);
 		
-		ListAdapter adapter = new ListAdapter(ls, this);
+		adapter = new ListAdapter(ls, this);
 		ListView lv = (ListView)findViewById(R.id.tab1);
 		lv.setAdapter(adapter);
+
+		downloader.addMyChangeListener(this);
+	}
+	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
 		
+		downloader.removeMyChangeListener(this);
+		Bundle extras = getIntent().getExtras();
+		extras.putSerializable(FirstPageActivity.bundleKey, adapter.getList());
+		getIntent().putExtras(extras);
 	}
 	
 	/**
@@ -61,5 +77,10 @@ public class MainActivity extends Activity{
 		}
 		startActivity(nextIntent);
 		return super.onMenuItemSelected(featureId, item);
+	}
+
+	@Override
+	public void imageDownloaded(MyChangeEvent evt) {
+		adapter.notifyDataSetInvalidated();
 	}
 }
