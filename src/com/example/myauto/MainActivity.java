@@ -25,14 +25,22 @@ public class MainActivity extends MasterPageActivity implements ImageDownloadLis
 		ListView lv = (ListView)findViewById(R.id.tab1);
 		lv.setAdapter(adapter);
 
+		fetchImages(ls);
 		downloader.addMyChangeListener(this);
 	}
 	
+	private void fetchImages(ArrayList<CarFacade> ls){
+		for(CarFacade car : ls){
+			ImageDownloader.fetchImageFor(car);
+		}
+	}
+	
 	@Override
-	protected void onDestroy() {
-		super.onDestroy();
-		
+	protected void onPause() {
+		super.onPause();
 		downloader.removeMyChangeListener(this);
+		downloader.clearImageQueue();
+		
 		Bundle extras = getIntent().getExtras();
 		extras.putSerializable(FirstPageActivity.bundleKey, adapter.getList());
 		getIntent().putExtras(extras);

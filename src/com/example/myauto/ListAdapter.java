@@ -60,7 +60,7 @@ public class ListAdapter extends BaseAdapter{
 			(cont.img).setImageBitmap(cr.getImage());
 		else {
 			(cont.img).setImageResource(R.drawable.ic_launcher);
-			ImageDownloader.addImage(cr);
+//			ImageDownloader.addImage(cr);
 		}
 		(cont.name).setText(cr.getValueFromProperty(CarItem.MAKE) + cr.getValueFromProperty(CarItem.MODEL));
 		(cont.year).setText(cr.getValueFromProperty(CarItem.YEAR));
