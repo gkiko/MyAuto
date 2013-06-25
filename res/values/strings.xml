@@ -39,14 +39,14 @@
     <string name="title_activity_filtered">FilteredActivity</string>
     <string name="title_activity_catalog_page">CatalogPageActivity</string>
     <string name="title_activity_search">SearchActivity</string>
-    
+
     <!-- Menu Bar Strings -->
     <string name="menu_first">Main</string>
     <string name="menu_main">Car List</string>
     <string name="menu_search">Search</string>
     <string name="menu_catalog">Catalog</string>
     <string name="menu_about">About</string>
-    
+
     <!-- SearchPageActivity Strings -->
     <string name="search_carModel">Model And Mark</string>
     <string name="search_carPrice">Price</string>
@@ -57,7 +57,7 @@
     <string name="search_carFuel">Fuel Type</string>
     <string name="search_carWheel">Steering-Wheel</string>
     <string name="search_carDays">Days</string>
-    
+
     <!-- SearchPageActivity Dialog Strings -->
     <string name="search_dialog_btn_cancel">Cancel</string>
     <string name="search_dialog_btn_ok">OK</string>
@@ -77,5 +77,6 @@
     <string name="username_login">Username:</string>
     <string name="password_login">Password:</string>
     <string name="login_dialog_title">User Login</string>
+    <string name="title_activity_master_page">MasterPageActivity</string>
 
 </resources>

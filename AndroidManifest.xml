@@ -48,20 +48,19 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.myauto.FirstPageActivity" />
         </activity>
-        <activity 
-            android:name=".AboutPageActivity">
+        <activity android:name="com.example.myauto.AboutPageActivity" >
+        </activity>
+        <activity android:name="com.example.myauto.SearchPageActivity" >
+        </activity>
+        <activity android:name="com.example.myauto.CarPageActivity" >
+        </activity>
+        <activity android:name="com.example.myauto.filter.CarMarkFilterPage" >
+        </activity>
+        <activity android:name="com.example.myauto.filter.CarModelFilterPage" >
         </activity>
         <activity
-            android:name=".SearchPageActivity">
-        </activity>
-        <activity
-            android:name=".CarPageActivity">
-        </activity>
-        <activity 
-            android:name="com.example.myauto.filter.CarMarkFilterPage">
-        </activity>
-        <activity 
-            android:name="com.example.myauto.filter.CarModelFilterPage">
+            android:name="com.example.myauto.MasterPageActivity"
+            android:label="@string/title_activity_master_page" >
         </activity>
     </application>
 
