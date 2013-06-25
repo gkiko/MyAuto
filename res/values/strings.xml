@@ -74,5 +74,8 @@
     <string name="search_dialog_trans_tiptronic">Tiptronic</string>
     <string name="search_dialog_trans_autotipt">Auto or Tipt</string>
     <string name="menu_login">Login</string>
+    <string name="username_login">Username:</string>
+    <string name="password_login">Password:</string>
+    <string name="login_dialog_title">User Login</string>
 
 </resources>
