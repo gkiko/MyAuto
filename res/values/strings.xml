@@ -73,5 +73,6 @@
     <string name="search_dialog_trans_automatic">Automatic</string>
     <string name="search_dialog_trans_tiptronic">Tiptronic</string>
     <string name="search_dialog_trans_autotipt">Auto or Tipt</string>
+    <string name="menu_login">Login</string>
 
 </resources>
