@@ -24,7 +24,7 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-public class SearchPageActivity extends Activity{
+public class SearchPageActivity extends MasterPageActivity{
 	private static final int STARTING_YEAR = 1960;
 	private static final int MARK_FILTER = 1001;
 	private Button carMark, carPrice, carYear, carCategory, carLocation, carTransmission, carFuel, carWheel, carDays; 
@@ -34,8 +34,8 @@ public class SearchPageActivity extends Activity{
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		setContentView(R.layout.activity_search_page);
 		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_search_page);
 		
 		ctx = this;
 		
@@ -44,7 +44,7 @@ public class SearchPageActivity extends Activity{
 	}
 	
 	/**
-	 * ვაყენებ ღილაკების ლისენერებს დაჭერაზე
+	 * бѓ•бѓђбѓ§бѓ”бѓњбѓ”бѓ‘ бѓ¦бѓ�бѓљбѓђбѓ™бѓ”бѓ‘бѓ�бѓЎ бѓљбѓ�бѓЎбѓ”бѓњбѓ”бѓ бѓ”бѓ‘бѓЎ бѓ“бѓђбѓ­бѓ”бѓ бѓђбѓ–бѓ”
 	 */
 	private void setButtonClickListeners(){
 		carMark.setOnClickListener(new OnClickListener() {
@@ -79,7 +79,7 @@ public class SearchPageActivity extends Activity{
 	}
 	
 	/**
-	 * ვქმნი ტრანსმისიის დიალოგს, თავისი ფუნქციონალით
+	 * бѓ•бѓҐбѓ›бѓњбѓ� бѓўбѓ бѓђбѓњбѓЎбѓ›бѓ�бѓЎбѓ�бѓ�бѓЎ бѓ“бѓ�бѓђбѓљбѓќбѓ’бѓЎ, бѓ—бѓђбѓ•бѓ�бѓЎбѓ� бѓ¤бѓЈбѓњбѓҐбѓЄбѓ�бѓќбѓњбѓђбѓљбѓ�бѓ—
 	 */
 	private void carTransmissionDialog(){
 		final Dialog dialog = new Dialog(ctx);
@@ -113,8 +113,8 @@ public class SearchPageActivity extends Activity{
 	}
 	
 	/**
-	 * ვქმნი წლების ფილტრის დიალოგს.
-	 * წლების არჩევა ხდება სპინერებით.
+	 * бѓ•бѓҐбѓ›бѓњбѓ� бѓ¬бѓљбѓ”бѓ‘бѓ�бѓЎ бѓ¤бѓ�бѓљбѓўбѓ бѓ�бѓЎ бѓ“бѓ�бѓђбѓљбѓќбѓ’бѓЎ.
+	 * бѓ¬бѓљбѓ”бѓ‘бѓ�бѓЎ бѓђбѓ бѓ©бѓ”бѓ•бѓђ бѓ®бѓ“бѓ”бѓ‘бѓђ бѓЎбѓћбѓ�бѓњбѓ”бѓ бѓ”бѓ‘бѓ�бѓ—.
 	 */
 	private void carYearDialog(){
 		final Dialog dialog = new Dialog(ctx);
@@ -150,7 +150,7 @@ public class SearchPageActivity extends Activity{
 	}
 	
 	/**
-	 * ვავსებ სპინერებს საჭირო მონაცემებით
+	 * бѓ•бѓђбѓ•бѓЎбѓ”бѓ‘ бѓЎбѓћбѓ�бѓњбѓ”бѓ бѓ”бѓ‘бѓЎ бѓЎбѓђбѓ­бѓ�бѓ бѓќ бѓ›бѓќбѓњбѓђбѓЄбѓ”бѓ›бѓ”бѓ‘бѓ�бѓ—
 	 * @param dialog
 	 */
 	private void fillTheSpinners(Dialog dialog){
@@ -178,8 +178,8 @@ public class SearchPageActivity extends Activity{
 	}
 	
 	/**
-	 * ფასის ფილტრის დიალოგი . . .
-	 * ინიციალიზაცია და ღილაკების იმპლემენტაცია.
+	 * бѓ¤бѓђбѓЎбѓ�бѓЎ бѓ¤бѓ�бѓљбѓўбѓ бѓ�бѓЎ бѓ“бѓ�бѓђбѓљбѓќбѓ’бѓ� . . .
+	 * бѓ�бѓњбѓ�бѓЄбѓ�бѓђбѓљбѓ�бѓ–бѓђбѓЄбѓ�бѓђ бѓ“бѓђ бѓ¦бѓ�бѓљбѓђбѓ™бѓ”бѓ‘бѓ�бѓЎ бѓ�бѓ›бѓћбѓљбѓ”бѓ›бѓ”бѓњбѓўбѓђбѓЄбѓ�бѓђ.
 	 */
 	private void carPriceDialog(){
 		final Dialog dialog = new Dialog(ctx);
@@ -213,7 +213,7 @@ public class SearchPageActivity extends Activity{
 	}
 	
 	/**
-	 * მარკის და მოდელის ფილტრის შედეგის მიღება.
+	 * бѓ›бѓђбѓ бѓ™бѓ�бѓЎ бѓ“бѓђ бѓ›бѓќбѓ“бѓ”бѓљбѓ�бѓЎ бѓ¤бѓ�бѓљбѓўбѓ бѓ�бѓЎ бѓЁбѓ”бѓ“бѓ”бѓ’бѓ�бѓЎ бѓ›бѓ�бѓ¦бѓ”бѓ‘бѓђ.
 	 * 
 	 * @param requestCode
 	 * @param resultCode
@@ -233,7 +233,7 @@ public class SearchPageActivity extends Activity{
 	}
 	
 	/**
-	 * ვიღებ ღილაკების View-ებს და აღწერილ ღილაკებს ვუკეთებ ინიციალიზაციას, შემდეგ ვაბავ ლისენერებს.
+	 * бѓ•бѓ�бѓ¦бѓ”бѓ‘ бѓ¦бѓ�бѓљбѓђбѓ™бѓ”бѓ‘бѓ�бѓЎ View-бѓ”бѓ‘бѓЎ бѓ“бѓђ бѓђбѓ¦бѓ¬бѓ”бѓ бѓ�бѓљ бѓ¦бѓ�бѓљбѓђбѓ™бѓ”бѓ‘бѓЎ бѓ•бѓЈбѓ™бѓ”бѓ—бѓ”бѓ‘ бѓ�бѓњбѓ�бѓЄбѓ�бѓђбѓљбѓ�бѓ–бѓђбѓЄбѓ�бѓђбѓЎ, бѓЁбѓ”бѓ›бѓ“бѓ”бѓ’ бѓ•бѓђбѓ‘бѓђбѓ• бѓљбѓ�бѓЎбѓ”бѓњбѓ”бѓ бѓ”бѓ‘бѓЎ.
 	 */
 	private void getButtonViews(){
 		carMark = (Button) findViewById(R.id.search_carMark);
@@ -249,41 +249,6 @@ public class SearchPageActivity extends Activity{
 		setButtonClickListeners();
 	}
 	
-	/**
-	 * Menu Itemebis Sehvseba
-	 */
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.myauto_menu, menu);
-		return super.onCreateOptionsMenu(menu);
-	}
 	
-	/**
-	 * Menu itemebis implementacia
-	 */
-	@Override
-	public boolean onMenuItemSelected(int featureId, MenuItem item) {
-		Intent nextIntent = null;
-		switch(item.getItemId()){
-		case R.id.menu_main:
-			nextIntent = new Intent(SearchPageActivity.this, FirstPageActivity.class);
-			break;
-		case R.id.menu_carList:
-			nextIntent = new Intent(SearchPageActivity.this, MainActivity.class);
-			break;
-		case R.id.menu_search:
-			nextIntent = new Intent(SearchPageActivity.this, SearchPageActivity.class);
-			break;
-		case R.id.menu_catalog:
-			nextIntent = new Intent(SearchPageActivity.this, CatalogPageActivity.class);
-			break;
-		case R.id.menu_about:
-			nextIntent = new Intent(SearchPageActivity.this, AboutPageActivity.class);
-		default:
-			break;
-		}
-		startActivity(nextIntent);
-		return super.onMenuItemSelected(featureId, item);
-	}
 
 }
