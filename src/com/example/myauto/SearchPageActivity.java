@@ -36,8 +36,8 @@ public class SearchPageActivity extends Activity{
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		setContentView(R.layout.activity_search_page);
 		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_search_page);
 		
 		ctx = this;
 		a = this;
@@ -264,6 +264,7 @@ public class SearchPageActivity extends Activity{
 		
 		setButtonClickListeners();
 	}
+	
 	
 
 }
