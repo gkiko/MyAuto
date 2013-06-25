@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
@@ -11,7 +11,7 @@
 
     <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content" >
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -36,7 +36,7 @@
                 android:background="@drawable/button_selector"
                 android:gravity="left"
                 android:padding="5dip"
-                android:text="@string/search_carPrice" 
+                android:text="@string/search_carPrice"
                 android:textStyle="bold" >
             </Button>
 
@@ -105,7 +105,7 @@
                 android:text="@string/search_carWheel"
                 android:textStyle="bold" >
             </Button>
-            
+
             <Button
                 android:id="@+id/search_carDays"
                 android:layout_width="fill_parent"
@@ -119,4 +119,18 @@
         </LinearLayout>
     </ScrollView>
 
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/button_selector" >
+
+        <Button
+            android:id="@+id/search_submit_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Search" />
+    </LinearLayout>
+
+</RelativeLayout>

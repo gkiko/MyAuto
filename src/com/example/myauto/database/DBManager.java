@@ -31,14 +31,17 @@ public class DBManager {
 		db.execSQL("drop table " + dbHelper.MAKE_TABLE);
 	}
 
-	public static List<String> getManufacturers() {
-		List<String> list = new ArrayList<String>();
+	public static List<String[]> getManufacturers() {
+		List<String[]> list = new ArrayList<String[]>();
 		String selectQuery = "select * from " + dbHelper.MAKE_TABLE;
 
 		Cursor cursor = db.rawQuery(selectQuery, null);
 		if (cursor.moveToFirst()) {
 			do {
-				list.add(cursor.getString(NAME_COLUMN));
+				String [] man = new String [2];
+				man[0] = cursor.getString(1);
+				man[1] = cursor.getString(NAME_COLUMN);
+				list.add(man);
 			} while (cursor.moveToNext());
 		}
 

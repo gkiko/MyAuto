@@ -1,21 +1,32 @@
 package com.example.myauto.filter;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.widget.ListView;
 
+import com.example.myauto.MainActivity;
+import com.example.myauto.data.DataContainer;
+import com.example.myauto.event.MyChangeEvent;
 import com.example.myauto.fetcher.ListFetcher;
+import com.example.myauto.item.CarFacade;
+import com.example.myauto.listener.CallbackListener;
 
-public class Filter {
+public class Filter implements CallbackListener{
 	private static String[] keys = new String[] { "man_id",
 			"man_model_id_group", "year_from", "year_to", "price_from",
 			"price_to", "gear_type_id", "fuel_type_id", "customs_passed",
 			"right_wheel" };
 	private Context c;
-	private ListView v;
 	private Activity a;
+	private String [] filter;
+	private ListFetcher lf;
+	private ArrayList<CarFacade> carList;
+	public static final String bundleKey = "myKey";
 
 	public final String MANUFACTURER_DEFAULT = "72";
 	public final String MODEL_DEFAULT = "0";
@@ -28,19 +39,22 @@ public class Filter {
 	public final String CUSTOMS_DEFAULT = "0";
 	public final String WHEEL_DEFAULT = "0";
 
-	public Filter(Context c, ListView v, Activity a) {
+	public Filter(Context c, String [] filter, Activity a) {
 		this.c = c;
-		this.v = v;
 		this.a = a;
+		this.filter = filter;
 	}
 
-	public void filterAndDownload(String[] data) {
+	public void filterAndDownload() {
 //		gasasworebelia es
-//		HashMap<String, String> parameters = prepareParametersToPass(data);
-//		CarInitializer ci = new CarInitializer(c, v);
-//		ListFetcher cd = new ListFetcher(a);
-//		cd.addMyChangeListener(ci);
-//		cd.execute(parameters);
+		HashMap<String, String> parameters = prepareParametersToPass(this.filter);
+		lf = new ListFetcher(a);
+		lf.addMyChangeListener(this);
+		lf.execute(parameters);
+	}
+	
+	public ArrayList<CarFacade> getFilteredCarList (){
+		return carList;
 	}
 
 	private HashMap<String, String> prepareParametersToPass(String[] data) {
@@ -61,5 +75,16 @@ public class Filter {
 				|| str.equals(CUSTOMS_DEFAULT) || str.equals(WHEEL_DEFAULT))
 			return true;
 		return false;
+	}
+
+	@Override
+	public void onFinished(MyChangeEvent evt) {
+		lf.removeMyChangeListener(this);
+		carList = (ArrayList<CarFacade>)evt.source;
+		Intent carListActivity = new Intent (a, MainActivity.class);
+		Bundle extras = new Bundle();
+		extras.putSerializable(bundleKey, carList);
+		carListActivity.putExtras(extras);
+		a.startActivity(carListActivity);
 	}
 }

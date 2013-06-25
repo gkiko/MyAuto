@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import com.example.myauto.filter.CarMarkFilterPage;
+import com.example.myauto.filter.Filter;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -24,12 +25,13 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-public class SearchPageActivity extends MasterPageActivity{
+public class SearchPageActivity extends Activity{
 	private static final int STARTING_YEAR = 1960;
 	private static final int MARK_FILTER = 1001;
-	private Button carMark, carPrice, carYear, carCategory, carLocation, carTransmission, carFuel, carWheel, carDays; 
+	private Button searchSubmit, carMark, carPrice, carYear, carCategory, carLocation, carTransmission, carFuel, carWheel, carDays; 
 	private String [] filteredData;
 	private Context ctx;
+	private Activity a;
 	
 	
 	@Override
@@ -38,8 +40,9 @@ public class SearchPageActivity extends MasterPageActivity{
 		super.onCreate(savedInstanceState);
 		
 		ctx = this;
+		a = this;
 		
-		filteredData = new String [10];
+		filteredData = new String [1];
 		getButtonViews();
 	}
 	
@@ -47,6 +50,17 @@ public class SearchPageActivity extends MasterPageActivity{
 	 * бѓ•бѓђбѓ§бѓ”бѓњбѓ”бѓ‘ бѓ¦бѓ�бѓљбѓђбѓ™бѓ”бѓ‘бѓ�бѓЎ бѓљбѓ�бѓЎбѓ”бѓњбѓ”бѓ бѓ”бѓ‘бѓЎ бѓ“бѓђбѓ­бѓ”бѓ бѓђбѓ–бѓ”
 	 */
 	private void setButtonClickListeners(){
+		searchSubmit.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Toast tost = Toast.makeText(getApplicationContext(), filteredData[0], Toast.LENGTH_LONG);
+				tost.show();
+				Filter f = new Filter(getApplicationContext(), filteredData, a);
+				f.filterAndDownload();
+			}
+			
+		});
+		
 		carMark.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -227,7 +241,8 @@ public class SearchPageActivity extends MasterPageActivity{
 			if(resultCode == Activity.RESULT_OK){
 				String [] markAndModel = (String[]) data.getSerializableExtra("MarkAndModel");
 				filteredData[0] = markAndModel[0];
-				filteredData[1] = markAndModel[1];
+			//	filteredData[1] = "0";
+			//	filteredData[1] = markAndModel[1];
 			}
 		}
 	}
@@ -236,6 +251,7 @@ public class SearchPageActivity extends MasterPageActivity{
 	 * бѓ•бѓ�бѓ¦бѓ”бѓ‘ бѓ¦бѓ�бѓљбѓђбѓ™бѓ”бѓ‘бѓ�бѓЎ View-бѓ”бѓ‘бѓЎ бѓ“бѓђ бѓђбѓ¦бѓ¬бѓ”бѓ бѓ�бѓљ бѓ¦бѓ�бѓљбѓђбѓ™бѓ”бѓ‘бѓЎ бѓ•бѓЈбѓ™бѓ”бѓ—бѓ”бѓ‘ бѓ�бѓњбѓ�бѓЄбѓ�бѓђбѓљбѓ�бѓ–бѓђбѓЄбѓ�бѓђбѓЎ, бѓЁбѓ”бѓ›бѓ“бѓ”бѓ’ бѓ•бѓђбѓ‘бѓђбѓ• бѓљбѓ�бѓЎбѓ”бѓњбѓ”бѓ бѓ”бѓ‘бѓЎ.
 	 */
 	private void getButtonViews(){
+		searchSubmit = (Button) findViewById(R.id.search_submit_btn);
 		carMark = (Button) findViewById(R.id.search_carMark);
 		carPrice = (Button) findViewById(R.id.search_carPrice);
 		carYear = (Button) findViewById(R.id.search_carYear);
