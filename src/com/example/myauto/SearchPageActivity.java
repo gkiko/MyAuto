@@ -25,7 +25,7 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-public class SearchPageActivity extends Activity{
+public class SearchPageActivity extends MasterPageActivity{
 	private static final int STARTING_YEAR = 1960;
 	private static final int MARK_FILTER = 1001;
 	private Button searchSubmit, carMark, carPrice, carYear, carCategory, carLocation, carTransmission, carFuel, carWheel, carDays; 
