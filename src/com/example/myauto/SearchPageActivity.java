@@ -44,7 +44,7 @@ public class SearchPageActivity extends MasterPageActivity{
 		ctx = this;
 		a = this;
 		
-		filteredData = new String [2];
+		filteredData = new String [10];
 		getButtonViews();
 	}
 	
@@ -279,7 +279,6 @@ public class SearchPageActivity extends MasterPageActivity{
 		carWheel = (Button) findViewById(R.id.search_carWheel);
 		carDays = (Button) findViewById(R.id.search_carDays);
 		carTransmission = (Button) findViewById(R.id.search_carTransmission);
-		
 		
 		setButtonClickListeners();
 	}

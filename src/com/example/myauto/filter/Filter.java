@@ -62,7 +62,7 @@ public class Filter implements CallbackListener{
 	
 	private void fillDataWithDefaults(){
 		for(int i=0; i < this.filter.length; i++){
-			if(filter[i].equals(null)){
+			if(filter[i] == null){
 				filter[i] = defaultValues[i];
 			}
 		}
