@@ -261,7 +261,6 @@ public class SearchPageActivity extends MasterPageActivity{
 				String [] manAndModel = (String[]) data.getSerializableExtra("ManAndModel");
 				filteredData[0] = manAndModel[0];
 				filteredData[1] = manAndModel[1];
-			//	filteredData[1] = markAndModel[1];
 			}
 		}
 	}
