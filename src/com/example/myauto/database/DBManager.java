@@ -110,6 +110,26 @@ public class DBManager {
 
 		return list;
 	}
+	
+	/**
+	 * Categories cxrilidan vigeb mtel iformacias da vabruneb listis saxit
+	 * @return
+	 */
+	public static ArrayList<String []> getCategories () {
+		ArrayList<String []> list = new ArrayList<String []> ();
+		String selectQuery = "select * from " + DBHelper.CATEGORIES_TABLE;
+		Cursor cursor = db.rawQuery(selectQuery, null);
+		if (cursor.moveToFirst()) {
+			do {
+				String [] man = new String [2];
+				man[0] = cursor.getString(ID_COLUMN);
+				man[1] = cursor.getString(NAME_COLUMN);
+				list.add(man);
+			} while (cursor.moveToNext());
+		}
+
+		return list;
+	}
 
 	private static Cursor getData(String tableName) {
 		String[] tableColumns = new String[] { "id as _id", "img_url", "price",

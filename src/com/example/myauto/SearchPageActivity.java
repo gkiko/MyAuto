@@ -3,6 +3,7 @@ package com.example.myauto;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import com.example.myauto.database.DBHelper;
 import com.example.myauto.database.DBManager;
 import com.example.myauto.filter.CarMarkFilterPage;
 import com.example.myauto.filter.Filter;
@@ -94,9 +95,16 @@ public class SearchPageActivity extends MasterPageActivity{
 		carCategory.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				carDoorTypesDialog();
+				carCategoriesDialog();
 			}
 		});
+	}
+	
+	private void carCategoriesDialog() {
+		ArrayList <String[]> ls = DBManager.getCategories();
+		
+		Toast tost = Toast.makeText(getApplicationContext(), ls.get(0)[0]+" "+ls.get(0)[1], Toast.LENGTH_LONG);
+		tost.show();
 	}
 	
 	private void carDoorTypesDialog(){
