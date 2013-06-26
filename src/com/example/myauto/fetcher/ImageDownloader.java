@@ -46,10 +46,13 @@ public class ImageDownloader {
 		}
 	}
 
-	public static void addImage(Imageable i){
+	public static void fetchImageFor(Imageable i){
 		queue.add(i);
 	}
 	
+	public static void clearImageQueue(){
+		queue.clear();
+	}
 	private class Thrower implements Runnable{
 
 		@Override
