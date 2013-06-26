@@ -3,6 +3,7 @@ package com.example.myauto;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import com.example.myauto.database.DBManager;
 import com.example.myauto.filter.CarMarkFilterPage;
 import com.example.myauto.filter.Filter;
 
@@ -28,7 +29,7 @@ import android.widget.Toast;
 public class SearchPageActivity extends MasterPageActivity{
 	private static final int STARTING_YEAR = 1960;
 	private static final int MARK_FILTER = 1001;
-	private Button searchSubmit, carMark, carPrice, carYear, carCategory, carLocation, carTransmission, carFuel, carWheel, carDays; 
+	private Button searchSubmit, carMark, carPrice, carYear, carCategory, carLocation, carTransmission, carFuel, carWheel, carDays, carDoors; 
 	private String [] filteredData;
 	private Context ctx;
 	private Activity a;
@@ -89,6 +90,16 @@ public class SearchPageActivity extends MasterPageActivity{
 				carTransmissionDialog();
 			}
 		});
+		
+		carCategory.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				carDoorTypesDialog();
+			}
+		});
+	}
+	
+	private void carDoorTypesDialog(){
 		
 	}
 	
@@ -261,6 +272,7 @@ public class SearchPageActivity extends MasterPageActivity{
 		carWheel = (Button) findViewById(R.id.search_carWheel);
 		carDays = (Button) findViewById(R.id.search_carDays);
 		carTransmission = (Button) findViewById(R.id.search_carTransmission);
+		
 		
 		setButtonClickListeners();
 	}
