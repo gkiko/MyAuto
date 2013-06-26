@@ -59,14 +59,12 @@ public class DBManager {
 		return cursor;
 	}
 
-	public static Cursor filterModelsByManufacturersRaw(String manufacturer) {
-		String selectManufacturerId = "select " + dbHelper.MAKE_ID + " from "
-				+ dbHelper.MAKE_TABLE + " where " + dbHelper.MAKE_NAME + " = '"
-				+ manufacturer + "'";
+	public static Cursor filterModelsByManufacturersRaw(String manID) {
 		String selectQuery = "select " + dbHelper.MOD_ID + " as _id, "
+				+ dbHelper.MOD_ID_MAN + " as _id_man, "
 				+ dbHelper.MOD_NAME + " from " + dbHelper.MODELS_TABLE
 				+ " where " + dbHelper.MOD_ID_MAN + " in ("
-				+ selectManufacturerId + ")";
+				+ manID + ")";
 		Cursor cursor = db.rawQuery(selectQuery, null);
 		return cursor;
 	}

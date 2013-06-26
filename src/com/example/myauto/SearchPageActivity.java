@@ -44,7 +44,7 @@ public class SearchPageActivity extends MasterPageActivity{
 		ctx = this;
 		a = this;
 		
-		filteredData = new String [1];
+		filteredData = new String [2];
 		getButtonViews();
 	}
 	
@@ -258,9 +258,9 @@ public class SearchPageActivity extends MasterPageActivity{
 		switch(requestCode){
 		case(MARK_FILTER):
 			if(resultCode == Activity.RESULT_OK){
-				String [] markAndModel = (String[]) data.getSerializableExtra("MarkAndModel");
-				filteredData[0] = markAndModel[0];
-			//	filteredData[1] = "0";
+				String [] manAndModel = (String[]) data.getSerializableExtra("ManAndModel");
+				filteredData[0] = manAndModel[0];
+				filteredData[1] = manAndModel[1];
 			//	filteredData[1] = markAndModel[1];
 			}
 		}
