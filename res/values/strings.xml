@@ -80,5 +80,6 @@
     <string name="title_activity_master_page">MasterPageActivity</string>
     <string name="menu_logout">Logout</string>
     <string name="menu_register">Register</string>
+    <string name="menu_add_car">Add Car</string>
 
 </resources>

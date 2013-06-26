@@ -3,15 +3,19 @@
 
     <item
         android:id="@+id/menu_user"
-        android:showAsAction="ifRoom|withText"
+        android:showAsAction="always|withText"
+        android:visible="false"/>
+     <item
+        android:id="@+id/menu_add_car"
+        android:title="@string/menu_add_car"
         android:visible="false"/>
     <item
         android:id="@+id/menu_login"
-        android:showAsAction="ifRoom|withText"
+        android:showAsAction="always|withText"
         android:title="@string/menu_login"/>
     <item
         android:id="@+id/menu_register"
-        android:showAsAction="ifRoom|withText"
+        android:showAsAction="always|withText"
         android:title="@string/menu_register"/>
     <item
         android:id="@+id/menu_logout"

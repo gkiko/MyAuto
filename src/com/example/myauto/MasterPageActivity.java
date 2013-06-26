@@ -70,6 +70,8 @@ public class MasterPageActivity extends Activity {
 			break;
 		case R.id.menu_register:
 			break;
+		case R.id.menu_add_car:
+			break;
 		default:
 			break;
 		}
@@ -77,7 +79,7 @@ public class MasterPageActivity extends Activity {
 	}
 
 	/**
-	 * Log out 
+	 * Log out
 	 */
 	private void logOutUser() {
 		MenuItem login = menu.findItem(R.id.menu_login);
@@ -88,15 +90,13 @@ public class MasterPageActivity extends Activity {
 		logout.setVisible(false);
 		MenuItem userOpt = menu.findItem(R.id.menu_user);
 		userOpt.setVisible(false);
+		MenuItem car = menu.findItem(R.id.menu_add_car);
+		car.setVisible(false);
 		removeUserFromSession();
-		
 	}
 
 	/**
-	
-
-	/**
-	 * აგდებს ლოგინის დიალოგბოქსს, სადაც მომხმარებელს შეეძლება დალოგინება.
+	 * /** აგდებს ლოგინის დიალოგბოქსს, სადაც მომხმარებელს შეეძლება დალოგინება.
 	 * 
 	 */
 	private void createLoginBox() {
@@ -150,6 +150,8 @@ public class MasterPageActivity extends Activity {
 			MenuItem userOpt = menu.findItem(R.id.menu_user);
 			userOpt.setTitle(userName);
 			userOpt.setVisible(true);
+			MenuItem car = menu.findItem(R.id.menu_add_car);
+			car.setVisible(true);
 			saveUserToSession(userName);
 			Toast.makeText(getApplicationContext(), "Successful Login!",
 					Toast.LENGTH_LONG).show();
@@ -163,18 +165,20 @@ public class MasterPageActivity extends Activity {
 
 	/**
 	 * მომხმარებელს ინახავს სესიაში დალოგინებისას
-	 *
+	 * 
 	 */
 	private void saveUserToSession(String username) {
-		SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+		SharedPreferences settings = PreferenceManager
+				.getDefaultSharedPreferences(getApplicationContext());
 		SharedPreferences.Editor editor = settings.edit();
 		editor.putString("username", username);
-		
+
 	}
-	
+
 	/**  */
 	private void removeUserFromSession() {
-		SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+		SharedPreferences settings = PreferenceManager
+				.getDefaultSharedPreferences(getApplicationContext());
 		SharedPreferences.Editor editor = settings.edit();
 		editor.remove("username");
 	}
