@@ -1,10 +1,12 @@
 package com.example.myauto;
 
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,6 +17,7 @@ import android.widget.Toast;
 public class MasterPageActivity extends Activity {
 
 	private Menu menu;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -36,31 +39,61 @@ public class MasterPageActivity extends Activity {
 		case R.id.menu_main:
 			nextIntent = new Intent(MasterPageActivity.this,
 					FirstPageActivity.class);
+			startActivity(nextIntent);
 			break;
 		case R.id.menu_carList:
 			nextIntent = new Intent(MasterPageActivity.this, MainActivity.class);
+			startActivity(nextIntent);
 			break;
 		case R.id.menu_search:
 			nextIntent = new Intent(MasterPageActivity.this,
 					SearchPageActivity.class);
+			startActivity(nextIntent);
 			break;
 		case R.id.menu_catalog:
 			nextIntent = new Intent(MasterPageActivity.this,
 					CatalogPageActivity.class);
+			startActivity(nextIntent);
 			break;
 		case R.id.menu_about:
 			nextIntent = new Intent(MasterPageActivity.this,
 					AboutPageActivity.class);
+			startActivity(nextIntent);
 			break;
 		case R.id.menu_login:
 			createLoginBox();
-			return super.onMenuItemSelected(featureId, item);
+			break;
+		case R.id.menu_user:
+			break;
+		case R.id.menu_logout:
+			logOutUser();
+			break;
+		case R.id.menu_register:
+			break;
 		default:
 			break;
 		}
-		startActivity(nextIntent);
 		return super.onMenuItemSelected(featureId, item);
 	}
+
+	/**
+	 * Log out 
+	 */
+	private void logOutUser() {
+		MenuItem login = menu.findItem(R.id.menu_login);
+		login.setVisible(true);
+		MenuItem register = menu.findItem(R.id.menu_register);
+		register.setVisible(true);
+		MenuItem logout = menu.findItem(R.id.menu_logout);
+		logout.setVisible(false);
+		MenuItem userOpt = menu.findItem(R.id.menu_user);
+		userOpt.setVisible(false);
+		removeUserFromSession();
+		
+	}
+
+	/**
+	
 
 	/**
 	 * აგდებს ლოგინის დიალოგბოქსს, სადაც მომხმარებელს შეეძლება დალოგინება.
@@ -73,8 +106,8 @@ public class MasterPageActivity extends Activity {
 		builder.setTitle(getString(R.string.login_dialog_title));
 		builder.setInverseBackgroundForced(true);
 		LayoutInflater inflater = getLayoutInflater();
-		final View dialoglayout = inflater
-				.inflate(R.layout.login_dialog_layout, null);
+		final View dialoglayout = inflater.inflate(
+				R.layout.login_dialog_layout, null);
 		builder.setView(dialoglayout);
 		builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 			@Override
@@ -95,27 +128,54 @@ public class MasterPageActivity extends Activity {
 	}
 
 	/**
-	 * TODO Put here a description of what this method does.
-	 * @param dialoglayout 
-	 *
+	 * Fake Login
+	 * 
+	 * @param dialoglayout
+	 * 
 	 */
 	protected void loginCheck(View dialoglayout) {
-		EditText usrname = (EditText)dialoglayout.findViewById(R.id.username_edittext);
-		EditText pswd = (EditText)dialoglayout.findViewById(R.id.password_edittext);
+		EditText usrname = (EditText) dialoglayout
+				.findViewById(R.id.username_edittext);
+		EditText pswd = (EditText) dialoglayout
+				.findViewById(R.id.password_edittext);
 		String userName = usrname.getText().toString();
 		String pass = pswd.getText().toString();
-		if(userName.equals("kujma10") && pass.equals("123123")){
-			MenuItem item = menu.findItem(R.id.menu_login);
-			item.setVisible(false);
+		if (userName.equals("kujma10") && pass.equals("123123")) {
+			MenuItem login = menu.findItem(R.id.menu_login);
+			login.setVisible(false);
+			MenuItem register = menu.findItem(R.id.menu_register);
+			register.setVisible(false);
 			MenuItem logout = menu.findItem(R.id.menu_logout);
 			logout.setVisible(true);
 			MenuItem userOpt = menu.findItem(R.id.menu_user);
 			userOpt.setTitle(userName);
 			userOpt.setVisible(true);
-			Toast.makeText(getApplicationContext(), "Successful Login!", Toast.LENGTH_LONG).show();
+			saveUserToSession(userName);
+			Toast.makeText(getApplicationContext(), "Successful Login!",
+					Toast.LENGTH_LONG).show();
 		} else {
-			Toast.makeText(getApplicationContext(), "Username or Password incorrect!", Toast.LENGTH_LONG).show();
+			Toast.makeText(getApplicationContext(),
+					"Username or Password incorrect!", Toast.LENGTH_LONG)
+					.show();
 		}
+
+	}
+
+	/**
+	 * მომხმარებელს ინახავს სესიაში დალოგინებისას
+	 *
+	 */
+	private void saveUserToSession(String username) {
+		SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+		SharedPreferences.Editor editor = settings.edit();
+		editor.putString("username", username);
 		
+	}
+	
+	/**  */
+	private void removeUserFromSession() {
+		SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+		SharedPreferences.Editor editor = settings.edit();
+		editor.remove("username");
 	}
 }

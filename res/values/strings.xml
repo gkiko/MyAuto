@@ -79,5 +79,6 @@
     <string name="login_dialog_title">User Login</string>
     <string name="title_activity_master_page">MasterPageActivity</string>
     <string name="menu_logout">Logout</string>
+    <string name="menu_register">Register</string>
 
 </resources>

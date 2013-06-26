@@ -10,6 +10,10 @@
         android:showAsAction="ifRoom|withText"
         android:title="@string/menu_login"/>
     <item
+        android:id="@+id/menu_register"
+        android:showAsAction="ifRoom|withText"
+        android:title="@string/menu_register"/>
+    <item
         android:id="@+id/menu_logout"
         android:showAsAction="ifRoom|withText"
         android:title="@string/menu_logout"
