@@ -34,7 +34,7 @@ public class SearchPageActivity extends MasterPageActivity{
 	private static final int STARTING_YEAR = 1960;
 	private static final int MARK_FILTER = 1001;
 	private static final int NUMBER_OF_FILTER_BUTTONS = 12;
-	private Button searchSubmit, carMark, carPrice, carYear, carCategory, carLocation, carTransmission, carFuel, carWheel, carDays, carDoors; 
+	private Button searchSubmit, carMark, carPrice, carYear, carCategory, carLocation, carTransmission, carFuel, carWheel, carDays, carDoors, carDriveWheels; 
 	private String [] filteredData;
 	private Context ctx;
 	private Activity a;
@@ -120,6 +120,13 @@ public class SearchPageActivity extends MasterPageActivity{
 			@Override
 			public void onClick(View v) {
 				carLocationDialog();
+			}
+		});
+		
+		carDoors.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				carDoorTypesDialog();
 			}
 		});
 	}
@@ -519,6 +526,8 @@ public class SearchPageActivity extends MasterPageActivity{
 		carWheel = (Button) findViewById(R.id.search_carWheel);
 		carDays = (Button) findViewById(R.id.search_carDays);
 		carTransmission = (Button) findViewById(R.id.search_carTransmission);
+		carDriveWheels = (Button) findViewById(R.id.search_carDriveWheels);
+		carDoors = (Button) findViewById(R.id.search_carDoors);
 		
 		setButtonClickListeners();
 	}

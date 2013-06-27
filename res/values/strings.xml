@@ -57,6 +57,8 @@
     <string name="search_carFuel">Fuel Type</string>
     <string name="search_carWheel">Right Wheel</string>
     <string name="search_carDays">Days</string>
+    <string name="search_carDriveWheels">Drive Wheels</string>
+    <string name="search_carDoors">Doors</string>
 
     <!-- SearchPageActivity Dialog Strings -->
     <string name="search_dialog_btn_cancel">Cancel</string>
