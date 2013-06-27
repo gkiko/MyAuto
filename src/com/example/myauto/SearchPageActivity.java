@@ -35,7 +35,7 @@ public class SearchPageActivity extends MasterPageActivity{
 	private static final int DIALOG_WHEEL_BTN_NO_ID = 2;
 	private static final int STARTING_YEAR = 1960;
 	private static final int MARK_FILTER = 1001;
-	private static final int NUMBER_OF_FILTER_BUTTONS = 13;
+	private static final int NUMBER_OF_FILTER_BUTTONS = 14;
 	private Button searchSubmit, carMark, carPrice, carYear, carCategory, carLocation, carTransmission, carFuel, carWheel, carDays, carDoors, carDriveWheels; 
 	private String [] filteredData;
 	private Context ctx;
@@ -135,30 +135,63 @@ public class SearchPageActivity extends MasterPageActivity{
 		carDriveWheels.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				
+				carDriveWheelsDialog();
 			}
 		});
 	}
 	
-	
+	/**
+	 * DriveWheels -is implementacia .
+	 */
+	private void carDriveWheelsDialog() {
+		final Dialog dialog =  new Dialog(ctx);
+		dialog.setContentView(R.layout.dialog_car_drivewheels_and_doors);
+		dialog.setTitle(DIALOG_DRIVEWHEELS_TITLE_EN);
+		
+		fillDriveAndDoorsDialog(dialog, DBHelper.DRIVE_TYPES_TABLE);
+		
+		Button cancel = (Button) dialog.findViewById(R.id.dialog_drive_and_doors_btn_cancel);
+		Button ok = (Button) dialog.findViewById(R.id.dialog_drive_and_doors_btn_ok);
+		
+		ok.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				RadioGroup group = (RadioGroup) dialog.findViewById(R.id.dialog_drive_and_doors_rdgroup);
+				int id = group.getCheckedRadioButtonId();
+				RadioButton drive = (RadioButton) dialog.findViewById(id);
+				String driveID = "" + drive.getId();
+				filteredData[13] = driveID;
+				dialog.dismiss();
+			}
+		});
+		
+		cancel.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				dialog.dismiss();
+			}
+		});
+		
+		dialog.show();
+	}
 	
 	/**
 	 * Doors Filtris implementacia tavisi gilakebit.
 	 */
 	private void carDoorTypesDialog(){
 		final Dialog dialog = new Dialog (ctx);
-		dialog.setContentView(R.layout.dialog_car_doors);
+		dialog.setContentView(R.layout.dialog_car_drivewheels_and_doors);
 		dialog.setTitle(DIALOG_DOORS_TITLE_EN);
 		
-		fillDoorsDialog(dialog);
+		fillDriveAndDoorsDialog(dialog, DBHelper.DOOR_TYPES_TABLE);
 		
-		Button cancel = (Button) dialog.findViewById(R.id.dialog_doors_btn_cancel);
-		Button ok = (Button) dialog.findViewById(R.id.dialog_doors_btn_ok);
+		Button cancel = (Button) dialog.findViewById(R.id.dialog_drive_and_doors_btn_cancel);
+		Button ok = (Button) dialog.findViewById(R.id.dialog_drive_and_doors_btn_ok);
 		
 		ok.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				RadioGroup group = (RadioGroup) dialog.findViewById(R.id.dialog_doors_rdgroup);
+				RadioGroup group = (RadioGroup) dialog.findViewById(R.id.dialog_drive_and_doors_rdgroup);
 				int id = group.getCheckedRadioButtonId();
 				RadioButton door = (RadioButton) dialog.findViewById(id);
 				String doorID = "" + door.getId();
@@ -180,9 +213,9 @@ public class SearchPageActivity extends MasterPageActivity{
 	/*
 	 * Door -is Dialog-s bazis monacemebit vavseb.
 	 */
-	private void fillDoorsDialog(Dialog dialog) {
-		ArrayList<String []> list = DBManager.getDataListFromTable(DBHelper.DOOR_TYPES_TABLE);
-		RadioGroup group = (RadioGroup) dialog.findViewById(R.id.dialog_doors_rdgroup);
+	private void fillDriveAndDoorsDialog(Dialog dialog, String tableName) {
+		ArrayList<String []> list = DBManager.getDataListFromTable(tableName);
+		RadioGroup group = (RadioGroup) dialog.findViewById(R.id.dialog_drive_and_doors_rdgroup);
 		String [] door;
 		for(int i = 0; i < list.size(); i++){
 			door = list.get(i);
