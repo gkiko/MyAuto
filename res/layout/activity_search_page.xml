@@ -94,6 +94,17 @@
                 android:text="@string/search_carFuel"
                 android:textStyle="bold" >
             </Button>
+            
+            <Button
+                android:id="@+id/search_carCustomsPassed"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_selector"
+                android:gravity="left"
+                android:padding="5dip"
+                android:text="@string/search_carCustomsPassed"
+                android:textStyle="bold" >
+            </Button>
 
             <Button
                 android:id="@+id/search_carWheel"
