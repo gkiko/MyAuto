@@ -55,8 +55,6 @@ public class SearchPageActivity extends MasterPageActivity{
 		searchSubmit.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Toast tost = Toast.makeText(getApplicationContext(), filteredData[0], Toast.LENGTH_LONG);
-				tost.show();
 				Filter f = new Filter(getApplicationContext(), filteredData, a);
 				f.filterAndDownload();
 			}
@@ -100,6 +98,10 @@ public class SearchPageActivity extends MasterPageActivity{
 		});
 	}
 	
+	private void carDoorTypesDialog(){
+		
+	}
+	
 	private void carCategoriesDialog() {
 		ArrayList <String[]> ls = DBManager.getCategories();
 		
@@ -107,9 +109,6 @@ public class SearchPageActivity extends MasterPageActivity{
 		tost.show();
 	}
 	
-	private void carDoorTypesDialog(){
-		
-	}
 	
 	/**
 	 * бѓ•бѓҐбѓ›бѓњбѓ� бѓўбѓ бѓђбѓњбѓЎбѓ›бѓ�бѓЎбѓ�бѓ�бѓЎ бѓ“бѓ�бѓђбѓљбѓќбѓ’бѓЎ, бѓ—бѓђбѓ•бѓ�бѓЎбѓ� бѓ¤бѓЈбѓњбѓҐбѓЄбѓ�бѓќбѓњбѓђбѓљбѓ�бѓ—
