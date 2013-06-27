@@ -29,7 +29,7 @@ public class Filter implements CallbackListener{
 	public static final String bundleKey = "myKey";
 	
 	private static final String [] defaultValues = new String[] {"72", "0", "Any", "Any",
-		"", "", "0", "0", "", ""};
+		"", "", "0", "0", "", "", "0"};
 
 	public final String MANUFACTURER_DEFAULT = "72";
 	public final String MODEL_DEFAULT = "0";
