@@ -5,7 +5,7 @@
     android:orientation="vertical" >
     
      <RadioGroup
-        android:id="@+id/dialog_doors_rdgroup"
+        android:id="@+id/dialog_drive_and_doors_rdgroup"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
@@ -17,14 +17,14 @@
         android:orientation="horizontal" >
 
         <Button
-            android:id="@+id/dialog_doors_btn_cancel"
+            android:id="@+id/dialog_drive_and_doors_btn_cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/search_dialog_btn_cancel" />
 
         <Button
-            android:id="@+id/dialog_doors_btn_ok"
+            android:id="@+id/dialog_drive_and_doors_btn_ok"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
