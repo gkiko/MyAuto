@@ -39,7 +39,7 @@ public class SearchPageActivity extends MasterPageActivity{
 		ctx = this;
 		a = this;
 		
-		filteredData = new String [1];
+		filteredData = new String [10];
 		getButtonViews();
 	}
 	
@@ -50,8 +50,6 @@ public class SearchPageActivity extends MasterPageActivity{
 		searchSubmit.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Toast tost = Toast.makeText(getApplicationContext(), filteredData[0], Toast.LENGTH_LONG);
-				tost.show();
 				Filter f = new Filter(getApplicationContext(), filteredData, a);
 				f.filterAndDownload();
 			}
@@ -95,6 +93,10 @@ public class SearchPageActivity extends MasterPageActivity{
 		});
 	}
 	
+	private void carDoorTypesDialog(){
+		
+	}
+	
 	private void carCategoriesDialog() {
 		ArrayList <String[]> ls = DBManager.getCategories();
 		
@@ -102,9 +104,6 @@ public class SearchPageActivity extends MasterPageActivity{
 		tost.show();
 	}
 	
-	private void carDoorTypesDialog(){
-		
-	}
 	
 	/**
 	 * бѓ•бѓҐбѓ›бѓњбѓ� бѓўбѓ бѓђбѓњбѓЎбѓ›бѓ�бѓЎбѓ�бѓ�бѓЎ бѓ“бѓ�бѓђбѓљбѓќбѓ’бѓЎ, бѓ—бѓђбѓ•бѓ�бѓЎбѓ� бѓ¤бѓЈбѓњбѓҐбѓЄбѓ�бѓќбѓњбѓђбѓљбѓ�бѓ—
@@ -253,10 +252,9 @@ public class SearchPageActivity extends MasterPageActivity{
 		switch(requestCode){
 		case(MARK_FILTER):
 			if(resultCode == Activity.RESULT_OK){
-				String [] markAndModel = (String[]) data.getSerializableExtra("MarkAndModel");
-				filteredData[0] = markAndModel[0];
-			//	filteredData[1] = "0";
-			//	filteredData[1] = markAndModel[1];
+				String [] manAndModel = (String[]) data.getSerializableExtra("ManAndModel");
+				filteredData[0] = manAndModel[0];
+				filteredData[1] = manAndModel[1];
 			}
 		}
 	}
@@ -275,7 +273,6 @@ public class SearchPageActivity extends MasterPageActivity{
 		carWheel = (Button) findViewById(R.id.search_carWheel);
 		carDays = (Button) findViewById(R.id.search_carDays);
 		carTransmission = (Button) findViewById(R.id.search_carTransmission);
-		
 		
 		setButtonClickListeners();
 	}

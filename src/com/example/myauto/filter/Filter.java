@@ -27,6 +27,9 @@ public class Filter implements CallbackListener{
 	private ListFetcher lf;
 	private ArrayList<CarFacade> carList;
 	public static final String bundleKey = "myKey";
+	
+	private static final String [] defaultValues = new String[] {"72", "0", "Any", "Any",
+		"", "", "0", "0", "", ""};
 
 	public final String MANUFACTURER_DEFAULT = "72";
 	public final String MODEL_DEFAULT = "0";
@@ -46,7 +49,7 @@ public class Filter implements CallbackListener{
 	}
 
 	public void filterAndDownload() {
-//		gasasworebelia es
+		fillDataWithDefaults();
 		HashMap<String, String> parameters = prepareParametersToPass(this.filter);
 		lf = new ListFetcher(a);
 		lf.addMyChangeListener(this);
@@ -55,6 +58,14 @@ public class Filter implements CallbackListener{
 	
 	public ArrayList<CarFacade> getFilteredCarList (){
 		return carList;
+	}
+	
+	private void fillDataWithDefaults(){
+		for(int i=0; i < this.filter.length; i++){
+			if(filter[i] == null){
+				filter[i] = defaultValues[i];
+			}
+		}
 	}
 
 	private HashMap<String, String> prepareParametersToPass(String[] data) {
