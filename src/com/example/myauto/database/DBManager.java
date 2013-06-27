@@ -148,6 +148,26 @@ public class DBManager {
 
 		return list;
 	}
+	
+	/**
+	 *  Zogadi funqcia romelic bazidan, gadacemuli cxrilidan igebs monacemebs Listad
+	 *  
+	 *  [Warning] Cxrilshi monacemebi unda inaxebodes 2 ganzomilebian stringebad
+	 */
+	public static ArrayList<String []> getDataListFromTable (String tableName){
+		ArrayList<String []> list = new ArrayList<String []> ();
+		String selectQuery = "select * from " + tableName;
+		Cursor cursor = db.rawQuery(selectQuery, null);
+		if (cursor.moveToFirst()) {
+			do {
+				String [] man = new String [2];
+				man[0] = cursor.getString(ID_COLUMN);
+				man[1] = cursor.getString(NAME_COLUMN);
+				list.add(man);
+			} while (cursor.moveToNext());
+		}
+		return list;
+	}
 
 	private static Cursor getData(String tableName) {
 		String[] tableColumns = new String[] { "id as _id", "img_url", "price",
