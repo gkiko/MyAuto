@@ -25,6 +25,7 @@ import android.widget.Toast;
 import android.widget.TableLayout.LayoutParams;
 
 public class SearchPageActivity extends MasterPageActivity{
+	private static final String DIALOG_LOCATION_TITLE_EN = "Location";
 	private static final String DIALOG_FUELTYPE_TITLE_EN = "Fuel Type";
 	private static final String DIALOG_CATEGORIES_TITLE_EN = "Categories";
 	private static final String DIALOG_WHEEL_TITLE_EN = "Right Wheel";
@@ -32,7 +33,7 @@ public class SearchPageActivity extends MasterPageActivity{
 	private static final int DIALOG_WHEEL_BTN_NO_ID = 2;
 	private static final int STARTING_YEAR = 1960;
 	private static final int MARK_FILTER = 1001;
-	private static final int NUMBER_OF_FILTER_BUTTONS = 11;
+	private static final int NUMBER_OF_FILTER_BUTTONS = 12;
 	private Button searchSubmit, carMark, carPrice, carYear, carCategory, carLocation, carTransmission, carFuel, carWheel, carDays, carDoors; 
 	private String [] filteredData;
 	private Context ctx;
@@ -114,10 +115,69 @@ public class SearchPageActivity extends MasterPageActivity{
 				carWheelDialog();
 			}
 		});
+		
+		carLocation.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				carLocationDialog();
+			}
+		});
 	}
 	
 	private void carDoorTypesDialog(){
 		
+	}
+	
+	/**
+	 * Location Filtris implementacia
+	 */
+	private void carLocationDialog() {
+		final Dialog dialog = new Dialog(ctx);
+		dialog.setContentView(R.layout.dialog_car_location);
+		dialog.setTitle(DIALOG_LOCATION_TITLE_EN);
+		
+		fillLocationDialog(dialog);
+		
+		Button cancel = (Button) dialog.findViewById(R.id.dialog_location_btn_cancel);
+		Button ok = (Button) dialog.findViewById(R.id.dialog_location_btn_ok);
+		
+		ok.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				RadioGroup group = (RadioGroup) dialog.findViewById(R.id.dialog_location_rdgroup);
+				int id = group.getCheckedRadioButtonId();
+				RadioButton location = (RadioButton) dialog.findViewById(id);
+				String locationID = ""+location.getId();
+				filteredData[11] = locationID;
+				dialog.dismiss();
+			}
+		});
+		
+		cancel.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				dialog.dismiss();
+			}
+		});
+		
+		dialog.show();
+	}
+	
+	/*
+	 * Location-is Dialog fanjaras vavseb monacemebit
+	 */
+	private void fillLocationDialog(Dialog dialog){		
+		ArrayList<String []> list = DBManager.getLocations();	
+		RadioGroup group = (RadioGroup) dialog.findViewById(R.id.dialog_location_rdgroup);
+		String [] location;
+		for(int i = 0; i < list.size(); i++){
+			location = list.get(i);
+			RadioButton rdbtn = new RadioButton(this);
+			rdbtn.setId(Integer.parseInt(location[0]));
+			rdbtn.setText(location[2]);
+			rdbtn.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
+			group.addView(rdbtn);
+		}
 	}
 	
 	/**
