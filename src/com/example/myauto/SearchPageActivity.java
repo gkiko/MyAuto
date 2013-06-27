@@ -3,6 +3,7 @@ package com.example.myauto;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import com.example.myauto.database.DBHelper;
 import com.example.myauto.database.DBManager;
 import com.example.myauto.filter.CarMarkFilterPage;
 import com.example.myauto.filter.Filter;
@@ -24,6 +25,7 @@ import android.widget.Toast;
 import android.widget.TableLayout.LayoutParams;
 
 public class SearchPageActivity extends MasterPageActivity{
+	private static final String FUELTYPE_TITLE_EN = "Fuel Type";
 	private static final int STARTING_YEAR = 1960;
 	private static final int MARK_FILTER = 1001;
 	private Button searchSubmit, carMark, carPrice, carYear, carCategory, carLocation, carTransmission, carFuel, carWheel, carDays, carDoors; 
@@ -86,6 +88,14 @@ public class SearchPageActivity extends MasterPageActivity{
 			}
 		});
 		
+		carFuel.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				carFuelTypesDialog();
+			}
+			
+		});
+		
 		carCategory.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -96,6 +106,59 @@ public class SearchPageActivity extends MasterPageActivity{
 	
 	private void carDoorTypesDialog(){
 		
+	}
+	
+	/**
+	 * Vqmni Fuel Type -is Dialog-s, vavseb monacemebit da vamateb gilakebs
+	 */
+	private void carFuelTypesDialog () {
+		final Dialog dialog = new Dialog(ctx);
+		dialog.setContentView(R.layout.dialog_car_fuel_type);
+		dialog.setTitle(FUELTYPE_TITLE_EN);
+		
+		fillFuelTypeDialog (dialog);
+		
+		Button cancel = (Button) dialog.findViewById(R.id.dialog_fuel_btn_cancel);
+		Button ok = (Button) dialog.findViewById(R.id.dialog_fuel_btn_ok);
+		
+		ok.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				RadioGroup group = (RadioGroup) dialog.findViewById(R.id.dialog_fuel_rdgroup);
+				int id = group.getCheckedRadioButtonId();
+				RadioButton fuel = (RadioButton) dialog.findViewById(id);
+				String fuelID = ""+fuel.getId();
+				filteredData[7] = fuelID;
+				dialog.dismiss();
+			}
+		});
+		
+		cancel.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				dialog.dismiss();
+			}
+		});
+		
+		dialog.show();
+	}
+	
+	/*
+	 * Fuel Type -is Dialog fanjaras vavseb bazashi shenaxuli monacemebit
+	 */
+	private void fillFuelTypeDialog(Dialog dialog) {
+		ArrayList<String []> fuelTypes = DBManager.getDataListFromTable(DBHelper.FUEL_TABLE);
+		
+		RadioGroup group = (RadioGroup) dialog.findViewById(R.id.dialog_fuel_rdgroup);
+		String [] fuelType;
+		for(int i = 0; i < fuelTypes.size(); i++){
+			fuelType = fuelTypes.get(i);
+			RadioButton rdbtn = new RadioButton(this);
+			rdbtn.setId(Integer.parseInt(fuelType[0]));
+			rdbtn.setText(fuelType[1]);
+			rdbtn.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
+			group.addView(rdbtn);
+		}
 	}
 	
 	private void carCategoriesDialog() {
