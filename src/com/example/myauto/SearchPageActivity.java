@@ -25,9 +25,11 @@ import android.widget.Toast;
 import android.widget.TableLayout.LayoutParams;
 
 public class SearchPageActivity extends MasterPageActivity{
-	private static final String FUELTYPE_TITLE_EN = "Fuel Type";
+	private static final String DIALOG_FUELTYPE_TITLE_EN = "Fuel Type";
+	private static final String DIALOG_CATEGORIES_TITLE_EN = "Categories";
 	private static final int STARTING_YEAR = 1960;
 	private static final int MARK_FILTER = 1001;
+	private static final int NUMBER_OF_FILTER_BUTTONS = 11;
 	private Button searchSubmit, carMark, carPrice, carYear, carCategory, carLocation, carTransmission, carFuel, carWheel, carDays, carDoors; 
 	private String [] filteredData;
 	private Context ctx;
@@ -42,7 +44,7 @@ public class SearchPageActivity extends MasterPageActivity{
 		ctx = this;
 		a = this;
 		
-		filteredData = new String [10];
+		filteredData = new String [NUMBER_OF_FILTER_BUTTONS];
 		getButtonViews();
 	}
 	
@@ -114,7 +116,7 @@ public class SearchPageActivity extends MasterPageActivity{
 	private void carFuelTypesDialog () {
 		final Dialog dialog = new Dialog(ctx);
 		dialog.setContentView(R.layout.dialog_car_fuel_type);
-		dialog.setTitle(FUELTYPE_TITLE_EN);
+		dialog.setTitle(DIALOG_FUELTYPE_TITLE_EN);
 		
 		fillFuelTypeDialog (dialog);
 		
@@ -166,12 +168,52 @@ public class SearchPageActivity extends MasterPageActivity{
 	 */
 	private void carCategoriesDialog() {
 		final Dialog dialog = new Dialog (ctx);
+		dialog.setContentView(R.layout.dialog_car_categories);
+		dialog.setTitle(DIALOG_CATEGORIES_TITLE_EN);
 		
+		fillCategoriesDialog(dialog);
+		
+		Button cancel = (Button) dialog.findViewById(R.id.dialog_category_btn_cancel);
+		Button ok = (Button) dialog.findViewById(R.id.dialog_category_btn_ok);
+		
+		ok.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				RadioGroup group = (RadioGroup) dialog.findViewById(R.id.dialog_category_rdgroup);
+				int id = group.getCheckedRadioButtonId();
+				RadioButton cat = (RadioButton) dialog.findViewById(id);
+				String catID = ""+cat.getId();
+				filteredData[10] = catID;
+				dialog.dismiss();
+			}
+		});
+		
+		cancel.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				dialog.dismiss();
+			}
+		});
+		
+		dialog.show();
 	}
 	
+	/*
+	 * Categoriis Dialog fanjaras vavseb bazashi shenaxuli monacemebit 
+	 */
 	private void fillCategoriesDialog (Dialog dialog) {
-		ArrayList <String[]> ls = DBManager.getDataListFromTable(DBHelper.CATEGORIES_TABLE);
+		ArrayList <String[]> categories = DBManager.getDataListFromTable(DBHelper.CATEGORIES_TABLE);
 
+		RadioGroup group = (RadioGroup) dialog.findViewById(R.id.dialog_category_rdgroup);
+		String [] cat;
+		for(int i = 0; i < categories.size(); i++){
+			cat = categories.get(i);
+			RadioButton rdbtn = new RadioButton(this);
+			rdbtn.setId(Integer.parseInt(cat[0]));
+			rdbtn.setText(cat[1]);
+			rdbtn.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
+			group.addView(rdbtn);
+		}
 	}
 	
 	
