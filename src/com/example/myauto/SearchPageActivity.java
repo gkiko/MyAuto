@@ -27,6 +27,9 @@ import android.widget.TableLayout.LayoutParams;
 public class SearchPageActivity extends MasterPageActivity{
 	private static final String DIALOG_FUELTYPE_TITLE_EN = "Fuel Type";
 	private static final String DIALOG_CATEGORIES_TITLE_EN = "Categories";
+	private static final String DIALOG_WHEEL_TITLE_EN = "Right Wheel";
+	private static final int DIALOG_WHEEL_BTN_YES_ID = 1;
+	private static final int DIALOG_WHEEL_BTN_NO_ID = 2;
 	private static final int STARTING_YEAR = 1960;
 	private static final int MARK_FILTER = 1001;
 	private static final int NUMBER_OF_FILTER_BUTTONS = 11;
@@ -104,10 +107,62 @@ public class SearchPageActivity extends MasterPageActivity{
 				carCategoriesDialog();
 			}
 		});
+		
+		carWheel.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				carWheelDialog();
+			}
+		});
 	}
 	
 	private void carDoorTypesDialog(){
 		
+	}
+	
+	/**
+	 *  Wheel Filtris Dialogis implementacia
+	 */
+	private void carWheelDialog() {
+		final Dialog dialog = new Dialog(ctx);
+		dialog.setContentView(R.layout.dialog_car_wheel);
+		dialog.setTitle(DIALOG_WHEEL_TITLE_EN);
+		
+		setWheelID(dialog);
+		
+		Button cancel = (Button) dialog.findViewById(R.id.dialog_wheel_btn_cancel);
+		Button ok = (Button) dialog.findViewById(R.id.dialog_wheel_btn_ok);
+		
+		ok.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				RadioGroup group = (RadioGroup) dialog.findViewById(R.id.dialog_wheel_rdgroup);
+				int id = group.getCheckedRadioButtonId();
+				RadioButton wheel = (RadioButton) dialog.findViewById(id);
+				String wheelID = ""+wheel.getId();
+				filteredData[9] = wheelID;
+				dialog.dismiss();
+			}
+		});
+		
+		cancel.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				dialog.dismiss();
+			}
+		});
+		
+		dialog.show();
+	}
+	
+	/*
+	 * Wheel Filtris monacemebs vadeb shesabamis ID-s
+	 */
+	private void setWheelID(Dialog dialog){
+		RadioButton yes = (RadioButton) dialog.findViewById(R.id.dialog_wheel_yes);
+		yes.setId(DIALOG_WHEEL_BTN_YES_ID);
+		RadioButton no = (RadioButton) dialog.findViewById(R.id.dialog_wheel_no);
+		no.setId(DIALOG_WHEEL_BTN_NO_ID);
 	}
 	
 	/**
