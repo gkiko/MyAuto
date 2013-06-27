@@ -16,6 +16,9 @@ public class DBManager {
 	private static int NAME_COLUMN = 1;
 	private static int MAN_ID_COLUMN = 1;
 	private static int MAN_NAME_COLUMN = 2;
+	private static int LOCATION_ID_COLUMN = 0;
+	private static int LOCATION_PARENT_COLUMN = 1;
+	private static int LOCATION_NAME_COLUMN = 2;
 	
 	static String[] asd = "(72,'ALL'), (1, 'ALFA ROMEO'), (2, 'AUDI'), (3, 'BMW'), (4, 'CADILLAC'), (5, 'CHEVROLET'), (6, 'CHRYSLER'), (7, 'CITROEN'), (8, 'DAEWOO'), (9, 'DAIHATSU'), (10, 'DODGE'), (11, 'FIAT'), (12, 'FORD'), (13, 'GMC'), (14, 'HONDA'), (15, 'HUMMER'), (16, 'HYUNDAI'), (17, 'ISUZU'), (18, 'JAGUAR'), (19, 'JEEP'), (20, 'KIA'), (21, 'LANCIA'), (22, 'LAND ROVER'), (23, 'LEXUS'), (24, 'MAZDA'), (25, 'MERCEDES'), (26, 'MERCURY'), (28, 'MINI'), (29, 'MITSUBISHI'), (30, 'NISSAN'), (31, 'OPEL'), (32, 'PEUGEOT'), (33, 'PORSCHE'), (34, 'RENAULT'), (35, 'ROVER'), (36, 'SAAB'), (37, 'SEAT'), (38, 'SKODA'), (39, 'SUBARU'), (40, 'SUZUKI'), (41, 'TOYOTA'), (42, 'VOLKSWAGEN'), (43, 'VOLVO'), (44, 'VAZ'), (45, 'GAZ'), (48, 'MOSKVICH'), (53, 'INFINITI'), (54, 'PONTIAC'), (55, 'SCION'), (56, 'OLDSMOBILE'), (57, 'NEOPLAN'), (58, 'LINCOLN'), (59, 'YAMAHA'), (61, 'KAWASAKI'), (62, 'IVECO'), (64, 'SSANGYONG'), (65, 'MAN'), (66, 'DAF'), (67, 'SCHMITZ'), (69, 'BUICK'), (70, 'ACURA'), (71, 'CATERPILLAR'), (73, 'LAMBORGHINI'), (74, 'FERRARI'), (75, 'MASERATI'), (76, 'ASTON MARTIN'), (77, 'SALEEN'), (78, 'BENTLEY'), (79, 'ROLLS-ROYCE'), (80, 'MAYBACH'), (81, 'DUCATI'), (82, 'SCANIA'), (84, 'CHERY'), (85, 'JAC'), (86, 'BOMBARDIER'), (87, 'BYD'), (88, 'ROEWE'), (89, 'GEELI '), (90, 'CHANGFENG'), (92, 'TATA'), (93, 'SATURN'), (94, 'STEYR'), (95, 'UAZ'), (96, 'TAGAZ'), (97, 'ZAZ'), (98, 'BOBCAT'), (99, 'ZIL'), (100, 'BELARUS'), (101, 'KAMAZ'), (102, 'MAZ'), (103, '�THER'), (104, 'HARLEY-DAVIDSON'), (105, 'KTM'), (106, 'JAWA'), (107, 'APRILIA'), (108, 'KRAZ'), (109, 'SETRA'), (110, 'JCB'), (111, 'BOBCAT'), (112, 'KOMATSU'), (113, 'TEREX'), (114, 'NEW HOLLAND'), (115, 'MASSEY FERGUSON'), (116, 'FIAT-HITACHI'), (117, 'FERMEC'), (119, 'CLAAS'), (120, 'BELARUS'), (121, 'CASE'), (122, 'ZEPPELIN'), (123, 'MONDIAL'), (124, 'BRP'), (125, 'LINTEX'), (126, 'VOSKHOD'), (127, 'DNEPR'), (128, 'CZ'), (129, 'MURAVEY'), (130, 'HAFEI'), (131, 'Zoomline'), (132, 'Howo'), (133, 'Liu Gong'), (134, 'Sinotruk � Howo'), (135, 'Dong � fen'), (136, 'POLARIS'), (137, 'ENDURO'), "
 			.split(",");
@@ -130,26 +133,6 @@ public class DBManager {
 	}
 	
 	/**
-	 * Categories cxrilidan vigeb mtel iformacias da vabruneb listis saxit
-	 * @return
-	 */
-	public static ArrayList<String []> getCategories () {
-		ArrayList<String []> list = new ArrayList<String []> ();
-		String selectQuery = "select * from " + DBHelper.CATEGORIES_TABLE;
-		Cursor cursor = db.rawQuery(selectQuery, null);
-		if (cursor.moveToFirst()) {
-			do {
-				String [] man = new String [2];
-				man[0] = cursor.getString(ID_COLUMN);
-				man[1] = cursor.getString(NAME_COLUMN);
-				list.add(man);
-			} while (cursor.moveToNext());
-		}
-
-		return list;
-	}
-	
-	/**
 	 *  Zogadi funqcia romelic bazidan, gadacemuli cxrilidan igebs monacemebs Listad
 	 *  
 	 *  [Warning] Cxrilshi monacemebi unda inaxebodes 2 ganzomilebian stringebad
@@ -164,6 +147,26 @@ public class DBManager {
 				man[0] = cursor.getString(ID_COLUMN);
 				man[1] = cursor.getString(NAME_COLUMN);
 				list.add(man);
+			} while (cursor.moveToNext());
+		}
+		return list;
+	}
+	
+	/**
+	 * Locations cxrilidan vigeb mtlian monacemebs List - ad
+	 * @return
+	 */
+	public static ArrayList<String []> getLocations (){
+		ArrayList<String []> list = new ArrayList<String []> ();
+		String selectQuery = "select * from " + DBHelper.LOCATIONS_TABLE;
+		Cursor cursor = db.rawQuery(selectQuery, null);
+		if (cursor.moveToFirst()) {
+			do {
+				String [] loc = new String [3];
+				loc[0] = cursor.getString(LOCATION_ID_COLUMN);
+				loc[1] = cursor.getString(LOCATION_PARENT_COLUMN);
+				loc[2] = cursor.getString(LOCATION_NAME_COLUMN);
+				list.add(loc);
 			} while (cursor.moveToNext());
 		}
 		return list;
@@ -257,10 +260,10 @@ public class DBManager {
 	}
 	
 	private static void putTestLocations() {
-		String [] locArr = "(1,0, 'Georgia'), (2,1, 'Tbilisi'), (3,1, 'Kutaisi'), (4,1, 'Batumi'), (5,1, 'Sokhumi'), (6,1, 'Tskhinvali'), (7,1, 'Poti'), (8,1, 'Telavi'), (9,1, 'Zugdidi'), (10,1, 'Ozurgeti'), (11,1, 'Ambrolauri'), (12,1, 'Khashuri'), (13,1, 'Gori'), (14,1, 'Akhalkalaki'), (15,1, 'Rustavi'), (16,1, 'Mtskheta'), (17,29, 'Azerbaijan'), (18,29, 'Armenia'), (19,29, 'Germany'), (20,29, 'Netherlands'), (21,29, 'USA'), (22,29, 'Japan'), (23,29, 'In way to Georgia'), (24,0, 'Other'), (28,29, 'Russia'), (29,0, 'Outside Georgia'), (30,1, 'Rustavi Car Market'), (31,1, 'Akhaltsikhe'), (32,29, 'England'), (33,29, 'Europe'), (34,1, 'MyAuto AutoMarket'), (35,29, 'Dubai'), (36,1, 'Zestaphoni'), (37,1, 'Akhmeta'), (38,1, 'Borjomi'), (39,1, 'Kaspi'), (40,1, 'Sagarejo'), (41,1, 'Kobuleti'), (42,29, 'Italy'), (43,29, 'Ireland'), (44,1, 'Gurjaani'), "
+		String [] locArr = "(1,0, 'Georgia'), (2,1, 'Tbilisi'), (34,1, 'MyAuto AutoMarket'), (30,1, 'Rustavi Car Market'), (3,1, 'Kutaisi'), (4,1, 'Batumi'), (5,1, 'Sokhumi'), (6,1, 'Tskhinvali'), (7,1, 'Poti'), (8,1, 'Telavi'), (9,1, 'Zugdidi'), (10,1, 'Ozurgeti'), (11,1, 'Ambrolauri'), (12,1, 'Khashuri'), (13,1, 'Gori'), (14,1, 'Akhalkalaki'), (15,1, 'Rustavi'), (16,1, 'Mtskheta'), (31,1, 'Akhaltsikhe'), (36,1, 'Zestaphoni'), (37,1, 'Akhmeta'), (38,1, 'Borjomi'), (39,1, 'Kaspi'), (40,1, 'Sagarejo'), (41,1, 'Kobuleti'), (44,1, 'Gurjaani'), (29,0, 'Outside Georgia'), (17,29, 'Azerbaijan'), (18,29, 'Armenia'), (19,29, 'Germany'), (20,29, 'Netherlands'), (21,29, 'USA'), (22,29, 'Japan'), (28,29, 'Russia'), (32,29, 'England'), (33,29, 'Europe'), (35,29, 'Dubai'), (42,29, 'Italy'), (43,29, 'Ireland'), (23,29, 'In way to Georgia'), (24,0, 'Other'), "
 				.split(",");
 		for(int i = 0; i < locArr.length -2; i += 3){
-			db.execSQL("insert into " + DBHelper.LOCATIONS_CREATE + " ("
+			db.execSQL("insert into " + DBHelper.LOCATIONS_TABLE + " ("
 					+ DBHelper.LOCATIONS_ID + "," + DBHelper.LOCATIONS_PARENT_ID + ","
 					+ DBHelper.LOCATIONS_NAME_ENG + ") VALUES "
 					+ locArr[i] + "," + locArr[i + 1] + "," + locArr[i + 2]);
