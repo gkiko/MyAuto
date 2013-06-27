@@ -20,7 +20,7 @@ public class Filter implements CallbackListener{
 	private static String[] keys = new String[] { "man_id",
 			"man_model_id_group", "year_from", "year_to", "price_from",
 			"price_to", "gear_type_id", "fuel_type_id", "customs_passed",
-			"right_wheel", "category_id", "location_id_1"};
+			"right_wheel", "category_id", "location_id_1", "door_type_id"};
 	private Context c;
 	private Activity a;
 	private String [] filter;
@@ -29,7 +29,7 @@ public class Filter implements CallbackListener{
 	public static final String bundleKey = "myKey";
 	
 	private static final String [] defaultValues = new String[] {"72", "0", "Any", "Any",
-		"", "", "0", "0", "", "", "0", ""};
+		"", "", "0", "0", "", "", "0", "", "0"};
 
 	public final String MANUFACTURER_DEFAULT = "72";
 	public final String MODEL_DEFAULT = "0";

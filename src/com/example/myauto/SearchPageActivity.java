@@ -25,6 +25,8 @@ import android.widget.Toast;
 import android.widget.TableLayout.LayoutParams;
 
 public class SearchPageActivity extends MasterPageActivity{
+	private static final String DIALOG_DRIVEWHEELS_TITLE_EN = "Drive Wheels";
+	private static final String DIALOG_DOORS_TITLE_EN = "Doors";
 	private static final String DIALOG_LOCATION_TITLE_EN = "Location";
 	private static final String DIALOG_FUELTYPE_TITLE_EN = "Fuel Type";
 	private static final String DIALOG_CATEGORIES_TITLE_EN = "Categories";
@@ -33,7 +35,7 @@ public class SearchPageActivity extends MasterPageActivity{
 	private static final int DIALOG_WHEEL_BTN_NO_ID = 2;
 	private static final int STARTING_YEAR = 1960;
 	private static final int MARK_FILTER = 1001;
-	private static final int NUMBER_OF_FILTER_BUTTONS = 12;
+	private static final int NUMBER_OF_FILTER_BUTTONS = 13;
 	private Button searchSubmit, carMark, carPrice, carYear, carCategory, carLocation, carTransmission, carFuel, carWheel, carDays, carDoors, carDriveWheels; 
 	private String [] filteredData;
 	private Context ctx;
@@ -129,10 +131,67 @@ public class SearchPageActivity extends MasterPageActivity{
 				carDoorTypesDialog();
 			}
 		});
+		
+		carDriveWheels.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				
+			}
+		});
 	}
 	
+	
+	
+	/**
+	 * Doors Filtris implementacia tavisi gilakebit.
+	 */
 	private void carDoorTypesDialog(){
+		final Dialog dialog = new Dialog (ctx);
+		dialog.setContentView(R.layout.dialog_car_doors);
+		dialog.setTitle(DIALOG_DOORS_TITLE_EN);
 		
+		fillDoorsDialog(dialog);
+		
+		Button cancel = (Button) dialog.findViewById(R.id.dialog_doors_btn_cancel);
+		Button ok = (Button) dialog.findViewById(R.id.dialog_doors_btn_ok);
+		
+		ok.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				RadioGroup group = (RadioGroup) dialog.findViewById(R.id.dialog_doors_rdgroup);
+				int id = group.getCheckedRadioButtonId();
+				RadioButton door = (RadioButton) dialog.findViewById(id);
+				String doorID = "" + door.getId();
+				filteredData[12] = doorID;
+				dialog.dismiss();
+			}
+		});
+		
+		cancel.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				dialog.dismiss();
+			}
+		});
+		
+		dialog.show();
+	}
+	
+	/*
+	 * Door -is Dialog-s bazis monacemebit vavseb.
+	 */
+	private void fillDoorsDialog(Dialog dialog) {
+		ArrayList<String []> list = DBManager.getDataListFromTable(DBHelper.DOOR_TYPES_TABLE);
+		RadioGroup group = (RadioGroup) dialog.findViewById(R.id.dialog_doors_rdgroup);
+		String [] door;
+		for(int i = 0; i < list.size(); i++){
+			door = list.get(i);
+			RadioButton rdbtn = new RadioButton(this);
+			rdbtn.setId(Integer.parseInt(door[0]));
+			rdbtn.setText(door[1]);
+			rdbtn.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
+			group.addView(rdbtn);
+		}
 	}
 	
 	/**
