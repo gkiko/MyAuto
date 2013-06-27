@@ -116,6 +116,15 @@
                 android:text="@string/search_carDays"
                 android:textStyle="bold" >
             </Button>
+
+            <Button
+                android:id="@+id/search_Empty"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_selector"
+                android:gravity="left"
+                android:padding="5dip" >
+            </Button>
         </LinearLayout>
     </ScrollView>
 
