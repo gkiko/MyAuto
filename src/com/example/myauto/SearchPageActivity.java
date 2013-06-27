@@ -25,6 +25,7 @@ import android.widget.Toast;
 import android.widget.TableLayout.LayoutParams;
 
 public class SearchPageActivity extends MasterPageActivity{
+	private static final String DIALOG_DAYS_TITLE_EN = "Days";
 	private static final String DIALOG_CUSTOMS_PASSED_TITLE_EN = "Customs Passed";
 	private static final String DIALOG_DRIVEWHEELS_TITLE_EN = "Drive Wheels";
 	private static final String DIALOG_DOORS_TITLE_EN = "Doors";
@@ -146,10 +147,25 @@ public class SearchPageActivity extends MasterPageActivity{
 				carDriveWheelsDialog();
 			}
 		});
+		
+		carDays.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				carDaysDialog();
+			}
+		});
+	}
+	
+	// Under Construction
+	private void carDaysDialog() {
+		final Dialog dialog = new Dialog(ctx);
+		dialog.setContentView(R.layout.dialog_car_generic_for_radiobuttons);
+		dialog.setTitle(DIALOG_DAYS_TITLE_EN);
+		
 	}
 	
 	/**
-	 *  Wheel Filtris Dialogis implementacia
+	 *  Customs Passed (ganbajeba) Filtris Dialogis implementacia
 	 */
 	private void carCustomsPassedDialog() {
 		final Dialog dialog = new Dialog(ctx);
