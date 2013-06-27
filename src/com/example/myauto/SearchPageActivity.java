@@ -25,18 +25,19 @@ import android.widget.Toast;
 import android.widget.TableLayout.LayoutParams;
 
 public class SearchPageActivity extends MasterPageActivity{
+	private static final String DIALOG_CUSTOMS_PASSED_TITLE_EN = "Customs Passed";
 	private static final String DIALOG_DRIVEWHEELS_TITLE_EN = "Drive Wheels";
 	private static final String DIALOG_DOORS_TITLE_EN = "Doors";
 	private static final String DIALOG_LOCATION_TITLE_EN = "Location";
 	private static final String DIALOG_FUELTYPE_TITLE_EN = "Fuel Type";
 	private static final String DIALOG_CATEGORIES_TITLE_EN = "Categories";
 	private static final String DIALOG_WHEEL_TITLE_EN = "Right Wheel";
-	private static final int DIALOG_WHEEL_BTN_YES_ID = 1;
-	private static final int DIALOG_WHEEL_BTN_NO_ID = 2;
+	private static final int DIALOG_CUSTOMS_AND_WHEEL_BTN_YES_ID = 1;
+	private static final int DIALOG_CUSTOMS_AND_WHEEL_BTN_NO_ID = 2;
 	private static final int STARTING_YEAR = 1960;
 	private static final int MARK_FILTER = 1001;
-	private static final int NUMBER_OF_FILTER_BUTTONS = 14;
-	private Button searchSubmit, carMark, carPrice, carYear, carCategory, carLocation, carTransmission, carFuel, carWheel, carDays, carDoors, carDriveWheels; 
+	private static final int NUMBER_OF_FILTER_BUTTONS = 15;
+	private Button searchSubmit, carMark, carPrice, carYear, carCategory, carLocation, carTransmission, carFuel, carWheel, carDays, carDoors, carDriveWheels, carCustomsPassed; 
 	private String [] filteredData;
 	private Context ctx;
 	private Activity a;
@@ -111,6 +112,13 @@ public class SearchPageActivity extends MasterPageActivity{
 			}
 		});
 		
+		carCustomsPassed.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				carCustomsPassedDialog();
+			}
+		});
+		
 		carWheel.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -138,6 +146,41 @@ public class SearchPageActivity extends MasterPageActivity{
 				carDriveWheelsDialog();
 			}
 		});
+	}
+	
+	/**
+	 *  Wheel Filtris Dialogis implementacia
+	 */
+	private void carCustomsPassedDialog() {
+		final Dialog dialog = new Dialog(ctx);
+		dialog.setContentView(R.layout.dialog_car_customs_and_wheel);
+		dialog.setTitle(DIALOG_CUSTOMS_PASSED_TITLE_EN);
+		
+		setCustomsAndWheelID(dialog);
+		
+		Button cancel = (Button) dialog.findViewById(R.id.dialog_customs_and_wheel_btn_cancel);
+		Button ok = (Button) dialog.findViewById(R.id.dialog_customs_and_wheel_btn_ok);
+		
+		ok.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				RadioGroup group = (RadioGroup) dialog.findViewById(R.id.dialog_customs_and_wheel_rdgroup);
+				int id = group.getCheckedRadioButtonId();
+				RadioButton customs = (RadioButton) dialog.findViewById(id);
+				String customsID = "" + customs.getId();
+				filteredData[14] = customsID;
+				dialog.dismiss();
+			}
+		});
+		
+		cancel.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				dialog.dismiss();
+			}
+		});
+		
+		dialog.show();
 	}
 	
 	/**
@@ -284,18 +327,18 @@ public class SearchPageActivity extends MasterPageActivity{
 	 */
 	private void carWheelDialog() {
 		final Dialog dialog = new Dialog(ctx);
-		dialog.setContentView(R.layout.dialog_car_wheel);
+		dialog.setContentView(R.layout.dialog_car_customs_and_wheel);
 		dialog.setTitle(DIALOG_WHEEL_TITLE_EN);
 		
-		setWheelID(dialog);
+		setCustomsAndWheelID(dialog);
 		
-		Button cancel = (Button) dialog.findViewById(R.id.dialog_wheel_btn_cancel);
-		Button ok = (Button) dialog.findViewById(R.id.dialog_wheel_btn_ok);
+		Button cancel = (Button) dialog.findViewById(R.id.dialog_customs_and_wheel_btn_cancel);
+		Button ok = (Button) dialog.findViewById(R.id.dialog_customs_and_wheel_btn_ok);
 		
 		ok.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				RadioGroup group = (RadioGroup) dialog.findViewById(R.id.dialog_wheel_rdgroup);
+				RadioGroup group = (RadioGroup) dialog.findViewById(R.id.dialog_customs_and_wheel_rdgroup);
 				int id = group.getCheckedRadioButtonId();
 				RadioButton wheel = (RadioButton) dialog.findViewById(id);
 				String wheelID = ""+wheel.getId();
@@ -315,13 +358,13 @@ public class SearchPageActivity extends MasterPageActivity{
 	}
 	
 	/*
-	 * Wheel Filtris monacemebs vadeb shesabamis ID-s
+	 * Customs Passed da Wheel Filtrebiss monacemebs vadeb shesabamis ID-s
 	 */
-	private void setWheelID(Dialog dialog){
-		RadioButton yes = (RadioButton) dialog.findViewById(R.id.dialog_wheel_yes);
-		yes.setId(DIALOG_WHEEL_BTN_YES_ID);
-		RadioButton no = (RadioButton) dialog.findViewById(R.id.dialog_wheel_no);
-		no.setId(DIALOG_WHEEL_BTN_NO_ID);
+	private void setCustomsAndWheelID(Dialog dialog){
+		RadioButton yes = (RadioButton) dialog.findViewById(R.id.dialog_customs_and_wheel_yes);
+		yes.setId(DIALOG_CUSTOMS_AND_WHEEL_BTN_YES_ID);
+		RadioButton no = (RadioButton) dialog.findViewById(R.id.dialog_customs_and_wheel_no);
+		no.setId(DIALOG_CUSTOMS_AND_WHEEL_BTN_NO_ID);
 	}
 	
 	/**
@@ -615,6 +658,7 @@ public class SearchPageActivity extends MasterPageActivity{
 		carCategory = (Button) findViewById(R.id.search_carCategory);
 		carLocation = (Button) findViewById(R.id.search_carLocation);
 		carFuel = (Button) findViewById(R.id.search_carFuel);
+		carCustomsPassed = (Button) findViewById(R.id.search_carCustomsPassed);
 		carWheel = (Button) findViewById(R.id.search_carWheel);
 		carDays = (Button) findViewById(R.id.search_carDays);
 		carTransmission = (Button) findViewById(R.id.search_carTransmission);
