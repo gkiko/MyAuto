@@ -55,7 +55,7 @@
     <string name="search_carLocation">Location</string>
     <string name="search_carTransmission">Transmission</string>
     <string name="search_carFuel">Fuel Type</string>
-    <string name="search_carWheel">Steering-Wheel</string>
+    <string name="search_carWheel">Right Wheel</string>
     <string name="search_carDays">Days</string>
 
     <!-- SearchPageActivity Dialog Strings -->
@@ -69,6 +69,8 @@
     <string name="search_dialog_year_to">To: </string>
     <string name="search_dialog_year_cancel">Cancel</string>
     <string name="search_dialog_year_ok">OK</string>
+    <string name="search_dialog_wheel_yes">Yes</string>
+    <string name="search_dialog_wheel_no">No</string>
     
     <!-- Login, Registration And Menu Strings -->
     <string name="menu_login">Login</string>
