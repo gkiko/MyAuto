@@ -161,11 +161,17 @@ public class SearchPageActivity extends MasterPageActivity{
 		}
 	}
 	
+	/**
+	 * Categoriis filtri, Vavseb Monacemebit da vuketeb implementacias
+	 */
 	private void carCategoriesDialog() {
-		ArrayList <String[]> ls = DBManager.getCategories();
+		final Dialog dialog = new Dialog (ctx);
 		
-		Toast tost = Toast.makeText(getApplicationContext(), ls.get(0)[0]+" "+ls.get(0)[1], Toast.LENGTH_LONG);
-		tost.show();
+	}
+	
+	private void fillCategoriesDialog (Dialog dialog) {
+		ArrayList <String[]> ls = DBManager.getDataListFromTable(DBHelper.CATEGORIES_TABLE);
+
 	}
 	
 	
