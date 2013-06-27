@@ -21,6 +21,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
+import android.widget.TableLayout.LayoutParams;
 
 public class SearchPageActivity extends MasterPageActivity{
 	private static final int STARTING_YEAR = 1960;
@@ -106,12 +107,14 @@ public class SearchPageActivity extends MasterPageActivity{
 	
 	
 	/**
-	 * бѓ•бѓҐбѓ›бѓњбѓ� бѓўбѓ бѓђбѓњбѓЎбѓ›бѓ�бѓЎбѓ�бѓ�бѓЎ бѓ“бѓ�бѓђбѓљбѓќбѓ’бѓЎ, бѓ—бѓђбѓ•бѓ�бѓЎбѓ� бѓ¤бѓЈбѓњбѓҐбѓЄбѓ�бѓќбѓњбѓђбѓљбѓ�бѓ—
+	 * Vqmni Transmissiis Dialog-s, vavseb monacemebit da vamateb gilakebs . . .
 	 */
 	private void carTransmissionDialog(){
 		final Dialog dialog = new Dialog(ctx);
 		dialog.setContentView(R.layout.dialog_car_transmission);
 		dialog.setTitle("Transmission");
+		
+		fillTransmissionDialog(dialog);
 		
 		Button cancel = (Button) dialog.findViewById(R.id.dialog_trans_btn_cancel);
 		Button ok = (Button) dialog.findViewById(R.id.dialog_trans_btn_ok);
@@ -122,8 +125,7 @@ public class SearchPageActivity extends MasterPageActivity{
 				RadioGroup group = (RadioGroup) dialog.findViewById(R.id.dialog_trans_rdgroup);
 				int id = group.getCheckedRadioButtonId();
 				RadioButton trans = (RadioButton) dialog.findViewById(id);
-				
-				String transmission = trans.getText().toString();
+				String transmission = ""+trans.getId();
 				filteredData[6] = transmission;
 				dialog.dismiss();
 			}
@@ -137,6 +139,24 @@ public class SearchPageActivity extends MasterPageActivity{
 		});
 		
 		dialog.show();
+	}
+	
+	/*
+	 * Transmisiis Dialog fanjaras vavseb bazashi shenaxuli monacemebit
+	 */
+	private void fillTransmissionDialog(Dialog dialog) {
+		ArrayList<String []> gears = DBManager.getGearTypes();
+		
+		RadioGroup group = (RadioGroup) dialog.findViewById(R.id.dialog_trans_rdgroup);
+		String [] gearTypes;
+		for(int i = 0; i < gears.size(); i++){
+			gearTypes = gears.get(i);
+			RadioButton rdbtn = new RadioButton(this);
+			rdbtn.setId(Integer.parseInt(gearTypes[0]));
+			rdbtn.setText(gearTypes[1]);
+			rdbtn.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
+			group.addView(rdbtn);
+		}
 	}
 	
 	/**
@@ -254,7 +274,7 @@ public class SearchPageActivity extends MasterPageActivity{
 			if(resultCode == Activity.RESULT_OK){
 				String [] manAndModel = (String[]) data.getSerializableExtra("ManAndModel");
 				filteredData[0] = manAndModel[0];
-				filteredData[1] = manAndModel[1];
+				filteredData[1] = "2"+manAndModel[1];
 			}
 		}
 	}

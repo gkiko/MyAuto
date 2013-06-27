@@ -70,6 +70,26 @@ public class DBManager {
 	}
 	
 	/**
+	 * Bazidan vigeb Gear Types -is mtel informacias Listis saxit
+	 * @return
+	 */
+	public static ArrayList<String []> getGearTypes () {
+		ArrayList<String []> list = new ArrayList<String []> ();
+		String selectQuery = "select * from " + DBHelper.GEAR_TABLE;
+		Cursor cursor = db.rawQuery(selectQuery, null);
+		if (cursor.moveToFirst()) {
+			do {
+				String [] gear = new String [2];
+				gear[0] = cursor.getString(ID_COLUMN);
+				gear[1] = cursor.getString(NAME_COLUMN);
+				list.add(gear);
+			} while (cursor.moveToNext());
+		}
+
+		return list;
+	}
+	
+	/**
 	 * Door Types cxrilidan vigeb mtel iformacias da vabruneb listis saxit
 	 * @return
 	 */
