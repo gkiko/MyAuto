@@ -9,32 +9,6 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
-<!--  
-        <RadioButton
-            android:id="@+id/dialog_trans_manual"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/search_dialog_trans_manual" />
-
-        <RadioButton
-            android:id="@+id/dialog_trans_automatic"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/search_dialog_trans_automatic" />
-
-        <RadioButton
-            android:id="@+id/dialog_trans_tiptronic"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/search_dialog_trans_tiptronic" />
-
-        <RadioButton
-            android:id="@+id/dialog_trans_autotipt"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/search_dialog_trans_autotipt" />
-            
--->
     </RadioGroup>
 
     <LinearLayout
