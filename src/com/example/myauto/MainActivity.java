@@ -39,7 +39,7 @@ public class MainActivity extends MasterPageActivity implements ImageDownloadLis
 	protected void onPause() {
 		super.onPause();
 		downloader.removeMyChangeListener(this);
-		downloader.clearImageQueue();
+		ImageDownloader.clearImageQueue();
 		
 		Bundle extras = getIntent().getExtras();
 		extras.putSerializable(FirstPageActivity.bundleKey, adapter.getList());

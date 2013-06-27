@@ -1,9 +1,8 @@
 package com.example.myauto;
 
 import java.io.Serializable;
-import java.util.ArrayList;//
+import java.util.ArrayList;
 
-import com.example.myauto.fetcher.ImageDownloader;
 import com.example.myauto.item.CarFacade;
 import com.example.myauto.item.CarItem;
 
@@ -60,9 +59,8 @@ public class ListAdapter extends BaseAdapter{
 			(cont.img).setImageBitmap(cr.getImage());
 		else {
 			(cont.img).setImageResource(R.drawable.ic_launcher);
-//			ImageDownloader.addImage(cr);
 		}
-		(cont.name).setText(cr.getValueFromProperty(CarItem.MAKE) + cr.getValueFromProperty(CarItem.MODEL));
+		(cont.name).setText(cr.getValueFromProperty(CarItem.MAKE) + " " + cr.getValueFromProperty(CarItem.MODEL));
 		(cont.year).setText(cr.getValueFromProperty(CarItem.YEAR));
 		(cont.price).setText(cr.getValueFromProperty(CarItem.PRICE));
 		return v;

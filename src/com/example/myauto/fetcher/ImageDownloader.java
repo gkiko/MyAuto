@@ -14,7 +14,7 @@ import com.example.myauto.listener.ImageDownloadListener;
 import com.example.myauto.net.HttpClient;
 
 public class ImageDownloader {
-	private final String hostUrl = "http://myauto.ge/";
+	private final String hostUrl = "http://myauto.ge/photos/thumbs/upl_cars/";
 	private final CopyOnWriteArrayList<ImageDownloadListener> listeners;
 	private static BlockingQueue<Imageable> queue = new ArrayBlockingQueue<Imageable>(325); // arithmetic progression 1-25
 	private Handler handler;
