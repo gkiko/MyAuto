@@ -5,21 +5,21 @@
     android:orientation="vertical" >
     
     <RadioGroup
-        android:id="@+id/dialog_wheel_rdgroup"
+        android:id="@+id/dialog_customs_and_wheel_rdgroup"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
         
         <RadioButton 
-            android:id="@+id/dialog_wheel_yes"
+            android:id="@+id/dialog_customs_and_wheel_yes"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/search_dialog_wheel_yes"/>
+            android:text="@string/search_dialog_customs_and_wheel_yes"/>
         <RadioButton 
-            android:id="@+id/dialog_wheel_no"
+            android:id="@+id/dialog_customs_and_wheel_no"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/search_dialog_wheel_no"/>
+            android:text="@string/search_dialog_customs_and_wheel_no"/>
     </RadioGroup>
 
     <LinearLayout
@@ -28,14 +28,14 @@
         android:orientation="horizontal" >
 
         <Button
-            android:id="@+id/dialog_wheel_btn_cancel"
+            android:id="@+id/dialog_customs_and_wheel_btn_cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/search_dialog_btn_cancel" />
 
         <Button
-            android:id="@+id/dialog_wheel_btn_ok"
+            android:id="@+id/dialog_customs_and_wheel_btn_ok"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
