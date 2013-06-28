@@ -35,137 +35,365 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <Button
+            <RelativeLayout
                 android:id="@+id/search_carMark"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_selector"
-                android:gravity="left"
-                android:padding="5dip"
-                android:text="@string/search_carModel"
-                android:textStyle="bold" >
-            </Button>
+                android:padding="5dip" >
 
-            <Button
+                <TextView
+                    android:id="@+id/search_carMark_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:text="@string/search_carMarkAndModel"
+                    android:textColor="@color/Black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/search_carMark_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/cancel_filter_button_bg"
+                    android:text="@string/search_cancel_btn_txt"
+                    android:textColor="@color/Gray"
+                    android:visibility="invisible" />
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:id="@+id/search_carPrice"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_selector"
-                android:gravity="left"
-                android:padding="5dip"
-                android:text="@string/search_carPrice"
-                android:textStyle="bold" >
-            </Button>
+                android:padding="5dip" >
 
-            <Button
+                <TextView
+                    android:id="@+id/search_carPrice_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:text="@string/search_carPrice"
+                    android:textColor="@color/Black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/search_carPrice_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/cancel_filter_button_bg"
+                    android:text="@string/search_cancel_btn_txt"
+                    android:textColor="@color/Gray"
+                    android:visibility="invisible" />
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:id="@+id/search_carYear"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_selector"
-                android:gravity="left"
-                android:padding="5dip"
-                android:text="@string/search_carYear"
-                android:textStyle="bold" >
-            </Button>
+                android:padding="5dip" >
 
-            <Button
+                <TextView
+                    android:id="@+id/search_carYear_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:text="@string/search_carYear"
+                    android:textColor="@color/Black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/search_carYear_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/cancel_filter_button_bg"
+                    android:text="@string/search_cancel_btn_txt"
+                    android:textColor="@color/Gray"
+                    android:visibility="invisible" />
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:id="@+id/search_carCategory"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_selector"
-                android:gravity="left"
-                android:padding="5dip"
-                android:text="@string/search_carCategory"
-                android:textStyle="bold" >
-            </Button>
+                android:padding="5dip" >
 
-            <Button
+                <TextView
+                    android:id="@+id/search_carCategory_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:text="@string/search_carCategory"
+                    android:textColor="@color/Black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/search_carCategory_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/cancel_filter_button_bg"
+                    android:text="@string/search_cancel_btn_txt"
+                    android:textColor="@color/Gray"
+                    android:visibility="invisible" />
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:id="@+id/search_carLocation"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_selector"
-                android:gravity="left"
-                android:padding="5dip"
-                android:text="@string/search_carLocation"
-                android:textStyle="bold" >
-            </Button>
+                android:padding="5dip" >
 
-            <Button
+                <TextView
+                    android:id="@+id/search_carLocation_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:text="@string/search_carLocation"
+                    android:textColor="@color/Black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/search_carLocation_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/cancel_filter_button_bg"
+                    android:text="@string/search_cancel_btn_txt"
+                    android:textColor="@color/Gray"
+                    android:visibility="invisible" />
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:id="@+id/search_carTransmission"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_selector"
-                android:gravity="left"
-                android:padding="5dip"
-                android:text="@string/search_carTransmission"
-                android:textStyle="bold" >
-            </Button>
+                android:padding="5dip" >
 
-            <Button
+                <TextView
+                    android:id="@+id/search_carTransmission_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:text="@string/search_carTransmission"
+                    android:textColor="@color/Black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/search_carTransmission_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/cancel_filter_button_bg"
+                    android:text="@string/search_cancel_btn_txt"
+                    android:textColor="@color/Gray"
+                    android:visibility="invisible" />
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:id="@+id/search_carFuel"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_selector"
-                android:gravity="left"
-                android:padding="5dip"
-                android:text="@string/search_carFuel"
-                android:textStyle="bold" >
-            </Button>
+                android:padding="5dip" >
 
-            <Button
+                <TextView
+                    android:id="@+id/search_carFuel_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:text="@string/search_carFuel"
+                    android:textColor="@color/Black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/search_carFuel_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/cancel_filter_button_bg"
+                    android:text="@string/search_cancel_btn_txt"
+                    android:textColor="@color/Gray"
+                    android:visibility="invisible" />
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:id="@+id/search_carCustomsPassed"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_selector"
-                android:gravity="left"
-                android:padding="5dip"
-                android:text="@string/search_carCustomsPassed"
-                android:textStyle="bold" >
-            </Button>
+                android:padding="5dip" >
 
-            <Button
+                <TextView
+                    android:id="@+id/search_carCustomsPassed_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:text="@string/search_carCustomsPassed"
+                    android:textColor="@color/Black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/search_carCustomsPassed_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/cancel_filter_button_bg"
+                    android:text="@string/search_cancel_btn_txt"
+                    android:textColor="@color/Gray"
+                    android:visibility="invisible" />
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:id="@+id/search_carWheel"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_selector"
-                android:gravity="left"
-                android:padding="5dip"
-                android:text="@string/search_carWheel"
-                android:textStyle="bold" >
-            </Button>
+                android:padding="5dip" >
 
-            <Button
+                <TextView
+                    android:id="@+id/search_carWheel_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:text="@string/search_carWheel"
+                    android:textColor="@color/Black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/search_carWheel_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/cancel_filter_button_bg"
+                    android:text="@string/search_cancel_btn_txt"
+                    android:textColor="@color/Gray"
+                    android:visibility="invisible" />
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:id="@+id/search_carDays"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_selector"
-                android:gravity="left"
-                android:padding="5dip"
-                android:text="@string/search_carDays"
-                android:textStyle="bold" >
-            </Button>
+                android:padding="5dip" >
 
-            <Button
+                <TextView
+                    android:id="@+id/search_carDays_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:text="@string/search_carDays"
+                    android:textColor="@color/Black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/search_carDays_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/cancel_filter_button_bg"
+                    android:text="@string/search_cancel_btn_txt"
+                    android:textColor="@color/Gray"
+                    android:visibility="invisible" />
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:id="@+id/search_carDriveWheels"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_selector"
-                android:gravity="left"
-                android:padding="5dip"
-                android:text="@string/search_carDriveWheels"
-                android:textStyle="bold" >
-            </Button>
+                android:padding="5dip" >
 
-            <Button
+                <TextView
+                    android:id="@+id/search_carDriveWheels_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:text="@string/search_carDriveWheels"
+                    android:textColor="@color/Black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/search_carDriveWheels_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/cancel_filter_button_bg"
+                    android:text="@string/search_cancel_btn_txt"
+                    android:textColor="@color/Gray"
+                    android:visibility="invisible" />
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:id="@+id/search_carDoors"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_selector"
-                android:gravity="left"
-                android:padding="5dip"
-                android:text="@string/search_carDoors"
-                android:textStyle="bold" >
-            </Button>
+                android:padding="5dip" >
+
+                <TextView
+                    android:id="@+id/search_carDoors_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:text="@string/search_carDoors"
+                    android:textColor="@color/Black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/search_carDoors_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/cancel_filter_button_bg"
+                    android:text="@string/search_cancel_btn_txt"
+                    android:textColor="@color/Gray"
+                    android:visibility="invisible" />
+            </RelativeLayout>
         </LinearLayout>
     </ScrollView>
 
