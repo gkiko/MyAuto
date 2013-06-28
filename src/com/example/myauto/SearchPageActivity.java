@@ -42,8 +42,8 @@ public class SearchPageActivity extends MasterPageActivity{
 	private static final int STARTING_YEAR = 1960;
 	private static final int MARK_FILTER = 1001;
 	private static final int NUMBER_OF_FILTER_BUTTONS = 20;
-	private RelativeLayout carMark, carPrice, carYear, carCategory, carLocation, carTransmission, carFuel, carWheel, carDays, carDoors, carDriveWheels, carCustomsPassed, carEngine, carAbs, carCentralLock, carEsd; 
-	private Button searchSubmit, carMarkBtn, carPriceBtn, carYearBtn, carCategoryBtn, carLocationBtn, carTransmissionBtn, carFuelBtn, carWheelBtn, carDaysBtn, carDoorsBtn, carDriveWheelsBtn, carCustomsPassedBtn, carEngineBtn, carAbsBtn, carCentralLockBtn, carEsdBtn;
+	private RelativeLayout carMark, carPrice, carYear, carCategory, carLocation, carTransmission, carFuel, carWheel, carDays, carDoors, carDriveWheels, carCustomsPassed, carEngine, carAbs, carCentralLock, carEsd, carBoardComp, carLeatherInt, carElWindows, carAirbags, carParkingControl, carAlumDisks, carHatch, carChairWarming, carNavigSystem; 
+	private Button searchSubmit, carMarkBtn, carPriceBtn, carYearBtn, carCategoryBtn, carLocationBtn, carTransmissionBtn, carFuelBtn, carWheelBtn, carDaysBtn, carDoorsBtn, carDriveWheelsBtn, carCustomsPassedBtn, carEngineBtn, carAbsBtn, carCentralLockBtn, carEsdBtn, carBoardCompBtn, carLeatherIntBtn, carElWindowsBtn, carAirbagsBtn, carParkingControlBtn, carAlumDisksBtn, carHatchBtn, carChairWarmingBtn, carNavigSystemBtn;
 	private String [] filteredData;
 	private Context ctx;
 	private Activity a;
@@ -844,6 +844,15 @@ public class SearchPageActivity extends MasterPageActivity{
 		carAbsBtn = (Button) findViewById(R.id.search_carAbs_btn);
 		carCentralLockBtn = (Button) findViewById(R.id.search_carCentralLock_btn);
 		carEsdBtn = (Button) findViewById(R.id.search_carEsd_btn);
+		carBoardCompBtn = (Button) findViewById(R.id.search_carBoardComp_btn);
+		carLeatherIntBtn = (Button) findViewById(R.id.search_carLeatherInt_btn);
+		carElWindowsBtn = (Button) findViewById(R.id.search_carElWindows_btn);
+		carAirbagsBtn = (Button) findViewById(R.id.search_carAirbags_btn);
+		carParkingControlBtn = (Button) findViewById(R.id.search_carParkingControl_btn);
+		carAlumDisksBtn = (Button) findViewById(R.id.search_carAlumDisks_btn);
+		carHatchBtn = (Button) findViewById(R.id.search_carHatch_btn);
+		carChairWarmingBtn = (Button) findViewById(R.id.search_carChairWarming_btn);
+		carNavigSystemBtn = (Button) findViewById(R.id.search_carNavigSystem_btn);
 		
 		setButtonClickListeners();
 	}
@@ -865,6 +874,15 @@ public class SearchPageActivity extends MasterPageActivity{
 		carAbs = (RelativeLayout) findViewById(R.id.search_carAbs);
 		carCentralLock = (RelativeLayout) findViewById(R.id.search_carCentralLock);
 		carEsd = (RelativeLayout) findViewById(R.id.search_carEsd);
+		carBoardComp = (RelativeLayout) findViewById(R.id.search_carBoardComp);
+		carLeatherInt = (RelativeLayout) findViewById(R.id.search_carLeatherInt);
+		carElWindows = (RelativeLayout) findViewById(R.id.search_carElWindows);
+		carAirbags = (RelativeLayout) findViewById(R.id.search_carAirbags);
+		carParkingControl = (RelativeLayout) findViewById(R.id.search_carParkingControl);
+		carAlumDisks = (RelativeLayout) findViewById(R.id.search_carAlumDisks);
+		carHatch = (RelativeLayout) findViewById(R.id.search_carHatch);
+		carChairWarming = (RelativeLayout) findViewById(R.id.search_carChairWarming);
+		carNavigSystem = (RelativeLayout) findViewById(R.id.search_carNavigSystem);
 		
 		setFilterClickListeners();
 	}
