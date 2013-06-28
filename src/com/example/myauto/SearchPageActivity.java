@@ -27,7 +27,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.TableLayout.LayoutParams;
 
-public class SearchPageActivity extends MasterPageActivity{
+public class SearchPageActivity extends MasterPageActivity {
 	private static final String DIALOG_ENGINE_TITLE_EN = "Engine";
 	private static final String DIALOG_DAYS_TITLE_EN = "Days";
 	private static final String DIALOG_CUSTOMS_PASSED_TITLE_EN = "Customs Passed";
@@ -42,26 +42,36 @@ public class SearchPageActivity extends MasterPageActivity{
 	private static final int STARTING_YEAR = 1960;
 	private static final int MARK_FILTER = 1001;
 	private static final int NUMBER_OF_FILTER_BUTTONS = 20;
-	private RelativeLayout carMark, carPrice, carYear, carCategory, carLocation, carTransmission, carFuel, carWheel, carDays, carDoors, carDriveWheels, carCustomsPassed, carEngine, carAbs, carCentralLock, carEsd, carBoardComp, carLeatherInt, carElWindows, carAirbags, carParkingControl, carAlumDisks, carHatch, carChairWarming, carNavigSystem; 
-	private Button searchSubmit, carMarkBtn, carPriceBtn, carYearBtn, carCategoryBtn, carLocationBtn, carTransmissionBtn, carFuelBtn, carWheelBtn, carDaysBtn, carDoorsBtn, carDriveWheelsBtn, carCustomsPassedBtn, carEngineBtn, carAbsBtn, carCentralLockBtn, carEsdBtn, carBoardCompBtn, carLeatherIntBtn, carElWindowsBtn, carAirbagsBtn, carParkingControlBtn, carAlumDisksBtn, carHatchBtn, carChairWarmingBtn, carNavigSystemBtn;
-	private String [] filteredData;
+	private RelativeLayout carMark, carPrice, carYear, carCategory,
+			carLocation, carTransmission, carFuel, carWheel, carDays, carDoors,
+			carDriveWheels, carCustomsPassed, carEngine, carAbs,
+			carCentralLock, carEsd, carBoardComp, carLeatherInt, carElWindows,
+			carAirbags, carParkingControl, carAlumDisks, carHatch,
+			carChairWarming, carNavigSystem;
+	private Button searchSubmit, carMarkBtn, carPriceBtn, carYearBtn,
+			carCategoryBtn, carLocationBtn, carTransmissionBtn, carFuelBtn,
+			carWheelBtn, carDaysBtn, carDoorsBtn, carDriveWheelsBtn,
+			carCustomsPassedBtn, carEngineBtn, carAbsBtn, carCentralLockBtn,
+			carEsdBtn, carBoardCompBtn, carLeatherIntBtn, carElWindowsBtn,
+			carAirbagsBtn, carParkingControlBtn, carAlumDisksBtn, carHatchBtn,
+			carChairWarmingBtn, carNavigSystemBtn;
+	private String[] filteredData;
 	private Context ctx;
 	private Activity a;
-	
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_search_page);
-		
+
 		ctx = this;
 		a = this;
-		
-		filteredData = new String [NUMBER_OF_FILTER_BUTTONS];
+
+		filteredData = new String[NUMBER_OF_FILTER_BUTTONS];
 		getFilterLayoutViews();
 		getButtonViews();
 	}
-	
+
 	private void setButtonClickListeners() {
 		searchSubmit.setOnClickListener(new OnClickListener() {
 			@Override
@@ -70,151 +80,170 @@ public class SearchPageActivity extends MasterPageActivity{
 				f.filterAndDownload();
 			}
 		});
-		
-		carMarkBtn.setOnClickListener(new cancelBtnListener(giveIndex(0, 1, 2)));
-		
-		carYearBtn.setOnClickListener(new cancelBtnListener(giveIndex(2, 3, 2)));
-		
-		carPriceBtn.setOnClickListener(new cancelBtnListener(giveIndex(4, 5, 2)));
-		
-		carTransmissionBtn.setOnClickListener(new cancelBtnListener(giveIndex(6, 100, 1)));
-		
-		carFuelBtn.setOnClickListener(new cancelBtnListener(giveIndex(7, 100, 1)));
-		
-		carCustomsPassedBtn.setOnClickListener(new cancelBtnListener(giveIndex(8, 100, 1)));
-		
-		carWheelBtn.setOnClickListener(new cancelBtnListener(giveIndex(9, 100, 1)));
-		
-		carCategoryBtn.setOnClickListener(new cancelBtnListener(giveIndex(10, 100, 1)));
-		
-		carLocationBtn.setOnClickListener(new cancelBtnListener(giveIndex(11, 100, 1)));
-		
-		carDoorsBtn.setOnClickListener(new cancelBtnListener(giveIndex(12, 100, 1)));
-		
-		carDriveWheelsBtn.setOnClickListener(new cancelBtnListener(giveIndex(13, 100, 1)));
-		
-		carDaysBtn.setOnClickListener(new cancelBtnListener(giveIndex(14, 100, 1)));
-		
-		carEngineBtn.setOnClickListener(new cancelBtnListener(giveIndex(15, 16, 2)));
-		
-		carAbsBtn.setOnClickListener(new cancelBtnListener(giveIndex(17, 100, 1)));
-		
-		carCentralLockBtn.setOnClickListener(new cancelBtnListener(giveIndex(18, 100, 1)));
-		
-		carEsdBtn.setOnClickListener(new cancelBtnListener(giveIndex(19, 100, 1)));
+
+		carMarkBtn
+				.setOnClickListener(new cancelBtnListener(giveIndex(0, 1, 2)));
+
+		carYearBtn
+				.setOnClickListener(new cancelBtnListener(giveIndex(2, 3, 2)));
+
+		carPriceBtn
+				.setOnClickListener(new cancelBtnListener(giveIndex(4, 5, 2)));
+
+		carTransmissionBtn.setOnClickListener(new cancelBtnListener(giveIndex(
+				6, 100, 1)));
+
+		carFuelBtn.setOnClickListener(new cancelBtnListener(
+				giveIndex(7, 100, 1)));
+
+		carCustomsPassedBtn.setOnClickListener(new cancelBtnListener(giveIndex(
+				8, 100, 1)));
+
+		carWheelBtn.setOnClickListener(new cancelBtnListener(giveIndex(9, 100,
+				1)));
+
+		carCategoryBtn.setOnClickListener(new cancelBtnListener(giveIndex(10,
+				100, 1)));
+
+		carLocationBtn.setOnClickListener(new cancelBtnListener(giveIndex(11,
+				100, 1)));
+
+		carDoorsBtn.setOnClickListener(new cancelBtnListener(giveIndex(12, 100,
+				1)));
+
+		carDriveWheelsBtn.setOnClickListener(new cancelBtnListener(giveIndex(
+				13, 100, 1)));
+
+		carDaysBtn.setOnClickListener(new cancelBtnListener(giveIndex(14, 100,
+				1)));
+
+		carEngineBtn.setOnClickListener(new cancelBtnListener(giveIndex(15, 16,
+				2)));
+
+		carAbsBtn.setOnClickListener(new cancelBtnListener(
+				giveIndex(17, 100, 1)));
+
+		carCentralLockBtn.setOnClickListener(new cancelBtnListener(giveIndex(
+				18, 100, 1)));
+
+		carEsdBtn.setOnClickListener(new cancelBtnListener(
+				giveIndex(19, 100, 1)));
 	}
-	
+
 	/*
-	 * Cacel Button Listeneristvis gadasacemad filtris shesabamis index-is array-s vagenerireb.
+	 * Cacel Button Listeneristvis gadasacemad filtris shesabamis index-is
+	 * array-s vagenerireb.
 	 */
-	private int [] giveIndex (int a1, int a2, int d) {
-		int [] index = new int [d];
-		if(d == 2){
+	private int[] giveIndex(int a1, int a2, int d) {
+		int[] index = new int[d];
+		if (d == 2) {
 			index[0] = a1;
 			index[1] = a2;
-		}else if(d == 1){
+		} else if (d == 1) {
 			index[0] = a1;
 		}
 		return index;
 	}
-	
+
 	/**
-	 * бѓ•бѓђбѓ§бѓ”бѓњбѓ”бѓ‘ бѓ¦бѓ�бѓљбѓђбѓ™бѓ”бѓ‘бѓ�бѓЎ бѓљбѓ�бѓЎбѓ”бѓњбѓ”бѓ бѓ”бѓ‘бѓЎ бѓ“бѓђбѓ­бѓ”бѓ бѓђбѓ–бѓ”
+	 * бѓ•бѓђбѓ§бѓ”бѓњбѓ”бѓ‘ бѓ¦бѓ�бѓљбѓђбѓ™бѓ”бѓ‘бѓ�бѓЎ
+	 * бѓљбѓ�бѓЎбѓ”бѓњбѓ”бѓ бѓ”бѓ‘бѓЎ бѓ“бѓђбѓ­бѓ”бѓ бѓђбѓ–бѓ”
 	 */
-	private void setFilterClickListeners(){	
+	private void setFilterClickListeners() {
 		carMark.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent markFilter = new Intent(SearchPageActivity.this, CarMarkFilterPage.class);
+				Intent markFilter = new Intent(SearchPageActivity.this,
+						CarMarkFilterPage.class);
 				startActivityForResult(markFilter, MARK_FILTER);
 			}
 		});
-		
-		carPrice.setOnClickListener(new OnClickListener () {
+
+		carPrice.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				carPriceDialog();
 			}
 		});
-		
+
 		carYear.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				carYearDialog();
 			}
 		});
-		
+
 		carTransmission.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				carTransmissionDialog();
 			}
 		});
-		
+
 		carFuel.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				carFuelTypesDialog();
 			}
-			
+
 		});
-		
+
 		carCategory.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				carCategoriesDialog();
 			}
 		});
-		
+
 		carCustomsPassed.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				carCustomsPassedDialog();
 			}
 		});
-		
+
 		carWheel.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				carWheelDialog();
 			}
 		});
-		
+
 		carLocation.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				carLocationDialog();
 			}
 		});
-		
+
 		carDoors.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				carDoorTypesDialog();
 			}
 		});
-		
+
 		carDriveWheels.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				carDriveWheelsDialog();
 			}
 		});
-		
+
 		carDays.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				carDaysDialog();
 			}
 		});
-		
+
 		carEngine.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				carEngineDialog();
 			}
 		});
-		
+
 		carAbs.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -222,25 +251,25 @@ public class SearchPageActivity extends MasterPageActivity{
 				carAbsBtn.setVisibility(View.VISIBLE);
 			}
 		});
-		
-		carCentralLock.setOnClickListener(new OnClickListener() {			
+
+		carCentralLock.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				filteredData[18] = "1";
 				carCentralLockBtn.setVisibility(View.VISIBLE);
 			}
 		});
-		
-		carEsd.setOnClickListener(new OnClickListener() {		
+
+		carEsd.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				filteredData[19] = "1";
 				carEsdBtn.setVisibility(View.VISIBLE);
 			}
 		});
-		
+
 		carBoardComp.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
@@ -248,9 +277,9 @@ public class SearchPageActivity extends MasterPageActivity{
 				carBoardCompBtn.setVisibility(View.VISIBLE);
 			}
 		});
-		
+
 		carLeatherInt.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
@@ -258,98 +287,135 @@ public class SearchPageActivity extends MasterPageActivity{
 				carLeatherIntBtn.setVisibility(View.VISIBLE);
 			}
 		});
+
+		carElWindows.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				filteredData[22] = "1";
+				carElWindowsBtn.setVisibility(View.VISIBLE);
+			}
+		});
+
+		carAirbags.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				filteredData[23] = "1";
+				carAirbagsBtn.setVisibility(View.VISIBLE);
+			}
+		});
 	}
-	
+
 	// Under Construction
 	private void carDaysDialog() {
 		final Dialog dialog = new Dialog(ctx);
 		dialog.setContentView(R.layout.dialog_car_generic_for_radiobuttons);
 		dialog.setTitle(DIALOG_DAYS_TITLE_EN);
-		
+
 		carDaysBtn.setVisibility(View.VISIBLE);
-		
+
 	}
-	
+
 	/**
 	 * Dzravis Moculobis Filtris Implementacia
 	 */
-	private void carEngineDialog (){
-		final Dialog dialog = new Dialog (ctx);
+	private void carEngineDialog() {
+		final Dialog dialog = new Dialog(ctx);
 		dialog.setContentView(R.layout.dialog_car_generic_for_spinners);
 		dialog.setTitle(DIALOG_ENGINE_TITLE_EN);
-		
+
 		fillEngineSpinners(dialog);
-		
-		Button cancel = (Button) dialog.findViewById(R.id.dialog_generic_spinners_btn_cancel);
-		Button ok = (Button) dialog.findViewById(R.id.dialog_generic_spinners_btn_ok);
-		
+
+		Button cancel = (Button) dialog
+				.findViewById(R.id.dialog_generic_spinners_btn_cancel);
+		Button ok = (Button) dialog
+				.findViewById(R.id.dialog_generic_spinners_btn_ok);
+
 		ok.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Spinner spinner1 = (Spinner) dialog.findViewById(R.id.dialog_generic_spinners_from);
-				Spinner spinner2 = (Spinner) dialog.findViewById(R.id.dialog_generic_spinners_to);
-				String from = "" + (int)(Double.parseDouble((String) spinner1.getSelectedItem()) * 1000);
-				String to = "" + (int)(Double.parseDouble((String) spinner2.getSelectedItem()) * 1000);
+				Spinner spinner1 = (Spinner) dialog
+						.findViewById(R.id.dialog_generic_spinners_from);
+				Spinner spinner2 = (Spinner) dialog
+						.findViewById(R.id.dialog_generic_spinners_to);
+				String from = ""
+						+ (int) (Double.parseDouble((String) spinner1
+								.getSelectedItem()) * 1000);
+				String to = ""
+						+ (int) (Double.parseDouble((String) spinner2
+								.getSelectedItem()) * 1000);
 				filteredData[15] = from;
 				filteredData[16] = to;
 				dialog.dismiss();
 				carEngineBtn.setVisibility(View.VISIBLE);
 			}
 		});
-		
+
 		cancel.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				dialog.dismiss();
 			}
 		});
-		
+
 		dialog.show();
 	}
-	
+
 	/*
 	 * Vavseb Dzravis Moculobis Spinnerebs monacemebit
 	 */
 	private void fillEngineSpinners(Dialog dialog) {
-		Spinner from = (Spinner) dialog.findViewById(R.id.dialog_generic_spinners_from);
-		Spinner to = (Spinner) dialog.findViewById(R.id.dialog_generic_spinners_to);
-		
+		Spinner from = (Spinner) dialog
+				.findViewById(R.id.dialog_generic_spinners_from);
+		Spinner to = (Spinner) dialog
+				.findViewById(R.id.dialog_generic_spinners_to);
+
 		ArrayList<String> listFrom = new ArrayList<String>();
 		ArrayList<String> listTo = new ArrayList<String>();
-		
+
 		listFrom.add("0.05");
 		listTo.add("0.05");
-		
-		for(double i = 0.1; i < 6.1; i += 0.1){
+
+		for (double i = 0.1; i < 6.1; i += 0.1) {
 			listFrom.add(("" + i).substring(0, 3));
 			listTo.add(("" + i).substring(0, 3));
 		}
-		
-		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(ctx, android.R.layout.simple_spinner_dropdown_item, listFrom);
-		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(ctx,
+				android.R.layout.simple_spinner_dropdown_item, listFrom);
+		dataAdapter
+				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		from.setAdapter(dataAdapter);
-		dataAdapter = new ArrayAdapter<String>(ctx, android.R.layout.simple_spinner_dropdown_item, listTo);
-		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		dataAdapter = new ArrayAdapter<String>(ctx,
+				android.R.layout.simple_spinner_dropdown_item, listTo);
+		dataAdapter
+				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		to.setAdapter(dataAdapter);
 	}
-	
+
 	/**
-	 *  Customs Passed (ganbajeba) Filtris Dialogis implementacia
+	 * Customs Passed (ganbajeba) Filtris Dialogis implementacia
 	 */
 	private void carCustomsPassedDialog() {
 		final Dialog dialog = new Dialog(ctx);
 		dialog.setContentView(R.layout.dialog_car_customs_and_wheel);
 		dialog.setTitle(DIALOG_CUSTOMS_PASSED_TITLE_EN);
-		
+
 		setCustomsAndWheelID(dialog);
-		
-		Button cancel = (Button) dialog.findViewById(R.id.dialog_customs_and_wheel_btn_cancel);
-		Button ok = (Button) dialog.findViewById(R.id.dialog_customs_and_wheel_btn_ok);
-		
+
+		Button cancel = (Button) dialog
+				.findViewById(R.id.dialog_customs_and_wheel_btn_cancel);
+		Button ok = (Button) dialog
+				.findViewById(R.id.dialog_customs_and_wheel_btn_ok);
+
 		ok.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				RadioGroup group = (RadioGroup) dialog.findViewById(R.id.dialog_customs_and_wheel_rdgroup);
+				RadioGroup group = (RadioGroup) dialog
+						.findViewById(R.id.dialog_customs_and_wheel_rdgroup);
 				int id = group.getCheckedRadioButtonId();
 				RadioButton customs = (RadioButton) dialog.findViewById(id);
 				String customsID = "" + customs.getId();
@@ -358,34 +424,37 @@ public class SearchPageActivity extends MasterPageActivity{
 				carCustomsPassedBtn.setVisibility(View.VISIBLE);
 			}
 		});
-		
+
 		cancel.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				dialog.dismiss();
 			}
 		});
-		
+
 		dialog.show();
 	}
-	
+
 	/**
 	 * DriveWheels -is implementacia .
 	 */
 	private void carDriveWheelsDialog() {
-		final Dialog dialog =  new Dialog(ctx);
+		final Dialog dialog = new Dialog(ctx);
 		dialog.setContentView(R.layout.dialog_car_drivewheels_and_doors);
 		dialog.setTitle(DIALOG_DRIVEWHEELS_TITLE_EN);
-		
+
 		fillDriveAndDoorsDialog(dialog, DBHelper.DRIVE_TYPES_TABLE);
-		
-		Button cancel = (Button) dialog.findViewById(R.id.dialog_drive_and_doors_btn_cancel);
-		Button ok = (Button) dialog.findViewById(R.id.dialog_drive_and_doors_btn_ok);
-		
+
+		Button cancel = (Button) dialog
+				.findViewById(R.id.dialog_drive_and_doors_btn_cancel);
+		Button ok = (Button) dialog
+				.findViewById(R.id.dialog_drive_and_doors_btn_ok);
+
 		ok.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				RadioGroup group = (RadioGroup) dialog.findViewById(R.id.dialog_drive_and_doors_rdgroup);
+				RadioGroup group = (RadioGroup) dialog
+						.findViewById(R.id.dialog_drive_and_doors_rdgroup);
 				int id = group.getCheckedRadioButtonId();
 				RadioButton drive = (RadioButton) dialog.findViewById(id);
 				String driveID = "" + drive.getId();
@@ -394,34 +463,37 @@ public class SearchPageActivity extends MasterPageActivity{
 				carDriveWheelsBtn.setVisibility(View.VISIBLE);
 			}
 		});
-		
+
 		cancel.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				dialog.dismiss();
 			}
 		});
-		
+
 		dialog.show();
 	}
-	
+
 	/**
 	 * Doors Filtris implementacia tavisi gilakebit.
 	 */
-	private void carDoorTypesDialog(){
-		final Dialog dialog = new Dialog (ctx);
+	private void carDoorTypesDialog() {
+		final Dialog dialog = new Dialog(ctx);
 		dialog.setContentView(R.layout.dialog_car_drivewheels_and_doors);
 		dialog.setTitle(DIALOG_DOORS_TITLE_EN);
-		
+
 		fillDriveAndDoorsDialog(dialog, DBHelper.DOOR_TYPES_TABLE);
-		
-		Button cancel = (Button) dialog.findViewById(R.id.dialog_drive_and_doors_btn_cancel);
-		Button ok = (Button) dialog.findViewById(R.id.dialog_drive_and_doors_btn_ok);
-		
+
+		Button cancel = (Button) dialog
+				.findViewById(R.id.dialog_drive_and_doors_btn_cancel);
+		Button ok = (Button) dialog
+				.findViewById(R.id.dialog_drive_and_doors_btn_ok);
+
 		ok.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				RadioGroup group = (RadioGroup) dialog.findViewById(R.id.dialog_drive_and_doors_rdgroup);
+				RadioGroup group = (RadioGroup) dialog
+						.findViewById(R.id.dialog_drive_and_doors_rdgroup);
 				int id = group.getCheckedRadioButtonId();
 				RadioButton door = (RadioButton) dialog.findViewById(id);
 				String doorID = "" + door.getId();
@@ -430,34 +502,36 @@ public class SearchPageActivity extends MasterPageActivity{
 				carDoorsBtn.setVisibility(View.VISIBLE);
 			}
 		});
-		
+
 		cancel.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				dialog.dismiss();
 			}
 		});
-		
+
 		dialog.show();
 	}
-	
+
 	/*
 	 * Door -is Dialog-s bazis monacemebit vavseb.
 	 */
 	private void fillDriveAndDoorsDialog(Dialog dialog, String tableName) {
-		ArrayList<String []> list = DBManager.getDataListFromTable(tableName);
-		RadioGroup group = (RadioGroup) dialog.findViewById(R.id.dialog_drive_and_doors_rdgroup);
-		String [] door;
-		for(int i = 0; i < list.size(); i++){
+		ArrayList<String[]> list = DBManager.getDataListFromTable(tableName);
+		RadioGroup group = (RadioGroup) dialog
+				.findViewById(R.id.dialog_drive_and_doors_rdgroup);
+		String[] door;
+		for (int i = 0; i < list.size(); i++) {
 			door = list.get(i);
 			RadioButton rdbtn = new RadioButton(this);
 			rdbtn.setId(Integer.parseInt(door[0]));
 			rdbtn.setText(door[1]);
-			rdbtn.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
+			rdbtn.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,
+					LayoutParams.WRAP_CONTENT));
 			group.addView(rdbtn);
 		}
 	}
-	
+
 	/**
 	 * Location Filtris implementacia
 	 */
@@ -465,280 +539,307 @@ public class SearchPageActivity extends MasterPageActivity{
 		final Dialog dialog = new Dialog(ctx);
 		dialog.setContentView(R.layout.dialog_car_location);
 		dialog.setTitle(DIALOG_LOCATION_TITLE_EN);
-		
+
 		fillLocationDialog(dialog);
-		
-		Button cancel = (Button) dialog.findViewById(R.id.dialog_location_btn_cancel);
+
+		Button cancel = (Button) dialog
+				.findViewById(R.id.dialog_location_btn_cancel);
 		Button ok = (Button) dialog.findViewById(R.id.dialog_location_btn_ok);
-		
+
 		ok.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				RadioGroup group = (RadioGroup) dialog.findViewById(R.id.dialog_location_rdgroup);
+				RadioGroup group = (RadioGroup) dialog
+						.findViewById(R.id.dialog_location_rdgroup);
 				int id = group.getCheckedRadioButtonId();
 				RadioButton location = (RadioButton) dialog.findViewById(id);
-				String locationID = ""+location.getId();
+				String locationID = "" + location.getId();
 				filteredData[11] = locationID;
 				dialog.dismiss();
 				carLocationBtn.setVisibility(View.VISIBLE);
 			}
 		});
-		
+
 		cancel.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				dialog.dismiss();
 			}
 		});
-		
+
 		dialog.show();
 	}
-	
+
 	/*
 	 * Location-is Dialog fanjaras vavseb monacemebit
 	 */
-	private void fillLocationDialog(Dialog dialog){		
-		ArrayList<String []> list = DBManager.getLocations();	
-		RadioGroup group = (RadioGroup) dialog.findViewById(R.id.dialog_location_rdgroup);
-		String [] location;
-		for(int i = 0; i < list.size(); i++){
+	private void fillLocationDialog(Dialog dialog) {
+		ArrayList<String[]> list = DBManager.getLocations();
+		RadioGroup group = (RadioGroup) dialog
+				.findViewById(R.id.dialog_location_rdgroup);
+		String[] location;
+		for (int i = 0; i < list.size(); i++) {
 			location = list.get(i);
 			RadioButton rdbtn = new RadioButton(this);
 			rdbtn.setId(Integer.parseInt(location[0]));
 			rdbtn.setText(location[2]);
-			rdbtn.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
+			rdbtn.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,
+					LayoutParams.WRAP_CONTENT));
 			group.addView(rdbtn);
 		}
 	}
-	
+
 	/**
-	 *  Wheel Filtris Dialogis implementacia
+	 * Wheel Filtris Dialogis implementacia
 	 */
 	private void carWheelDialog() {
 		final Dialog dialog = new Dialog(ctx);
 		dialog.setContentView(R.layout.dialog_car_customs_and_wheel);
 		dialog.setTitle(DIALOG_WHEEL_TITLE_EN);
-		
+
 		setCustomsAndWheelID(dialog);
-		
-		Button cancel = (Button) dialog.findViewById(R.id.dialog_customs_and_wheel_btn_cancel);
-		Button ok = (Button) dialog.findViewById(R.id.dialog_customs_and_wheel_btn_ok);
-		
+
+		Button cancel = (Button) dialog
+				.findViewById(R.id.dialog_customs_and_wheel_btn_cancel);
+		Button ok = (Button) dialog
+				.findViewById(R.id.dialog_customs_and_wheel_btn_ok);
+
 		ok.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				RadioGroup group = (RadioGroup) dialog.findViewById(R.id.dialog_customs_and_wheel_rdgroup);
+				RadioGroup group = (RadioGroup) dialog
+						.findViewById(R.id.dialog_customs_and_wheel_rdgroup);
 				int id = group.getCheckedRadioButtonId();
 				RadioButton wheel = (RadioButton) dialog.findViewById(id);
-				String wheelID = ""+wheel.getId();
+				String wheelID = "" + wheel.getId();
 				filteredData[9] = wheelID;
 				dialog.dismiss();
 				carWheelBtn.setVisibility(View.VISIBLE);
 			}
 		});
-		
+
 		cancel.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				dialog.dismiss();
 			}
 		});
-		
+
 		dialog.show();
 	}
-	
+
 	/*
 	 * Customs Passed da Wheel Filtrebiss monacemebs vadeb shesabamis ID-s
 	 */
-	private void setCustomsAndWheelID(Dialog dialog){
-		RadioButton yes = (RadioButton) dialog.findViewById(R.id.dialog_customs_and_wheel_yes);
+	private void setCustomsAndWheelID(Dialog dialog) {
+		RadioButton yes = (RadioButton) dialog
+				.findViewById(R.id.dialog_customs_and_wheel_yes);
 		yes.setId(DIALOG_CUSTOMS_AND_WHEEL_BTN_YES_ID);
-		RadioButton no = (RadioButton) dialog.findViewById(R.id.dialog_customs_and_wheel_no);
+		RadioButton no = (RadioButton) dialog
+				.findViewById(R.id.dialog_customs_and_wheel_no);
 		no.setId(DIALOG_CUSTOMS_AND_WHEEL_BTN_NO_ID);
 	}
-	
+
 	/**
 	 * Vqmni Fuel Type -is Dialog-s, vavseb monacemebit da vamateb gilakebs
 	 */
-	private void carFuelTypesDialog () {
+	private void carFuelTypesDialog() {
 		final Dialog dialog = new Dialog(ctx);
 		dialog.setContentView(R.layout.dialog_car_fuel_type);
 		dialog.setTitle(DIALOG_FUELTYPE_TITLE_EN);
-		
-		fillFuelTypeDialog (dialog);
-		
-		Button cancel = (Button) dialog.findViewById(R.id.dialog_fuel_btn_cancel);
+
+		fillFuelTypeDialog(dialog);
+
+		Button cancel = (Button) dialog
+				.findViewById(R.id.dialog_fuel_btn_cancel);
 		Button ok = (Button) dialog.findViewById(R.id.dialog_fuel_btn_ok);
-		
+
 		ok.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				RadioGroup group = (RadioGroup) dialog.findViewById(R.id.dialog_fuel_rdgroup);
+				RadioGroup group = (RadioGroup) dialog
+						.findViewById(R.id.dialog_fuel_rdgroup);
 				int id = group.getCheckedRadioButtonId();
 				RadioButton fuel = (RadioButton) dialog.findViewById(id);
-				String fuelID = ""+fuel.getId();
+				String fuelID = "" + fuel.getId();
 				filteredData[7] = fuelID;
 				dialog.dismiss();
 				carFuelBtn.setVisibility(View.VISIBLE);
 			}
 		});
-		
+
 		cancel.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				dialog.dismiss();
 			}
 		});
-		
+
 		dialog.show();
 	}
-	
+
 	/*
 	 * Fuel Type -is Dialog fanjaras vavseb bazashi shenaxuli monacemebit
 	 */
 	private void fillFuelTypeDialog(Dialog dialog) {
-		ArrayList<String []> fuelTypes = DBManager.getDataListFromTable(DBHelper.FUEL_TABLE);
-		
-		RadioGroup group = (RadioGroup) dialog.findViewById(R.id.dialog_fuel_rdgroup);
-		String [] fuelType;
-		for(int i = 0; i < fuelTypes.size(); i++){
+		ArrayList<String[]> fuelTypes = DBManager
+				.getDataListFromTable(DBHelper.FUEL_TABLE);
+
+		RadioGroup group = (RadioGroup) dialog
+				.findViewById(R.id.dialog_fuel_rdgroup);
+		String[] fuelType;
+		for (int i = 0; i < fuelTypes.size(); i++) {
 			fuelType = fuelTypes.get(i);
 			RadioButton rdbtn = new RadioButton(this);
 			rdbtn.setId(Integer.parseInt(fuelType[0]));
 			rdbtn.setText(fuelType[1]);
-			rdbtn.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
+			rdbtn.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,
+					LayoutParams.WRAP_CONTENT));
 			group.addView(rdbtn);
 		}
 	}
-	
+
 	/**
 	 * Categoriis filtri, Vavseb Monacemebit da vuketeb implementacias
 	 */
 	private void carCategoriesDialog() {
-		final Dialog dialog = new Dialog (ctx);
+		final Dialog dialog = new Dialog(ctx);
 		dialog.setContentView(R.layout.dialog_car_categories);
 		dialog.setTitle(DIALOG_CATEGORIES_TITLE_EN);
-		
+
 		fillCategoriesDialog(dialog);
-		
-		Button cancel = (Button) dialog.findViewById(R.id.dialog_category_btn_cancel);
+
+		Button cancel = (Button) dialog
+				.findViewById(R.id.dialog_category_btn_cancel);
 		Button ok = (Button) dialog.findViewById(R.id.dialog_category_btn_ok);
-		
+
 		ok.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				RadioGroup group = (RadioGroup) dialog.findViewById(R.id.dialog_category_rdgroup);
+				RadioGroup group = (RadioGroup) dialog
+						.findViewById(R.id.dialog_category_rdgroup);
 				int id = group.getCheckedRadioButtonId();
 				RadioButton cat = (RadioButton) dialog.findViewById(id);
-				String catID = ""+cat.getId();
+				String catID = "" + cat.getId();
 				filteredData[10] = catID;
 				dialog.dismiss();
 				carCategoryBtn.setVisibility(View.VISIBLE);
 			}
 		});
-		
+
 		cancel.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				dialog.dismiss();
 			}
 		});
-		
+
 		dialog.show();
 	}
-	
-	/*
-	 * Categoriis Dialog fanjaras vavseb bazashi shenaxuli monacemebit 
-	 */
-	private void fillCategoriesDialog (Dialog dialog) {
-		ArrayList <String[]> categories = DBManager.getDataListFromTable(DBHelper.CATEGORIES_TABLE);
 
-		RadioGroup group = (RadioGroup) dialog.findViewById(R.id.dialog_category_rdgroup);
-		String [] cat;
-		for(int i = 0; i < categories.size(); i++){
+	/*
+	 * Categoriis Dialog fanjaras vavseb bazashi shenaxuli monacemebit
+	 */
+	private void fillCategoriesDialog(Dialog dialog) {
+		ArrayList<String[]> categories = DBManager
+				.getDataListFromTable(DBHelper.CATEGORIES_TABLE);
+
+		RadioGroup group = (RadioGroup) dialog
+				.findViewById(R.id.dialog_category_rdgroup);
+		String[] cat;
+		for (int i = 0; i < categories.size(); i++) {
 			cat = categories.get(i);
 			RadioButton rdbtn = new RadioButton(this);
 			rdbtn.setId(Integer.parseInt(cat[0]));
 			rdbtn.setText(cat[1]);
-			rdbtn.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
+			rdbtn.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,
+					LayoutParams.WRAP_CONTENT));
 			group.addView(rdbtn);
 		}
 	}
-	
-	
+
 	/**
 	 * Vqmni Transmissiis Dialog-s, vavseb monacemebit da vamateb gilakebs . . .
 	 */
-	private void carTransmissionDialog(){
+	private void carTransmissionDialog() {
 		final Dialog dialog = new Dialog(ctx);
 		dialog.setContentView(R.layout.dialog_car_transmission);
 		dialog.setTitle("Transmission");
-		
+
 		fillTransmissionDialog(dialog);
-		
-		Button cancel = (Button) dialog.findViewById(R.id.dialog_trans_btn_cancel);
+
+		Button cancel = (Button) dialog
+				.findViewById(R.id.dialog_trans_btn_cancel);
 		Button ok = (Button) dialog.findViewById(R.id.dialog_trans_btn_ok);
-		
+
 		ok.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				RadioGroup group = (RadioGroup) dialog.findViewById(R.id.dialog_trans_rdgroup);
+				RadioGroup group = (RadioGroup) dialog
+						.findViewById(R.id.dialog_trans_rdgroup);
 				int id = group.getCheckedRadioButtonId();
 				RadioButton trans = (RadioButton) dialog.findViewById(id);
-				String transmission = ""+trans.getId();
+				String transmission = "" + trans.getId();
 				filteredData[6] = transmission;
 				dialog.dismiss();
 				carTransmissionBtn.setVisibility(View.VISIBLE);
 			}
 		});
-		
+
 		cancel.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				dialog.dismiss();
 			}
 		});
-		
+
 		dialog.show();
 	}
-	
+
 	/*
 	 * Transmisiis Dialog fanjaras vavseb bazashi shenaxuli monacemebit
 	 */
 	private void fillTransmissionDialog(Dialog dialog) {
-		ArrayList<String []> gears = DBManager.getGearTypes();
-		
-		RadioGroup group = (RadioGroup) dialog.findViewById(R.id.dialog_trans_rdgroup);
-		String [] gearTypes;
-		for(int i = 0; i < gears.size(); i++){
+		ArrayList<String[]> gears = DBManager.getGearTypes();
+
+		RadioGroup group = (RadioGroup) dialog
+				.findViewById(R.id.dialog_trans_rdgroup);
+		String[] gearTypes;
+		for (int i = 0; i < gears.size(); i++) {
 			gearTypes = gears.get(i);
 			RadioButton rdbtn = new RadioButton(this);
 			rdbtn.setId(Integer.parseInt(gearTypes[0]));
 			rdbtn.setText(gearTypes[1]);
-			rdbtn.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
+			rdbtn.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,
+					LayoutParams.WRAP_CONTENT));
 			group.addView(rdbtn);
 		}
 	}
-	
+
 	/**
-	 * бѓ•бѓҐбѓ›бѓњбѓ� бѓ¬бѓљбѓ”бѓ‘бѓ�бѓЎ бѓ¤бѓ�бѓљбѓўбѓ бѓ�бѓЎ бѓ“бѓ�бѓђбѓљбѓќбѓ’бѓЎ.
-	 * бѓ¬бѓљбѓ”бѓ‘бѓ�бѓЎ бѓђбѓ бѓ©бѓ”бѓ•бѓђ бѓ®бѓ“бѓ”бѓ‘бѓђ бѓЎбѓћбѓ�бѓњбѓ”бѓ бѓ”бѓ‘бѓ�бѓ—.
+	 * бѓ•бѓҐбѓ›бѓњбѓ� бѓ¬бѓљбѓ”бѓ‘бѓ�бѓЎ бѓ¤бѓ�бѓљбѓўбѓ бѓ�бѓЎ
+	 * бѓ“бѓ�бѓђбѓљбѓќбѓ’бѓЎ. бѓ¬бѓљбѓ”бѓ‘бѓ�бѓЎ бѓђбѓ бѓ©бѓ”бѓ•бѓђ
+	 * бѓ®бѓ“бѓ”бѓ‘бѓђ бѓЎбѓћбѓ�бѓњбѓ”бѓ бѓ”бѓ‘бѓ�бѓ—.
 	 */
-	private void carYearDialog(){
+	private void carYearDialog() {
 		final Dialog dialog = new Dialog(ctx);
 		dialog.setContentView(R.layout.dialog_car_generic_for_spinners);
 		dialog.setTitle("Car Year");
-		
+
 		fillTheSpinners(dialog);
-		
-		Button cancel = (Button) dialog.findViewById(R.id.dialog_generic_spinners_btn_cancel);
-		Button ok = (Button) dialog.findViewById(R.id.dialog_generic_spinners_btn_ok);
-		
+
+		Button cancel = (Button) dialog
+				.findViewById(R.id.dialog_generic_spinners_btn_cancel);
+		Button ok = (Button) dialog
+				.findViewById(R.id.dialog_generic_spinners_btn_ok);
+
 		ok.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Spinner spinner1 = (Spinner) dialog.findViewById(R.id.dialog_generic_spinners_from);
-				Spinner spinner2 = (Spinner) dialog.findViewById(R.id.dialog_generic_spinners_to);
+				Spinner spinner1 = (Spinner) dialog
+						.findViewById(R.id.dialog_generic_spinners_from);
+				Spinner spinner2 = (Spinner) dialog
+						.findViewById(R.id.dialog_generic_spinners_to);
 				String from = (String) spinner1.getSelectedItem();
 				String to = (String) spinner2.getSelectedItem();
 				filteredData[2] = from;
@@ -747,62 +848,74 @@ public class SearchPageActivity extends MasterPageActivity{
 				carYearBtn.setVisibility(View.VISIBLE);
 			}
 		});
-		
+
 		cancel.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				dialog.dismiss();
 			}
 		});
-		
+
 		dialog.show();
 	}
-	
+
 	/**
-	 * бѓ•бѓђбѓ•бѓЎбѓ”бѓ‘ бѓЎбѓћбѓ�бѓњбѓ”бѓ бѓ”бѓ‘бѓЎ бѓЎбѓђбѓ­бѓ�бѓ бѓќ бѓ›бѓќбѓњбѓђбѓЄбѓ”бѓ›бѓ”бѓ‘бѓ�бѓ—
+	 * бѓ•бѓђбѓ•бѓЎбѓ”бѓ‘ бѓЎбѓћбѓ�бѓњбѓ”бѓ бѓ”бѓ‘бѓЎ бѓЎбѓђбѓ­бѓ�бѓ бѓќ
+	 * бѓ›бѓќбѓњбѓђбѓЄбѓ”бѓ›бѓ”бѓ‘бѓ�бѓ—
+	 * 
 	 * @param dialog
 	 */
-	private void fillTheSpinners(Dialog dialog){
-		Spinner from = (Spinner) dialog.findViewById(R.id.dialog_generic_spinners_from);
-		Spinner to = (Spinner) dialog.findViewById(R.id.dialog_generic_spinners_to);
-		
+	private void fillTheSpinners(Dialog dialog) {
+		Spinner from = (Spinner) dialog
+				.findViewById(R.id.dialog_generic_spinners_from);
+		Spinner to = (Spinner) dialog
+				.findViewById(R.id.dialog_generic_spinners_to);
+
 		ArrayList<String> listFrom = new ArrayList<String>();
 		ArrayList<String> listTo = new ArrayList<String>();
 		Calendar c = Calendar.getInstance();
 		int currentYear = c.get(Calendar.YEAR);
-		
+
 		listFrom.add("Any");
 		listTo.add("Any");
-		
-		for(int i=currentYear; i >= STARTING_YEAR; i--){
-			listFrom.add(""+i);
-			listTo.add(""+i);
+
+		for (int i = currentYear; i >= STARTING_YEAR; i--) {
+			listFrom.add("" + i);
+			listTo.add("" + i);
 		}
-		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(ctx, android.R.layout.simple_spinner_dropdown_item, listFrom);
-		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(ctx,
+				android.R.layout.simple_spinner_dropdown_item, listFrom);
+		dataAdapter
+				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		from.setAdapter(dataAdapter);
-		dataAdapter = new ArrayAdapter<String>(ctx, android.R.layout.simple_spinner_dropdown_item, listTo);
-		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		dataAdapter = new ArrayAdapter<String>(ctx,
+				android.R.layout.simple_spinner_dropdown_item, listTo);
+		dataAdapter
+				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		to.setAdapter(dataAdapter);
 	}
-	
+
 	/**
 	 * бѓ¤бѓђбѓЎбѓ�бѓЎ бѓ¤бѓ�бѓљбѓўбѓ бѓ�бѓЎ бѓ“бѓ�бѓђбѓљбѓќбѓ’бѓ� . . .
-	 * бѓ�бѓњбѓ�бѓЄбѓ�бѓђбѓљбѓ�бѓ–бѓђбѓЄбѓ�бѓђ бѓ“бѓђ бѓ¦бѓ�бѓљбѓђбѓ™бѓ”бѓ‘бѓ�бѓЎ бѓ�бѓ›бѓћбѓљбѓ”бѓ›бѓ”бѓњбѓўбѓђбѓЄбѓ�бѓђ.
+	 * бѓ�бѓњбѓ�бѓЄбѓ�бѓђбѓљбѓ�бѓ–бѓђбѓЄбѓ�бѓђ бѓ“бѓђ
+	 * бѓ¦бѓ�бѓљбѓђбѓ™бѓ”бѓ‘бѓ�бѓЎ бѓ�бѓ›бѓћбѓљбѓ”бѓ›бѓ”бѓњбѓўбѓђбѓЄбѓ�бѓђ.
 	 */
-	private void carPriceDialog(){
+	private void carPriceDialog() {
 		final Dialog dialog = new Dialog(ctx);
 		dialog.setContentView(R.layout.dialog_car_price);
 		dialog.setTitle("Car Price ($)");
-		
-		Button cancel = (Button) dialog.findViewById(R.id.dialog_price_btn_cancel);
+
+		Button cancel = (Button) dialog
+				.findViewById(R.id.dialog_price_btn_cancel);
 		Button ok = (Button) dialog.findViewById(R.id.dialog_price_btn_ok);
-		
+
 		ok.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				EditText editFrom = (EditText) dialog.findViewById(R.id.dialog_price_from);
-				EditText editTo = (EditText) dialog.findViewById(R.id.dialog_price_to);
+				EditText editFrom = (EditText) dialog
+						.findViewById(R.id.dialog_price_from);
+				EditText editTo = (EditText) dialog
+						.findViewById(R.id.dialog_price_to);
 				String from = editFrom.getText().toString();
 				String to = editTo.getText().toString();
 				filteredData[4] = from;
@@ -811,19 +924,20 @@ public class SearchPageActivity extends MasterPageActivity{
 				carPriceBtn.setVisibility(View.VISIBLE);
 			}
 		});
-		
+
 		cancel.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				dialog.dismiss();
 			}
 		});
-		
+
 		dialog.show();
 	}
-	
+
 	/**
-	 * бѓ›бѓђбѓ бѓ™бѓ�бѓЎ бѓ“бѓђ бѓ›бѓќбѓ“бѓ”бѓљбѓ�бѓЎ бѓ¤бѓ�бѓљбѓўбѓ бѓ�бѓЎ бѓЁбѓ”бѓ“бѓ”бѓ’бѓ�бѓЎ бѓ›бѓ�бѓ¦бѓ”бѓ‘бѓђ.
+	 * бѓ›бѓђбѓ бѓ™бѓ�бѓЎ бѓ“бѓђ бѓ›бѓќбѓ“бѓ”бѓљбѓ�бѓЎ бѓ¤бѓ�бѓљбѓўбѓ бѓ�бѓЎ
+	 * бѓЁбѓ”бѓ“бѓ”бѓ’бѓ�бѓЎ бѓ›бѓ�бѓ¦бѓ”бѓ‘бѓђ.
 	 * 
 	 * @param requestCode
 	 * @param resultCode
@@ -832,21 +946,25 @@ public class SearchPageActivity extends MasterPageActivity{
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		switch(requestCode){
-		case(MARK_FILTER):
-			if(resultCode == Activity.RESULT_OK){
-				String [] manAndModel = (String[]) data.getSerializableExtra("ManAndModel");
+		switch (requestCode) {
+		case (MARK_FILTER):
+			if (resultCode == Activity.RESULT_OK) {
+				String[] manAndModel = (String[]) data
+						.getSerializableExtra("ManAndModel");
 				filteredData[0] = manAndModel[0];
-				filteredData[1] = "2"+manAndModel[1];
+				filteredData[1] = "2" + manAndModel[1];
 				carMarkBtn.setVisibility(View.VISIBLE);
 			}
 		}
 	}
-	
+
 	/**
-	 * бѓ•бѓ�бѓ¦бѓ”бѓ‘ бѓ¦бѓ�бѓљбѓђбѓ™бѓ”бѓ‘бѓ�бѓЎ View-бѓ”бѓ‘бѓЎ бѓ“бѓђ бѓђбѓ¦бѓ¬бѓ”бѓ бѓ�бѓљ бѓ¦бѓ�бѓљбѓђбѓ™бѓ”бѓ‘бѓЎ бѓ•бѓЈбѓ™бѓ”бѓ—бѓ”бѓ‘ бѓ�бѓњбѓ�бѓЄбѓ�бѓђбѓљбѓ�бѓ–бѓђбѓЄбѓ�бѓђбѓЎ, бѓЁбѓ”бѓ›бѓ“бѓ”бѓ’ бѓ•бѓђбѓ‘бѓђбѓ• бѓљбѓ�бѓЎбѓ”бѓњбѓ”бѓ бѓ”бѓ‘бѓЎ.
+	 * бѓ•бѓ�бѓ¦бѓ”бѓ‘ бѓ¦бѓ�бѓљбѓђбѓ™бѓ”бѓ‘бѓ�бѓЎ View-бѓ”бѓ‘бѓЎ бѓ“бѓђ
+	 * бѓђбѓ¦бѓ¬бѓ”бѓ бѓ�бѓљ бѓ¦бѓ�бѓљбѓђбѓ™бѓ”бѓ‘бѓЎ бѓ•бѓЈбѓ™бѓ”бѓ—бѓ”бѓ‘
+	 * бѓ�бѓњбѓ�бѓЄбѓ�бѓђбѓљбѓ�бѓ–бѓђбѓЄбѓ�бѓђбѓЎ, бѓЁбѓ”бѓ›бѓ“бѓ”бѓ’
+	 * бѓ•бѓђбѓ‘бѓђбѓ• бѓљбѓ�бѓЎбѓ”бѓњбѓ”бѓ бѓ”бѓ‘бѓЎ.
 	 */
-	private void getButtonViews(){
+	private void getButtonViews() {
 		searchSubmit = (Button) findViewById(R.id.search_submit_btn);
 		carMarkBtn = (Button) findViewById(R.id.search_carMark_btn);
 		carPriceBtn = (Button) findViewById(R.id.search_carPrice_btn);
@@ -873,11 +991,11 @@ public class SearchPageActivity extends MasterPageActivity{
 		carHatchBtn = (Button) findViewById(R.id.search_carHatch_btn);
 		carChairWarmingBtn = (Button) findViewById(R.id.search_carChairWarming_btn);
 		carNavigSystemBtn = (Button) findViewById(R.id.search_carNavigSystem_btn);
-		
+
 		setButtonClickListeners();
 	}
-	
-	private void getFilterLayoutViews () {
+
+	private void getFilterLayoutViews() {
 		carMark = (RelativeLayout) findViewById(R.id.search_carMark);
 		carPrice = (RelativeLayout) findViewById(R.id.search_carPrice);
 		carYear = (RelativeLayout) findViewById(R.id.search_carYear);
@@ -903,30 +1021,31 @@ public class SearchPageActivity extends MasterPageActivity{
 		carHatch = (RelativeLayout) findViewById(R.id.search_carHatch);
 		carChairWarming = (RelativeLayout) findViewById(R.id.search_carChairWarming);
 		carNavigSystem = (RelativeLayout) findViewById(R.id.search_carNavigSystem);
-		
+
 		setFilterClickListeners();
 	}
-	
+
 	/**
 	 * Filtris Cancel Button-ebs yvelas erti onClickListener eqneba.
+	 * 
 	 * @author Jay
-	 *
+	 * 
 	 */
 	private class cancelBtnListener implements OnClickListener {
-		private int [] index;
-		
-		public cancelBtnListener (int [] index){
+		private int[] index;
+
+		public cancelBtnListener(int[] index) {
 			this.index = index;
 		}
-		
+
 		@Override
 		public void onClick(View v) {
-			for(int i=0; i<index.length; i++){
+			for (int i = 0; i < index.length; i++) {
 				filteredData[index[i]] = null;
 			}
 			v.setVisibility(View.INVISIBLE);
 		}
-		
+
 	}
 
 }
