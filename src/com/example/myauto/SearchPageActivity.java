@@ -28,6 +28,7 @@ import android.widget.Toast;
 import android.widget.TableLayout.LayoutParams;
 
 public class SearchPageActivity extends MasterPageActivity{
+	private static final String DIALOG_ENGINE_TITLE_EN = "Engine";
 	private static final String DIALOG_DAYS_TITLE_EN = "Days";
 	private static final String DIALOG_CUSTOMS_PASSED_TITLE_EN = "Customs Passed";
 	private static final String DIALOG_DRIVEWHEELS_TITLE_EN = "Drive Wheels";
@@ -40,9 +41,9 @@ public class SearchPageActivity extends MasterPageActivity{
 	private static final int DIALOG_CUSTOMS_AND_WHEEL_BTN_NO_ID = 2;
 	private static final int STARTING_YEAR = 1960;
 	private static final int MARK_FILTER = 1001;
-	private static final int NUMBER_OF_FILTER_BUTTONS = 15;
-	private RelativeLayout carMark, carPrice, carYear, carCategory, carLocation, carTransmission, carFuel, carWheel, carDays, carDoors, carDriveWheels, carCustomsPassed; 
-	private Button searchSubmit, carMarkBtn, carPriceBtn, carYearBtn, carCategoryBtn, carLocationBtn, carTransmissionBtn, carFuelBtn, carWheelBtn, carDaysBtn, carDoorsBtn, carDriveWheelsBtn, carCustomsPassedBtn;
+	private static final int NUMBER_OF_FILTER_BUTTONS = 18;
+	private RelativeLayout carMark, carPrice, carYear, carCategory, carLocation, carTransmission, carFuel, carWheel, carDays, carDoors, carDriveWheels, carCustomsPassed, carEngine, carAbs; 
+	private Button searchSubmit, carMarkBtn, carPriceBtn, carYearBtn, carCategoryBtn, carLocationBtn, carTransmissionBtn, carFuelBtn, carWheelBtn, carDaysBtn, carDoorsBtn, carDriveWheelsBtn, carCustomsPassedBtn, carEngineBtn, carAbsBtn;
 	private String [] filteredData;
 	private Context ctx;
 	private Activity a;
@@ -93,6 +94,10 @@ public class SearchPageActivity extends MasterPageActivity{
 		carDriveWheelsBtn.setOnClickListener(new cancelBtnListener(giveIndex(13, 100, 1)));
 		
 		carDaysBtn.setOnClickListener(new cancelBtnListener(giveIndex(14, 100, 1)));
+		
+		carEngineBtn.setOnClickListener(new cancelBtnListener(giveIndex(15, 16, 2)));
+		
+		carAbsBtn.setOnClickListener(new cancelBtnListener(giveIndex(17, 100, 1)));
 	}
 	
 	/*
@@ -198,6 +203,21 @@ public class SearchPageActivity extends MasterPageActivity{
 				carDaysDialog();
 			}
 		});
+		
+		carEngine.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				carEngineDialog();
+			}
+		});
+		
+		carAbs.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				filteredData[17] = "1";
+				carAbsBtn.setVisibility(View.VISIBLE);
+			}
+		});
 	}
 	
 	// Under Construction
@@ -208,6 +228,69 @@ public class SearchPageActivity extends MasterPageActivity{
 		
 		carDaysBtn.setVisibility(View.VISIBLE);
 		
+	}
+	
+	/**
+	 * Dzravis Moculobis Filtris Implementacia
+	 */
+	private void carEngineDialog (){
+		final Dialog dialog = new Dialog (ctx);
+		dialog.setContentView(R.layout.dialog_car_generic_for_spinners);
+		dialog.setTitle(DIALOG_ENGINE_TITLE_EN);
+		
+		fillEngineSpinners(dialog);
+		
+		Button cancel = (Button) dialog.findViewById(R.id.dialog_generic_spinners_btn_cancel);
+		Button ok = (Button) dialog.findViewById(R.id.dialog_generic_spinners_btn_ok);
+		
+		ok.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Spinner spinner1 = (Spinner) dialog.findViewById(R.id.dialog_generic_spinners_from);
+				Spinner spinner2 = (Spinner) dialog.findViewById(R.id.dialog_generic_spinners_to);
+				String from = "" + (int)(Double.parseDouble((String) spinner1.getSelectedItem()) * 1000);
+				String to = "" + (int)(Double.parseDouble((String) spinner2.getSelectedItem()) * 1000);
+				filteredData[15] = from;
+				filteredData[16] = to;
+				dialog.dismiss();
+				carEngineBtn.setVisibility(View.VISIBLE);
+			}
+		});
+		
+		cancel.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				dialog.dismiss();
+			}
+		});
+		
+		dialog.show();
+	}
+	
+	/*
+	 * Vavseb Dzravis Moculobis Spinnerebs monacemebit
+	 */
+	private void fillEngineSpinners(Dialog dialog) {
+		Spinner from = (Spinner) dialog.findViewById(R.id.dialog_generic_spinners_from);
+		Spinner to = (Spinner) dialog.findViewById(R.id.dialog_generic_spinners_to);
+		
+		ArrayList<String> listFrom = new ArrayList<String>();
+		ArrayList<String> listTo = new ArrayList<String>();
+		
+		listFrom.add("0.05");
+		listTo.add("0.05");
+		
+		for(double i = 0.1; i < 6.1; i += 0.1){
+			listFrom.add(("" + i).substring(0, 3));
+			listTo.add(("" + i).substring(0, 3));
+		}
+		
+		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(ctx, android.R.layout.simple_spinner_dropdown_item, listFrom);
+		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		from.setAdapter(dataAdapter);
+		dataAdapter = new ArrayAdapter<String>(ctx, android.R.layout.simple_spinner_dropdown_item, listTo);
+		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		to.setAdapter(dataAdapter);
 	}
 	
 	/**
@@ -603,19 +686,19 @@ public class SearchPageActivity extends MasterPageActivity{
 	 */
 	private void carYearDialog(){
 		final Dialog dialog = new Dialog(ctx);
-		dialog.setContentView(R.layout.dialog_car_year);
+		dialog.setContentView(R.layout.dialog_car_generic_for_spinners);
 		dialog.setTitle("Car Year");
 		
 		fillTheSpinners(dialog);
 		
-		Button cancel = (Button) dialog.findViewById(R.id.dialog_year_btn_cancel);
-		Button ok = (Button) dialog.findViewById(R.id.dialog_year_btn_ok);
+		Button cancel = (Button) dialog.findViewById(R.id.dialog_generic_spinners_btn_cancel);
+		Button ok = (Button) dialog.findViewById(R.id.dialog_generic_spinners_btn_ok);
 		
 		ok.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Spinner spinner1 = (Spinner) dialog.findViewById(R.id.dialog_year_from);
-				Spinner spinner2 = (Spinner) dialog.findViewById(R.id.dialog_year_to);
+				Spinner spinner1 = (Spinner) dialog.findViewById(R.id.dialog_generic_spinners_from);
+				Spinner spinner2 = (Spinner) dialog.findViewById(R.id.dialog_generic_spinners_to);
 				String from = (String) spinner1.getSelectedItem();
 				String to = (String) spinner2.getSelectedItem();
 				filteredData[2] = from;
@@ -640,8 +723,8 @@ public class SearchPageActivity extends MasterPageActivity{
 	 * @param dialog
 	 */
 	private void fillTheSpinners(Dialog dialog){
-		Spinner from = (Spinner) dialog.findViewById(R.id.dialog_year_from);
-		Spinner to = (Spinner) dialog.findViewById(R.id.dialog_year_to);
+		Spinner from = (Spinner) dialog.findViewById(R.id.dialog_generic_spinners_from);
+		Spinner to = (Spinner) dialog.findViewById(R.id.dialog_generic_spinners_to);
 		
 		ArrayList<String> listFrom = new ArrayList<String>();
 		ArrayList<String> listTo = new ArrayList<String>();
@@ -737,6 +820,8 @@ public class SearchPageActivity extends MasterPageActivity{
 		carTransmissionBtn = (Button) findViewById(R.id.search_carTransmission_btn);
 		carDriveWheelsBtn = (Button) findViewById(R.id.search_carDriveWheels_btn);
 		carDoorsBtn = (Button) findViewById(R.id.search_carDoors_btn);
+		carEngineBtn = (Button) findViewById(R.id.search_carEngine_btn);
+		carAbsBtn = (Button) findViewById(R.id.search_carAbs_btn);
 		
 		setButtonClickListeners();
 	}
@@ -754,6 +839,8 @@ public class SearchPageActivity extends MasterPageActivity{
 		carTransmission = (RelativeLayout) findViewById(R.id.search_carTransmission);
 		carDriveWheels = (RelativeLayout) findViewById(R.id.search_carDriveWheels);
 		carDoors = (RelativeLayout) findViewById(R.id.search_carDoors);
+		carEngine = (RelativeLayout) findViewById(R.id.search_carEngine);
+		carAbs = (RelativeLayout) findViewById(R.id.search_carAbs);
 		
 		setFilterClickListeners();
 	}
