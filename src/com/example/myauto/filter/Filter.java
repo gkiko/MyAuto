@@ -22,7 +22,9 @@ public class Filter implements CallbackListener{
 			"price_to", "gear_type_id", "fuel_type_id", "customs_passed",
 			"right_wheel", "category_id", "location_id_1", "door_type_id", 
 			"drive_type_id", "last_days", "volume_from", "volume_to", 
-			"abs", "central_lock", "esd" };
+			"abs", "central_lock", "esd", "board_comp", "leather", "el_windows",
+			"airbags", "obstacle_indicator", "disks", "hatch", "chair_warming", 
+			"nav_system" };
 	private Context c;
 	private Activity a;
 	private String [] filter;
@@ -32,7 +34,7 @@ public class Filter implements CallbackListener{
 	
 	private static final String [] defaultValues = new String[] {"72", "0", "Any", "Any",
 		"", "", "0", "0", "", "", "0", "", "0", "0", "", "", "", 
-		"0", "0", "0"};
+		"0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"};
 
 	public final String MANUFACTURER_DEFAULT = "72";
 	public final String MODEL_DEFAULT = "0";
