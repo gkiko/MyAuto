@@ -12,14 +12,17 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.opengl.Visibility;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.TableLayout.LayoutParams;
@@ -38,7 +41,8 @@ public class SearchPageActivity extends MasterPageActivity{
 	private static final int STARTING_YEAR = 1960;
 	private static final int MARK_FILTER = 1001;
 	private static final int NUMBER_OF_FILTER_BUTTONS = 15;
-	private Button searchSubmit, carMark, carPrice, carYear, carCategory, carLocation, carTransmission, carFuel, carWheel, carDays, carDoors, carDriveWheels, carCustomsPassed; 
+	private RelativeLayout carMark, carPrice, carYear, carCategory, carLocation, carTransmission, carFuel, carWheel, carDays, carDoors, carDriveWheels, carCustomsPassed; 
+	private Button searchSubmit, carMarkBtn, carPriceBtn, carYearBtn, carCategoryBtn, carLocationBtn, carTransmissionBtn, carFuelBtn, carWheelBtn, carDaysBtn, carDoorsBtn, carDriveWheelsBtn, carCustomsPassedBtn;
 	private String [] filteredData;
 	private Context ctx;
 	private Activity a;
@@ -53,22 +57,62 @@ public class SearchPageActivity extends MasterPageActivity{
 		a = this;
 		
 		filteredData = new String [NUMBER_OF_FILTER_BUTTONS];
+		getFilterLayoutViews();
 		getButtonViews();
 	}
 	
-	/**
-	 * бѓ•бѓђбѓ§бѓ”бѓњбѓ”бѓ‘ бѓ¦бѓ�бѓљбѓђбѓ™бѓ”бѓ‘бѓ�бѓЎ бѓљбѓ�бѓЎбѓ”бѓњбѓ”бѓ бѓ”бѓ‘бѓЎ бѓ“бѓђбѓ­бѓ”бѓ бѓђбѓ–бѓ”
-	 */
-	private void setButtonClickListeners(){
+	private void setButtonClickListeners() {
 		searchSubmit.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				Filter f = new Filter(getApplicationContext(), filteredData, a);
 				f.filterAndDownload();
 			}
-			
 		});
 		
+		carMarkBtn.setOnClickListener(new cancelBtnListener(giveIndex(0, 1, 2)));
+		
+		carYearBtn.setOnClickListener(new cancelBtnListener(giveIndex(2, 3, 2)));
+		
+		carPriceBtn.setOnClickListener(new cancelBtnListener(giveIndex(4, 5, 2)));
+		
+		carTransmissionBtn.setOnClickListener(new cancelBtnListener(giveIndex(6, 100, 1)));
+		
+		carFuelBtn.setOnClickListener(new cancelBtnListener(giveIndex(7, 100, 1)));
+		
+		carCustomsPassedBtn.setOnClickListener(new cancelBtnListener(giveIndex(8, 100, 1)));
+		
+		carWheelBtn.setOnClickListener(new cancelBtnListener(giveIndex(9, 100, 1)));
+		
+		carCategoryBtn.setOnClickListener(new cancelBtnListener(giveIndex(10, 100, 1)));
+		
+		carLocationBtn.setOnClickListener(new cancelBtnListener(giveIndex(11, 100, 1)));
+		
+		carDoorsBtn.setOnClickListener(new cancelBtnListener(giveIndex(12, 100, 1)));
+		
+		carDriveWheelsBtn.setOnClickListener(new cancelBtnListener(giveIndex(13, 100, 1)));
+		
+		carDaysBtn.setOnClickListener(new cancelBtnListener(giveIndex(14, 100, 1)));
+	}
+	
+	/*
+	 * Cacel Button Listeneristvis gadasacemad filtris shesabamis index-is array-s vagenerireb.
+	 */
+	private int [] giveIndex (int a1, int a2, int d) {
+		int [] index = new int [d];
+		if(d == 2){
+			index[0] = a1;
+			index[1] = a2;
+		}else if(d == 1){
+			index[0] = a1;
+		}
+		return index;
+	}
+	
+	/**
+	 * бѓ•бѓђбѓ§бѓ”бѓњбѓ”бѓ‘ бѓ¦бѓ�бѓљбѓђбѓ™бѓ”бѓ‘бѓ�бѓЎ бѓљбѓ�бѓЎбѓ”бѓњбѓ”бѓ бѓ”бѓ‘бѓЎ бѓ“бѓђбѓ­бѓ”бѓ бѓђбѓ–бѓ”
+	 */
+	private void setFilterClickListeners(){	
 		carMark.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -162,6 +206,8 @@ public class SearchPageActivity extends MasterPageActivity{
 		dialog.setContentView(R.layout.dialog_car_generic_for_radiobuttons);
 		dialog.setTitle(DIALOG_DAYS_TITLE_EN);
 		
+		carDaysBtn.setVisibility(View.VISIBLE);
+		
 	}
 	
 	/**
@@ -186,6 +232,7 @@ public class SearchPageActivity extends MasterPageActivity{
 				String customsID = "" + customs.getId();
 				filteredData[14] = customsID;
 				dialog.dismiss();
+				carCustomsPassedBtn.setVisibility(View.VISIBLE);
 			}
 		});
 		
@@ -221,6 +268,7 @@ public class SearchPageActivity extends MasterPageActivity{
 				String driveID = "" + drive.getId();
 				filteredData[13] = driveID;
 				dialog.dismiss();
+				carDriveWheelsBtn.setVisibility(View.VISIBLE);
 			}
 		});
 		
@@ -256,6 +304,7 @@ public class SearchPageActivity extends MasterPageActivity{
 				String doorID = "" + door.getId();
 				filteredData[12] = doorID;
 				dialog.dismiss();
+				carDoorsBtn.setVisibility(View.VISIBLE);
 			}
 		});
 		
@@ -308,6 +357,7 @@ public class SearchPageActivity extends MasterPageActivity{
 				String locationID = ""+location.getId();
 				filteredData[11] = locationID;
 				dialog.dismiss();
+				carLocationBtn.setVisibility(View.VISIBLE);
 			}
 		});
 		
@@ -360,6 +410,7 @@ public class SearchPageActivity extends MasterPageActivity{
 				String wheelID = ""+wheel.getId();
 				filteredData[9] = wheelID;
 				dialog.dismiss();
+				carWheelBtn.setVisibility(View.VISIBLE);
 			}
 		});
 		
@@ -405,6 +456,7 @@ public class SearchPageActivity extends MasterPageActivity{
 				String fuelID = ""+fuel.getId();
 				filteredData[7] = fuelID;
 				dialog.dismiss();
+				carFuelBtn.setVisibility(View.VISIBLE);
 			}
 		});
 		
@@ -458,6 +510,7 @@ public class SearchPageActivity extends MasterPageActivity{
 				String catID = ""+cat.getId();
 				filteredData[10] = catID;
 				dialog.dismiss();
+				carCategoryBtn.setVisibility(View.VISIBLE);
 			}
 		});
 		
@@ -512,6 +565,7 @@ public class SearchPageActivity extends MasterPageActivity{
 				String transmission = ""+trans.getId();
 				filteredData[6] = transmission;
 				dialog.dismiss();
+				carTransmissionBtn.setVisibility(View.VISIBLE);
 			}
 		});
 		
@@ -567,6 +621,7 @@ public class SearchPageActivity extends MasterPageActivity{
 				filteredData[2] = from;
 				filteredData[3] = to;
 				dialog.dismiss();
+				carYearBtn.setVisibility(View.VISIBLE);
 			}
 		});
 		
@@ -630,6 +685,7 @@ public class SearchPageActivity extends MasterPageActivity{
 				filteredData[4] = from;
 				filteredData[5] = to;
 				dialog.dismiss();
+				carPriceBtn.setVisibility(View.VISIBLE);
 			}
 		});
 		
@@ -659,6 +715,7 @@ public class SearchPageActivity extends MasterPageActivity{
 				String [] manAndModel = (String[]) data.getSerializableExtra("ManAndModel");
 				filteredData[0] = manAndModel[0];
 				filteredData[1] = "2"+manAndModel[1];
+				carMarkBtn.setVisibility(View.VISIBLE);
 			}
 		}
 	}
@@ -668,22 +725,59 @@ public class SearchPageActivity extends MasterPageActivity{
 	 */
 	private void getButtonViews(){
 		searchSubmit = (Button) findViewById(R.id.search_submit_btn);
-		carMark = (Button) findViewById(R.id.search_carMark);
-		carPrice = (Button) findViewById(R.id.search_carPrice);
-		carYear = (Button) findViewById(R.id.search_carYear);
-		carCategory = (Button) findViewById(R.id.search_carCategory);
-		carLocation = (Button) findViewById(R.id.search_carLocation);
-		carFuel = (Button) findViewById(R.id.search_carFuel);
-		carCustomsPassed = (Button) findViewById(R.id.search_carCustomsPassed);
-		carWheel = (Button) findViewById(R.id.search_carWheel);
-		carDays = (Button) findViewById(R.id.search_carDays);
-		carTransmission = (Button) findViewById(R.id.search_carTransmission);
-		carDriveWheels = (Button) findViewById(R.id.search_carDriveWheels);
-		carDoors = (Button) findViewById(R.id.search_carDoors);
+		carMarkBtn = (Button) findViewById(R.id.search_carMark_btn);
+		carPriceBtn = (Button) findViewById(R.id.search_carPrice_btn);
+		carYearBtn = (Button) findViewById(R.id.search_carYear_btn);
+		carCategoryBtn = (Button) findViewById(R.id.search_carCategory_btn);
+		carLocationBtn = (Button) findViewById(R.id.search_carLocation_btn);
+		carFuelBtn = (Button) findViewById(R.id.search_carFuel_btn);
+		carCustomsPassedBtn = (Button) findViewById(R.id.search_carCustomsPassed_btn);
+		carWheelBtn = (Button) findViewById(R.id.search_carWheel_btn);
+		carDaysBtn = (Button) findViewById(R.id.search_carDays_btn);
+		carTransmissionBtn = (Button) findViewById(R.id.search_carTransmission_btn);
+		carDriveWheelsBtn = (Button) findViewById(R.id.search_carDriveWheels_btn);
+		carDoorsBtn = (Button) findViewById(R.id.search_carDoors_btn);
 		
 		setButtonClickListeners();
 	}
 	
+	private void getFilterLayoutViews () {
+		carMark = (RelativeLayout) findViewById(R.id.search_carMark);
+		carPrice = (RelativeLayout) findViewById(R.id.search_carPrice);
+		carYear = (RelativeLayout) findViewById(R.id.search_carYear);
+		carCategory = (RelativeLayout) findViewById(R.id.search_carCategory);
+		carLocation = (RelativeLayout) findViewById(R.id.search_carLocation);
+		carFuel = (RelativeLayout) findViewById(R.id.search_carFuel);
+		carCustomsPassed = (RelativeLayout) findViewById(R.id.search_carCustomsPassed);
+		carWheel = (RelativeLayout) findViewById(R.id.search_carWheel);
+		carDays = (RelativeLayout) findViewById(R.id.search_carDays);
+		carTransmission = (RelativeLayout) findViewById(R.id.search_carTransmission);
+		carDriveWheels = (RelativeLayout) findViewById(R.id.search_carDriveWheels);
+		carDoors = (RelativeLayout) findViewById(R.id.search_carDoors);
+		
+		setFilterClickListeners();
+	}
 	
+	/**
+	 * Filtris Cancel Button-ebs yvelas erti onClickListener eqneba.
+	 * @author Jay
+	 *
+	 */
+	private class cancelBtnListener implements OnClickListener {
+		private int [] index;
+		
+		public cancelBtnListener (int [] index){
+			this.index = index;
+		}
+		
+		@Override
+		public void onClick(View v) {
+			for(int i=0; i<index.length; i++){
+				filteredData[index[i]] = null;
+			}
+			v.setVisibility(View.INVISIBLE);
+		}
+		
+	}
 
 }
