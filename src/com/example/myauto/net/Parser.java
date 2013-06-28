@@ -27,7 +27,6 @@ public class Parser {
 	private final String yearTag = "year";
 
 	public Parser() {
-		elements = new ArrayList<CarFacade>();
 		SAXParserFactory factory = SAXParserFactory.newInstance();
 		try {
 			saxParser = factory.newSAXParser();
@@ -120,7 +119,7 @@ public class Parser {
 	
 
 	public ArrayList<CarFacade> parse(String srcToParse) {
-		elements.clear();
+		elements = new ArrayList<CarFacade>();
 		try {
 			saxParser.parse(new InputSource(new StringReader(srcToParse)), handler);
 		} catch (Exception e) {

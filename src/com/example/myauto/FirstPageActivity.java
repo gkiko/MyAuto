@@ -90,10 +90,6 @@ public class FirstPageActivity extends MasterPageActivity implements CallbackLis
 		lf.execute((HashMap<String, String>) null);
 	}
 	
-	
-	
-	
-
 	@Override
 	public void onFinished(MyChangeEvent evt) {
 		lf.removeMyChangeListener(this);

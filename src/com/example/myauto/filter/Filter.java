@@ -7,10 +7,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ListView;
 
+import com.example.myauto.FirstPageActivity;
 import com.example.myauto.MainActivity;
-import com.example.myauto.data.DataContainer;
 import com.example.myauto.event.MyChangeEvent;
 import com.example.myauto.fetcher.ListFetcher;
 import com.example.myauto.item.CarFacade;
@@ -27,7 +26,6 @@ public class Filter implements CallbackListener{
 	private String [] filter;
 	private ListFetcher lf;
 	private ArrayList<CarFacade> carList;
-	public static final String bundleKey = "myKey";
 	
 	private static final String [] defaultValues = new String[] {"72", "0", "Any", "Any",
 		"", "", "0", "0", "", "", "0", "", "0", "0", ""};
@@ -95,7 +93,7 @@ public class Filter implements CallbackListener{
 		carList = (ArrayList<CarFacade>)evt.source;
 		Intent carListActivity = new Intent (a, MainActivity.class);
 		Bundle extras = new Bundle();
-		extras.putSerializable(bundleKey, carList);
+		extras.putSerializable(FirstPageActivity.bundleKey, carList);
 		carListActivity.putExtras(extras);
 		a.startActivity(carListActivity);
 	}
