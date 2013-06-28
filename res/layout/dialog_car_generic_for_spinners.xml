@@ -12,10 +12,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/search_dialog_year_from" />
+            android:text="@string/search_dialog_generic_spinners_from" />
 
         <Spinner
-            android:id="@+id/dialog_year_from"
+            android:id="@+id/dialog_generic_spinners_from"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
@@ -28,11 +28,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/search_dialog_year_to"
+            android:text="@string/search_dialog_generic_spinners_to"
             android:layout_marginRight="16dip" />
 
         <Spinner
-            android:id="@+id/dialog_year_to"
+            android:id="@+id/dialog_generic_spinners_to"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
@@ -43,18 +43,18 @@
         android:orientation="horizontal" >
 
         <Button
-            android:id="@+id/dialog_year_btn_cancel"
+            android:id="@+id/dialog_generic_spinners_btn_cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/search_dialog_year_cancel" />
+            android:text="@string/search_dialog_btn_cancel" />
 
         <Button
-            android:id="@+id/dialog_year_btn_ok"
+            android:id="@+id/dialog_generic_spinners_btn_ok"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/search_dialog_year_ok" />
+            android:text="@string/search_dialog_btn_ok" />
     </LinearLayout>
 
 </LinearLayout>

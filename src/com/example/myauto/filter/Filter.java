@@ -20,7 +20,8 @@ public class Filter implements CallbackListener{
 			"man_model_id_group", "year_from", "year_to", "price_from",
 			"price_to", "gear_type_id", "fuel_type_id", "customs_passed",
 			"right_wheel", "category_id", "location_id_1", "door_type_id", 
-			"drive_type_id", "last_days"};
+			"drive_type_id", "last_days", "volume_from", "volume_to", 
+			"abs", "central_lock", "esd" };
 	private Context c;
 	private Activity a;
 	private String [] filter;
@@ -28,7 +29,8 @@ public class Filter implements CallbackListener{
 	private ArrayList<CarFacade> carList;
 	
 	private static final String [] defaultValues = new String[] {"72", "0", "Any", "Any",
-		"", "", "0", "0", "", "", "0", "", "0", "0", ""};
+		"", "", "0", "0", "", "", "0", "", "0", "0", "", "", "", 
+		"0", "0", "0"};
 
 	public final String MANUFACTURER_DEFAULT = "72";
 	public final String MODEL_DEFAULT = "0";
