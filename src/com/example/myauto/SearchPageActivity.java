@@ -128,6 +128,33 @@ public class SearchPageActivity extends MasterPageActivity {
 
 		carEsdBtn.setOnClickListener(new cancelBtnListener(
 				giveIndex(19, 100, 1)));
+		
+		carBoardCompBtn.setOnClickListener(new cancelBtnListener(
+				giveIndex(20, 100, 1)));
+		
+		carLeatherIntBtn.setOnClickListener(new cancelBtnListener(
+				giveIndex(21, 100, 1)));
+		
+		carElWindowsBtn.setOnClickListener(new cancelBtnListener(
+				giveIndex(22, 100, 1)));
+		
+		carAirbagsBtn.setOnClickListener(new cancelBtnListener(
+				giveIndex(23, 100, 1)));
+		
+		carParkingControlBtn.setOnClickListener(new cancelBtnListener(
+				giveIndex(24, 100, 1)));
+		
+		carAlumDisksBtn.setOnClickListener(new cancelBtnListener(
+				giveIndex(25, 100, 1)));
+		
+		carHatchBtn.setOnClickListener(new cancelBtnListener(
+				giveIndex(26, 100, 1)));
+		
+		carChairWarmingBtn.setOnClickListener(new cancelBtnListener(
+				giveIndex(27, 100, 1)));
+		
+		carNavigSystemBtn.setOnClickListener(new cancelBtnListener(
+				giveIndex(28, 100, 1)));
 	}
 
 	/*
