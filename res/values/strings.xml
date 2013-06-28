@@ -63,6 +63,8 @@
     <string name="search_carDoors">Doors</string>
     <string name="search_carEngine">Engine</string>
     <string name="search_carAbs">ABS</string>
+    <string name="search_carCentralLock">Central Lock</string>
+    <string name="search_carEsd">ESD</string>
 
     <!-- SearchPageActivity Dialog Strings -->
     <string name="search_dialog_btn_cancel">Cancel</string>
