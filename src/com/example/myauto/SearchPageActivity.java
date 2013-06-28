@@ -269,62 +269,74 @@ public class SearchPageActivity extends MasterPageActivity {
 		});
 
 		carBoardComp.setOnClickListener(new OnClickListener() {
-
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				filteredData[20] = "1";
 				carBoardCompBtn.setVisibility(View.VISIBLE);
 			}
 		});
 
 		carLeatherInt.setOnClickListener(new OnClickListener() {
-
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				filteredData[21] = "1";
 				carLeatherIntBtn.setVisibility(View.VISIBLE);
 			}
 		});
 
 		carElWindows.setOnClickListener(new OnClickListener() {
-
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				filteredData[22] = "1";
 				carElWindowsBtn.setVisibility(View.VISIBLE);
 			}
 		});
 
 		carAirbags.setOnClickListener(new OnClickListener() {
-
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				filteredData[23] = "1";
 				carAirbagsBtn.setVisibility(View.VISIBLE);
 			}
 		});
 
 		carParkingControl.setOnClickListener(new OnClickListener() {
-
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				filteredData[24] = "1";
 				carParkingControlBtn.setVisibility(View.VISIBLE);
 			}
 		});
 
 		carAlumDisks.setOnClickListener(new OnClickListener() {
-
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				filteredData[25] = "1";
 				carAlumDisksBtn.setVisibility(View.VISIBLE);
+			}
+		});
+
+		carHatch.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				filteredData[26] = "1";
+				carHatchBtn.setVisibility(View.VISIBLE);
+			}
+		});
+
+		carChairWarming.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				filteredData[27] = "1";
+				carChairWarmingBtn.setVisibility(View.VISIBLE);
+			}
+		});
+
+		carNavigSystem.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				filteredData[28] = "1";
+				carNavigSystemBtn.setVisibility(View.VISIBLE);
 			}
 		});
 	}
