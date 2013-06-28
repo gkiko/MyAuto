@@ -65,6 +65,15 @@
     <string name="search_carAbs">ABS</string>
     <string name="search_carCentralLock">Central Lock</string>
     <string name="search_carEsd">ESD</string>
+    <string name="search_carBoardComp">Board Computer</string>
+    <string name="search_carLeatherInt">Leather Interior</string>
+    <string name="search_carElWindows">Electronic Windows</string>
+    <string name="search_carAirbags">Airbags</string>
+    <string name="search_carParkingControl">Parking Control</string>
+    <string name="search_carAlumDisks">Aluminium Disks</string>
+    <string name="search_carHatch">Hatch</string>
+    <string name="search_carChairWarming">Chair Warming</string>
+    <string name="search_carNavigSystem">Navigation System</string>
 
     <!-- SearchPageActivity Dialog Strings -->
     <string name="search_dialog_btn_cancel">Cancel</string>
