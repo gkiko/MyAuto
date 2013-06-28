@@ -307,6 +307,26 @@ public class SearchPageActivity extends MasterPageActivity {
 				carAirbagsBtn.setVisibility(View.VISIBLE);
 			}
 		});
+
+		carParkingControl.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				filteredData[24] = "1";
+				carParkingControlBtn.setVisibility(View.VISIBLE);
+			}
+		});
+
+		carAlumDisks.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				filteredData[25] = "1";
+				carAlumDisksBtn.setVisibility(View.VISIBLE);
+			}
+		});
 	}
 
 	// Under Construction
