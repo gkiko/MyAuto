@@ -41,7 +41,7 @@ public class SearchPageActivity extends MasterPageActivity {
 	private static final int DIALOG_CUSTOMS_AND_WHEEL_BTN_NO_ID = 2;
 	private static final int STARTING_YEAR = 1960;
 	private static final int MARK_FILTER = 1001;
-	private static final int NUMBER_OF_FILTER_BUTTONS = 20;
+	private static final int NUMBER_OF_FILTER_BUTTONS = 29;
 	private RelativeLayout carMark, carPrice, carYear, carCategory,
 			carLocation, carTransmission, carFuel, carWheel, carDays, carDoors,
 			carDriveWheels, carCustomsPassed, carEngine, carAbs,
