@@ -4,26 +4,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <LinearLayout
-        android:id="@+id/search_button"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/button_selector"
-        android:gravity="center" >
-
-        <Button
-            android:id="@+id/search_submit_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Search" />
-    </LinearLayout>
-
     <ScrollView
+        android:id="@+id/search_page_scroll"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/search_button" >
+        android:layout_height="wrap_content" >
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -389,7 +373,7 @@
                     android:textColor="@color/Gray"
                     android:visibility="invisible" />
             </RelativeLayout>
-
+<!--  
             <RelativeLayout
                 android:id="@+id/search_carEngine"
                 android:layout_width="fill_parent"
@@ -509,7 +493,7 @@
                     android:textColor="@color/Gray"
                     android:visibility="invisible" />
             </RelativeLayout>
-            
+
             <RelativeLayout
                 android:id="@+id/search_carBoardComp"
                 android:layout_width="fill_parent"
@@ -539,7 +523,7 @@
                     android:textColor="@color/Gray"
                     android:visibility="invisible" />
             </RelativeLayout>
-            
+
             <RelativeLayout
                 android:id="@+id/search_carLeatherInt"
                 android:layout_width="fill_parent"
@@ -569,7 +553,7 @@
                     android:textColor="@color/Gray"
                     android:visibility="invisible" />
             </RelativeLayout>
-            
+
             <RelativeLayout
                 android:id="@+id/search_carElWindows"
                 android:layout_width="fill_parent"
@@ -599,7 +583,7 @@
                     android:textColor="@color/Gray"
                     android:visibility="invisible" />
             </RelativeLayout>
-            
+
             <RelativeLayout
                 android:id="@+id/search_carAirbags"
                 android:layout_width="fill_parent"
@@ -629,7 +613,7 @@
                     android:textColor="@color/Gray"
                     android:visibility="invisible" />
             </RelativeLayout>
-            
+
             <RelativeLayout
                 android:id="@+id/search_carParkingControl"
                 android:layout_width="fill_parent"
@@ -659,7 +643,7 @@
                     android:textColor="@color/Gray"
                     android:visibility="invisible" />
             </RelativeLayout>
-            
+
             <RelativeLayout
                 android:id="@+id/search_carAlumDisks"
                 android:layout_width="fill_parent"
@@ -689,7 +673,7 @@
                     android:textColor="@color/Gray"
                     android:visibility="invisible" />
             </RelativeLayout>
-            
+
             <RelativeLayout
                 android:id="@+id/search_carHatch"
                 android:layout_width="fill_parent"
@@ -719,7 +703,7 @@
                     android:textColor="@color/Gray"
                     android:visibility="invisible" />
             </RelativeLayout>
-            
+
             <RelativeLayout
                 android:id="@+id/search_carChairWarming"
                 android:layout_width="fill_parent"
@@ -749,7 +733,7 @@
                     android:textColor="@color/Gray"
                     android:visibility="invisible" />
             </RelativeLayout>
-            
+
             <RelativeLayout
                 android:id="@+id/search_carNavigSystem"
                 android:layout_width="fill_parent"
@@ -779,7 +763,26 @@
                     android:textColor="@color/Gray"
                     android:visibility="invisible" />
             </RelativeLayout>
+            
+            -->
         </LinearLayout>
     </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/search_button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/search_page_scroll"
+        android:background="@drawable/button_selector"
+        android:gravity="center" >
+
+        <Button
+            android:id="@+id/search_submit_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Search" />
+    </LinearLayout>
 
 </RelativeLayout>
