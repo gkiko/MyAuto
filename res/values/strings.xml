@@ -88,7 +88,7 @@
     <string name="search_dialog_year_ok">OK</string>
     <string name="search_dialog_customs_and_wheel_yes">Yes</string>
     <string name="search_dialog_customs_and_wheel_no">No</string>
-    
+
     <!-- Login, Registration And Menu Strings -->
     <string name="menu_login">Login</string>
     <string name="username_login">Username:</string>
@@ -98,5 +98,6 @@
     <string name="menu_logout">Logout</string>
     <string name="menu_register">Register</string>
     <string name="menu_add_car">Add Car</string>
+    <string name="title_activity_detail">DetailActivity</string>
 
 </resources>
