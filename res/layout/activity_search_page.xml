@@ -4,10 +4,26 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <ScrollView
-        android:id="@+id/search_page_scroll"
+    <LinearLayout
+        android:id="@+id/search_page_button"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/button_selector"
+        android:gravity="center" >
+
+        <Button
+            android:id="@+id/search_submit_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Search" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/search_page_button" >
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -765,22 +781,5 @@
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>
-
-    <LinearLayout
-        android:id="@+id/search_button"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_below="@id/search_page_scroll"
-        android:background="@drawable/button_selector"
-        android:gravity="center" >
-
-        <Button
-            android:id="@+id/search_submit_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Search" />
-    </LinearLayout>
 
 </RelativeLayout>
