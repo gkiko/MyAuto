@@ -373,7 +373,7 @@
                     android:textColor="@color/Gray"
                     android:visibility="invisible" />
             </RelativeLayout>
-<!--  
+
             <RelativeLayout
                 android:id="@+id/search_carEngine"
                 android:layout_width="fill_parent"
@@ -763,8 +763,6 @@
                     android:textColor="@color/Gray"
                     android:visibility="invisible" />
             </RelativeLayout>
-            
-            -->
         </LinearLayout>
     </ScrollView>
 
