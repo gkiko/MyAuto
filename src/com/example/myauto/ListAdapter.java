@@ -47,6 +47,7 @@ public class ListAdapter extends BaseAdapter{
 			cont.img = (ImageView) v.findViewById(R.id.image);
 			cont.name = (TextView) v.findViewById(R.id.product_name);
 			cont.year = (TextView) v.findViewById(R.id.product_description);
+			cont.customs = (TextView) v.findViewById(R.id.customs);
 			cont.price = (TextView) v.findViewById(R.id.product_price);
 			v.setTag(cont);
 		} else {
@@ -62,6 +63,7 @@ public class ListAdapter extends BaseAdapter{
 		}
 		(cont.name).setText(cr.getValueFromProperty(CarItem.MAKE) + " " + cr.getValueFromProperty(CarItem.MODEL));
 		(cont.year).setText(cr.getValueFromProperty(CarItem.YEAR));
+		(cont.customs).setText(cr.getValueFromProperty(CarItem.CUSTOMS));
 		(cont.price).setText(cr.getValueFromProperty(CarItem.PRICE));
 		return v;
 	}
@@ -71,6 +73,7 @@ public class ListAdapter extends BaseAdapter{
 		ImageView img;
 		TextView name;
 		TextView year;
+		TextView customs;
 		TextView price;
 	}
 	

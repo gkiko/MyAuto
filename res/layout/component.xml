@@ -59,6 +59,18 @@
                 android:textIsSelectable="false"
                 android:textSize="16sp"
                 android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/customs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/product_price"
+                android:layout_marginLeft="2dp"
+                android:textColor="@color/Black"
+                android:textIsSelectable="false"
+                android:textSize="12sp"
+                android:textStyle="italic" />
         </RelativeLayout>
     </LinearLayout>
 
