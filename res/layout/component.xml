@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginLeft="2dp"
-            android:layout_weight="6"
+            android:layout_weight="3"
             android:gravity="center_vertical"
             android:text="@string/hello_world"
             android:textColor="@color/Black"
@@ -41,71 +41,65 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
                 android:layout_marginLeft="2dp"
+                android:singleLine="true"
                 android:textColor="@color/Black"
                 android:textIsSelectable="false"
-                android:singleLine="true"
                 android:textSize="12sp"
                 android:textStyle="italic" />
-            
+
             <TextView
                 android:id="@+id/wheel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@id/year"
                 android:layout_marginLeft="2dp"
+                android:layout_toRightOf="@id/year"
+                android:singleLine="true"
                 android:textColor="@color/Black"
                 android:textIsSelectable="false"
-                android:singleLine="true"
-                android:textSize="12sp"/>
-            
+                android:textSize="12sp" />
+
             <TextView
                 android:id="@+id/engine"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_below="@id/year"
                 android:layout_alignParentLeft="true"
+                android:layout_below="@id/year"
                 android:layout_marginLeft="2dp"
+                android:singleLine="true"
                 android:textColor="@color/Black"
                 android:textIsSelectable="false"
-                android:singleLine="true"
-                android:textSize="12sp"/>
-            
+                android:textSize="12sp" />
+
             <TextView
                 android:id="@+id/fuel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
                 android:layout_below="@id/year"
-                android:layout_toRightOf="@id/engine"
                 android:layout_marginLeft="2dp"
+                android:layout_toRightOf="@id/engine"
+                android:singleLine="true"
                 android:textColor="@color/Black"
                 android:textIsSelectable="false"
-                android:singleLine="true"
-                android:textSize="12sp"/>
-            
+                android:textSize="12sp" />
+
             <TextView
                 android:id="@+id/location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
                 android:layout_below="@id/year"
-                android:layout_toRightOf="@id/fuel"
                 android:layout_marginLeft="2dp"
+                android:layout_toRightOf="@id/fuel"
+                android:singleLine="true"
                 android:textColor="@color/Black"
                 android:textIsSelectable="false"
-                android:singleLine="true"
-                android:textSize="12sp"/>
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/product_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
                 android:layout_marginRight="2dp"
                 android:textColor="@color/Red"
                 android:textIsSelectable="false"
@@ -116,13 +110,12 @@
                 android:id="@+id/customs"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
-                android:layout_below="@id/product_price"
+                android:layout_below="@id/location"
                 android:layout_marginLeft="2dp"
                 android:textColor="@color/Black"
                 android:textIsSelectable="false"
-                android:textSize="12sp"/>
+                android:textSize="12sp" />
         </RelativeLayout>
     </LinearLayout>
 
