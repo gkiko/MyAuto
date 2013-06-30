@@ -2,9 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/Orange"
+    android:background="@drawable/bg_mdpi"
     android:orientation="vertical" >
 
+    <!-- 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -14,42 +15,50 @@
         android:textColor="@color/White"
         android:textSize="60dip"
         android:textStyle="bold" />
-
+ 	-->
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dip"
-        android:layout_marginTop="100dip"
+        android:layout_marginLeft="15dip"
+        android:layout_marginTop="200dip"
         android:orientation="horizontal" >
 
         <Button
             android:id="@+id/main_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/Orange"
-            android:text="Main"
-            android:textColor="@color/White"
-            android:textStyle="bold" />
+            android:layout_width="90dip"
+            android:layout_height="72dip"
+            android:background="@drawable/car_button_ldpi"
+             />
 
         <Button
             android:id="@+id/search_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="90dip"
+            android:layout_height="72dip"
             android:layout_marginLeft="10dip"
+            android:background="@drawable/magnify_ldpi" />
+            
+            <!-- 
             android:background="@color/Orange"
             android:text="Search"
             android:textColor="@color/White"
             android:textStyle="bold" />
+            
+             -->
 
         <Button
             android:id="@+id/catalog_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="90dip"
+            android:layout_height="72dip"
             android:layout_marginLeft="10dip"
+            android:background="@drawable/list_ldpi" />
+            
+            <!-- 
             android:background="@color/Orange"
             android:text="Catalog"
             android:textColor="@color/White"
             android:textStyle="bold" />
+            
+             -->
     </LinearLayout>
 
 </LinearLayout>
