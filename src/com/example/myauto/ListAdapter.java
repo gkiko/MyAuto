@@ -46,7 +46,11 @@ public class ListAdapter extends BaseAdapter{
 			cont = new Container();
 			cont.img = (ImageView) v.findViewById(R.id.image);
 			cont.name = (TextView) v.findViewById(R.id.product_name);
-			cont.year = (TextView) v.findViewById(R.id.product_description);
+			cont.year = (TextView) v.findViewById(R.id.year);
+			cont.wheel = (TextView) v.findViewById(R.id.wheel);
+			cont.engine = (TextView) v.findViewById(R.id.engine);
+			cont.fuel = (TextView) v.findViewById(R.id.fuel);
+			cont.location = (TextView) v.findViewById(R.id.location);
 			cont.customs = (TextView) v.findViewById(R.id.customs);
 			cont.price = (TextView) v.findViewById(R.id.product_price);
 			v.setTag(cont);
@@ -63,6 +67,10 @@ public class ListAdapter extends BaseAdapter{
 		}
 		(cont.name).setText(cr.getValueFromProperty(CarItem.MAKE) + " " + cr.getValueFromProperty(CarItem.MODEL));
 		(cont.year).setText(cr.getValueFromProperty(CarItem.YEAR));
+		(cont.wheel).setText(cr.getValueFromProperty(CarItem.WHEEL));
+		(cont.engine).setText(cr.getValueFromProperty(CarItem.ENGINE));
+		(cont.fuel).setText(cr.getValueFromProperty(CarItem.FUEL));
+		(cont.location).setText(cr.getValueFromProperty(CarItem.LOCATION));
 		(cont.customs).setText(cr.getValueFromProperty(CarItem.CUSTOMS));
 		(cont.price).setText(cr.getValueFromProperty(CarItem.PRICE));
 		return v;
@@ -73,6 +81,10 @@ public class ListAdapter extends BaseAdapter{
 		ImageView img;
 		TextView name;
 		TextView year;
+		TextView wheel;
+		TextView engine;
+		TextView fuel;
+		TextView location;
 		TextView customs;
 		TextView price;
 	}

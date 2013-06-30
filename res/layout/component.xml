@@ -37,7 +37,7 @@
             android:layout_weight="1" >
 
             <TextView
-                android:id="@+id/product_description"
+                android:id="@+id/year"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -45,8 +45,57 @@
                 android:layout_marginLeft="2dp"
                 android:textColor="@color/Black"
                 android:textIsSelectable="false"
+                android:singleLine="true"
                 android:textSize="12sp"
                 android:textStyle="italic" />
+            
+            <TextView
+                android:id="@+id/wheel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/year"
+                android:layout_marginLeft="2dp"
+                android:textColor="@color/Black"
+                android:textIsSelectable="false"
+                android:singleLine="true"
+                android:textSize="12sp"/>
+            
+            <TextView
+                android:id="@+id/engine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/wheel"
+                android:layout_marginLeft="2dp"
+                android:textColor="@color/Black"
+                android:textIsSelectable="false"
+                android:singleLine="true"
+                android:textSize="12sp"/>
+            
+            <TextView
+                android:id="@+id/fuel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/engine"
+                android:layout_marginLeft="2dp"
+                android:textColor="@color/Black"
+                android:textIsSelectable="false"
+                android:singleLine="true"
+                android:textSize="12sp"/>
+            
+            <TextView
+                android:id="@+id/location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/fuel"
+                android:layout_marginLeft="2dp"
+                android:textColor="@color/Black"
+                android:textIsSelectable="false"
+                android:singleLine="true"
+                android:textSize="12sp"/>
 
             <TextView
                 android:id="@+id/product_price"
@@ -69,8 +118,7 @@
                 android:layout_marginLeft="2dp"
                 android:textColor="@color/Black"
                 android:textIsSelectable="false"
-                android:textSize="12sp"
-                android:textStyle="italic" />
+                android:textSize="12sp"/>
         </RelativeLayout>
     </LinearLayout>
 
