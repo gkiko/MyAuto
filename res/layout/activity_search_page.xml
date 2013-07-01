@@ -58,7 +58,9 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:background="@drawable/x_grey_small"
+                    android:background="@drawable/cancel_filter_button_bg"
+                    android:text="@string/search_cancel_btn_txt"
+                    android:textColor="@color/Gray"
                     android:visibility="invisible" />
             </RelativeLayout>
 
