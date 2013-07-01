@@ -9,7 +9,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/White"
+        android:background="@drawable/button_selector"
         android:gravity="center" >
 
         <Button
@@ -17,8 +17,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:background="@drawable/cancel_filter_button_bg"
-            android:text="Search"
+            android:background="@drawable/button_selector"
+            android:text="@string/search_search_btn"
             android:textColor="#f26222"
             android:textStyle="bold" />
     </LinearLayout>
@@ -54,12 +54,11 @@
 
                 <Button
                     android:id="@+id/search_carMark_btn"
-                    android:layout_width="wrap_content"
+                    android:layout_width="20dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:background="@drawable/cancel_filter_button_bg"
-                    android:text="@string/search_cancel_btn_txt"
-                    android:textColor="@color/Gray"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/x_grey_small"
                     android:visibility="invisible" />
             </RelativeLayout>
 
@@ -378,7 +377,7 @@
                     android:layout_centerVertical="true"
                     android:gravity="center_vertical"
                     android:text="@string/search_carDoors"
-                    android:textColor="@color/Black"
+                    android:textColor="#f26222"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -408,7 +407,7 @@
                     android:layout_centerVertical="true"
                     android:gravity="center_vertical"
                     android:text="@string/search_carEngine"
-                    android:textColor="@color/Black"
+                    android:textColor="#f26222"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -438,7 +437,7 @@
                     android:layout_centerVertical="true"
                     android:gravity="center_vertical"
                     android:text="@string/search_carAbs"
-                    android:textColor="@color/Black"
+                    android:textColor="#f26222"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -468,7 +467,7 @@
                     android:layout_centerVertical="true"
                     android:gravity="center_vertical"
                     android:text="@string/search_carCentralLock"
-                    android:textColor="@color/Black"
+                    android:textColor="#f26222"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -498,7 +497,7 @@
                     android:layout_centerVertical="true"
                     android:gravity="center_vertical"
                     android:text="@string/search_carEsd"
-                    android:textColor="@color/Black"
+                    android:textColor="#f26222"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -528,7 +527,7 @@
                     android:layout_centerVertical="true"
                     android:gravity="center_vertical"
                     android:text="@string/search_carBoardComp"
-                    android:textColor="@color/Black"
+                    android:textColor="#f26222"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -558,7 +557,7 @@
                     android:layout_centerVertical="true"
                     android:gravity="center_vertical"
                     android:text="@string/search_carLeatherInt"
-                    android:textColor="@color/Black"
+                    android:textColor="#f26222"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -588,7 +587,7 @@
                     android:layout_centerVertical="true"
                     android:gravity="center_vertical"
                     android:text="@string/search_carElWindows"
-                    android:textColor="@color/Black"
+                    android:textColor="#f26222"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -618,7 +617,7 @@
                     android:layout_centerVertical="true"
                     android:gravity="center_vertical"
                     android:text="@string/search_carAirbags"
-                    android:textColor="@color/Black"
+                    android:textColor="#f26222"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -648,7 +647,7 @@
                     android:layout_centerVertical="true"
                     android:gravity="center_vertical"
                     android:text="@string/search_carParkingControl"
-                    android:textColor="@color/Black"
+                    android:textColor="#f26222"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -678,7 +677,7 @@
                     android:layout_centerVertical="true"
                     android:gravity="center_vertical"
                     android:text="@string/search_carAlumDisks"
-                    android:textColor="@color/Black"
+                    android:textColor="#f26222"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -708,7 +707,7 @@
                     android:layout_centerVertical="true"
                     android:gravity="center_vertical"
                     android:text="@string/search_carHatch"
-                    android:textColor="@color/Black"
+                    android:textColor="#f26222"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -738,7 +737,7 @@
                     android:layout_centerVertical="true"
                     android:gravity="center_vertical"
                     android:text="@string/search_carChairWarming"
-                    android:textColor="@color/Black"
+                    android:textColor="#f26222"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -768,7 +767,7 @@
                     android:layout_centerVertical="true"
                     android:gravity="center_vertical"
                     android:text="@string/search_carNavigSystem"
-                    android:textColor="@color/Black"
+                    android:textColor="#f26222"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
