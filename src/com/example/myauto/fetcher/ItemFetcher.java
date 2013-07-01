@@ -14,14 +14,24 @@ import com.example.myauto.net.TransportManager;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.Message;
+import android.widget.Toast;
 
 public class ItemFetcher extends AsyncTask<HashMap<String, String>, String, Item>{
 	private CopyOnWriteArrayList<CallbackListener> listeners;
 	private ProgressDialog mDialog;
+	private Handler handler;
 	
-	public ItemFetcher(Activity activity){
+	public ItemFetcher(final Activity activity){
 		this.listeners = new CopyOnWriteArrayList<CallbackListener>();
 		this.mDialog = new ProgressDialog(activity);
+		
+		handler = new Handler(){
+			public void handleMessage(Message msg) {
+				Toast.makeText(activity.getApplicationContext(), "No Internet connection", Toast.LENGTH_LONG).show();
+			}
+		};
 	}
 	
 	public void addMyChangeListener(CallbackListener l) {
@@ -45,9 +55,8 @@ public class ItemFetcher extends AsyncTask<HashMap<String, String>, String, Item
 		try {
 			item = TransportManager.downloadItem(params[0]);
 		} catch (ClientProtocolException e) {
-			e.printStackTrace();
 		} catch (IOException e) {
-			e.printStackTrace();
+			handler.sendEmptyMessage(0);
 		}
 		
 		return item;
@@ -55,7 +64,8 @@ public class ItemFetcher extends AsyncTask<HashMap<String, String>, String, Item
 
 	@Override
 	protected void onPostExecute(Item result) {
-		fireListDownloadEvent(result);
+		if(result!=null)
+			fireListDownloadEvent(result);
 		mDialog.dismiss();
 	}
 	

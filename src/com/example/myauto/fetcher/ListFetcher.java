@@ -7,6 +7,9 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.Message;
+import android.widget.Toast;
 
 import com.example.myauto.event.MyChangeEvent;
 import com.example.myauto.item.CarFacade;
@@ -16,15 +19,21 @@ import com.example.myauto.net.TransportManager;
 public class ListFetcher extends AsyncTask<HashMap<String, String>, String, ArrayList<CarFacade>>{
 	private CopyOnWriteArrayList<CallbackListener> listeners;
 	private ProgressDialog mDialog;
+	private Handler handler;
 
 	/**
 	 * Initialize asynctask to fetch <CarFacade>List from the web
 	 * @param activity pointer to activity variable to display loading dialog
 	 * @param params used to filter data in HTTP request. null if no filter is needed 
 	 */
-	public ListFetcher(Activity activity){
+	public ListFetcher(final Activity activity){
 		listeners = new CopyOnWriteArrayList<CallbackListener>();
 		mDialog = new ProgressDialog(activity);
+		handler = new Handler(){
+			public void handleMessage(Message msg) {
+				Toast.makeText(activity.getApplicationContext(), "No Internet connection", Toast.LENGTH_LONG).show();
+			}
+		};
 	}
 	
 	public void addMyChangeListener(CallbackListener l) {
@@ -48,14 +57,15 @@ public class ListFetcher extends AsyncTask<HashMap<String, String>, String, Arra
 		try {
 			carList = TransportManager.downloadCarList(params[0]);
 		} catch (Exception e) {
-			e.printStackTrace();
+			handler.sendEmptyMessage(0);
 		}
 		return carList;
 	}
 	
 	@Override
 	protected void onPostExecute(ArrayList<CarFacade> result) {
-		fireListDownloadEvent(result);
+		if(result!=null)
+			fireListDownloadEvent(result);
 		mDialog.dismiss();
 	}
 

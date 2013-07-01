@@ -28,7 +28,7 @@ public class FirstPageActivity extends MasterPageActivity implements CallbackLis
 		setContentView(R.layout.firstpage);
 		DBManager.init(getApplicationContext());
 		
-		lf = new ListFetcher(this);
+		
 		getButtons();
 		setButtonClickListeners();
 	}
@@ -47,6 +47,8 @@ public class FirstPageActivity extends MasterPageActivity implements CallbackLis
 		mainButton.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) {
+				lf = new ListFetcher(FirstPageActivity.this);
+				
 				ArrayList<CarFacade> ls = null;
 				if(listAlreadyDownloaded())
 					ls = DataContainer.getNewList();
