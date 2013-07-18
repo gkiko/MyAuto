@@ -43,7 +43,8 @@
         <activity
             android:name="com.example.myauto.filter.SearchActivity"
             android:label="@string/title_activity_search"
-            android:parentActivityName="com.example.myauto.FirstPageActivity" >
+            android:parentActivityName="com.example.myauto.FirstPageActivity"
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.myauto.FirstPageActivity" />
@@ -54,9 +55,9 @@
         </activity>
         <activity android:name="com.example.myauto.CarPageActivity" >
         </activity>
-        <activity android:name="com.example.myauto.filter.CarMarkFilterPage" >
+        <activity android:name="com.example.myauto.filter.CarMarkFiltPage" >
         </activity>
-        <activity android:name="com.example.myauto.filter.CarModelFilterPage" >
+        <activity android:name="com.example.myauto.filter.CarModelFiltPage" >
         </activity>
         <activity
             android:name="com.example.myauto.MasterPageActivity"

@@ -1,53 +1,36 @@
 package com.example.myauto.filter;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import com.example.myauto.R;
+import com.example.myauto.SearchPageActivity;
 import com.example.myauto.database.DBManager;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 
-public class CarModelFilterPage extends Activity{
-	
+public class CarMarkFiltPage extends Activity {
+//	private static final int MODEL_FILTER = 1002;
 	private ListView list;
 	private Adapter adapter;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		setContentView(R.layout.activity_car_mark_filter);
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_car_model_filter);
-		
-		Bundle myBundle = getIntent().getExtras();
-		String [] mark = myBundle.getStringArray("Manufacturer");
-		
-		((TextView) findViewById(R.id.markName)).setText(mark[1]);
-		
-		List<String[]> ls = new ArrayList<String[]>();
-		Cursor cursor = DBManager.filterModelsByManufacturersRaw(mark[0]);
-		if (cursor.moveToFirst()) {
-			do {
-				String [] model = new String [3];
-				model[0] = cursor.getString(0);
-				model[1] = cursor.getString(1);
-				model[2] = cursor.getString(2);
-				ls.add(model);
-			} while (cursor.moveToNext());
-		}
-		
-		
-		list = (ListView) findViewById(R.id.model_listView);
+	
+		ArrayList <String[]> ls = (ArrayList<String[]>) DBManager.getManufacturers();
+
+		list = (ListView) findViewById(R.id.mark_listView);
 		adapter = new Adapter(this, ls);
 		list.setAdapter(adapter);
 		
@@ -55,26 +38,41 @@ public class CarModelFilterPage extends Activity{
 			@Override
 			public void onItemClick(AdapterView<?> av, View v, int position,
 					long id) {
-				String [] manAndModel = new String [2];
-				manAndModel[0] = (String) adapter.getManID(position);
-				manAndModel[1] = (String) adapter.getModelID(position);
-				Intent backToMark = new Intent(CarModelFilterPage.this, CarMarkFilterPage.class);
-				backToMark.putExtra("ManAndModel", manAndModel);
-				setResult(RESULT_OK, backToMark);
+				
+				String [] manufacturer = (String []) adapter.getItem(position);
+				Intent backToSearch = new Intent(CarMarkFiltPage.this, SearchPageActivity.class);
+				backToSearch.putExtra("Manufacturer", manufacturer);
+				setResult(RESULT_OK, backToSearch);
 				finish();
-			}	
+			}
 		});
 	}
+/*	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		
+		switch(requestCode){
+		case (MODEL_FILTER):
+			if(resultCode == Activity.RESULT_OK){
+				String [] manAndModel = (String[]) data.getSerializableExtra("ManAndModel");
+				Intent backToSearch = new Intent (CarMarkFiltPage.this, SearchPageActivity.class);
+				backToSearch.putExtra("ManAndModel", manAndModel);
+				setResult(RESULT_OK, backToSearch);
+				finish();
+			}
+		}
+	}
 	
-	
+*/	
 	private class Adapter extends BaseAdapter {
 
 		private ArrayList <String[]> array;
 		private Context ctx;
 		
-		public Adapter(Context c, List<String[]> ls){
+		public Adapter(Context c, ArrayList<String[]> ls){
 			this.ctx = c;
-			this.array = (ArrayList<String[]>) ls;
+			this.array = ls;
 		}
 		
 		@Override
@@ -87,16 +85,12 @@ public class CarModelFilterPage extends Activity{
 			return array.get(position);
 		}
 		
-		public String getManID(int position) {
-			return array.get(position)[1];
-		}
-		
-		public String getModelID(int position) {
+		public String getManID(int position){
 			return array.get(position)[0];
 		}
 		
-		public String getModelName(int position) {
-			return array.get(position)[2];
+		public String getManName(int position){
+			return array.get(position)[1];
 		}
 
 		@Override
@@ -114,7 +108,7 @@ public class CarModelFilterPage extends Activity{
 				newView = convertView;
 			}
 			
-			String st = (String) this.getModelName(position);
+			String st = (String) this.getManName(position);
 			
 			((TextView) newView.findViewById(R.id.mark_item)).setText(st);
 			
@@ -122,5 +116,4 @@ public class CarModelFilterPage extends Activity{
 		}
 		
 	}
-
 }
