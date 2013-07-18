@@ -13,6 +13,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.opengl.Visibility;
 import android.os.Bundle;
 import android.view.View;
@@ -63,6 +64,7 @@ public class SearchPageActivity extends MasterPageActivity {
 	private Context ctx;
 	private Activity a;
 	private String[] manufacturer;
+	private Resources res;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -187,6 +189,8 @@ public class SearchPageActivity extends MasterPageActivity {
 	 * бѓљбѓ�бѓЎбѓ”бѓњбѓ”бѓ бѓ”бѓ‘бѓЎ бѓ“бѓђбѓ­бѓ”бѓ бѓђбѓ–бѓ”
 	 */
 	private void setFilterClickListeners() {
+		res = getResources();
+
 		carMark.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -295,6 +299,8 @@ public class SearchPageActivity extends MasterPageActivity {
 			@Override
 			public void onClick(View v) {
 				filteredData[17] = "1";
+				setSelectedValue(findViewById(R.id.search_carAbs),
+						res.getString(R.string.search_selectedValue_yes));
 				carAbsBtn.setVisibility(View.VISIBLE);
 			}
 		});
@@ -303,6 +309,8 @@ public class SearchPageActivity extends MasterPageActivity {
 			@Override
 			public void onClick(View v) {
 				filteredData[18] = "1";
+				setSelectedValue(findViewById(R.id.search_carCentralLock),
+						res.getString(R.string.search_selectedValue_yes));
 				carCentralLockBtn.setVisibility(View.VISIBLE);
 			}
 		});
@@ -311,6 +319,8 @@ public class SearchPageActivity extends MasterPageActivity {
 			@Override
 			public void onClick(View v) {
 				filteredData[19] = "1";
+				setSelectedValue(findViewById(R.id.search_carEsd),
+						res.getString(R.string.search_selectedValue_yes));
 				carEsdBtn.setVisibility(View.VISIBLE);
 			}
 		});
@@ -319,6 +329,8 @@ public class SearchPageActivity extends MasterPageActivity {
 			@Override
 			public void onClick(View v) {
 				filteredData[20] = "1";
+				setSelectedValue(findViewById(R.id.search_carBoardComp),
+						res.getString(R.string.search_selectedValue_yes));
 				carBoardCompBtn.setVisibility(View.VISIBLE);
 			}
 		});
@@ -327,6 +339,8 @@ public class SearchPageActivity extends MasterPageActivity {
 			@Override
 			public void onClick(View v) {
 				filteredData[21] = "1";
+				setSelectedValue(findViewById(R.id.search_carLeatherInt),
+						res.getString(R.string.search_selectedValue_yes));
 				carLeatherIntBtn.setVisibility(View.VISIBLE);
 			}
 		});
@@ -335,6 +349,8 @@ public class SearchPageActivity extends MasterPageActivity {
 			@Override
 			public void onClick(View v) {
 				filteredData[22] = "1";
+				setSelectedValue(findViewById(R.id.search_carElWindows),
+						res.getString(R.string.search_selectedValue_yes));
 				carElWindowsBtn.setVisibility(View.VISIBLE);
 			}
 		});
@@ -343,6 +359,8 @@ public class SearchPageActivity extends MasterPageActivity {
 			@Override
 			public void onClick(View v) {
 				filteredData[23] = "1";
+				setSelectedValue(findViewById(R.id.search_carAirbags),
+						res.getString(R.string.search_selectedValue_yes));
 				carAirbagsBtn.setVisibility(View.VISIBLE);
 			}
 		});
@@ -351,6 +369,8 @@ public class SearchPageActivity extends MasterPageActivity {
 			@Override
 			public void onClick(View v) {
 				filteredData[24] = "1";
+				setSelectedValue(findViewById(R.id.search_carParkingControl),
+						res.getString(R.string.search_selectedValue_yes));
 				carParkingControlBtn.setVisibility(View.VISIBLE);
 			}
 		});
@@ -359,6 +379,8 @@ public class SearchPageActivity extends MasterPageActivity {
 			@Override
 			public void onClick(View v) {
 				filteredData[25] = "1";
+				setSelectedValue(findViewById(R.id.search_carAlumDisks),
+						res.getString(R.string.search_selectedValue_yes));
 				carAlumDisksBtn.setVisibility(View.VISIBLE);
 			}
 		});
@@ -367,6 +389,8 @@ public class SearchPageActivity extends MasterPageActivity {
 			@Override
 			public void onClick(View v) {
 				filteredData[26] = "1";
+				setSelectedValue(findViewById(R.id.search_carHatch),
+						res.getString(R.string.search_selectedValue_yes));
 				carHatchBtn.setVisibility(View.VISIBLE);
 			}
 		});
@@ -375,6 +399,8 @@ public class SearchPageActivity extends MasterPageActivity {
 			@Override
 			public void onClick(View v) {
 				filteredData[27] = "1";
+				setSelectedValue(findViewById(R.id.search_carChairWarming),
+						res.getString(R.string.search_selectedValue_yes));
 				carChairWarmingBtn.setVisibility(View.VISIBLE);
 			}
 		});
@@ -383,6 +409,8 @@ public class SearchPageActivity extends MasterPageActivity {
 			@Override
 			public void onClick(View v) {
 				filteredData[28] = "1";
+				setSelectedValue(findViewById(R.id.search_carNavigSystem),
+						res.getString(R.string.search_selectedValue_yes));
 				carNavigSystemBtn.setVisibility(View.VISIBLE);
 			}
 		});
