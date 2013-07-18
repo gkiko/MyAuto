@@ -5,7 +5,8 @@ import java.util.Calendar;
 
 import com.example.myauto.database.DBHelper;
 import com.example.myauto.database.DBManager;
-import com.example.myauto.filter.CarMarkFilterPage;
+import com.example.myauto.filter.CarMarkFiltPage;
+import com.example.myauto.filter.CarModelFiltPage;
 import com.example.myauto.filter.Filter;
 
 import android.app.Activity;
@@ -41,23 +42,26 @@ public class SearchPageActivity extends MasterPageActivity {
 	private static final int DIALOG_CUSTOMS_AND_WHEEL_BTN_NO_ID = 2;
 	private static final int STARTING_YEAR = 1960;
 	private static final int MARK_FILTER = 1001;
+	private static final int MODEL_FILTER = 1002;
 	private static final int NUMBER_OF_FILTER_BUTTONS = 29;
-	private RelativeLayout carMark, carPrice, carYear, carCategory,
+	private RelativeLayout carMark, carModel, carPrice, carYear, carCategory,
 			carLocation, carTransmission, carFuel, carWheel, carDays, carDoors,
 			carDriveWheels, carCustomsPassed, carEngine, carAbs,
 			carCentralLock, carEsd, carBoardComp, carLeatherInt, carElWindows,
 			carAirbags, carParkingControl, carAlumDisks, carHatch,
 			carChairWarming, carNavigSystem;
-	private Button searchSubmit, carMarkBtn, carPriceBtn, carYearBtn,
-			carCategoryBtn, carLocationBtn, carTransmissionBtn, carFuelBtn,
-			carWheelBtn, carDaysBtn, carDoorsBtn, carDriveWheelsBtn,
-			carCustomsPassedBtn, carEngineBtn, carAbsBtn, carCentralLockBtn,
-			carEsdBtn, carBoardCompBtn, carLeatherIntBtn, carElWindowsBtn,
-			carAirbagsBtn, carParkingControlBtn, carAlumDisksBtn, carHatchBtn,
-			carChairWarmingBtn, carNavigSystemBtn;
+	private Button searchSubmit, carMarkBtn, carModelBtn, carPriceBtn,
+			carYearBtn, carCategoryBtn, carLocationBtn, carTransmissionBtn,
+			carFuelBtn, carWheelBtn, carDaysBtn, carDoorsBtn,
+			carDriveWheelsBtn, carCustomsPassedBtn, carEngineBtn, carAbsBtn,
+			carCentralLockBtn, carEsdBtn, carBoardCompBtn, carLeatherIntBtn,
+			carElWindowsBtn, carAirbagsBtn, carParkingControlBtn,
+			carAlumDisksBtn, carHatchBtn, carChairWarmingBtn,
+			carNavigSystemBtn;
 	private String[] filteredData;
 	private Context ctx;
 	private Activity a;
+	private String [] manufacturer;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -81,8 +85,11 @@ public class SearchPageActivity extends MasterPageActivity {
 			}
 		});
 
-		carMarkBtn
-				.setOnClickListener(new cancelBtnListener(giveIndex(0, 1, 2)));
+		carMarkBtn.setOnClickListener(new cancelBtnListenerMark(giveIndex(0, 1,
+				2)));
+
+		carModelBtn.setOnClickListener(new cancelBtnListener(giveIndex(1, 100,
+				1)));
 
 		carYearBtn
 				.setOnClickListener(new cancelBtnListener(giveIndex(2, 3, 2)));
@@ -128,34 +135,34 @@ public class SearchPageActivity extends MasterPageActivity {
 
 		carEsdBtn.setOnClickListener(new cancelBtnListener(
 				giveIndex(19, 100, 1)));
-		
-		carBoardCompBtn.setOnClickListener(new cancelBtnListener(
-				giveIndex(20, 100, 1)));
-		
-		carLeatherIntBtn.setOnClickListener(new cancelBtnListener(
-				giveIndex(21, 100, 1)));
-		
-		carElWindowsBtn.setOnClickListener(new cancelBtnListener(
-				giveIndex(22, 100, 1)));
-		
-		carAirbagsBtn.setOnClickListener(new cancelBtnListener(
-				giveIndex(23, 100, 1)));
-		
+
+		carBoardCompBtn.setOnClickListener(new cancelBtnListener(giveIndex(20,
+				100, 1)));
+
+		carLeatherIntBtn.setOnClickListener(new cancelBtnListener(giveIndex(21,
+				100, 1)));
+
+		carElWindowsBtn.setOnClickListener(new cancelBtnListener(giveIndex(22,
+				100, 1)));
+
+		carAirbagsBtn.setOnClickListener(new cancelBtnListener(giveIndex(23,
+				100, 1)));
+
 		carParkingControlBtn.setOnClickListener(new cancelBtnListener(
 				giveIndex(24, 100, 1)));
-		
-		carAlumDisksBtn.setOnClickListener(new cancelBtnListener(
-				giveIndex(25, 100, 1)));
-		
-		carHatchBtn.setOnClickListener(new cancelBtnListener(
-				giveIndex(26, 100, 1)));
-		
-		carChairWarmingBtn.setOnClickListener(new cancelBtnListener(
-				giveIndex(27, 100, 1)));
-		
-		carNavigSystemBtn.setOnClickListener(new cancelBtnListener(
-				giveIndex(28, 100, 1)));
-				
+
+		carAlumDisksBtn.setOnClickListener(new cancelBtnListener(giveIndex(25,
+				100, 1)));
+
+		carHatchBtn.setOnClickListener(new cancelBtnListener(giveIndex(26, 100,
+				1)));
+
+		carChairWarmingBtn.setOnClickListener(new cancelBtnListener(giveIndex(
+				27, 100, 1)));
+
+		carNavigSystemBtn.setOnClickListener(new cancelBtnListener(giveIndex(
+				28, 100, 1)));
+
 	}
 
 	/*
@@ -182,8 +189,17 @@ public class SearchPageActivity extends MasterPageActivity {
 			@Override
 			public void onClick(View v) {
 				Intent markFilter = new Intent(SearchPageActivity.this,
-						CarMarkFilterPage.class);
+						CarMarkFiltPage.class);
 				startActivityForResult(markFilter, MARK_FILTER);
+			}
+		});
+		
+		carModel.setOnClickListener(new OnClickListener() {	
+			@Override
+			public void onClick(View v) {
+				Intent modelFilter = new Intent(SearchPageActivity.this, CarModelFiltPage.class);
+				modelFilter.putExtra("Manufacturer", manufacturer);
+				startActivityForResult(modelFilter, MODEL_FILTER);
 			}
 		});
 
@@ -367,7 +383,7 @@ public class SearchPageActivity extends MasterPageActivity {
 				carNavigSystemBtn.setVisibility(View.VISIBLE);
 			}
 		});
-		
+
 	}
 
 	// Under Construction
@@ -1010,12 +1026,22 @@ public class SearchPageActivity extends MasterPageActivity {
 		switch (requestCode) {
 		case (MARK_FILTER):
 			if (resultCode == Activity.RESULT_OK) {
-				String[] manAndModel = (String[]) data
-						.getSerializableExtra("ManAndModel");
-				filteredData[0] = manAndModel[0];
-				filteredData[1] = "2" + manAndModel[1];
+				String[] mark = (String[]) data
+						.getSerializableExtra("Manufacturer");
+				manufacturer = mark;
+				filteredData[0] = mark[0];
 				carMarkBtn.setVisibility(View.VISIBLE);
+				((RelativeLayout) findViewById(R.id.search_carModel))
+						.setVisibility(View.VISIBLE);
 			}
+			break;
+		case (MODEL_FILTER):
+			if(resultCode == Activity.RESULT_OK) {
+				String [] model = (String []) data.getSerializableExtra("Model");
+				filteredData[1] = "2" + model[0];
+				carModelBtn.setVisibility(View.VISIBLE);
+			}
+			break;
 		}
 	}
 
@@ -1028,6 +1054,7 @@ public class SearchPageActivity extends MasterPageActivity {
 	private void getButtonViews() {
 		searchSubmit = (Button) findViewById(R.id.search_submit_btn);
 		carMarkBtn = (Button) findViewById(R.id.search_carMark_btn);
+		carModelBtn = (Button) findViewById(R.id.search_carModel_btn);
 		carPriceBtn = (Button) findViewById(R.id.search_carPrice_btn);
 		carYearBtn = (Button) findViewById(R.id.search_carYear_btn);
 		carCategoryBtn = (Button) findViewById(R.id.search_carCategory_btn);
@@ -1058,6 +1085,7 @@ public class SearchPageActivity extends MasterPageActivity {
 
 	private void getFilterLayoutViews() {
 		carMark = (RelativeLayout) findViewById(R.id.search_carMark);
+		carModel = (RelativeLayout) findViewById(R.id.search_carModel);
 		carPrice = (RelativeLayout) findViewById(R.id.search_carPrice);
 		carYear = (RelativeLayout) findViewById(R.id.search_carYear);
 		carCategory = (RelativeLayout) findViewById(R.id.search_carCategory);
@@ -1087,7 +1115,8 @@ public class SearchPageActivity extends MasterPageActivity {
 	}
 
 	/**
-	 * Filtris Cancel Button-ebs yvelas erti onClickListener eqneba.
+	 * Filtris Cancel Button-ebs yvelas erti onClickListener eqneba. garda Mark
+	 * -isa.
 	 * 
 	 * @author Jay
 	 * 
@@ -1106,7 +1135,30 @@ public class SearchPageActivity extends MasterPageActivity {
 			}
 			v.setVisibility(View.INVISIBLE);
 		}
+	}
 
+	/**
+	 * Mark Filtris Cancel Button-is Listener
+	 * 
+	 * @author Jay
+	 * 
+	 */
+	private class cancelBtnListenerMark implements OnClickListener {
+		private int[] index;
+
+		public cancelBtnListenerMark(int[] index) {
+			this.index = index;
+		}
+
+		@Override
+		public void onClick(View v) {
+			for (int i = 0; i < index.length; i++) {
+				filteredData[index[i]] = null;
+			}
+			v.setVisibility(View.INVISIBLE);
+			((RelativeLayout) findViewById(R.id.search_carModel))
+					.setVisibility(View.GONE);
+		}
 	}
 
 }

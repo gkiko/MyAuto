@@ -50,7 +50,8 @@
     <!-- SearchPageActivity Strings -->
     <string name="search_search_btn">Search</string>
     <string name="search_cancel_btn_txt">X</string>
-    <string name="search_carMarkAndModel">Model And Mark</string>
+    <string name="search_carMarkAndModel">Mark</string>
+    <string name="search_carModel">Model</string>
     <string name="search_carPrice">Price</string>
     <string name="search_carYear">Year</string>
     <string name="search_carCategory">Category</string>
