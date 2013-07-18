@@ -19,62 +19,46 @@ import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class CarMarkFiltPage extends Activity {
-//	private static final int MODEL_FILTER = 1002;
 	private ListView list;
 	private Adapter adapter;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.activity_car_mark_filter);
 		super.onCreate(savedInstanceState);
-	
-		ArrayList <String[]> ls = (ArrayList<String[]>) DBManager.getManufacturers();
+
+		ArrayList<String[]> ls = (ArrayList<String[]>) DBManager
+				.getManufacturers();
 
 		list = (ListView) findViewById(R.id.mark_listView);
 		adapter = new Adapter(this, ls);
 		list.setAdapter(adapter);
-		
+
 		list.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> av, View v, int position,
 					long id) {
-				
-				String [] manufacturer = (String []) adapter.getItem(position);
-				Intent backToSearch = new Intent(CarMarkFiltPage.this, SearchPageActivity.class);
+
+				String[] manufacturer = (String[]) adapter.getItem(position);
+				Intent backToSearch = new Intent(CarMarkFiltPage.this,
+						SearchPageActivity.class);
 				backToSearch.putExtra("Manufacturer", manufacturer);
 				setResult(RESULT_OK, backToSearch);
 				finish();
 			}
 		});
 	}
-/*	
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
-		
-		switch(requestCode){
-		case (MODEL_FILTER):
-			if(resultCode == Activity.RESULT_OK){
-				String [] manAndModel = (String[]) data.getSerializableExtra("ManAndModel");
-				Intent backToSearch = new Intent (CarMarkFiltPage.this, SearchPageActivity.class);
-				backToSearch.putExtra("ManAndModel", manAndModel);
-				setResult(RESULT_OK, backToSearch);
-				finish();
-			}
-		}
-	}
-	
-*/	
+
 	private class Adapter extends BaseAdapter {
 
-		private ArrayList <String[]> array;
+		private ArrayList<String[]> array;
 		private Context ctx;
-		
-		public Adapter(Context c, ArrayList<String[]> ls){
+
+		public Adapter(Context c, ArrayList<String[]> ls) {
 			this.ctx = c;
 			this.array = ls;
 		}
-		
+
 		@Override
 		public int getCount() {
 			return array.size();
@@ -84,12 +68,12 @@ public class CarMarkFiltPage extends Activity {
 		public Object getItem(int position) {
 			return array.get(position);
 		}
-		
-		public String getManID(int position){
+
+		public String getManID(int position) {
 			return array.get(position)[0];
 		}
-		
-		public String getManName(int position){
+
+		public String getManName(int position) {
 			return array.get(position)[1];
 		}
 
@@ -101,19 +85,19 @@ public class CarMarkFiltPage extends Activity {
 		@Override
 		public View getView(int position, View convertView, ViewGroup parentView) {
 			View newView;
-			
-			if(convertView == null){
+
+			if (convertView == null) {
 				newView = View.inflate(ctx, R.layout.mark_item_layout, null);
-			}else{
+			} else {
 				newView = convertView;
 			}
-			
+
 			String st = (String) this.getManName(position);
-			
+
 			((TextView) newView.findViewById(R.id.mark_item)).setText(st);
-			
+
 			return newView;
 		}
-		
+
 	}
 }

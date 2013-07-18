@@ -56,9 +56,6 @@ public class CarModelFiltPage extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> av, View v, int position,
 					long id) {
-			//	String [] manAndModel = new String [2];
-			//	manAndModel[0] = (String) adapter.getManID(position);
-			//	manAndModel[1] = (String) adapter.getModelID(position);
 				String [] model = new String [2];
 				model [0] = (String) adapter.getModelID(position);
 				model [1] = (String) adapter.getModelName(position);
