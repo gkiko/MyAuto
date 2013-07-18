@@ -40,17 +40,34 @@
                 android:background="@drawable/button_selector"
                 android:padding="5dip" >
 
-                <TextView
-                    android:id="@+id/search_carMark_txt"
+                <LinearLayout
+                    android:id="@+id/search_selector"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:gravity="center_vertical"
-                    android:text="@string/search_carMarkAndModel"
-                    android:textColor="#f26222"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:orientation="vertical"
+                    android:paddingBottom="5dip"
+                    android:paddingTop="5dip" >
+
+                    <TextView
+                        android:id="@+id/search_carMark_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/search_carMarkAndModel"
+                        android:textColor="#f26222"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/search_selectedValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/Gray"
+                        android:textSize="15sp"
+                        android:visibility="gone" />
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/search_carMark_btn"
@@ -63,7 +80,7 @@
                     android:textColor="@color/Gray"
                     android:visibility="invisible" />
             </RelativeLayout>
-            
+
             <RelativeLayout
                 android:id="@+id/search_carModel"
                 android:layout_width="fill_parent"
@@ -72,17 +89,34 @@
                 android:padding="5dip"
                 android:visibility="gone" >
 
-                <TextView
-                    android:id="@+id/search_carModel_txt"
+                <LinearLayout
+                    android:id="@+id/search_selector"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:gravity="center_vertical"
-                    android:text="@string/search_carModel"
-                    android:textColor="#f26222"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:orientation="vertical"
+                    android:paddingBottom="5dip"
+                    android:paddingTop="5dip" >
+
+                    <TextView
+                        android:id="@+id/search_carModel_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/search_carModel"
+                        android:textColor="#f26222"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/search_selectedValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/Gray"
+                        android:textSize="15sp"
+                        android:visibility="gone" />
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/search_carModel_btn"
@@ -103,17 +137,34 @@
                 android:background="@drawable/button_selector"
                 android:padding="5dip" >
 
-                <TextView
-                    android:id="@+id/search_carPrice_txt"
+                <LinearLayout
+                    android:id="@+id/search_selector"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:gravity="center_vertical"
-                    android:text="@string/search_carPrice"
-                    android:textColor="#f26222"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:orientation="vertical"
+                    android:paddingBottom="5dip"
+                    android:paddingTop="5dip" >
+
+                    <TextView
+                        android:id="@+id/search_carPrice_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/search_carPrice"
+                        android:textColor="#f26222"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/search_selectedValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/Gray"
+                        android:textSize="15sp"
+                        android:visibility="gone" />
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/search_carPrice_btn"
@@ -133,17 +184,34 @@
                 android:background="@drawable/button_selector"
                 android:padding="5dip" >
 
-                <TextView
-                    android:id="@+id/search_carYear_txt"
+                <LinearLayout
+                    android:id="@+id/search_selector"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:gravity="center_vertical"
-                    android:text="@string/search_carYear"
-                    android:textColor="#f26222"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:orientation="vertical"
+                    android:paddingBottom="5dip"
+                    android:paddingTop="5dip" >
+
+                    <TextView
+                        android:id="@+id/search_carYear_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/search_carYear"
+                        android:textColor="#f26222"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/search_selectedValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/Gray"
+                        android:textSize="15sp"
+                        android:visibility="gone" />
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/search_carYear_btn"
@@ -163,17 +231,34 @@
                 android:background="@drawable/button_selector"
                 android:padding="5dip" >
 
-                <TextView
-                    android:id="@+id/search_carCategory_txt"
+                <LinearLayout
+                    android:id="@+id/search_selector"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:gravity="center_vertical"
-                    android:text="@string/search_carCategory"
-                    android:textColor="#f26222"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:orientation="vertical"
+                    android:paddingBottom="5dip"
+                    android:paddingTop="5dip" >
+
+                    <TextView
+                        android:id="@+id/search_carCategory_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/search_carCategory"
+                        android:textColor="#f26222"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/search_selectedValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/Gray"
+                        android:textSize="15sp"
+                        android:visibility="gone" />
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/search_carCategory_btn"
@@ -193,17 +278,34 @@
                 android:background="@drawable/button_selector"
                 android:padding="5dip" >
 
-                <TextView
-                    android:id="@+id/search_carLocation_txt"
+                <LinearLayout
+                    android:id="@+id/search_selector"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:gravity="center_vertical"
-                    android:text="@string/search_carLocation"
-                    android:textColor="#f26222"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:orientation="vertical"
+                    android:paddingBottom="5dip"
+                    android:paddingTop="5dip" >
+
+                    <TextView
+                        android:id="@+id/search_carLocation_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/search_carLocation"
+                        android:textColor="#f26222"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/search_selectedValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/Gray"
+                        android:textSize="15sp"
+                        android:visibility="gone" />
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/search_carLocation_btn"
@@ -223,17 +325,34 @@
                 android:background="@drawable/button_selector"
                 android:padding="5dip" >
 
-                <TextView
-                    android:id="@+id/search_carTransmission_txt"
+                <LinearLayout
+                    android:id="@+id/search_selector"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:gravity="center_vertical"
-                    android:text="@string/search_carTransmission"
-                    android:textColor="#f26222"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:orientation="vertical"
+                    android:paddingBottom="5dip"
+                    android:paddingTop="5dip" >
+
+                    <TextView
+                        android:id="@+id/search_carTransmission_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/search_carTransmission"
+                        android:textColor="#f26222"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/search_selectedValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/Gray"
+                        android:textSize="15sp"
+                        android:visibility="gone" />
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/search_carTransmission_btn"
@@ -253,17 +372,34 @@
                 android:background="@drawable/button_selector"
                 android:padding="5dip" >
 
-                <TextView
-                    android:id="@+id/search_carFuel_txt"
+                <LinearLayout
+                    android:id="@+id/search_selector"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:gravity="center_vertical"
-                    android:text="@string/search_carFuel"
-                    android:textColor="#f26222"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:orientation="vertical"
+                    android:paddingBottom="5dip"
+                    android:paddingTop="5dip" >
+
+                    <TextView
+                        android:id="@+id/search_carFuel_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/search_carFuel"
+                        android:textColor="#f26222"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/search_selectedValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/Gray"
+                        android:textSize="15sp"
+                        android:visibility="gone" />
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/search_carFuel_btn"
@@ -283,17 +419,34 @@
                 android:background="@drawable/button_selector"
                 android:padding="5dip" >
 
-                <TextView
-                    android:id="@+id/search_carCustomsPassed_txt"
+                <LinearLayout
+                    android:id="@+id/search_selector"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:gravity="center_vertical"
-                    android:text="@string/search_carCustomsPassed"
-                    android:textColor="#f26222"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:orientation="vertical"
+                    android:paddingBottom="5dip"
+                    android:paddingTop="5dip" >
+
+                    <TextView
+                        android:id="@+id/search_carCustomsPassed_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/search_carCustomsPassed"
+                        android:textColor="#f26222"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/search_selectedValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/Gray"
+                        android:textSize="15sp"
+                        android:visibility="gone" />
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/search_carCustomsPassed_btn"
@@ -313,17 +466,34 @@
                 android:background="@drawable/button_selector"
                 android:padding="5dip" >
 
-                <TextView
-                    android:id="@+id/search_carWheel_txt"
+                <LinearLayout
+                    android:id="@+id/search_selector"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:gravity="center_vertical"
-                    android:text="@string/search_carWheel"
-                    android:textColor="#f26222"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:orientation="vertical"
+                    android:paddingBottom="5dip"
+                    android:paddingTop="5dip" >
+
+                    <TextView
+                        android:id="@+id/search_carWheel_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/search_carWheel"
+                        android:textColor="#f26222"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/search_selectedValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/Gray"
+                        android:textSize="15sp"
+                        android:visibility="gone" />
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/search_carWheel_btn"
@@ -343,17 +513,34 @@
                 android:background="@drawable/button_selector"
                 android:padding="5dip" >
 
-                <TextView
-                    android:id="@+id/search_carDays_txt"
+                <LinearLayout
+                    android:id="@+id/search_selector"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:gravity="center_vertical"
-                    android:text="@string/search_carDays"
-                    android:textColor="#f26222"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:orientation="vertical"
+                    android:paddingBottom="5dip"
+                    android:paddingTop="5dip" >
+
+                    <TextView
+                        android:id="@+id/search_carDays_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/search_carDays"
+                        android:textColor="#f26222"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/search_selectedValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/Gray"
+                        android:textSize="15sp"
+                        android:visibility="gone" />
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/search_carDays_btn"
@@ -373,17 +560,34 @@
                 android:background="@drawable/button_selector"
                 android:padding="5dip" >
 
-                <TextView
-                    android:id="@+id/search_carDriveWheels_txt"
+                <LinearLayout
+                    android:id="@+id/search_selector"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:gravity="center_vertical"
-                    android:text="@string/search_carDriveWheels"
-                    android:textColor="#f26222"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:orientation="vertical"
+                    android:paddingBottom="5dip"
+                    android:paddingTop="5dip" >
+
+                    <TextView
+                        android:id="@+id/search_carDriveWheels_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/search_carDriveWheels"
+                        android:textColor="#f26222"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/search_selectedValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/Gray"
+                        android:textSize="15sp"
+                        android:visibility="gone" />
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/search_carDriveWheels_btn"
@@ -403,17 +607,34 @@
                 android:background="@drawable/button_selector"
                 android:padding="5dip" >
 
-                <TextView
-                    android:id="@+id/search_carDoors_txt"
+                <LinearLayout
+                    android:id="@+id/search_selector"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:gravity="center_vertical"
-                    android:text="@string/search_carDoors"
-                    android:textColor="#f26222"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:orientation="vertical"
+                    android:paddingBottom="5dip"
+                    android:paddingTop="5dip" >
+
+                    <TextView
+                        android:id="@+id/search_carDoors_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/search_carDoors"
+                        android:textColor="#f26222"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/search_selectedValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/Gray"
+                        android:textSize="15sp"
+                        android:visibility="gone" />
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/search_carDoors_btn"
@@ -433,17 +654,34 @@
                 android:background="@drawable/button_selector"
                 android:padding="5dip" >
 
-                <TextView
-                    android:id="@+id/search_carEngine_txt"
+                <LinearLayout
+                    android:id="@+id/search_selector"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:gravity="center_vertical"
-                    android:text="@string/search_carEngine"
-                    android:textColor="#f26222"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:orientation="vertical"
+                    android:paddingBottom="5dip"
+                    android:paddingTop="5dip" >
+
+                    <TextView
+                        android:id="@+id/search_carEngine_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/search_carEngine"
+                        android:textColor="#f26222"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/search_selectedValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/Gray"
+                        android:textSize="15sp"
+                        android:visibility="gone" />
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/search_carEngine_btn"
@@ -463,17 +701,34 @@
                 android:background="@drawable/button_selector"
                 android:padding="5dip" >
 
-                <TextView
-                    android:id="@+id/search_carAbs_txt"
+                <LinearLayout
+                    android:id="@+id/search_selector"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:gravity="center_vertical"
-                    android:text="@string/search_carAbs"
-                    android:textColor="#f26222"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:orientation="vertical"
+                    android:paddingBottom="5dip"
+                    android:paddingTop="5dip" >
+
+                    <TextView
+                        android:id="@+id/search_carAbs_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/search_carAbs"
+                        android:textColor="#f26222"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/search_selectedValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/Gray"
+                        android:textSize="15sp"
+                        android:visibility="gone" />
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/search_carAbs_btn"
@@ -493,17 +748,34 @@
                 android:background="@drawable/button_selector"
                 android:padding="5dip" >
 
-                <TextView
-                    android:id="@+id/search_carCentralLock_txt"
+                <LinearLayout
+                    android:id="@+id/search_selector"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:gravity="center_vertical"
-                    android:text="@string/search_carCentralLock"
-                    android:textColor="#f26222"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:orientation="vertical"
+                    android:paddingBottom="5dip"
+                    android:paddingTop="5dip" >
+
+                    <TextView
+                        android:id="@+id/search_carCentralLock_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/search_carCentralLock"
+                        android:textColor="#f26222"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/search_selectedValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/Gray"
+                        android:textSize="15sp"
+                        android:visibility="gone" />
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/search_carCentralLock_btn"
@@ -523,17 +795,34 @@
                 android:background="@drawable/button_selector"
                 android:padding="5dip" >
 
-                <TextView
-                    android:id="@+id/search_carEsd_txt"
+                <LinearLayout
+                    android:id="@+id/search_selector"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:gravity="center_vertical"
-                    android:text="@string/search_carEsd"
-                    android:textColor="#f26222"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:orientation="vertical"
+                    android:paddingBottom="5dip"
+                    android:paddingTop="5dip" >
+
+                    <TextView
+                        android:id="@+id/search_carEsd_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/search_carEsd"
+                        android:textColor="#f26222"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/search_selectedValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/Gray"
+                        android:textSize="15sp"
+                        android:visibility="gone" />
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/search_carEsd_btn"
@@ -553,17 +842,34 @@
                 android:background="@drawable/button_selector"
                 android:padding="5dip" >
 
-                <TextView
-                    android:id="@+id/search_carBoardComp_txt"
+                <LinearLayout
+                    android:id="@+id/search_selector"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:gravity="center_vertical"
-                    android:text="@string/search_carBoardComp"
-                    android:textColor="#f26222"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:orientation="vertical"
+                    android:paddingBottom="5dip"
+                    android:paddingTop="5dip" >
+
+                    <TextView
+                        android:id="@+id/search_carBoardComp_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/search_carBoardComp"
+                        android:textColor="#f26222"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/search_selectedValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/Gray"
+                        android:textSize="15sp"
+                        android:visibility="gone" />
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/search_carBoardComp_btn"
@@ -583,17 +889,34 @@
                 android:background="@drawable/button_selector"
                 android:padding="5dip" >
 
-                <TextView
-                    android:id="@+id/search_carLeatherInt_txt"
+                <LinearLayout
+                    android:id="@+id/search_selector"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:gravity="center_vertical"
-                    android:text="@string/search_carLeatherInt"
-                    android:textColor="#f26222"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:orientation="vertical"
+                    android:paddingBottom="5dip"
+                    android:paddingTop="5dip" >
+
+                    <TextView
+                        android:id="@+id/search_carLeatherInt_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/search_carLeatherInt"
+                        android:textColor="#f26222"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/search_selectedValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/Gray"
+                        android:textSize="15sp"
+                        android:visibility="gone" />
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/search_carLeatherInt_btn"
@@ -613,17 +936,34 @@
                 android:background="@drawable/button_selector"
                 android:padding="5dip" >
 
-                <TextView
-                    android:id="@+id/search_carElWindows_txt"
+                <LinearLayout
+                    android:id="@+id/search_selector"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:gravity="center_vertical"
-                    android:text="@string/search_carElWindows"
-                    android:textColor="#f26222"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:orientation="vertical"
+                    android:paddingBottom="5dip"
+                    android:paddingTop="5dip" >
+
+                    <TextView
+                        android:id="@+id/search_carElWindows_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/search_carElWindows"
+                        android:textColor="#f26222"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/search_selectedValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/Gray"
+                        android:textSize="15sp"
+                        android:visibility="gone" />
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/search_carElWindows_btn"
@@ -643,17 +983,34 @@
                 android:background="@drawable/button_selector"
                 android:padding="5dip" >
 
-                <TextView
-                    android:id="@+id/search_carAirbags_txt"
+                <LinearLayout
+                    android:id="@+id/search_selector"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:gravity="center_vertical"
-                    android:text="@string/search_carAirbags"
-                    android:textColor="#f26222"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:orientation="vertical"
+                    android:paddingBottom="5dip"
+                    android:paddingTop="5dip" >
+
+                    <TextView
+                        android:id="@+id/search_carAirbags_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/search_carAirbags"
+                        android:textColor="#f26222"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/search_selectedValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/Gray"
+                        android:textSize="15sp"
+                        android:visibility="gone" />
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/search_carAirbags_btn"
@@ -673,17 +1030,34 @@
                 android:background="@drawable/button_selector"
                 android:padding="5dip" >
 
-                <TextView
-                    android:id="@+id/search_carParkingControl_txt"
+                <LinearLayout
+                    android:id="@+id/search_selector"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:gravity="center_vertical"
-                    android:text="@string/search_carParkingControl"
-                    android:textColor="#f26222"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:orientation="vertical"
+                    android:paddingBottom="5dip"
+                    android:paddingTop="5dip" >
+
+                    <TextView
+                        android:id="@+id/search_carParkingControl_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/search_carParkingControl"
+                        android:textColor="#f26222"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/search_selectedValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/Gray"
+                        android:textSize="15sp"
+                        android:visibility="gone" />
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/search_carParkingControl_btn"
@@ -703,17 +1077,34 @@
                 android:background="@drawable/button_selector"
                 android:padding="5dip" >
 
-                <TextView
-                    android:id="@+id/search_carAlumDisks_txt"
+                <LinearLayout
+                    android:id="@+id/search_selector"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:gravity="center_vertical"
-                    android:text="@string/search_carAlumDisks"
-                    android:textColor="#f26222"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:orientation="vertical"
+                    android:paddingBottom="5dip"
+                    android:paddingTop="5dip" >
+
+                    <TextView
+                        android:id="@+id/search_carAlumDisks_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/search_carAlumDisks"
+                        android:textColor="#f26222"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/search_selectedValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/Gray"
+                        android:textSize="15sp"
+                        android:visibility="gone" />
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/search_carAlumDisks_btn"
@@ -733,17 +1124,34 @@
                 android:background="@drawable/button_selector"
                 android:padding="5dip" >
 
-                <TextView
-                    android:id="@+id/search_carHatch_txt"
+                <LinearLayout
+                    android:id="@+id/search_selector"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:gravity="center_vertical"
-                    android:text="@string/search_carHatch"
-                    android:textColor="#f26222"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:orientation="vertical"
+                    android:paddingBottom="5dip"
+                    android:paddingTop="5dip" >
+
+                    <TextView
+                        android:id="@+id/search_carHatch_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/search_carHatch"
+                        android:textColor="#f26222"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/search_selectedValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/Gray"
+                        android:textSize="15sp"
+                        android:visibility="gone" />
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/search_carHatch_btn"
@@ -763,17 +1171,34 @@
                 android:background="@drawable/button_selector"
                 android:padding="5dip" >
 
-                <TextView
-                    android:id="@+id/search_carChairWarming_txt"
+                <LinearLayout
+                    android:id="@+id/search_selector"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:gravity="center_vertical"
-                    android:text="@string/search_carChairWarming"
-                    android:textColor="#f26222"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:orientation="vertical"
+                    android:paddingBottom="5dip"
+                    android:paddingTop="5dip" >
+
+                    <TextView
+                        android:id="@+id/search_carChairWarming_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/search_carChairWarming"
+                        android:textColor="#f26222"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/search_selectedValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/Gray"
+                        android:textSize="15sp"
+                        android:visibility="gone" />
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/search_carChairWarming_btn"
@@ -793,17 +1218,34 @@
                 android:background="@drawable/button_selector"
                 android:padding="5dip" >
 
-                <TextView
-                    android:id="@+id/search_carNavigSystem_txt"
+                <LinearLayout
+                    android:id="@+id/search_selector"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:gravity="center_vertical"
-                    android:text="@string/search_carNavigSystem"
-                    android:textColor="#f26222"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:orientation="vertical"
+                    android:paddingBottom="5dip"
+                    android:paddingTop="5dip" >
+
+                    <TextView
+                        android:id="@+id/search_carNavigSystem_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="@string/search_carNavigSystem"
+                        android:textColor="#f26222"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/search_selectedValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/Gray"
+                        android:textSize="15sp"
+                        android:visibility="gone" />
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/search_carNavigSystem_btn"

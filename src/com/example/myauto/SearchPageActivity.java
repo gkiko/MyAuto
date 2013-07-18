@@ -25,6 +25,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.TableLayout.LayoutParams;
 
@@ -61,7 +62,7 @@ public class SearchPageActivity extends MasterPageActivity {
 	private String[] filteredData;
 	private Context ctx;
 	private Activity a;
-	private String [] manufacturer;
+	private String[] manufacturer;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -89,79 +90,80 @@ public class SearchPageActivity extends MasterPageActivity {
 				2)));
 
 		carModelBtn.setOnClickListener(new cancelBtnListener(giveIndex(1, 100,
-				1)));
+				1), findViewById(R.id.search_carModel)));
 
-		carYearBtn
-				.setOnClickListener(new cancelBtnListener(giveIndex(2, 3, 2)));
+		carYearBtn.setOnClickListener(new cancelBtnListener(giveIndex(2, 3, 2),
+				findViewById(R.id.search_carYear)));
 
-		carPriceBtn
-				.setOnClickListener(new cancelBtnListener(giveIndex(4, 5, 2)));
+		carPriceBtn.setOnClickListener(new cancelBtnListener(
+				giveIndex(4, 5, 2), findViewById(R.id.search_carPrice)));
 
 		carTransmissionBtn.setOnClickListener(new cancelBtnListener(giveIndex(
-				6, 100, 1)));
+				6, 100, 1), findViewById(R.id.search_carTransmission)));
 
 		carFuelBtn.setOnClickListener(new cancelBtnListener(
-				giveIndex(7, 100, 1)));
+				giveIndex(7, 100, 1), findViewById(R.id.search_carFuel)));
 
 		carCustomsPassedBtn.setOnClickListener(new cancelBtnListener(giveIndex(
-				8, 100, 1)));
+				8, 100, 1), findViewById(R.id.search_carCustomsPassed)));
 
 		carWheelBtn.setOnClickListener(new cancelBtnListener(giveIndex(9, 100,
-				1)));
+				1), findViewById(R.id.search_carWheel)));
 
 		carCategoryBtn.setOnClickListener(new cancelBtnListener(giveIndex(10,
-				100, 1)));
+				100, 1), findViewById(R.id.search_carCategory)));
 
 		carLocationBtn.setOnClickListener(new cancelBtnListener(giveIndex(11,
-				100, 1)));
+				100, 1), findViewById(R.id.search_carLocation)));
 
 		carDoorsBtn.setOnClickListener(new cancelBtnListener(giveIndex(12, 100,
-				1)));
+				1), findViewById(R.id.search_carDoors)));
 
 		carDriveWheelsBtn.setOnClickListener(new cancelBtnListener(giveIndex(
-				13, 100, 1)));
+				13, 100, 1), findViewById(R.id.search_carDriveWheels)));
 
 		carDaysBtn.setOnClickListener(new cancelBtnListener(giveIndex(14, 100,
-				1)));
+				1), findViewById(R.id.search_carDays)));
 
 		carEngineBtn.setOnClickListener(new cancelBtnListener(giveIndex(15, 16,
-				2)));
+				2), findViewById(R.id.search_carEngine)));
 
 		carAbsBtn.setOnClickListener(new cancelBtnListener(
-				giveIndex(17, 100, 1)));
+				giveIndex(17, 100, 1), findViewById(R.id.search_carAbs)));
 
 		carCentralLockBtn.setOnClickListener(new cancelBtnListener(giveIndex(
-				18, 100, 1)));
+				18, 100, 1), findViewById(R.id.search_carCentralLock)));
 
 		carEsdBtn.setOnClickListener(new cancelBtnListener(
-				giveIndex(19, 100, 1)));
+				giveIndex(19, 100, 1), findViewById(R.id.search_carEsd)));
 
 		carBoardCompBtn.setOnClickListener(new cancelBtnListener(giveIndex(20,
-				100, 1)));
+				100, 1), findViewById(R.id.search_carBoardComp)));
 
 		carLeatherIntBtn.setOnClickListener(new cancelBtnListener(giveIndex(21,
-				100, 1)));
+				100, 1), findViewById(R.id.search_carLeatherInt)));
 
 		carElWindowsBtn.setOnClickListener(new cancelBtnListener(giveIndex(22,
-				100, 1)));
+				100, 1), findViewById(R.id.search_carElWindows)));
 
 		carAirbagsBtn.setOnClickListener(new cancelBtnListener(giveIndex(23,
-				100, 1)));
+				100, 1), findViewById(R.id.search_carAirbags)));
 
 		carParkingControlBtn.setOnClickListener(new cancelBtnListener(
-				giveIndex(24, 100, 1)));
+				giveIndex(24, 100, 1),
+				findViewById(R.id.search_carParkingControl)));
 
 		carAlumDisksBtn.setOnClickListener(new cancelBtnListener(giveIndex(25,
-				100, 1)));
+				100, 1), findViewById(R.id.search_carAlumDisks)));
 
 		carHatchBtn.setOnClickListener(new cancelBtnListener(giveIndex(26, 100,
-				1)));
+				1), findViewById(R.id.search_carHatch)));
 
 		carChairWarmingBtn.setOnClickListener(new cancelBtnListener(giveIndex(
-				27, 100, 1)));
+				27, 100, 1), findViewById(R.id.search_carChairWarming)));
 
 		carNavigSystemBtn.setOnClickListener(new cancelBtnListener(giveIndex(
-				28, 100, 1)));
+				28, 100, 1), findViewById(R.id.search_carNavigSystem)));
 
 	}
 
@@ -193,11 +195,12 @@ public class SearchPageActivity extends MasterPageActivity {
 				startActivityForResult(markFilter, MARK_FILTER);
 			}
 		});
-		
-		carModel.setOnClickListener(new OnClickListener() {	
+
+		carModel.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent modelFilter = new Intent(SearchPageActivity.this, CarModelFiltPage.class);
+				Intent modelFilter = new Intent(SearchPageActivity.this,
+						CarModelFiltPage.class);
 				modelFilter.putExtra("Manufacturer", manufacturer);
 				startActivityForResult(modelFilter, MODEL_FILTER);
 			}
@@ -426,6 +429,8 @@ public class SearchPageActivity extends MasterPageActivity {
 								.getSelectedItem()) * 1000);
 				filteredData[15] = from;
 				filteredData[16] = to;
+				setSelectedValue(findViewById(R.id.search_carEngine), from
+						+ "-" + to);
 				dialog.dismiss();
 				carEngineBtn.setVisibility(View.VISIBLE);
 			}
@@ -497,6 +502,8 @@ public class SearchPageActivity extends MasterPageActivity {
 				RadioButton customs = (RadioButton) dialog.findViewById(id);
 				String customsID = "" + customs.getId();
 				filteredData[14] = customsID;
+				setSelectedValue(findViewById(R.id.search_carCustomsPassed),
+						(String) customs.getText());
 				dialog.dismiss();
 				carCustomsPassedBtn.setVisibility(View.VISIBLE);
 			}
@@ -536,6 +543,8 @@ public class SearchPageActivity extends MasterPageActivity {
 				RadioButton drive = (RadioButton) dialog.findViewById(id);
 				String driveID = "" + drive.getId();
 				filteredData[13] = driveID;
+				setSelectedValue(findViewById(R.id.search_carDriveWheels),
+						(String) drive.getText());
 				dialog.dismiss();
 				carDriveWheelsBtn.setVisibility(View.VISIBLE);
 			}
@@ -575,6 +584,8 @@ public class SearchPageActivity extends MasterPageActivity {
 				RadioButton door = (RadioButton) dialog.findViewById(id);
 				String doorID = "" + door.getId();
 				filteredData[12] = doorID;
+				setSelectedValue(findViewById(R.id.search_carDoors),
+						(String) door.getText());
 				dialog.dismiss();
 				carDoorsBtn.setVisibility(View.VISIBLE);
 			}
@@ -632,6 +643,8 @@ public class SearchPageActivity extends MasterPageActivity {
 				RadioButton location = (RadioButton) dialog.findViewById(id);
 				String locationID = "" + location.getId();
 				filteredData[11] = locationID;
+				setSelectedValue(findViewById(R.id.search_carLocation),
+						(String) location.getText());
 				dialog.dismiss();
 				carLocationBtn.setVisibility(View.VISIBLE);
 			}
@@ -690,6 +703,8 @@ public class SearchPageActivity extends MasterPageActivity {
 				RadioButton wheel = (RadioButton) dialog.findViewById(id);
 				String wheelID = "" + wheel.getId();
 				filteredData[9] = wheelID;
+				setSelectedValue(findViewById(R.id.search_carWheel),
+						(String) wheel.getText());
 				dialog.dismiss();
 				carWheelBtn.setVisibility(View.VISIBLE);
 			}
@@ -740,6 +755,8 @@ public class SearchPageActivity extends MasterPageActivity {
 				RadioButton fuel = (RadioButton) dialog.findViewById(id);
 				String fuelID = "" + fuel.getId();
 				filteredData[7] = fuelID;
+				setSelectedValue(findViewById(R.id.search_carFuel),
+						(String) fuel.getText());
 				dialog.dismiss();
 				carFuelBtn.setVisibility(View.VISIBLE);
 			}
@@ -799,6 +816,8 @@ public class SearchPageActivity extends MasterPageActivity {
 				RadioButton cat = (RadioButton) dialog.findViewById(id);
 				String catID = "" + cat.getId();
 				filteredData[10] = catID;
+				setSelectedValue(findViewById(R.id.search_carCategory),
+						(String) cat.getText());
 				dialog.dismiss();
 				carCategoryBtn.setVisibility(View.VISIBLE);
 			}
@@ -858,6 +877,8 @@ public class SearchPageActivity extends MasterPageActivity {
 				RadioButton trans = (RadioButton) dialog.findViewById(id);
 				String transmission = "" + trans.getId();
 				filteredData[6] = transmission;
+				setSelectedValue(findViewById(R.id.search_carTransmission),
+						(String) trans.getText());
 				dialog.dismiss();
 				carTransmissionBtn.setVisibility(View.VISIBLE);
 			}
@@ -921,6 +942,8 @@ public class SearchPageActivity extends MasterPageActivity {
 				String to = (String) spinner2.getSelectedItem();
 				filteredData[2] = from;
 				filteredData[3] = to;
+				setSelectedValue(findViewById(R.id.search_carYear), from + "-"
+						+ to);
 				dialog.dismiss();
 				carYearBtn.setVisibility(View.VISIBLE);
 			}
@@ -997,6 +1020,8 @@ public class SearchPageActivity extends MasterPageActivity {
 				String to = editTo.getText().toString();
 				filteredData[4] = from;
 				filteredData[5] = to;
+				setSelectedValue(findViewById(R.id.search_carPrice), from + "-"
+						+ to);
 				dialog.dismiss();
 				carPriceBtn.setVisibility(View.VISIBLE);
 			}
@@ -1033,13 +1058,36 @@ public class SearchPageActivity extends MasterPageActivity {
 				carMarkBtn.setVisibility(View.VISIBLE);
 				((RelativeLayout) findViewById(R.id.search_carModel))
 						.setVisibility(View.VISIBLE);
+
+				((LinearLayout) ((RelativeLayout) findViewById(R.id.search_carMark))
+						.findViewById(R.id.search_selector)).findViewById(
+						R.id.search_selectedValue).setVisibility(View.VISIBLE);
+				((TextView) ((LinearLayout) ((RelativeLayout) findViewById(R.id.search_carMark))
+						.findViewById(R.id.search_selector))
+						.findViewById(R.id.search_selectedValue))
+						.setText(mark[1]);
+				// TextView selectedVal = (TextView)
+				// findViewById(R.id.search_selectedValue);
+				// selectedVal.setVisibility(View.VISIBLE);
+				// selectedVal.setText(mark[1]);
 			}
 			break;
 		case (MODEL_FILTER):
-			if(resultCode == Activity.RESULT_OK) {
-				String [] model = (String []) data.getSerializableExtra("Model");
+			if (resultCode == Activity.RESULT_OK) {
+				String[] model = (String[]) data.getSerializableExtra("Model");
 				filteredData[1] = "2" + model[0];
 				carModelBtn.setVisibility(View.VISIBLE);
+				((LinearLayout) ((RelativeLayout) findViewById(R.id.search_carModel))
+						.findViewById(R.id.search_selector)).findViewById(
+						R.id.search_selectedValue).setVisibility(View.VISIBLE);
+				((TextView) ((LinearLayout) ((RelativeLayout) findViewById(R.id.search_carModel))
+						.findViewById(R.id.search_selector))
+						.findViewById(R.id.search_selectedValue))
+						.setText(model[1]);
+				// TextView selectedVal = (TextView)
+				// findViewById(R.id.search_selectedValue);
+				// selectedVal.setVisibility(View.VISIBLE);
+				// selectedVal.setText(model[1]);
 			}
 			break;
 		}
@@ -1115,6 +1163,21 @@ public class SearchPageActivity extends MasterPageActivity {
 	}
 
 	/**
+	 * am metodit filtrebshi archeuli monacemi icereba, filtris dasaxelebis
+	 * qvevit.
+	 * 
+	 * @param parent
+	 * @param txt
+	 */
+	private void setSelectedValue(View parent, String txt) {
+		parent.findViewById(R.id.search_selector)
+				.findViewById(R.id.search_selectedValue)
+				.setVisibility(View.VISIBLE);
+		((TextView) parent.findViewById(R.id.search_selector).findViewById(
+				R.id.search_selectedValue)).setText(txt);
+	}
+
+	/**
 	 * Filtris Cancel Button-ebs yvelas erti onClickListener eqneba. garda Mark
 	 * -isa.
 	 * 
@@ -1123,9 +1186,11 @@ public class SearchPageActivity extends MasterPageActivity {
 	 */
 	private class cancelBtnListener implements OnClickListener {
 		private int[] index;
+		View parent;
 
-		public cancelBtnListener(int[] index) {
+		public cancelBtnListener(int[] index, View parent) {
 			this.index = index;
+			this.parent = parent;
 		}
 
 		@Override
@@ -1134,6 +1199,11 @@ public class SearchPageActivity extends MasterPageActivity {
 				filteredData[index[i]] = null;
 			}
 			v.setVisibility(View.INVISIBLE);
+			parent.findViewById(R.id.search_selector)
+					.findViewById(R.id.search_selectedValue)
+					.setVisibility(View.GONE);
+			((TextView) parent.findViewById(R.id.search_selector).findViewById(
+					R.id.search_selectedValue)).setText("");
 		}
 	}
 
@@ -1158,6 +1228,20 @@ public class SearchPageActivity extends MasterPageActivity {
 			v.setVisibility(View.INVISIBLE);
 			((RelativeLayout) findViewById(R.id.search_carModel))
 					.setVisibility(View.GONE);
+			carModelBtn.setVisibility(View.INVISIBLE);
+			((RelativeLayout) findViewById(R.id.search_carModel))
+					.findViewById(R.id.search_selector)
+					.findViewById(R.id.search_selectedValue)
+					.setVisibility(View.GONE);
+			((TextView) (((RelativeLayout) findViewById(R.id.search_carModel))
+					.findViewById(R.id.search_selector)
+					.findViewById(R.id.search_selectedValue))).setText("");
+			((LinearLayout) ((RelativeLayout) findViewById(R.id.search_carMark))
+					.findViewById(R.id.search_selector)).findViewById(
+					R.id.search_selectedValue).setVisibility(View.GONE);
+			((TextView) ((LinearLayout) ((RelativeLayout) findViewById(R.id.search_carMark))
+					.findViewById(R.id.search_selector))
+					.findViewById(R.id.search_selectedValue)).setText("");
 		}
 	}
 
