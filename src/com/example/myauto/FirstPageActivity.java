@@ -2,6 +2,7 @@ package com.example.myauto;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 
 import com.example.myauto.data.DataContainer;
 import com.example.myauto.database.DBManager;
@@ -11,6 +12,7 @@ import com.example.myauto.item.CarFacade;
 import com.example.myauto.listener.CallbackListener;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -28,9 +30,21 @@ public class FirstPageActivity extends MasterPageActivity implements CallbackLis
 		setContentView(R.layout.firstpage);
 		DBManager.init(getApplicationContext());
 		
-		
+		setLangLocale();
 		getButtons();
 		setButtonClickListeners();
+	}
+	
+	/**
+	 * vayeneb enis Default-s
+	 */
+	private void setLangLocale () {
+		Locale locale = new Locale("");
+		Locale.setDefault(locale);
+		Configuration config = new Configuration();
+		config.locale = locale; 
+		getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+		
 	}
 	
 	/*

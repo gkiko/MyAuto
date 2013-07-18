@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MyAuto</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">asdasd</string>
+    <string name="year_f">Year From</string>
+    <string name="year_t">Year To</string>
+    <string name="butt_negative">Cancel</string>
+    <string name="butt_positive">Set</string>
+    <string name="price">Price</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
+    <string name="hint1">From</string>
+    <string name="hint2">To</string>
+    <string name="clearance">Customs</string>
+    <string name="steer">Right Steering Wheel</string>
+    <string name="button">Filter</string>
+    <string name="transmission_null">Transmission</string>
+
+    <string-array name="transmission_arrays">
+        <item>Transmission</item>
+        <item>Manual</item>
+        <item>Automatic</item>
+        <item>Tiptronic</item>
+    </string-array>
+
+    <string name="fuel_null">Fuel type</string>
+
+    <string-array name="fuel_arrays">
+        <item>Fuel type</item>
+        <item>Petrol</item>
+        <item>Diesel</item>
+        <item>Gas/Petrol</item>
+        <item>Hybrid</item>
+        <item>Electric</item>
+    </string-array>
+
+    <string name="title_activity_filtered">FilteredActivity</string>
+    <string name="title_activity_catalog_page">CatalogPageActivity</string>
+    <string name="title_activity_search">SearchActivity</string>
+
+    <!-- Menu Bar Strings -->
+    <string name="menu_first">Main</string>
+    <string name="menu_main">Car List</string>
+    <string name="menu_search">Search</string>
+    <string name="menu_catalog">Catalog</string>
+    <string name="menu_about">About</string>
+
+    <!-- SearchPageActivity Strings -->
+    <string name="search_search_btn">Search</string>
+    <string name="search_cancel_btn_txt">X</string>
+    <string name="search_carMarkAndModel">Mark</string>
+    <string name="search_carModel">Model</string>
+    <string name="search_carPrice">Price</string>
+    <string name="search_carYear">Year</string>
+    <string name="search_carCategory">Category</string>
+    <string name="search_carLocation">Location</string>
+    <string name="search_carTransmission">Transmission</string>
+    <string name="search_carFuel">Fuel Type</string>
+    <string name="search_carCustomsPassed">Customs Passed</string>
+    <string name="search_carWheel">Right Wheel</string>
+    <string name="search_carDays">Days</string>
+    <string name="search_carDriveWheels">Drive Wheels</string>
+    <string name="search_carDoors">Doors</string>
+    <string name="search_carEngine">Engine</string>
+    <string name="search_carAbs">ABS</string>
+    <string name="search_carCentralLock">Central Lock</string>
+    <string name="search_carEsd">ESD</string>
+    <string name="search_carBoardComp">Board Computer</string>
+    <string name="search_carLeatherInt">Leather Interior</string>
+    <string name="search_carElWindows">Electronic Windows</string>
+    <string name="search_carAirbags">Airbags</string>
+    <string name="search_carParkingControl">Parking Control</string>
+    <string name="search_carAlumDisks">Aluminium Disks</string>
+    <string name="search_carHatch">Hatch</string>
+    <string name="search_carChairWarming">Chair Warming</string>
+    <string name="search_carNavigSystem">Navigation System</string>
+
+    <!-- SearchPageActivity Dialog Strings -->
+    <string name="search_dialog_btn_cancel">Cancel</string>
+    <string name="search_dialog_btn_ok">OK</string>
+    <string name="search_dialog_price_from">From: </string>
+    <string name="search_dialog_price_to">To: </string>
+    <string name="search_dialog_price_cancel">Cancel</string>
+    <string name="search_dialog_price_ok">OK</string>
+    <string name="search_dialog_generic_spinners_from">From: </string>
+    <string name="search_dialog_generic_spinners_to">To: </string>
+    <string name="search_dialog_year_cancel">Cancel</string>
+    <string name="search_dialog_year_ok">OK</string>
+    <string name="search_dialog_customs_and_wheel_yes">Yes</string>
+    <string name="search_dialog_customs_and_wheel_no">No</string>
+    
+    <!-- SearchPageActivity SelectedValues Strings -->
+    <string name="search_selectedValue_yes">Yes</string>
+
+    <!-- Login, Registration And Menu Strings -->
+    <string name="menu_login">Login</string>
+    <string name="username_login">Username:</string>
+    <string name="password_login">Password:</string>
+    <string name="login_dialog_title">User Login</string>
+    <string name="title_activity_master_page">MasterPageActivity</string>
+    <string name="menu_logout">Logout</string>
+    <string name="menu_register">Register</string>
+    <string name="menu_add_car">Add Car</string>
+    <string name="title_activity_detail">DetailActivity</string>
+
+</resources>
