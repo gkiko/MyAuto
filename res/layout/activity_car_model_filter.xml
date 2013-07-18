@@ -3,19 +3,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
-    <TextView 
+
+    <TextView
         android:id="@+id/markName"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textSize="40dip"
-        android:textStyle="bold"
-        android:background="@color/Yellow"/>
-    
-    <ListView 
+        android:background="@drawable/button_selector"
+        android:gravity="center"
+        android:textSize="40sp"
+        android:textStyle="bold" />
+
+    <ListView
         android:id="@+id/model_listView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-    
+        android:layout_height="match_parent" />
 
 </LinearLayout>
