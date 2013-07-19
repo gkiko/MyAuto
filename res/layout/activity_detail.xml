@@ -1,29 +1,25 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TabHost xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tabhost"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TabWidget
+        android:id="@android:id/tabs"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:fillViewport="true"
+        android:background="@android:color/background_light" />
 
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Medium Text"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+    <FrameLayout
+        android:id="@android:id/tabcontent"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:paddingTop="62dip" >
 
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="3dp"
-            android:background="@android:color/darker_gray" />
-    </LinearLayout>
-    
-    <WebView 
-        android:id="@+id/detailed_webview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <include layout="@layout/activity_detail_tab1" />
 
-</LinearLayout>
+        <include layout="@layout/activity_detail_tab2" />
+    </FrameLayout>
+
+</TabHost>

@@ -105,4 +105,9 @@
     <string name="menu_add_car">მანქანის დამატება</string>
     <string name="title_activity_detail">DetailActivity</string>
 
+    <!-- DetailActivity -->
+    <string name="colon">:</string>
+    <string name="odometer">კატეგორია</string>
+    <string name="cylinder">ცილინდრი</string>
+    <string name="color">ფერი</string>
 </resources>

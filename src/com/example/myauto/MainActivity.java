@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.example.myauto.data.DataContainer;
 import com.example.myauto.event.MyChangeEvent;
 import com.example.myauto.fetcher.ImageDownloader;
 import com.example.myauto.fetcher.ItemFetcher;
@@ -89,6 +90,8 @@ public class MainActivity extends MasterPageActivity implements ImageDownloadLis
 		Bundle extras = getIntent().getExtras();
 		extras.putSerializable(FirstPageActivity.bundleKey, adapter.getList());
 		getIntent().putExtras(extras);
+		
+		DataContainer.setNewList(ls);
 	}
 	
 	
