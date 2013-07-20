@@ -1,19 +1,26 @@
 package com.example.myauto;
 
 import com.example.myauto.adapter.DetailAdapter;
+import com.example.myauto.event.MyChangeEvent;
+import com.example.myauto.fetcher.DetailImageDownloader;
 import com.example.myauto.item.CarItem;
 import com.example.myauto.item.Item;
+import com.example.myauto.listener.ImageDownloadListener;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.webkit.WebView.FindListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
 import android.widget.ListView;
 import android.widget.TabHost;
 
-public class DetailActivity extends MasterPageActivity {
+public class DetailActivity extends MasterPageActivity implements
+		ImageDownloadListener {
 	private TabHost tabhost;
-
-	 private static final String posotiveSymbol = "+";
+	private DetailImageDownloader imgDownloader;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +29,10 @@ public class DetailActivity extends MasterPageActivity {
 
 		Bundle bundle = getIntent().getExtras();
 		Item itm = (Item) bundle.get(FirstPageActivity.bundleKey);
+		imgDownloader = new DetailImageDownloader(
+				itm.getValueFromProperty(CarItem.PHOTO), Integer.parseInt(itm
+						.getValueFromProperty(CarItem.PHOTOSCNT)));
+		imgDownloader.addMyChangeListener(this);
 
 		setUpTabs();
 		addDataTab1(itm);
@@ -41,7 +52,7 @@ public class DetailActivity extends MasterPageActivity {
 		tabhost.addTab(spec);
 
 		spec = tabhost.newTabSpec("tab2");
-		spec.setContent(R.id.activity_detail_tab2);
+		spec.setContent(R.id.activity_detail_tab20);
 		spec.setIndicator("pics", null);
 		tabhost.addTab(spec);
 
@@ -89,14 +100,24 @@ public class DetailActivity extends MasterPageActivity {
 		return details;
 	}
 
-	 private boolean isNegative(String val){
-	 return !val.equals(posotiveSymbol);
-	 }
+	@Override
+	public void imageDownloaded(MyChangeEvent evt) {
+		Bitmap img = (Bitmap) evt.source;
 
-	private void setPosotiveSymbolTo(ImageView view) {
-		view.setImageResource(R.drawable.minus);
+		LinearLayout tab2 = (LinearLayout) findViewById(R.id.activity_detail_tab2);
+		ImageView imageView = new ImageView(this);
+		LinearLayout.LayoutParams vp = new LinearLayout.LayoutParams(
+				LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+		imageView.setLayoutParams(vp);
+		imageView.setImageBitmap(img);
+		tab2.addView(imageView);
 	}
 
+	@Override
+	protected void onPause() {
+		super.onPause();
+		imgDownloader.removeMyChangeListener(this);
+	}
 	/**
 	 * Set up the {@link android.app.ActionBar}, if the API is available.
 	 */
