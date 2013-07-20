@@ -118,5 +118,6 @@
         <item>Male</item>
         <item>Female</item>
     </string-array>
-
+	
+    <string name="registration_btn_str">Register</string>
 </resources>

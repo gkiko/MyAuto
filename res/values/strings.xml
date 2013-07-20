@@ -118,6 +118,7 @@
         <item>მამრობითი</item>
         <item>მდედრობითი</item>
     </string-array>
+    <string name="registration_btn_str">დარეგისტრირება</string>
 
     <string name="title_activity_detail">DetailActivity</string>
     <!-- DetailActivity -->
