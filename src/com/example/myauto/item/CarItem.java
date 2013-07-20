@@ -48,7 +48,7 @@ public class CarItem extends Observable implements Item, Serializable {
 	public static final String FUEL = "fuel";
 	public static final String GEAR = "gear";
 	public static final String LOCATION = "location";
-	public static final String DISC = "desc";
+	public static final String DESC = "desc";
 	public static final String DEALER = "dealer";
 	
 	private HashMap<String, String> itemData = new HashMap<String, String>();

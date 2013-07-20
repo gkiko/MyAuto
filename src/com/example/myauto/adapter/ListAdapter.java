@@ -1,8 +1,9 @@
-package com.example.myauto;
+package com.example.myauto.adapter;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import com.example.myauto.R;
 import com.example.myauto.item.CarFacade;
 import com.example.myauto.item.CarItem;
 

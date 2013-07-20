@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.example.myauto.adapter.ListAdapter;
 import com.example.myauto.data.DataContainer;
 import com.example.myauto.event.MyChangeEvent;
 import com.example.myauto.fetcher.ImageDownloader;
