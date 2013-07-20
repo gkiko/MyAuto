@@ -103,8 +103,24 @@
     <string name="menu_logout">გამოსვლა</string>
     <string name="menu_register">რეგისტრაცია</string>
     <string name="menu_add_car">მანქანის დამატება</string>
-    <string name="title_activity_detail">DetailActivity</string>
+    
+    <string name="title_activity_register_page">RegisterPageActivity</string>
+    <string name="username_register">მომხმარებელი*:</string>
+    <string name="pass_register">პაროლი*:</string>
+    <string name="rpt_pass_register">გაიმეორეთ პაროლი*:</string>
+    <string name="name_register">სახელი:</string>
+    <string name="surname_register">გვარი:</string>
+    <string name="email_register">ელ-ფოსტა*:</string>
+    <string name="gender_prompt">სქესი</string>
+    <string name="birthyear_prompt">დაბადების წელი</string>
 
+    <string-array name="gender_array">
+        <item>მამრობითი</item>
+        <item>მდედრობითი</item>
+    </string-array>
+    <string name="registration_btn_str">დარეგისტრირება</string>
+
+    <string name="title_activity_detail">DetailActivity</string>
     <!-- DetailActivity -->
     <string-array name="details">
         <item>@string/search_carMarkAndModel</item>

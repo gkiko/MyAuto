@@ -90,7 +90,7 @@
     <string name="search_dialog_year_ok">OK</string>
     <string name="search_dialog_customs_and_wheel_yes">Yes</string>
     <string name="search_dialog_customs_and_wheel_no">No</string>
-    
+
     <!-- SearchPageActivity SelectedValues Strings -->
     <string name="search_selectedValue_yes">Yes</string>
 
@@ -104,5 +104,20 @@
     <string name="menu_register">Register</string>
     <string name="menu_add_car">Add Car</string>
     <string name="title_activity_detail">DetailActivity</string>
+    <string name="title_activity_register_page">RegisterPageActivity</string>
+    <string name="username_register">Username*:</string>
+    <string name="pass_register">Password*:</string>
+    <string name="rpt_pass_register">Repeat Password*:</string>
+    <string name="name_register">Name:</string>
+    <string name="surname_register">Surname:</string>
+    <string name="email_register">E-Mail*:</string>
+    <string name="gender_prompt">Gender</string>
+    <string name="birthyear_prompt">Birth Year</string>
 
+    <string-array name="gender_array">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+	
+    <string name="registration_btn_str">Register</string>
 </resources>
