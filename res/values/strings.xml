@@ -90,7 +90,7 @@
     <string name="search_dialog_year_ok">OK</string>
     <string name="search_dialog_customs_and_wheel_yes">კი</string>
     <string name="search_dialog_customs_and_wheel_no">არა</string>
-    
+
     <!-- SearchPageActivity SelectedValues Strings -->
     <string name="search_selectedValue_yes">კი</string>
 
@@ -110,4 +110,6 @@
     <string name="odometer">კატეგორია</string>
     <string name="cylinder">ცილინდრი</string>
     <string name="color">ფერი</string>
+    <string name="title_activity_register_page">RegisterPageActivity</string>
+
 </resources>

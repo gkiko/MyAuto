@@ -84,6 +84,9 @@ public class MasterPageActivity extends Activity {
 			logOutUser();
 			break;
 		case R.id.menu_register:
+			nextIntent = new Intent(MasterPageActivity.this,
+					RegisterPageActivity.class);
+			startActivity(nextIntent);
 			break;
 		case R.id.menu_add_car:
 			break;
