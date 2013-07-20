@@ -52,7 +52,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Username:"
+                android:text="@string/username_register"
                 android:textColor="#372c24" />
 
             <EditText
@@ -67,7 +67,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Password"
+                android:text="@string/pass_register"
                 android:textColor="#372c24" />
 
             <EditText
@@ -81,7 +81,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Repeat Password"
+                android:text="@string/rpt_pass_register"
                 android:textColor="#372c24" />
 
             <EditText
@@ -95,7 +95,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Name"
+                android:text="@string/name_register"
                 android:textColor="#372c24" />
 
             <EditText
@@ -110,7 +110,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Surname"
+                android:text="@string/surname_register"
                 android:textColor="#372c24" />
 
             <EditText
@@ -127,7 +127,7 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="Email"
+                android:text="@string/email_register"
                 android:textColor="#372c24" />
 
             <EditText
@@ -139,15 +139,26 @@
                 android:inputType="textEmailAddress"
                 android:singleLine="true" />
 
-            
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/gender_prompt"
+                android:textColor="#372c24" />
+
             <Spinner
                 android:id="@+id/spinnerGender"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:entries="@array/gender_array"
                 android:prompt="@string/gender_prompt" />
-             
-             <Spinner
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/birthyear_prompt"
+                android:textColor="#372c24" />
+
+            <Spinner
                 android:id="@+id/spinnerBirthYear"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
