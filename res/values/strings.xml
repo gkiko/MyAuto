@@ -103,13 +103,20 @@
     <string name="menu_logout">გამოსვლა</string>
     <string name="menu_register">რეგისტრაცია</string>
     <string name="menu_add_car">მანქანის დამატება</string>
+    <string name="title_activity_register_page">RegisterPageActivity</string>
     <string name="title_activity_detail">DetailActivity</string>
-
+	<string name="gender_prompt">აირჩიეთ სქესი</string>
+ 	<string name="birthyear_prompt">აირჩიეთ დაბადების წელი</string>
+    <string-array name="gender_array">
+        <item>მამრობითი</item>
+        <item>მდედრობითი</item>
+    </string-array>
+    
     <!-- DetailActivity -->
     <string name="colon">:</string>
     <string name="odometer">კატეგორია</string>
     <string name="cylinder">ცილინდრი</string>
     <string name="color">ფერი</string>
-    <string name="title_activity_register_page">RegisterPageActivity</string>
+    
 
 </resources>

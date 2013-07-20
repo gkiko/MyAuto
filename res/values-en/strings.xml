@@ -104,5 +104,12 @@
     <string name="menu_register">Register</string>
     <string name="menu_add_car">Add Car</string>
     <string name="title_activity_detail">DetailActivity</string>
+     <string name="title_activity_register_page">RegisterPageActivity</string>
+	<string name="gender_prompt">Gender</string>
+ 	<string name="birthyear_prompt">Birth Year</string>
+    <string-array name="gender_array">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
 
 </resources>
