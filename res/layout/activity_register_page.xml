@@ -56,10 +56,11 @@
                 android:textColor="#372c24" />
 
             <EditText
-                android:id="@+id/reg_fullname"
+                android:id="@+id/reg_username"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dip"
+                android:inputType="text"
                 android:layout_marginTop="5dip"
                 android:singleLine="true" />
             <!-- Password Label -->
@@ -172,6 +173,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dip"
+                android:onClick="submitForm"
                 android:text="@string/registration_btn_str" />
             <!-- Link to Login Screen -->
 
