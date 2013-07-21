@@ -17,21 +17,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.util.EntityUtils;
+
+import com.example.myauto.requests.LoginRequest;
 
 public class MasterPageActivity extends Activity {
 
 	private Menu menu;
-	private boolean logined = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -158,7 +149,8 @@ public class MasterPageActivity extends Activity {
 				.findViewById(R.id.password_edittext);
 		String userName = usrname.getText().toString();
 		String pass = pswd.getText().toString();
-		sendLoginRequest(userName, pass);
+		LoginRequest lr = new LoginRequest(userName, pass);
+		boolean logined = lr.sendLoginRequest();
 		if (logined) {
 			MenuItem login = menu.findItem(R.id.menu_login);
 			login.setVisible(false);
@@ -182,74 +174,6 @@ public class MasterPageActivity extends Activity {
 
 	}
 
-	
-	private void sendLoginRequest(final String userName, final String pass) {
-		
-		Thread th = new Thread() {
-			@Override
-			public void run() {				
-				doPostR(userName, pass);
-			}
-		};
-		th.start();
-		try {
-			th.join();
-		} catch (InterruptedException exception) {
-			// TODO Auto-generated catch-block stub.
-			exception.printStackTrace();
-		}
-	}
-		
-		/**
-	 * TODO Put here a description of what this method does.
-	 *
-	 * @param userName
-	 * @param pass
-	 */
-	protected void doPostR(String userName, String pass) {
-		HttpClient httpclient = new DefaultHttpClient();
-		String cookies = "__unam=656d566-13b320bb773-3236022d-117; PHPSESSID=o11blrta66tc0p5oqeboi3m792; ad_date_2=2013-07-18; __utma=229565184.325010435.1337247288.1374057018.1374064773.87; __utmb=229565184.2.10.1374064773; __utmc=229565184; __utmz=229565184.1373798325.83.22.utmcsr=forum.ge|utmccn=(referral)|utmcmd=referral|utmcct=/";
-		HttpPost httppost = new HttpPost("http://myauto.ge/login.php");
-
-		try {
-			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-//			nameValuePairs.add(new BasicNameValuePair("ad_date_2", "2013-07-17"));
-			nameValuePairs.add(new BasicNameValuePair("action", "do_login"));
-			nameValuePairs.add(new BasicNameValuePair("password", pass));
-			nameValuePairs.add(new BasicNameValuePair("username", userName));
-			nameValuePairs.add(new BasicNameValuePair("PHPSESSID", "o11blrta66tc0p5oqeboi3m792"));
-			
-			
-			
-			httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-			httppost.setHeader("Cookie", cookies);
-			httppost.setHeader("Host", "www.myauto.ge");
-			httppost.setHeader("Connection", "keep-alive");
-			httppost.setHeader("Cache-Control", "max-age=0");
-			httppost.setHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
-			httppost.setHeader("Origin", "http://www.myauto.ge");
-			httppost.setHeader("Content-Type", "application/x-www-form-urlencoded");
-			httppost.setHeader("Referer", "http://www.myauto.ge/login.php");
-			httppost.setHeader("Accept-Encoding", "gzip,deflate,sdch");
-			httppost.setHeader("Accept-Language", "en-US,en;q=0.8,ru;q=0.6");
-			
-			HttpResponse response = httpclient.execute(httppost);
-			HttpEntity entity = response.getEntity();
-
-			String responseText = EntityUtils.toString(entity);
-			System.out.println("statuscode " + response.getStatusLine());
-			System.out.println("-----------------------------------------------");
-			if(responseText.contains("<a href=\"mypage.php\">" + userName + "</a>"))logined = true;
-
-		} catch (ClientProtocolException e) {
-			// TODO Auto-generated catch block
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-		}
-	}
-
-		
-	
 
 	/**
 	 * მომხმარებელს ინახავს სესიაში დალოგინებისას
