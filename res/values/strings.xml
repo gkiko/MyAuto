@@ -18,23 +18,7 @@
     <string name="button">ფილტრი</string>
     <string name="transmission_null">ტრანსმისია</string>
 
-    <string-array name="transmission_arrays">
-        <item>ტრანსმისია</item>
-        <item>მექანიკა</item>
-        <item>აუტომატიკა</item>
-        <item>ტიპტრონიკი</item>
-    </string-array>
-
     <string name="fuel_null">საწვავის ტიპი</string>
-
-    <string-array name="fuel_arrays">
-        <item>საწვავის ტიპი</item>
-        <item>ბენზინი</item>
-        <item>დიზელი</item>
-        <item>გაზი/ბენზინი</item>
-        <item>ჰიბრიდი</item>
-        <item>ელექტრო</item>
-    </string-array>
 
     <string name="title_activity_filtered">FilteredActivity</string>
     <string name="title_activity_catalog_page">CatalogPageActivity</string>
