@@ -21,7 +21,9 @@ public class DBManager {
 	private static int MAN_NAME_COLUMN = 2;
 	private static int LOCATION_ID_COLUMN = 0;
 	private static int LOCATION_PARENT_COLUMN = 1;
-	private static int LOCATION_NAME_COLUMN = 2;
+	private static int LOCATION_NAME_COLUMN_EN = 2;
+	private static int LOCATION_NAME_COLUMN_GE = 3;
+	private static int LOCATION_NAME_COLUMN_RU = 4;
 
 	static String[] asd = "(72,'ALL'), (1, 'ALFA ROMEO'), (2, 'AUDI'), (3, 'BMW'), (4, 'CADILLAC'), (5, 'CHEVROLET'), (6, 'CHRYSLER'), (7, 'CITROEN'), (8, 'DAEWOO'), (9, 'DAIHATSU'), (10, 'DODGE'), (11, 'FIAT'), (12, 'FORD'), (13, 'GMC'), (14, 'HONDA'), (15, 'HUMMER'), (16, 'HYUNDAI'), (17, 'ISUZU'), (18, 'JAGUAR'), (19, 'JEEP'), (20, 'KIA'), (21, 'LANCIA'), (22, 'LAND ROVER'), (23, 'LEXUS'), (24, 'MAZDA'), (25, 'MERCEDES'), (26, 'MERCURY'), (28, 'MINI'), (29, 'MITSUBISHI'), (30, 'NISSAN'), (31, 'OPEL'), (32, 'PEUGEOT'), (33, 'PORSCHE'), (34, 'RENAULT'), (35, 'ROVER'), (36, 'SAAB'), (37, 'SEAT'), (38, 'SKODA'), (39, 'SUBARU'), (40, 'SUZUKI'), (41, 'TOYOTA'), (42, 'VOLKSWAGEN'), (43, 'VOLVO'), (44, 'VAZ'), (45, 'GAZ'), (48, 'MOSKVICH'), (53, 'INFINITI'), (54, 'PONTIAC'), (55, 'SCION'), (56, 'OLDSMOBILE'), (57, 'NEOPLAN'), (58, 'LINCOLN'), (59, 'YAMAHA'), (61, 'KAWASAKI'), (62, 'IVECO'), (64, 'SSANGYONG'), (65, 'MAN'), (66, 'DAF'), (67, 'SCHMITZ'), (69, 'BUICK'), (70, 'ACURA'), (71, 'CATERPILLAR'), (73, 'LAMBORGHINI'), (74, 'FERRARI'), (75, 'MASERATI'), (76, 'ASTON MARTIN'), (77, 'SALEEN'), (78, 'BENTLEY'), (79, 'ROLLS-ROYCE'), (80, 'MAYBACH'), (81, 'DUCATI'), (82, 'SCANIA'), (84, 'CHERY'), (85, 'JAC'), (86, 'BOMBARDIER'), (87, 'BYD'), (88, 'ROEWE'), (89, 'GEELI '), (90, 'CHANGFENG'), (92, 'TATA'), (93, 'SATURN'), (94, 'STEYR'), (95, 'UAZ'), (96, 'TAGAZ'), (97, 'ZAZ'), (98, 'BOBCAT'), (99, 'ZIL'), (100, 'BELARUS'), (101, 'KAMAZ'), (102, 'MAZ'), (103, '�THER'), (104, 'HARLEY-DAVIDSON'), (105, 'KTM'), (106, 'JAWA'), (107, 'APRILIA'), (108, 'KRAZ'), (109, 'SETRA'), (110, 'JCB'), (111, 'BOBCAT'), (112, 'KOMATSU'), (113, 'TEREX'), (114, 'NEW HOLLAND'), (115, 'MASSEY FERGUSON'), (116, 'FIAT-HITACHI'), (117, 'FERMEC'), (119, 'CLAAS'), (120, 'BELARUS'), (121, 'CASE'), (122, 'ZEPPELIN'), (123, 'MONDIAL'), (124, 'BRP'), (125, 'LINTEX'), (126, 'VOSKHOD'), (127, 'DNEPR'), (128, 'CZ'), (129, 'MURAVEY'), (130, 'HAFEI'), (131, 'Zoomline'), (132, 'Howo'), (133, 'Liu Gong'), (134, 'Sinotruk � Howo'), (135, 'Dong � fen'), (136, 'POLARIS'), (137, 'ENDURO'), "
 			.split(",");
@@ -173,10 +175,12 @@ public class DBManager {
 		Cursor cursor = db.rawQuery(selectQuery, null);
 		if (cursor.moveToFirst()) {
 			do {
-				String[] loc = new String[3];
+				String[] loc = new String[5];
 				loc[0] = cursor.getString(LOCATION_ID_COLUMN);
 				loc[1] = cursor.getString(LOCATION_PARENT_COLUMN);
-				loc[2] = cursor.getString(LOCATION_NAME_COLUMN);
+				loc[2] = cursor.getString(LOCATION_NAME_COLUMN_EN);
+				loc[3] = cursor.getString(LOCATION_NAME_COLUMN_GE);
+				loc[4] = cursor.getString(LOCATION_NAME_COLUMN_RU);
 				list.add(loc);
 			} while (cursor.moveToNext());
 		}
@@ -268,9 +272,6 @@ public class DBManager {
 		// String [] catArr =
 		// "(1, 'Sedan'), (2, 'Hatchback'), (3, 'Universal'), (4, 'Coupe'), (5, 'Jeep'), (6, 'Cabriolet'), (7, 'Micro Bus'), (13, 'Goods wagon'), (14, 'Bus'), (15, 'Limousine'), (16, 'Truck'), (17, 'Motocycle'), (19, 'Trailer'), (20, 'Spec. Machinary'), (21, 'Water transport'), (23, 'Cranes'), (24, 'Bulldozers'), (25, 'Excavators'), (26, 'Construction'), (27, 'Agricultural'), (28, 'Loader'), (29, 'Pickup'), (30, 'Minivan'), (31, 'Moped'), (32, 'Snowmobile'), (33, 'Quad bike'), (35, 'Commercial car'), (36, 'Semi-trailer truck'), (37, 'Road'), "
 		// .split(",");
-		// String [] catArr =
-		// "(1, 'Sedan', 'სედანი', 'Седан', 'Седан', 'Седан', 0), (2, 'Hatchback', 'ჰეჩბექი', 'Хэтчбек', 'Хэтчбек', 'Хэтчбек', 0), (3, 'Universal', 'უნივერსალი', 'Универсал', 'Универсал', 'Универсал', 0), (4, 'Coupe', 'კუპე', 'Купе', 'Купе', 'Купе', 0), (5, 'Jeep', 'ჯიპი', 'Внедорожник', 'Внедорожник', 'Внедорожник', 0), (6, 'Cabriolet', 'კაბრიოლეტი', 'Кабриолет', 'Кабриолет', 'Кабриолет', 0), (7, 'Micro Bus', 'მიკროავტობუსი', 'Микро-автобус', 'Микро-автобус', 'Микро-автобус', 0), (13, 'Goods wagon', 'ფურგონი', 'Фургон', 'Фургон', 'Фургон', 0), (14, 'Bus', 'ავტობუსი', 'Автобус', 'Автобус', 'Автобус', 1), (15, 'Limousine', 'ლიმუზინი', 'Лимузин', 'Лимузин', 'Лимузин', 0), (16, 'Truck', 'სატვირთო', 'Грузовик', 'Грузовик', 'Грузовик', 1), (17, 'Motocycle', 'მოტოციკლეტი', 'Мотоцикл', 'Мотоцикл', 'Мотоцикл', 2), (19, 'Trailer', 'მისაბმელი', 'Прицеп', 'Прицеп', 'Прицеп', 1), (20, 'Spec. Machinary', 'სპეც. ტექნიკა', 'Спецтехника', 'Спецтехника', 'Спецтехника', 1), (21, 'Water transport', 'წყლის ტრანსპორტი', 'Водный транспорт', 'Водный транспорт', 'Водный транспорт', 2), (23, 'Cranes', 'ამწე', 'Автокраны', 'Автокраны', 'Автокраны', 1), (24, 'Bulldozers', 'ბულდოზერი', 'Бульдозеры', 'Бульдозеры', 'Бульдозеры', 1), (25, 'Excavators', 'ექსკავატორი', 'Экскаваторы', 'Экскаваторы', 'Экскаваторы', 1), (26, 'Construction', 'სამშენებლო', 'Строительная', 'Строительная', 'Строительная', 1), (27, 'Agricultural', 'სასოფლო-სამეურნეო', 'Сельхоз', 'Сельхоз', 'Сельхоз', 1), (28, 'Loader', 'დამტვირთველი', 'Погрузчик', 'Погрузчик', 'Погрузчик', 1), (29, 'Pickup', 'პიკაპი', 'Пикап', 'Пикап', 'Пикап', 0), (30, 'Minivan', 'მინივენი', 'Минивэн', 'Минивэн', 'Минивэн', 0), (31, 'Moped', 'მოპედი', 'Мопед', 'Мопед', 'Мопед', 2), (32, 'Snowmobile', 'ბურანი', 'Снегоход', 'Снегоход', 'Снегоход', 2), (33, 'Quad bike', 'კვადროციკლი', 'Квадроцикл', 'Квадроцикл', 'Квадроцикл', 2), (35, 'Commercial car', 'მსუბუქი კომერციული', 'Коммерческий легковой', 'Коммерческий легковой', 'Коммерческий легковой', 1), (36, 'Semi-trailer truck', 'გამწევი', 'Tягач', 'Tягач', 'Tягач', 1), (37, 'Road', 'საგზაო', 'Дорожный', 'Дорожный', 'Дорожный', 1), "
-		// .split(",");
 		String[] catArr = "(1, 'Sedan', 'სედანი', 'Седан'), (2, 'Hatchback', 'ჰეჩბექი', 'Хэтчбек'), (3, 'Universal', 'უნივერსალი', 'Универсал'), (4, 'Coupe', 'კუპე', 'Купе'), (5, 'Jeep', 'ჯიპი', 'Внедорожник'), (6, 'Cabriolet', 'კაბრიოლეტი', 'Кабриолет'), (7, 'Micro Bus', 'მიკროავტობუსი', 'Микро-автобус'), (13, 'Goods wagon', 'ფურგონი', 'Фургон'), (14, 'Bus', 'ავტობუსი', 'Автобус'), (15, 'Limousine', 'ლიმუზინი', 'Лимузин'), (16, 'Truck', 'სატვირთო', 'Грузовик'), (17, 'Motocycle', 'მოტოციკლეტი', 'Мотоцикл'), (19, 'Trailer', 'მისაბმელი', 'Прицеп'), (20, 'Spec. Machinary', 'სპეც. ტექნიკა', 'Спецтехника'), (21, 'Water transport', 'წყლის ტრანსპორტი', 'Водный транспорт'), (23, 'Cranes', 'ამწე', 'Автокраны'), (24, 'Bulldozers', 'ბულდოზერი', 'Бульдозеры'), (25, 'Excavators', 'ექსკავატორი', 'Экскаваторы'), (26, 'Construction', 'სამშენებლო', 'Строительная'), (27, 'Agricultural', 'სასოფლო-სამეურნეო', 'Сельхоз'), (28, 'Loader', 'დამტვირთველი', 'Погрузчик'), (29, 'Pickup', 'პიკაპი', 'Пикап'), (30, 'Minivan', 'მინივენი', 'Минивэн'), (31, 'Moped', 'მოპედი', 'Мопед'), (32, 'Snowmobile', 'ბურანი', 'Снегоход'), (33, 'Quad bike', 'კვადროციკლი', 'Квадроцикл'), (35, 'Commercial car', 'მსუბუქი კომერციული', 'Коммерческий легковой'), (36, 'Semi-trailer truck', 'გამწევი', 'Tягач'), (37, 'Road', 'საგზაო', 'Дорожный'), "
 				.split(",");
 		for (int i = 0; i < catArr.length - 3; i += 4) {
@@ -284,14 +285,17 @@ public class DBManager {
 	}
 
 	private static void putTestLocations() {
-		String[] locArr = "(1,0, 'Georgia'), (2,1, 'Tbilisi'), (34,1, 'MyAuto AutoMarket'), (30,1, 'Rustavi Car Market'), (3,1, 'Kutaisi'), (4,1, 'Batumi'), (5,1, 'Sokhumi'), (6,1, 'Tskhinvali'), (7,1, 'Poti'), (8,1, 'Telavi'), (9,1, 'Zugdidi'), (10,1, 'Ozurgeti'), (11,1, 'Ambrolauri'), (12,1, 'Khashuri'), (13,1, 'Gori'), (14,1, 'Akhalkalaki'), (15,1, 'Rustavi'), (16,1, 'Mtskheta'), (31,1, 'Akhaltsikhe'), (36,1, 'Zestaphoni'), (37,1, 'Akhmeta'), (38,1, 'Borjomi'), (39,1, 'Kaspi'), (40,1, 'Sagarejo'), (41,1, 'Kobuleti'), (44,1, 'Gurjaani'), (29,0, 'Outside Georgia'), (17,29, 'Azerbaijan'), (18,29, 'Armenia'), (19,29, 'Germany'), (20,29, 'Netherlands'), (21,29, 'USA'), (22,29, 'Japan'), (28,29, 'Russia'), (32,29, 'England'), (33,29, 'Europe'), (35,29, 'Dubai'), (42,29, 'Italy'), (43,29, 'Ireland'), (23,29, 'In way to Georgia'), (24,0, 'Other'), "
+		String[] locArr = "(1,0, 'Georgia', 'საქართველო', 'Грузия'), (2,1, 'Tbilisi', 'თბილისი', 'Тбилиси'), (34,1, 'MyAuto AutoMarket', 'MyAuto-ს ავტობაზრობა', 'MyAuto Автомаркет'), (30,1, 'Rustavi Car Market', 'რუსთავის ავტობაზრობა', 'Руставский Авторынок'), (3,1, 'Kutaisi', 'ქუთაისი', 'Кутаиси'), (4,1, 'Batumi', 'ბათუმი', 'Батуми'), (5,1, 'Sokhumi', 'სოხუმი', 'Сухуми'), (6,1, 'Tskhinvali', 'ცხინვალი', 'Цхинвали'), (7,1, 'Poti', 'ფოთი', 'Роти'), (8,1, 'Telavi', 'თელავი', 'Телави'), (9,1, 'Zugdidi', 'ზუგდიდი', 'Зугдиди'), (10,1, 'Ozurgeti', 'ოზურგეთი', 'Озургети'), (11,1, 'Ambrolauri', 'ამბროლაური', 'Амбролаури'), (12,1, 'Khashuri', 'ხაშური', 'Хашури'), (13,1, 'Gori', 'გორი', 'Гори'), (14,1, 'Akhalkalaki', 'ახალქალაქი', 'Ахалкалаки'), (15,1, 'Rustavi', 'რუსთავი', 'Рустави'), (16,1, 'Mtskheta', 'მცხეთა', 'Мцхета'), (31,1, 'Akhaltsikhe', 'ახალციხე', 'Ахалцихе'), (36,1, 'Zestaphoni', 'ზესტაფონი', 'Зестафони'), (37,1, 'Akhmeta', 'ახმეტა', 'Ахмета'), (38,1, 'Borjomi', 'ბორჯომი', 'Боржоми'), (39,1, 'Kaspi', 'კასპი', 'Каспи'), (40,1, 'Sagarejo', 'საგარეჯო', 'Сагареджо'), (41,1, 'Kobuleti', 'ქობულეთი', 'Кобудети'), (44,1, 'Gurjaani', 'გურჯაანი', 'Гурджаани'), (29,0, 'Outside Georgia', 'საზღვარგარეთი', 'Вне Грузии'), (17,29, 'Azerbaijan', 'აზერბაიჯანი', 'Азербайджан'), (18,29, 'Armenia', 'სომხეთი', 'Армения'), (19,29, 'Germany', 'გერმანია', 'Германия'), (20,29, 'Netherlands', 'ჰოლანდია', 'Голландия'), (21,29, 'USA', 'აშშ', 'США'), (22,29, 'Japan', 'იაპონია', 'Япония'), (28,29, 'Russia', 'რუსეთი', 'Россия'), (32,29, 'England', 'ინგლისი', 'Англия'), (33,29, 'Europe', 'ევროპა', 'Европе'), (35,29, 'Dubai', 'დუბაი', 'Дубай'), (42,29, 'Italy', 'იტალია', 'Италия'), (43,29, 'Ireland', 'ირლანდია', 'Ирландия'), (23,29, 'In way to Georgia', 'გზაში საქ.-სკენ', 'В пути в Грузию'), (24,0, 'Other', 'სხვა', 'Другое'), "
 				.split(",");
-		for (int i = 0; i < locArr.length - 2; i += 3) {
+		for (int i = 0; i < locArr.length - 4; i += 5) {
 			db.execSQL("insert into " + DBHelper.LOCATIONS_TABLE + " ("
 					+ DBHelper.LOCATIONS_ID + ","
 					+ DBHelper.LOCATIONS_PARENT_ID + ","
-					+ DBHelper.LOCATIONS_NAME_ENG + ") VALUES " + locArr[i]
-					+ "," + locArr[i + 1] + "," + locArr[i + 2]);
+					+ DBHelper.LOCATIONS_NAME_ENG + ","
+					+ DBHelper.LOCATIONS_NAME_GEO + ","
+					+ DBHelper.LOCATIONS_NAME_RUS + ") VALUES " + locArr[i]
+					+ "," + locArr[i + 1] + "," + locArr[i + 2] + ","
+					+ locArr[i + 3] + "," + locArr[i + 4]);
 		}
 	}
 }

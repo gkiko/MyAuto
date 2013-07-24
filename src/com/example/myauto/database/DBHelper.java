@@ -49,6 +49,8 @@ public class DBHelper extends SQLiteOpenHelper {
 	public static final String LOCATIONS_ID = "id";
 	public static final String LOCATIONS_PARENT_ID = "parent_id";
 	public static final String LOCATIONS_NAME_ENG = "name_en";
+	public static final String LOCATIONS_NAME_GEO = "name_ge";
+	public static final String LOCATIONS_NAME_RUS = "name_ru";
 
 	// Create Tables Queries
 	public static final String MANUFACTURERS_CREATE = "create table "
@@ -74,7 +76,8 @@ public class DBHelper extends SQLiteOpenHelper {
 			+ " text not null);";
 	public static final String LOCATIONS_CREATE = "create table if not exists "
 			+ LOCATIONS_TABLE + " (" + LOCATIONS_ID + " integer primary key," + LOCATIONS_PARENT_ID
-			+ " integer, " + LOCATIONS_NAME_ENG + " text not null);";
+			+ " integer, " + LOCATIONS_NAME_ENG + " text not null," + LOCATIONS_NAME_GEO + " text not null, " 
+			+ LOCATIONS_NAME_RUS + " text not null);";
 			
 
 	public DBHelper(Context context) {
