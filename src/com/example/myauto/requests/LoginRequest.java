@@ -96,4 +96,32 @@ public class LoginRequest {
 		return null;
 	}
 
+	public void logOut() {
+		Thread th = new Thread() {
+			@Override
+			public void run() {
+				HttpClient httpclient = new DefaultHttpClient();
+				HttpGet httpget = new HttpGet(
+						"http://www.myauto.ge/android/logout.php");
+				try {
+
+					httpclient.execute(httpget);
+
+				} catch (ClientProtocolException e) {
+					// TODO Auto-generated catch block
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+				}
+			}
+		};
+		th.start();
+		try {
+			th.join();
+		} catch (InterruptedException exception) {
+			// TODO Auto-generated catch-block stub.
+			exception.printStackTrace();
+		}
+
+	}
+
 }

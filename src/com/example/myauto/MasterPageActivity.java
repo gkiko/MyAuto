@@ -1,9 +1,13 @@
 package com.example.myauto;
 
+
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
+
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
 
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -33,6 +37,7 @@ public class MasterPageActivity extends Activity {
 	private static final int LANG_GE = 2;
 	private static final int LANG_RU = 3;
 	private Menu menu;
+	private LoginRequest lr;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -188,6 +193,7 @@ public class MasterPageActivity extends Activity {
 		MenuItem car = menu.findItem(R.id.menu_add_car);
 		car.setVisible(false);
 		removeUserFromSession();
+		lr.logOut();
 	}
 
 	/**
@@ -235,7 +241,7 @@ public class MasterPageActivity extends Activity {
 				.findViewById(R.id.password_edittext);
 		String userName = usrname.getText().toString();
 		String pass = pswd.getText().toString();
-		LoginRequest lr = new LoginRequest(userName, pass);
+		lr = new LoginRequest(userName, pass);
 		boolean logined = lr.sendLoginRequest();
 		if (logined) {
 			MenuItem login = menu.findItem(R.id.menu_login);
@@ -278,5 +284,6 @@ public class MasterPageActivity extends Activity {
 				.getDefaultSharedPreferences(getApplicationContext());
 		SharedPreferences.Editor editor = settings.edit();
 		editor.remove("username");
+		
 	}
 }
