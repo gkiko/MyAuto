@@ -51,6 +51,7 @@
     <!--  Language Strings -->
     <string name="dialog_lang_ge">ქართული</string>
     <string name="dialog_lang_en">English</string>
+    <string name="dialog_lang_ru">Русский</string>
     <string name="shared_prefs">MyPrefs</string>
 
     <!-- SearchPageActivity Strings -->

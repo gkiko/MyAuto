@@ -21,6 +21,12 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/dialog_lang_en" />
+        
+        <RadioButton
+            android:id="@+id/dialog_lang_ru"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/dialog_lang_ru" />
     </RadioGroup>
     
     <LinearLayout

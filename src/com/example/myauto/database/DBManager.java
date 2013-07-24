@@ -276,8 +276,10 @@ public class DBManager {
 		for (int i = 0; i < catArr.length - 3; i += 4) {
 			db.execSQL("insert into " + DBHelper.CATEGORIES_TABLE + " ("
 					+ DBHelper.CATEGORY_ID + "," + DBHelper.CATEGORY_NAME_ENG
-					+ "," + DBHelper.CATEGORY_NAME_GEO + "," + DBHelper.CATEGORY_NAME_RUS +") VALUES "
-					+ catArr[i] + "," + catArr[i + 1] + "," + catArr[i + 2] + "," + catArr[i + 3]);
+					+ "," + DBHelper.CATEGORY_NAME_GEO + ","
+					+ DBHelper.CATEGORY_NAME_RUS + ") VALUES " + catArr[i]
+					+ "," + catArr[i + 1] + "," + catArr[i + 2] + ","
+					+ catArr[i + 3]);
 		}
 	}
 

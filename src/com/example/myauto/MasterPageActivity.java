@@ -134,6 +134,10 @@ public class MasterPageActivity extends Activity {
 					setLangLocale("en");
 					saveLanguageID(LANG_EN);
 					break;
+				case R.id.dialog_lang_ru:
+					setLangLocale("ru");
+					saveLanguageID(LANG_RU);
+					break;
 				default:
 					break;
 				}
