@@ -43,7 +43,7 @@ public class RegisterRequest {
 	
 	private void register(){
 		HttpClient httpclient = new DefaultHttpClient();
-		String cookies = "__unam=656d566-13e3db44333-30d82f5f-21; ad_date_2=2013-07-17; PHPSESSID=rv5fdi0a47an0u3p9fs646bg55; __utma=229565184.1943488099.1366831465.1374063221.1374077020.43; __utmb=229565184.15.10.1374077020; __utmc=229565184; __utmz=229565184.1367865217.10.5.utmcsr=google|utmccn=(organic)|utmcmd=organic|utmctr=(not%20provided)";
+		String cookies = "__unam=656d566-13e3db44333-30d82f5f-21; ad_date_2=2013-07-24; PHPSESSID=rv5fdi0a47an0u3p9fs646bg55; __utma=229565184.1943488099.1366831465.1374063221.1374077020.43; __utmb=229565184.15.10.1374077020; __utmc=229565184; __utmz=229565184.1367865217.10.5.utmcsr=google|utmccn=(organic)|utmcmd=organic|utmctr=(not%20provided)";
 		HttpPost httppost = new HttpPost("http://myauto.ge/register.php");
 
 		try {
