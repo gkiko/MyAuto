@@ -91,8 +91,6 @@ public class MainActivity extends MasterPageActivity implements ImageDownloadLis
 		Bundle extras = getIntent().getExtras();
 		extras.putSerializable(FirstPageActivity.bundleKey, adapter.getList());
 		getIntent().putExtras(extras);
-		
-		DataContainer.setNewList(ls);
 	}
 	
 	
