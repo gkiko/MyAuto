@@ -3,19 +3,25 @@ package com.example.myauto;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.myauto.requests.LoginRequest;
@@ -66,6 +72,9 @@ public class MasterPageActivity extends Activity {
 					AboutPageActivity.class);
 			startActivity(nextIntent);
 			break;
+		case R.id.menu_language:
+			changeLanguage();
+			break;
 		case R.id.menu_login:
 			createLoginBox();
 			break;
@@ -85,6 +94,60 @@ public class MasterPageActivity extends Activity {
 			break;
 		}
 		return super.onMenuItemSelected(featureId, item);
+	}
+	
+	/**
+	 * Enis Shecvlis Metodi
+	 */
+	private void changeLanguage(){
+		final Dialog dialog = new Dialog(this);
+		dialog.setContentView(R.layout.dialog_language);
+		dialog.setTitle(R.string.menu_language);
+		
+		Button cancel = (Button) dialog.findViewById(R.id.dialog_lang_btn_cancel);
+		Button ok = (Button) dialog.findViewById(R.id.dialog_lang_btn_ok);
+		
+		cancel.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				dialog.dismiss();
+			}
+		});
+		
+		ok.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				RadioGroup group = (RadioGroup) dialog.findViewById(R.id.dialog_lang);
+				int id = group.getCheckedRadioButtonId();
+				switch(id){
+				case R.id.dialog_lang_ge:
+					setLangLocale("");
+					break;
+				case R.id.dialog_lang_en:
+					setLangLocale("en");
+					break;
+				default:
+					break;
+				}
+				dialog.dismiss();
+				finish();
+				startActivity(getIntent());
+			}
+		});
+		
+		dialog.show();
+	}
+	
+	/**
+	 * vayeneb enis Default-s
+	 */
+	private void setLangLocale (String lang) {
+		Locale locale = new Locale(lang);
+		Locale.setDefault(locale);
+		Configuration config = new Configuration();
+		config.locale = locale; 
+		getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+		
 	}
 
 	/**

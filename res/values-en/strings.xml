@@ -46,6 +46,11 @@
     <string name="menu_search">Search</string>
     <string name="menu_catalog">Catalog</string>
     <string name="menu_about">About</string>
+    <string name="menu_language">Language</string>
+
+    <!-- Language Strings -->
+    <string name="dialog_lang_ge">ქართული</string>
+    <string name="dialog_lang_en">English</string>
 
     <!-- SearchPageActivity Strings -->
     <string name="search_search_btn">Search</string>
@@ -118,9 +123,8 @@
         <item>Male</item>
         <item>Female</item>
     </string-array>
-	
+
     <string name="registration_btn_str">Register</string>
-    
     <string name="title_activity_detail">DetailActivity</string>
     <!-- DetailActivity -->
     <string-array name="details">
@@ -160,7 +164,7 @@
     <string name="aircond">Air Conditioner</string>
     <string name="climate">Climate System</string>
     <string name="alarm">Alarm</string>
-	<string name="hydraulics">Hydraulics</string>
-	<string name="turbo">Turbo</string>
-    
+    <string name="hydraulics">Hydraulics</string>
+    <string name="turbo">Turbo</string>
+
 </resources>

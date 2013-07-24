@@ -35,6 +35,9 @@
         android:id="@+id/menu_catalog"
         android:title="@string/menu_catalog"/>
     <item
+        android:id="@+id/menu_language"
+        android:title="@string/menu_language"/>
+    <item
         android:id="@+id/menu_about"
         android:title="@string/menu_about"/>
 

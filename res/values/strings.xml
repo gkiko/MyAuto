@@ -46,6 +46,11 @@
     <string name="menu_search">ძებნა</string>
     <string name="menu_catalog">კატალოგი</string>
     <string name="menu_about">ჩვენს შესახებ</string>
+    <string name="menu_language">ენა</string>
+    
+    <!--  Language Strings -->
+    <string name="dialog_lang_ge">ქართული</string>
+    <string name="dialog_lang_en">English</string>
 
     <!-- SearchPageActivity Strings -->
     <string name="search_search_btn">ძებნა</string>
