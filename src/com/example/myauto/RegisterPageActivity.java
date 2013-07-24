@@ -76,7 +76,7 @@ public class RegisterPageActivity extends Activity {
 			EditText et6 = (EditText) findViewById(R.id.reg_surname);
 			String name = et5.getText().toString();
 			String surname = et6.getText().toString();
-			String[]params = new String[]{userName, pass1, name, surname, email, Long.toString(gender.getSelectedItemId()),(String) years.getSelectedItem()};
+			String[]params = new String[]{userName, pass1, name, surname, email, Long.toString(gender.getSelectedItemId() + 1),Integer.toString((Integer)years.getSelectedItem())};
 			RegisterRequest rr = new RegisterRequest(params);
 			rr.sendRegistrationRequest();
 		}
