@@ -649,7 +649,20 @@ public class SearchPageActivity extends MasterPageActivity {
 			door = list.get(i);
 			RadioButton rdbtn = new RadioButton(this);
 			rdbtn.setId(Integer.parseInt(door[0]));
-			rdbtn.setText(door[1]);
+			int langID = prefs.getInt("Lang", LANG_EN);
+			switch (langID) {
+			case LANG_EN:
+				rdbtn.setText(door[LANG_EN]);
+				break;
+			case LANG_GE:
+				rdbtn.setText(door[LANG_GE]);
+				break;
+			case LANG_RU:
+				rdbtn.setText(door[LANG_RU]);
+				break;
+			default:
+				break;
+			}
 			rdbtn.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,
 					LayoutParams.WRAP_CONTENT));
 			group.addView(rdbtn);
@@ -835,7 +848,21 @@ public class SearchPageActivity extends MasterPageActivity {
 			fuelType = fuelTypes.get(i);
 			RadioButton rdbtn = new RadioButton(this);
 			rdbtn.setId(Integer.parseInt(fuelType[0]));
-			rdbtn.setText(fuelType[1]);
+			int langID = prefs.getInt("Lang", LANG_EN);
+			switch (langID) {
+			case LANG_EN:
+				rdbtn.setText(fuelType[LANG_EN]);
+				break;
+			case LANG_GE:
+				rdbtn.setText(fuelType[LANG_GE]);
+				break;
+			case LANG_RU:
+				rdbtn.setText(fuelType[LANG_RU]);
+				break;
+			default:
+				break;
+			}
+		//	rdbtn.setText(fuelType[1]);
 			rdbtn.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,
 					LayoutParams.WRAP_CONTENT));
 			group.addView(rdbtn);
@@ -970,7 +997,21 @@ public class SearchPageActivity extends MasterPageActivity {
 			gearTypes = gears.get(i);
 			RadioButton rdbtn = new RadioButton(this);
 			rdbtn.setId(Integer.parseInt(gearTypes[0]));
-			rdbtn.setText(gearTypes[1]);
+			int langID = prefs.getInt("Lang", LANG_EN);
+			switch (langID) {
+			case LANG_EN:
+				rdbtn.setText(gearTypes[LANG_EN]);
+				break;
+			case LANG_GE:
+				rdbtn.setText(gearTypes[LANG_GE]);
+				break;
+			case LANG_RU:
+				rdbtn.setText(gearTypes[LANG_RU]);
+				break;
+			default:
+				break;
+			}
+		//	rdbtn.setText(gearTypes[1]);
 			rdbtn.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,
 					LayoutParams.WRAP_CONTENT));
 			group.addView(rdbtn);

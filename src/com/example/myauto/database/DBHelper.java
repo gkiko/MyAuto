@@ -25,7 +25,9 @@ public class DBHelper extends SQLiteOpenHelper {
 	public static final String FUEL_TABLE = "FUEL";
 	public static final String GEAR_TABLE = "GEAR";
 	public static final String FUEL_ID = "id";
-	public static final String FUEL_NAME = "name";
+	public static final String FUEL_NAME_ENG = "name_en";
+	public static final String FUEL_NAME_GEO = "name_ge";
+	public static final String FUEL_NAME_RUS = "name_ru";
 	
 	// Table Categories
 	public static final String CATEGORIES_TABLE = "CATEGORIES";
@@ -38,11 +40,15 @@ public class DBHelper extends SQLiteOpenHelper {
 	public static final String DOOR_TYPES_TABLE = "DOOR_TYPES";
 	public static final String DOOR_TYPES_ID = "id";
 	public static final String DOOR_TYPES_NAME_ENG = "name_en";
+	public static final String DOOR_TYPES_NAME_GEO = "name_ge";
+	public static final String DOOR_TYPES_NAME_RUS = "name_ru";
 	
 	// Table Drive Types
 	public static final String DRIVE_TYPES_TABLE = "DRIVE_TYPES";
 	public static final String DRIVE_TYPES_ID = "id";
 	public static final String DRIVE_TYPES_NAME_ENG = "name_en";
+	public static final String DRIVE_TYPES_NAME_GEO = "name_ge";
+	public static final String DRIVE_TYPES_NAME_RUS = "name_ru";
 	
 	// Table Locations
 	public static final String LOCATIONS_TABLE = "LOCATIONS";
@@ -60,20 +66,20 @@ public class DBHelper extends SQLiteOpenHelper {
 			+ " (" + MOD_ID + " integer primary key, " + MOD_ID_MAN + " integer, "
 			+ MOD_NAME + " text not null, " + MOD_GROUP + " text);";
 	public static final String FUEL_CREATE = "create table if not exists "
-			+ FUEL_TABLE + "(" + FUEL_ID + " integer primary key," + FUEL_NAME
-			+ " text not null);";
+			+ FUEL_TABLE + "(" + FUEL_ID + " integer primary key," + FUEL_NAME_ENG
+			+ " text not null," + FUEL_NAME_GEO + " tetx not null," + FUEL_NAME_RUS + " text not null);";
 	public static final String GEAR_CREATE = "create table if not exists "
-			+ GEAR_TABLE + "(" + FUEL_ID + " integer primary key," + FUEL_NAME
-			+ " text not null);";
+			+ GEAR_TABLE + "(" + FUEL_ID + " integer primary key," + FUEL_NAME_ENG
+			+ " text not null," + FUEL_NAME_GEO + " tetx not null," + FUEL_NAME_RUS + " text not null);";
 	public static final String CATEGORIES_CREATE = "create table if not exists " 
 			+ CATEGORIES_TABLE + " ("+CATEGORY_ID+" integer primary key," + CATEGORY_NAME_ENG
 			+ " text not null," + CATEGORY_NAME_GEO + " text not null," + CATEGORY_NAME_RUS + " text not null);";
 	public static final String DOOR_TYPES_CREATE = "create table if not exists "
 			+ DOOR_TYPES_TABLE + " (" + DOOR_TYPES_ID + " integer primary key," + DOOR_TYPES_NAME_ENG
-			+ " text not null);";
+			+ " text not null," + DOOR_TYPES_NAME_GEO + " text not null," + DOOR_TYPES_NAME_RUS + " text not null);";
 	public static final String DRIVE_TYPES_CREATE = "create table if not exists "
 			+ DRIVE_TYPES_TABLE + " (" + DRIVE_TYPES_ID + " integer primary key," + DRIVE_TYPES_NAME_ENG
-			+ " text not null);";
+			+ " text not null," + DRIVE_TYPES_NAME_GEO + " text not null," + DRIVE_TYPES_NAME_RUS + " text not null);";
 	public static final String LOCATIONS_CREATE = "create table if not exists "
 			+ LOCATIONS_TABLE + " (" + LOCATIONS_ID + " integer primary key," + LOCATIONS_PARENT_ID
 			+ " integer, " + LOCATIONS_NAME_ENG + " text not null," + LOCATIONS_NAME_GEO + " text not null, " 

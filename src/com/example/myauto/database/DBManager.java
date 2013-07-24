@@ -16,7 +16,7 @@ public class DBManager {
 	private static int NAME_COLUMN_EN = 1;
 	private static int NAME_COLUMN_GE = 2;
 	private static int NAME_COLUMN_RU = 3;
-	private static int NAME_COLUMN = 1;
+//	private static int NAME_COLUMN = 1;
 	private static int MAN_ID_COLUMN = 1;
 	private static int MAN_NAME_COLUMN = 2;
 	private static int LOCATION_ID_COLUMN = 0;
@@ -89,9 +89,11 @@ public class DBManager {
 		Cursor cursor = db.rawQuery(selectQuery, null);
 		if (cursor.moveToFirst()) {
 			do {
-				String[] gear = new String[2];
+				String[] gear = new String[4];
 				gear[0] = cursor.getString(ID_COLUMN);
-				gear[1] = cursor.getString(NAME_COLUMN);
+				gear[1] = cursor.getString(NAME_COLUMN_EN);
+				gear[2] = cursor.getString(NAME_COLUMN_GE);
+				gear[3] = cursor.getString(NAME_COLUMN_RU);
 				list.add(gear);
 			} while (cursor.moveToNext());
 		}
@@ -110,9 +112,11 @@ public class DBManager {
 		Cursor cursor = db.rawQuery(selectQuery, null);
 		if (cursor.moveToFirst()) {
 			do {
-				String[] man = new String[2];
+				String[] man = new String[4];
 				man[0] = cursor.getString(ID_COLUMN);
-				man[1] = cursor.getString(NAME_COLUMN);
+				man[1] = cursor.getString(NAME_COLUMN_EN);
+				man[2] = cursor.getString(NAME_COLUMN_GE);
+				man[3] = cursor.getString(NAME_COLUMN_RU);
 				list.add(man);
 			} while (cursor.moveToNext());
 		}
@@ -131,9 +135,11 @@ public class DBManager {
 		Cursor cursor = db.rawQuery(selectQuery, null);
 		if (cursor.moveToFirst()) {
 			do {
-				String[] man = new String[2];
+				String[] man = new String[4];
 				man[0] = cursor.getString(ID_COLUMN);
-				man[1] = cursor.getString(NAME_COLUMN);
+				man[1] = cursor.getString(NAME_COLUMN_EN);
+				man[2] = cursor.getString(NAME_COLUMN_GE);
+				man[3] = cursor.getString(NAME_COLUMN_RU);
 				list.add(man);
 			} while (cursor.moveToNext());
 		}
@@ -232,39 +238,46 @@ public class DBManager {
 	}
 
 	private static void putTestFuel() {
-		String[] arr = new String[] { "(2,'Petrol')", "(3,'Diesel')",
-				"(5,'Gas/Petrol')", "(6,'Hybrid')", "(7,'Electric')" };
+		String[] arr = new String[] { "(2,'Petrol', 'ბენზინი', 'Бензин/Вспрыск')", "(3,'Diesel', 'დიზელი', 'Дизель')", "(4,'Turbodiesel', 'ტურბოდიზელი', 'Турбодиэель')",
+				"(8,'Diesel/Turbodiesel', 'დიზელი/ტურბოდიზელი', 'Дизель/Турбодиэель')", "(5,'Gas/Petrol', 'გაზი/ბენზინი', 'Газ/Бензин')", 
+				"(6,'Hybrid', 'ჰიბრიდი', 'Гибрид')", "(7,'Electric', 'ელექტრო', 'Электро')" };
 		for (String a : arr) {
 			db.execSQL("insert into " + dbHelper.FUEL_TABLE + " values" + a);
 		}
 	}
 
 	private static void putTestGear() {
-		String[] arr1 = new String[] { "(1,'Manual')", "(2,'Automatic')",
-				"(3,'Tiptronic')" };
+		String[] arr1 = new String[] { "(1,'Manual', 'მექანიკური', 'Механика')", "(2,'Automatic', 'ავტომატიკა', 'Автоматика')",
+				"(3,'Tiptronic', 'ტიპტრონიკი', 'Типтроник')", "(4,'Auto or Tipt', 'ავტ. ან ტიპტ.', 'Авт. или Типт.')" };
 		for (String a : arr1)
 			db.execSQL("insert into " + dbHelper.GEAR_TABLE + " values" + a);
 	}
 
 	private static void putTestDoorTypes() {
-		String[] doorArr = "(1, '2/3'), (2, '4/5'), (3, '1'), (4, '>5'), (5, '0'), "
+		String[] doorArr = "(1, '2/3', '2/3', '2/3'), (2, '4/5', '4/5', '4/5'), (3, '1', '1', '1'), (4, '>5', '>5', '>5'), (5, '0', '0', '0'), "
 				.split(",");
-		for (int i = 0; i < doorArr.length - 1; i += 2) {
+		for (int i = 0; i < doorArr.length - 3; i += 4) {
 			db.execSQL("insert into " + DBHelper.DOOR_TYPES_TABLE + " ("
 					+ DBHelper.DOOR_TYPES_ID + ","
-					+ DBHelper.DOOR_TYPES_NAME_ENG + ") VALUES " + doorArr[i]
-					+ "," + doorArr[i + 1]);
+					+ DBHelper.DOOR_TYPES_NAME_ENG +","
+					+ DBHelper.DOOR_TYPES_NAME_GEO + ","
+					+ DBHelper.DOOR_TYPES_NAME_RUS + ") VALUES " + doorArr[i]
+					+ "," + doorArr[i + 1] + "," + doorArr[i + 2] + ","
+					+ doorArr[i + 3]);
 		}
 	}
 
 	private static void putTestDriveTypes() {
-		String[] driveArr = "(1, 'Front'), (2, 'Rear'), (3, '4x4'), "
+		String[] driveArr = "(1, 'Front', 'წინა', 'Передная'), (2, 'Rear', 'უკანა', 'Задная'), (3, '4x4', '4x4', '4x4'), "
 				.split(",");
-		for (int i = 0; i < driveArr.length - 1; i += 2) {
+		for (int i = 0; i < driveArr.length - 3; i += 4) {
 			db.execSQL("insert into " + DBHelper.DRIVE_TYPES_TABLE + " ("
 					+ DBHelper.DRIVE_TYPES_ID + ","
-					+ DBHelper.DRIVE_TYPES_NAME_ENG + ") VALUES " + driveArr[i]
-					+ "," + driveArr[i + 1]);
+					+ DBHelper.DRIVE_TYPES_NAME_ENG + ","
+					+ DBHelper.DRIVE_TYPES_NAME_GEO + ","
+					+ DBHelper.DRIVE_TYPES_NAME_RUS + ") VALUES " + driveArr[i]
+					+ "," + driveArr[i + 1] + "," + driveArr[i + 2] + ","
+					+ driveArr[i + 3]);
 		}
 	}
 

@@ -15,6 +15,8 @@ public class DBManagerFilter {
 		}
 	}
 	
+	/*
+	
 	public static String getManIdByName(String name) {
 		String[] tableColumns = new String[] { dbHelper.MAKE_ID+" as _id" };
 		String whereClause = dbHelper.MAKE_NAME+" = ?";
@@ -67,4 +69,5 @@ public class DBManagerFilter {
 		}
 		return res;
 	}
+	*/
 }
