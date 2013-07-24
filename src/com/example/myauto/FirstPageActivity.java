@@ -30,21 +30,8 @@ public class FirstPageActivity extends MasterPageActivity implements CallbackLis
 		setContentView(R.layout.firstpage);
 		DBManager.init(getApplicationContext());
 		
-		setLangLocale();
 		getButtons();
 		setButtonClickListeners();
-	}
-	
-	/**
-	 * vayeneb enis Default-s
-	 */
-	private void setLangLocale () {
-		Locale locale = new Locale("");
-		Locale.setDefault(locale);
-		Configuration config = new Configuration();
-		config.locale = locale; 
-		getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-		
 	}
 	
 	/*
