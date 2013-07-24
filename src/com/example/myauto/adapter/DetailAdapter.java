@@ -3,10 +3,10 @@ package com.example.myauto.adapter;
 import com.example.myauto.R;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class DetailAdapter extends BaseAdapter{
@@ -44,6 +44,7 @@ public class DetailAdapter extends BaseAdapter{
 			cont = new Container();
 			cont.desc = (TextView) v.findViewById(R.id.description);
 			cont.valText = (TextView) v.findViewById(R.id.valueT);
+			cont.valImg = (ImageView) v.findViewById(R.id.img);
 			v.setTag(cont);
 		} else {
 			v = convertView;
@@ -55,13 +56,14 @@ public class DetailAdapter extends BaseAdapter{
 		String val = arrVal[position];
 		if(!isSign(val)){
 			(cont.valText).setText(arrVal[position]);
-			(cont.valText).setBackgroundColor(Color.TRANSPARENT);
+			(cont.valImg).setVisibility(View.GONE);
 		}else{
 			(cont.valText).setText("");
+			(cont.valImg).setVisibility(View.VISIBLE);
 			if(isPosotive(val))
-				(cont.valText).setBackgroundResource(R.drawable.plus_9);
+				(cont.valImg).setImageResource(R.drawable.plus_9);
 			if(isNegative(val))
-				(cont.valText).setBackgroundResource(R.drawable.minus_9);
+				(cont.valImg).setImageResource(R.drawable.minus_9);
 		}
 
 		return v;
@@ -82,5 +84,6 @@ public class DetailAdapter extends BaseAdapter{
 	private class Container{
 		TextView desc;
 		TextView valText;
+		ImageView valImg;
 	}
 }
