@@ -31,10 +31,10 @@
 
         <LinearLayout
             android:id="@+id/footer"
-            android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="90dip"
-            android:layout_alignParentBottom="true" >
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal" >
         </LinearLayout>
         <!-- Footer Ends -->
 
@@ -50,55 +50,36 @@
 
             <!-- Full Name Label -->
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/username_register"
-                android:textColor="#372c24" />
-
             <EditText
                 android:id="@+id/reg_username"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dip"
-                android:inputType="text"
                 android:layout_marginTop="5dip"
+                android:hint="@string/username_register"
+                android:inputType="text"
                 android:singleLine="true" />
             <!-- Password Label -->
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/pass_register"
-                android:textColor="#372c24" />
 
             <EditText
                 android:id="@+id/reg_password"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="20dip"
                 android:layout_marginTop="5dip"
+                android:hint="@string/pass_register"
                 android:inputType="textPassword"
                 android:singleLine="true" />
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/rpt_pass_register"
-                android:textColor="#372c24" />
 
             <EditText
                 android:id="@+id/reg_password2"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="20dip"
                 android:layout_marginTop="5dip"
+                android:hint="@string/rpt_pass_register"
                 android:inputType="textPassword"
                 android:singleLine="true" />
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/name_register"
-                android:textColor="#372c24" />
 
             <EditText
                 android:id="@+id/reg_name"
@@ -106,14 +87,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dip"
                 android:layout_marginTop="5dip"
+                android:hint="@string/name_register"
                 android:inputType="text"
                 android:singleLine="true" />
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/surname_register"
-                android:textColor="#372c24" />
 
             <EditText
                 android:id="@+id/reg_surname"
@@ -121,16 +97,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dip"
                 android:layout_marginTop="5dip"
+                android:hint="@string/surname_register"
                 android:inputType="text"
                 android:singleLine="true" />
 
             <!-- Email Label -->
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/email_register"
-                android:textColor="#372c24" />
 
             <EditText
                 android:id="@+id/reg_email"
@@ -138,14 +109,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dip"
                 android:layout_marginTop="5dip"
+                android:hint="@string/email_register"
                 android:inputType="textEmailAddress"
                 android:singleLine="true" />
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/gender_prompt"
-                android:textColor="#372c24" />
 
             <Spinner
                 android:id="@+id/spinnerGender"
@@ -153,12 +119,6 @@
                 android:layout_height="wrap_content"
                 android:entries="@array/gender_array"
                 android:prompt="@string/gender_prompt" />
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/birthyear_prompt"
-                android:textColor="#372c24" />
 
             <Spinner
                 android:id="@+id/spinnerBirthYear"
@@ -170,9 +130,9 @@
 
             <Button
                 android:id="@+id/btnRegister"
-                android:layout_gravity="center_horizontal"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dip"
                 android:onClick="submitForm"
                 android:text="@string/registration_btn_str" />
