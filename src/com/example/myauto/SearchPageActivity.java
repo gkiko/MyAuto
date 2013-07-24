@@ -13,6 +13,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.opengl.Visibility;
 import android.os.Bundle;
@@ -65,6 +66,10 @@ public class SearchPageActivity extends MasterPageActivity {
 	private Activity a;
 	private String[] manufacturer;
 	private Resources res;
+	private SharedPreferences prefs;
+	private static final int LANG_EN = 1;
+	private static final int LANG_GE = 2;
+	private static final int LANG_RU = 3;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +82,8 @@ public class SearchPageActivity extends MasterPageActivity {
 		filteredData = new String[NUMBER_OF_FILTER_BUTTONS];
 		getFilterLayoutViews();
 		getButtonViews();
+		
+		prefs = getSharedPreferences(getResources().getString(R.string.shared_prefs), 0);
 	}
 
 	private void setButtonClickListeners() {
@@ -870,12 +877,26 @@ public class SearchPageActivity extends MasterPageActivity {
 
 		RadioGroup group = (RadioGroup) dialog
 				.findViewById(R.id.dialog_category_rdgroup);
+		
 		String[] cat;
 		for (int i = 0; i < categories.size(); i++) {
 			cat = categories.get(i);
 			RadioButton rdbtn = new RadioButton(this);
 			rdbtn.setId(Integer.parseInt(cat[0]));
-			rdbtn.setText(cat[1]);
+			int langID = prefs.getInt("Lang", LANG_EN);
+			switch(langID){
+			case LANG_EN:
+				rdbtn.setText(cat[LANG_EN]);
+				break;
+			case LANG_GE:
+				rdbtn.setText(cat[LANG_GE]);
+				break;
+			case LANG_RU:
+				rdbtn.setText(cat[LANG_RU]);
+				break;
+			default: 
+				break;
+			}
 			rdbtn.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,
 					LayoutParams.WRAP_CONTENT));
 			group.addView(rdbtn);

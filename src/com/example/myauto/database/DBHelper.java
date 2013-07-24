@@ -31,6 +31,8 @@ public class DBHelper extends SQLiteOpenHelper {
 	public static final String CATEGORIES_TABLE = "CATEGORIES";
 	public static final String CATEGORY_ID = "id";
 	public static final String CATEGORY_NAME_ENG = "name_en";
+	public static final String CATEGORY_NAME_GEO = "name_ge";
+	public static final String CATEGORY_NAME_RUS = "name_ru";
 	
 	// Table Door Types
 	public static final String DOOR_TYPES_TABLE = "DOOR_TYPES";
@@ -63,7 +65,7 @@ public class DBHelper extends SQLiteOpenHelper {
 			+ " text not null);";
 	public static final String CATEGORIES_CREATE = "create table if not exists " 
 			+ CATEGORIES_TABLE + " ("+CATEGORY_ID+" integer primary key," + CATEGORY_NAME_ENG
-			+ " text not null);";
+			+ " text not null," + CATEGORY_NAME_GEO + " text not null," + CATEGORY_NAME_RUS + " text not null);";
 	public static final String DOOR_TYPES_CREATE = "create table if not exists "
 			+ DOOR_TYPES_TABLE + " (" + DOOR_TYPES_ID + " integer primary key," + DOOR_TYPES_NAME_ENG
 			+ " text not null);";

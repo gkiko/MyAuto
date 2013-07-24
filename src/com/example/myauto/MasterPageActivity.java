@@ -28,6 +28,10 @@ import com.example.myauto.requests.LoginRequest;
 
 public class MasterPageActivity extends Activity {
 
+	private static final String MY_PREFS = "MyPrefs";
+	private static final int LANG_EN = 1;
+	private static final int LANG_GE = 2;
+	private static final int LANG_RU = 3;
 	private Menu menu;
 
 	@Override
@@ -95,36 +99,40 @@ public class MasterPageActivity extends Activity {
 		}
 		return super.onMenuItemSelected(featureId, item);
 	}
-	
+
 	/**
 	 * Enis Shecvlis Metodi
 	 */
-	private void changeLanguage(){
+	private void changeLanguage() {
 		final Dialog dialog = new Dialog(this);
 		dialog.setContentView(R.layout.dialog_language);
 		dialog.setTitle(R.string.menu_language);
-		
-		Button cancel = (Button) dialog.findViewById(R.id.dialog_lang_btn_cancel);
+
+		Button cancel = (Button) dialog
+				.findViewById(R.id.dialog_lang_btn_cancel);
 		Button ok = (Button) dialog.findViewById(R.id.dialog_lang_btn_ok);
-		
+
 		cancel.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				dialog.dismiss();
 			}
 		});
-		
+
 		ok.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				RadioGroup group = (RadioGroup) dialog.findViewById(R.id.dialog_lang);
+				RadioGroup group = (RadioGroup) dialog
+						.findViewById(R.id.dialog_lang);
 				int id = group.getCheckedRadioButtonId();
-				switch(id){
+				switch (id) {
 				case R.id.dialog_lang_ge:
 					setLangLocale("");
+					saveLanguageID(LANG_GE);
 					break;
 				case R.id.dialog_lang_en:
 					setLangLocale("en");
+					saveLanguageID(LANG_EN);
 					break;
 				default:
 					break;
@@ -134,20 +142,31 @@ public class MasterPageActivity extends Activity {
 				startActivity(getIntent());
 			}
 		});
-		
+
 		dialog.show();
 	}
-	
+
+	/**
+	 * vinaxav archeuli enis ID-s sxva monacemebis shevsebisas rom gamoviyeno
+	 */
+	private void saveLanguageID(int langID) {
+		SharedPreferences myPrefs = getSharedPreferences(MY_PREFS, 0);
+		SharedPreferences.Editor editor = myPrefs.edit();
+		editor.putInt("Lang", langID);
+		editor.apply();
+	}
+
 	/**
 	 * vayeneb enis Default-s
 	 */
-	private void setLangLocale (String lang) {
+	private void setLangLocale(String lang) {
 		Locale locale = new Locale(lang);
 		Locale.setDefault(locale);
 		Configuration config = new Configuration();
-		config.locale = locale; 
-		getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-		
+		config.locale = locale;
+		getBaseContext().getResources().updateConfiguration(config,
+				getBaseContext().getResources().getDisplayMetrics());
+
 	}
 
 	/**
@@ -236,7 +255,6 @@ public class MasterPageActivity extends Activity {
 		}
 
 	}
-
 
 	/**
 	 * მომხმარებელს ინახავს სესიაში დალოგინებისას
