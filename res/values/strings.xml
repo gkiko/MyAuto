@@ -76,6 +76,7 @@
     <string name="search_carHatch">ლუქი</string>
     <string name="search_carChairWarming">სავარძლების გათბობა</string>
     <string name="search_carNavigSystem">ნავიგაცია</string>
+    <string name="search_carColor">მანქანის ფერი</string>
 
     <!-- SearchPageActivity Dialog Strings -->
     <string name="search_dialog_btn_cancel">გაუქმება</string>
@@ -135,8 +136,8 @@
         <item>@string/search_carDriveWheels</item>
         <item>@string/search_carDoors</item>
         <item>@string/search_carWheel</item>
-        <item>@string/color</item>
-        <item>@string/search_carAbs</item>
+        <item>@string/search_carColor</item>
+        <item>@string/search_carAirbags</item>
         <item>@string/search_carElWindows</item>
         <item>@string/aircond</item>
         <item>@string/climate</item>
@@ -154,9 +155,8 @@
     </string-array>
 
     <string name="colon">:</string>
-    <string name="odometer">კატეგორია</string>
+    <string name="odometer">გარბენი</string>
     <string name="cylinder">ცილინდრი</string>
-    <string name="color">ფერი</string>
     <string name="aircond">კონდიციონერი</string>
     <string name="climate">კლიმატკონტროლი</string>
     <string name="alarm">სიგნალიზაცია</string>

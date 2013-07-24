@@ -76,6 +76,7 @@
     <string name="search_carHatch">Hatch</string>
     <string name="search_carChairWarming">Chair Warming</string>
     <string name="search_carNavigSystem">Navigation System</string>
+    <string name="search_carColor">Car Color</string>
 
     <!-- SearchPageActivity Dialog Strings -->
     <string name="search_dialog_btn_cancel">Cancel</string>
@@ -103,7 +104,6 @@
     <string name="menu_logout">Logout</string>
     <string name="menu_register">Register</string>
     <string name="menu_add_car">Add Car</string>
-    <string name="title_activity_detail">DetailActivity</string>
     <string name="title_activity_register_page">RegisterPageActivity</string>
     <string name="username_register">Username*:</string>
     <string name="pass_register">Password*:</string>
@@ -120,4 +120,47 @@
     </string-array>
 	
     <string name="registration_btn_str">Register</string>
+    
+    <string name="title_activity_detail">DetailActivity</string>
+    <!-- DetailActivity -->
+    <string-array name="details">
+        <item>@string/search_carMarkAndModel</item>
+        <item>@string/search_carModel</item>
+        <item>@string/search_carYear</item>
+        <item>@string/search_carCategory</item>
+        <item>@string/search_carFuel</item>
+        <item>@string/search_carEngine</item>
+        <item>@string/odometer</item>
+        <item>@string/cylinder</item>
+        <item>@string/search_carTransmission</item>
+        <item>@string/search_carDriveWheels</item>
+        <item>@string/search_carDoors</item>
+        <item>@string/search_carWheel</item>
+        <item>@string/search_carColor</item>
+        <item>@string/search_carAirbags</item>
+        <item>@string/search_carElWindows</item>
+        <item>@string/aircond</item>
+        <item>@string/climate</item>
+        <item>@string/search_carLeatherInt</item>
+        <item>@string/search_carAlumDisks</item>
+        <item>@string/search_carNavigSystem</item>
+        <item>@string/search_carCentralLock</item>
+        <item>@string/search_carHatch</item>
+        <item>@string/alarm</item>
+        <item>@string/search_carBoardComp</item>
+        <item>@string/hydraulics</item>
+        <item>@string/search_carChairWarming</item>
+        <item>@string/search_carParkingControl</item>
+        <item>@string/turbo</item>
+    </string-array>
+
+    <string name="colon">:</string>
+    <string name="odometer">Mileage</string>
+    <string name="cylinder">Cylinders</string>
+    <string name="aircond">Air Conditioner</string>
+    <string name="climate">Climate System</string>
+    <string name="alarm">Alarm</string>
+	<string name="hydraulics">Hydraulics</string>
+	<string name="turbo">Turbo</string>
+    
 </resources>
