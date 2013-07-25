@@ -104,8 +104,15 @@
     <string name="name_register">Имя</string>
     <string name="surname_register">Фамилия</string>
     <string name="email_register">Эл-почта*</string>
-    <string name="gender_prompt">Пол</string>
-    <string name="birthyear_prompt">Год Рождения</string>
+    <string name="gender_prompt">Пол*</string>
+    <string name="birthyear_prompt">Год Рождения*</string>
+    <string name="username_empty">Укажите ползователя</string>
+    <string name="password_empty">Укажите пароль</string>
+    <string name="email_empty">Укажите e-mail</string>
+    <string name="gender_empty">Укажите пол</string>
+    <string name="birthyear_empty">Укажите год рождения</string>
+    <string name="passwords_fail">Пароли не совподают</string>
+    <string name="username_exist">Пользователь с таким именем уже зарегистрирован</string>
 
     <string-array name="gender_array">
         <item>Мужской</item>

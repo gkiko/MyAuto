@@ -122,6 +122,13 @@
     <string name="email_register">E-Mail*:</string>
     <string name="gender_prompt">Gender*</string>
     <string name="birthyear_prompt">Birth Year*</string>
+    <string name="username_empty">Enter username please</string>
+    <string name="password_empty">Enter password please</string>
+    <string name="email_empty">Enter e-mail please</string>
+    <string name="gender_empty">Select gender please</string>
+    <string name="birthyear_empty">Select birth year please</string>
+    <string name="passwords_fail">Passwords are different</string>
+    <string name="username_exist">User already exists</string>
 
     <string-array name="gender_array">
         <item>Male</item>

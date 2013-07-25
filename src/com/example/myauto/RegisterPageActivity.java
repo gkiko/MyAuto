@@ -8,6 +8,7 @@ import com.example.myauto.requests.RegisterRequest;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.res.Resources;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -18,11 +19,13 @@ import android.widget.Toast;
 public class RegisterPageActivity extends Activity {
 
 	private Spinner years;
+	private Resources resources;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_register_page);
+		resources = getResources();
 		setYearsToSpinner();
 	}
 
@@ -57,19 +60,19 @@ public class RegisterPageActivity extends Activity {
 		String email = et4.getText().toString();
 
 		if (userName.equals("")) {
-			Toast.makeText(getApplicationContext(), "Enter Username!",
+			Toast.makeText(getApplicationContext(), resources.getString(R.string.username_empty),
 					Toast.LENGTH_LONG).show();
 		} else if (pass1.equals("")) {
-			Toast.makeText(getApplicationContext(), "Enter password!",
+			Toast.makeText(getApplicationContext(), resources.getString(R.string.password_empty),
 					Toast.LENGTH_LONG).show();
 		} else if (pass2.equals("")) {
-			Toast.makeText(getApplicationContext(), "Enter password!",
+			Toast.makeText(getApplicationContext(), resources.getString(R.string.password_empty),
 					Toast.LENGTH_LONG).show();
 		} else if (email.equals("")) {
-			Toast.makeText(getApplicationContext(), "Enter e-mail!",
+			Toast.makeText(getApplicationContext(), resources.getString(R.string.email_empty),
 					Toast.LENGTH_LONG).show();
 		} else if (!pass1.equals(pass2)) {
-			Toast.makeText(getApplicationContext(), "Passwords are different!",
+			Toast.makeText(getApplicationContext(), resources.getString(R.string.passwords_fail),
 					Toast.LENGTH_LONG).show();
 		} else {
 			EditText et5 = (EditText) findViewById(R.id.reg_name);

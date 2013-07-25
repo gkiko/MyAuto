@@ -107,6 +107,13 @@
     <string name="email_register">ელ-ფოსტა*</string>
     <string name="gender_prompt">სქესი*</string>
     <string name="birthyear_prompt">დაბადების წელი*</string>
+    <string name="username_empty">გთხოვთ შეიყვანოთ მომხმარებელი</string>
+    <string name="password_empty">გთხოვთ შეიყვანოთ პაროლი</string>
+    <string name="email_empty">გთხოვთ შეიყვანოთ ელ-ფოსტა</string>
+    <string name="gender_empty">გთხოვთ აირჩიოთ სქესი</string>
+    <string name="birthyear_empty">გთხოვთ აირჩიოთ დაბადების წელი</string>
+    <string name="passwords_fail">პაროლები არ ემთხვევა ერთმანეთს</string>
+    <string name="username_exist">ასეთი მომხმარებელი უკვე არსებობს</string>
 
     <string-array name="gender_array">
         <item>მამრობითი</item>
