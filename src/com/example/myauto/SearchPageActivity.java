@@ -425,14 +425,75 @@ public class SearchPageActivity extends MasterPageActivity {
 
 	}
 
-	// Under Construction
+	/**
+	 * Damatebuli gancxadebis drois filtri
+	 */
 	private void carDaysDialog() {
 		final Dialog dialog = new Dialog(ctx);
 		dialog.setContentView(R.layout.dialog_car_generic_for_radiobuttons);
 		dialog.setTitle(DIALOG_DAYS_TITLE_EN);
+		
+		fillDaysDialog(dialog);
+		
+		Button cancel = (Button) dialog
+				.findViewById(R.id.dialog_generic_btn_cancel);
+		Button ok = (Button) dialog
+				.findViewById(R.id.dialog_generic_btn_ok);
 
-		carDaysBtn.setVisibility(View.VISIBLE);
+		ok.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				RadioGroup group = (RadioGroup) dialog
+						.findViewById(R.id.dialog_generic_rdgroup);
+				int id = group.getCheckedRadioButtonId();
+				RadioButton days = (RadioButton) dialog.findViewById(id);
+				String daysID = "" + days.getId();
+				filteredData[14] = daysID;
+				setSelectedValue(findViewById(R.id.search_carDays),
+						(String) days.getText());
+				dialog.dismiss();
+				carDaysBtn.setVisibility(View.VISIBLE);
+			}
+		});
 
+		cancel.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				dialog.dismiss();
+			}
+		});
+
+		dialog.show();
+	}
+	
+	// vavseb Days filtrs monacemebit
+	private void fillDaysDialog(Dialog dialog){
+		ArrayList<String[]> list = DBManager.getDataListFromTable(DBHelper.DAYS_TABLE);
+		RadioGroup group = (RadioGroup) dialog
+				.findViewById(R.id.dialog_generic_rdgroup);
+		String[] days;
+		for (int i = 0; i < list.size(); i++) {
+			days = list.get(i);
+			RadioButton rdbtn = new RadioButton(this);
+			rdbtn.setId(Integer.parseInt(days[0]));
+			int langID = prefs.getInt("Lang", LANG_EN);
+			switch (langID) {
+			case LANG_EN:
+				rdbtn.setText(days[LANG_EN]);
+				break;
+			case LANG_GE:
+				rdbtn.setText(days[LANG_GE]);
+				break;
+			case LANG_RU:
+				rdbtn.setText(days[LANG_RU]);
+				break;
+			default:
+				break;
+			}
+			rdbtn.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,
+					LayoutParams.WRAP_CONTENT));
+			group.addView(rdbtn);
+		}
 	}
 
 	/**
@@ -537,7 +598,7 @@ public class SearchPageActivity extends MasterPageActivity {
 				int id = group.getCheckedRadioButtonId();
 				RadioButton customs = (RadioButton) dialog.findViewById(id);
 				String customsID = "" + customs.getId();
-				filteredData[14] = customsID;
+				filteredData[8] = customsID;
 				setSelectedValue(findViewById(R.id.search_carCustomsPassed),
 						(String) customs.getText());
 				dialog.dismiss();
@@ -862,7 +923,6 @@ public class SearchPageActivity extends MasterPageActivity {
 			default:
 				break;
 			}
-		//	rdbtn.setText(fuelType[1]);
 			rdbtn.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,
 					LayoutParams.WRAP_CONTENT));
 			group.addView(rdbtn);
@@ -1011,7 +1071,6 @@ public class SearchPageActivity extends MasterPageActivity {
 			default:
 				break;
 			}
-		//	rdbtn.setText(gearTypes[1]);
 			rdbtn.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,
 					LayoutParams.WRAP_CONTENT));
 			group.addView(rdbtn);
@@ -1170,10 +1229,6 @@ public class SearchPageActivity extends MasterPageActivity {
 						.findViewById(R.id.search_selector))
 						.findViewById(R.id.search_selectedValue))
 						.setText(mark[1]);
-				// TextView selectedVal = (TextView)
-				// findViewById(R.id.search_selectedValue);
-				// selectedVal.setVisibility(View.VISIBLE);
-				// selectedVal.setText(mark[1]);
 			}
 			break;
 		case (MODEL_FILTER):
@@ -1188,10 +1243,6 @@ public class SearchPageActivity extends MasterPageActivity {
 						.findViewById(R.id.search_selector))
 						.findViewById(R.id.search_selectedValue))
 						.setText(model[1]);
-				// TextView selectedVal = (TextView)
-				// findViewById(R.id.search_selectedValue);
-				// selectedVal.setVisibility(View.VISIBLE);
-				// selectedVal.setText(model[1]);
 			}
 			break;
 		}

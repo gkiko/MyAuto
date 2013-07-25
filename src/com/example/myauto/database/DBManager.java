@@ -16,7 +16,6 @@ public class DBManager {
 	private static int NAME_COLUMN_EN = 1;
 	private static int NAME_COLUMN_GE = 2;
 	private static int NAME_COLUMN_RU = 3;
-//	private static int NAME_COLUMN = 1;
 	private static int MAN_ID_COLUMN = 1;
 	private static int MAN_NAME_COLUMN = 2;
 	private static int LOCATION_ID_COLUMN = 0;
@@ -217,6 +216,7 @@ public class DBManager {
 		putTestDriveTypes();
 		putTestCategories();
 		putTestLocations();
+		putTestDays();
 	}
 
 	private static void putTestMake() {
@@ -282,9 +282,6 @@ public class DBManager {
 	}
 
 	private static void putTestCategories() {
-		// String [] catArr =
-		// "(1, 'Sedan'), (2, 'Hatchback'), (3, 'Universal'), (4, 'Coupe'), (5, 'Jeep'), (6, 'Cabriolet'), (7, 'Micro Bus'), (13, 'Goods wagon'), (14, 'Bus'), (15, 'Limousine'), (16, 'Truck'), (17, 'Motocycle'), (19, 'Trailer'), (20, 'Spec. Machinary'), (21, 'Water transport'), (23, 'Cranes'), (24, 'Bulldozers'), (25, 'Excavators'), (26, 'Construction'), (27, 'Agricultural'), (28, 'Loader'), (29, 'Pickup'), (30, 'Minivan'), (31, 'Moped'), (32, 'Snowmobile'), (33, 'Quad bike'), (35, 'Commercial car'), (36, 'Semi-trailer truck'), (37, 'Road'), "
-		// .split(",");
 		String[] catArr = "(1, 'Sedan', 'სედანი', 'Седан'), (2, 'Hatchback', 'ჰეჩბექი', 'Хэтчбек'), (3, 'Universal', 'უნივერსალი', 'Универсал'), (4, 'Coupe', 'კუპე', 'Купе'), (5, 'Jeep', 'ჯიპი', 'Внедорожник'), (6, 'Cabriolet', 'კაბრიოლეტი', 'Кабриолет'), (7, 'Micro Bus', 'მიკროავტობუსი', 'Микро-автобус'), (13, 'Goods wagon', 'ფურგონი', 'Фургон'), (14, 'Bus', 'ავტობუსი', 'Автобус'), (15, 'Limousine', 'ლიმუზინი', 'Лимузин'), (16, 'Truck', 'სატვირთო', 'Грузовик'), (17, 'Motocycle', 'მოტოციკლეტი', 'Мотоцикл'), (19, 'Trailer', 'მისაბმელი', 'Прицеп'), (20, 'Spec. Machinary', 'სპეც. ტექნიკა', 'Спецтехника'), (21, 'Water transport', 'წყლის ტრანსპორტი', 'Водный транспорт'), (23, 'Cranes', 'ამწე', 'Автокраны'), (24, 'Bulldozers', 'ბულდოზერი', 'Бульдозеры'), (25, 'Excavators', 'ექსკავატორი', 'Экскаваторы'), (26, 'Construction', 'სამშენებლო', 'Строительная'), (27, 'Agricultural', 'სასოფლო-სამეურნეო', 'Сельхоз'), (28, 'Loader', 'დამტვირთველი', 'Погрузчик'), (29, 'Pickup', 'პიკაპი', 'Пикап'), (30, 'Minivan', 'მინივენი', 'Минивэн'), (31, 'Moped', 'მოპედი', 'Мопед'), (32, 'Snowmobile', 'ბურანი', 'Снегоход'), (33, 'Quad bike', 'კვადროციკლი', 'Квадроцикл'), (35, 'Commercial car', 'მსუბუქი კომერციული', 'Коммерческий легковой'), (36, 'Semi-trailer truck', 'გამწევი', 'Tягач'), (37, 'Road', 'საგზაო', 'Дорожный'), "
 				.split(",");
 		for (int i = 0; i < catArr.length - 3; i += 4) {
@@ -309,6 +306,19 @@ public class DBManager {
 					+ DBHelper.LOCATIONS_NAME_RUS + ") VALUES " + locArr[i]
 					+ "," + locArr[i + 1] + "," + locArr[i + 2] + ","
 					+ locArr[i + 3] + "," + locArr[i + 4]);
+		}
+	}
+	
+	private static void putTestDays() {
+		String[] daysArr = "(1, 'Added last 1 hour', 'ბოლო 1 საათი', 'добавлено в течений 1 Час'), (2, 'Added last 2 hour', 'ბოლო 2 საათი', 'добавлено в течений 2 Час'), (3, 'Added last 3 hour', 'ბოლო 3 საათი', 'добавлено в течений 3 Час'), (4, 'Added last 1 Days', 'ბოლო 1 დღე', 'добавлено в течений 1 День'),  (5, 'Added last 2 Days', 'ბოლო 2 დღე', 'добавлено в течений 2 День'), (6, 'Added last 3 Days', 'ბოლო 3 დღე', 'добавлено в течений 3 День'), (7, 'Added last 1 Weeks', 'ბოლო 1 კვირა', 'добавлено в течений 1 Неделя'), (8, 'Added last 2 Weeks', 'ბოლო 2 კვირა', 'добавлено в течений 2 Неделя'), (9, 'Added last 3 Weeks', 'ბოლო 3 კვირა', 'добавлено в течений 3 Неделя'), (10, 'Added last 1 Month', 'ბოლო 1 თვე', 'добавлено в течений 1 Месяц'), "
+				.split(",");
+		for (int i = 0; i < daysArr.length - 3; i += 4) {
+			db.execSQL("insert into " + DBHelper.DAYS_TABLE + " ("
+					+ DBHelper.DAYS_ID + "," + DBHelper.DAYS_NAME_ENG
+					+ "," + DBHelper.DAYS_NAME_GEO + ","
+					+ DBHelper.DAYS_NAME_RUS + ") VALUES " + daysArr[i]
+					+ "," + daysArr[i + 1] + "," + daysArr[i + 2] + ","
+					+ daysArr[i + 3]);
 		}
 	}
 }

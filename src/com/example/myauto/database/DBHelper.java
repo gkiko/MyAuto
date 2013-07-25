@@ -57,6 +57,13 @@ public class DBHelper extends SQLiteOpenHelper {
 	public static final String LOCATIONS_NAME_ENG = "name_en";
 	public static final String LOCATIONS_NAME_GEO = "name_ge";
 	public static final String LOCATIONS_NAME_RUS = "name_ru";
+	
+	//Table Days
+	public static final String DAYS_TABLE = "DAYS";
+	public static final String DAYS_ID = "id";
+	public static final String DAYS_NAME_ENG = "name_en";
+	public static final String DAYS_NAME_GEO = "name_ge";
+	public static final String DAYS_NAME_RUS = "name_ru";
 
 	// Create Tables Queries
 	public static final String MANUFACTURERS_CREATE = "create table "
@@ -84,6 +91,9 @@ public class DBHelper extends SQLiteOpenHelper {
 			+ LOCATIONS_TABLE + " (" + LOCATIONS_ID + " integer primary key," + LOCATIONS_PARENT_ID
 			+ " integer, " + LOCATIONS_NAME_ENG + " text not null," + LOCATIONS_NAME_GEO + " text not null, " 
 			+ LOCATIONS_NAME_RUS + " text not null);";
+	public static final String DAYS_CREATE = "create table if not exists "
+			+ DAYS_TABLE + " (" + DAYS_ID + " integer primary key," + DAYS_NAME_ENG
+			+ " text not null," + DAYS_NAME_GEO + " text not null," + DAYS_NAME_RUS + " text not null);";
 			
 
 	public DBHelper(Context context) {
@@ -104,6 +114,7 @@ public class DBHelper extends SQLiteOpenHelper {
 		db.execSQL(DOOR_TYPES_CREATE);
 		db.execSQL(DRIVE_TYPES_CREATE);
 		db.execSQL(LOCATIONS_CREATE);
+		db.execSQL(DAYS_CREATE);
 	}
 
 	@Override
@@ -121,6 +132,7 @@ public class DBHelper extends SQLiteOpenHelper {
 		db.execSQL("DROP TABLE IF EXISTS " + DOOR_TYPES_TABLE);
 		db.execSQL("DROP TABLE IF EXISTS " + DRIVE_TYPES_TABLE);
 		db.execSQL("DROP TABLE IF EXISTS " + LOCATIONS_TABLE);
+		db.execSQL("DROP TABLE IF EXISTS " + DAYS_TABLE);
 	}
 
 }
