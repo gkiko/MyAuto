@@ -130,7 +130,7 @@ public class MasterPageActivity extends Activity {
 				int id = group.getCheckedRadioButtonId();
 				switch (id) {
 				case R.id.dialog_lang_ge:
-					setLangLocale("");
+					setLangLocale("ge");
 					saveLanguageID(LANG_GE);
 					break;
 				case R.id.dialog_lang_en:
@@ -173,7 +173,6 @@ public class MasterPageActivity extends Activity {
 		config.locale = locale;
 		getBaseContext().getResources().updateConfiguration(config,
 				getBaseContext().getResources().getDisplayMetrics());
-
 	}
 
 	/**

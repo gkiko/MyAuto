@@ -22,6 +22,9 @@ import android.widget.Button;
 public class FirstPageActivity extends MasterPageActivity implements CallbackListener{
 	private Button mainButton, searchButton, catalogButton;
 	public static final String bundleKey = "myKey";
+	private static final int LANG_EN = 1;
+	private static final int LANG_GE = 2;
+	private static final int LANG_RU = 3;
 	
 	private ListFetcher lf;
 	
@@ -31,8 +34,46 @@ public class FirstPageActivity extends MasterPageActivity implements CallbackLis
 		setContentView(R.layout.firstpage);
 		DBManager.init(getApplicationContext());
 		
+		updateLanguage();
+		
 		getButtons();
 		setButtonClickListeners();
+	}
+	
+	/**
+	 * bolos archeuli enis mixedvit icyeba aplikacia
+	 */
+	private void updateLanguage(){
+		SharedPreferences prefs = getSharedPreferences(
+				getResources().getString(R.string.shared_prefs), 0);
+		String lang = "";
+		int langID = prefs.getInt("Lang", LANG_EN);
+		switch (langID) {
+		case LANG_EN:
+			lang = "en";
+			break;
+		case LANG_GE:
+			lang = "ge";
+			break;
+		case LANG_RU:
+			lang = "ru";
+			break;
+		default:
+			break;
+		}
+		setLangLocale(lang);
+	}
+	
+	/**
+	 * vayeneb enis Default-s
+	 */
+	private void setLangLocale(String lang) {
+		Locale locale = new Locale(lang);
+		Locale.setDefault(locale);
+		Configuration config = new Configuration();
+		config.locale = locale;
+		getBaseContext().getResources().updateConfiguration(config,
+				getBaseContext().getResources().getDisplayMetrics());
 	}
 	
 	/*
