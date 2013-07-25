@@ -107,19 +107,21 @@
     <string name="username_login">Username:</string>
     <string name="password_login">Password:</string>
     <string name="login_dialog_title">User Login</string>
+    <string name="login_success">Login successful</string>
+    <string name="login_fail">Username or Password incorrect!</string>
     <string name="title_activity_master_page">MasterPageActivity</string>
     <string name="menu_logout">Logout</string>
     <string name="menu_register">Register</string>
     <string name="menu_add_car">Add Car</string>
     <string name="title_activity_register_page">RegisterPageActivity</string>
-    <string name="username_register">Username*:</string>
-    <string name="pass_register">Password*:</string>
-    <string name="rpt_pass_register">Repeat Password*:</string>
+    <string name="username_register">Username*</string>
+    <string name="pass_register">Password*</string>
+    <string name="rpt_pass_register">Repeat Password*</string>
     <string name="name_register">Name:</string>
     <string name="surname_register">Surname:</string>
     <string name="email_register">E-Mail*:</string>
-    <string name="gender_prompt">Gender</string>
-    <string name="birthyear_prompt">Birth Year</string>
+    <string name="gender_prompt">Gender*</string>
+    <string name="birthyear_prompt">Birth Year*</string>
 
     <string-array name="gender_array">
         <item>Male</item>

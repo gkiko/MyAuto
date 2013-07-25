@@ -90,21 +90,23 @@
     <string name="menu_login">შესვლა</string>
     <string name="username_login">მომხმარებელი:</string>
     <string name="password_login">პაროლი:</string>
-    <string name="login_dialog_title">User Login</string>
+    <string name="login_dialog_title">ავტორიზაცია</string>
+    <string name="login_success">თქვენ წარმატებით გაიარეთ ავტორიზაცია</string>
+    <string name="login_fail">მომხმარებელი ან პაროლი არასწორია!</string>
     <string name="title_activity_master_page">MasterPageActivity</string>
     <string name="menu_logout">გამოსვლა</string>
     <string name="menu_register">რეგისტრაცია</string>
     <string name="menu_add_car">მანქანის დამატება</string>
     
     <string name="title_activity_register_page">RegisterPageActivity</string>
-    <string name="username_register">მომხმარებელი*:</string>
+    <string name="username_register">მომხმარებელი*</string>
     <string name="pass_register">პაროლი*:</string>
-    <string name="rpt_pass_register">გაიმეორეთ პაროლი*:</string>
-    <string name="name_register">სახელი:</string>
-    <string name="surname_register">გვარი:</string>
-    <string name="email_register">ელ-ფოსტა*:</string>
-    <string name="gender_prompt">სქესი</string>
-    <string name="birthyear_prompt">დაბადების წელი</string>
+    <string name="rpt_pass_register">გაიმეორეთ პაროლი*</string>
+    <string name="name_register">სახელი</string>
+    <string name="surname_register">გვარი</string>
+    <string name="email_register">ელ-ფოსტა*</string>
+    <string name="gender_prompt">სქესი*</string>
+    <string name="birthyear_prompt">დაბადების წელი*</string>
 
     <string-array name="gender_array">
         <item>მამრობითი</item>

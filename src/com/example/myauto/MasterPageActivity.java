@@ -1,13 +1,8 @@
 package com.example.myauto;
 
 
-import java.io.IOException;
 import java.util.Locale;
 
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
 
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -18,6 +13,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -38,11 +34,13 @@ public class MasterPageActivity extends Activity {
 	private static final int LANG_RU = 3;
 	private Menu menu;
 	private LoginRequest lr;
+	private Resources resources;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_master_page);
+		resources = getResources();
 	}
 
 	@Override
@@ -256,11 +254,11 @@ public class MasterPageActivity extends Activity {
 			MenuItem car = menu.findItem(R.id.menu_add_car);
 			car.setVisible(true);
 			saveUserToSession(userName);
-			Toast.makeText(getApplicationContext(), "Successful Login!",
+			Toast.makeText(getApplicationContext(), resources.getString(R.string.login_success),
 					Toast.LENGTH_LONG).show();
 		} else {
 			Toast.makeText(getApplicationContext(),
-					"Username or Password incorrect!", Toast.LENGTH_LONG)
+					resources.getString(R.string.login_fail), Toast.LENGTH_LONG)
 					.show();
 		}
 

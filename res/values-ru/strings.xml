@@ -90,18 +90,20 @@
     <string name="menu_login">Логин</string>
     <string name="username_login">Ползователь:</string>
     <string name="password_login">Пароль:</string>
-    <string name="login_dialog_title">User Login</string>
+    <string name="login_dialog_title">Логин</string>
+    <string name="login_success">Авторизация прошла успешно</string>
+    <string name="login_fail">Пользователь или пароль неверный!</string>
     <string name="title_activity_master_page">MasterPageActivity</string>
     <string name="menu_logout">Выход</string>
     <string name="menu_register">Регистрация</string>
     <string name="menu_add_car">Добавить</string>
     <string name="title_activity_register_page">RegisterPageActivity</string>
-    <string name="username_register">Ползователь*:</string>
-    <string name="pass_register">Пароль*:</string>
-    <string name="rpt_pass_register">Повторить Пароль*:</string>
-    <string name="name_register">Имия:</string>
-    <string name="surname_register">Фамилия:</string>
-    <string name="email_register">Эл-почта*:</string>
+    <string name="username_register">Ползователь*</string>
+    <string name="pass_register">Пароль*</string>
+    <string name="rpt_pass_register">Повторить Пароль*</string>
+    <string name="name_register">Имя</string>
+    <string name="surname_register">Фамилия</string>
+    <string name="email_register">Эл-почта*</string>
     <string name="gender_prompt">Пол</string>
     <string name="birthyear_prompt">Год Рождения</string>
 
@@ -110,7 +112,7 @@
         <item>Женский</item>
     </string-array>
 
-    <string name="registration_btn_str">Register</string>
+    <string name="registration_btn_str">Регистрация</string>
     <string name="title_activity_detail">DetailActivity</string>
     <!-- DetailActivity -->
     <string-array name="details">
