@@ -6,6 +6,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Message;
@@ -20,6 +21,7 @@ public class ListFetcher extends AsyncTask<HashMap<String, String>, String, Arra
 	private CopyOnWriteArrayList<CallbackListener> listeners;
 	private ProgressDialog mDialog;
 	private Handler handler;
+	private Activity act;
 
 	/**
 	 * Initialize asynctask to fetch <CarFacade>List from the web
@@ -27,6 +29,7 @@ public class ListFetcher extends AsyncTask<HashMap<String, String>, String, Arra
 	 * @param params used to filter data in HTTP request. null if no filter is needed 
 	 */
 	public ListFetcher(final Activity activity){
+		act = activity;
 		listeners = new CopyOnWriteArrayList<CallbackListener>();
 		mDialog = new ProgressDialog(activity);
 		handler = new Handler(){
@@ -55,7 +58,7 @@ public class ListFetcher extends AsyncTask<HashMap<String, String>, String, Arra
 	protected ArrayList<CarFacade> doInBackground(HashMap<String, String>... params) {
 		ArrayList<CarFacade> carList = null;
 		try {
-			carList = TransportManager.downloadCarList(params[0]);
+			carList = TransportManager.downloadCarList(params[0], act);
 		} catch (Exception e) {
 			handler.sendEmptyMessage(0);
 		}

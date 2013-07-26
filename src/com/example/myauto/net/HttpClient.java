@@ -34,7 +34,7 @@ public class HttpClient {
 	private static String composeUrl(final String url,
 			final Map<String, String> params) {
 		StringBuilder strBld = new StringBuilder(url);
-		strBld.append("?");
+		strBld.append("&");
 		if(params != null){
 			for (String key : params.keySet()) {
 				strBld.append(key);

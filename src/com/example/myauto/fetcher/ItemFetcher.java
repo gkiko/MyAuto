@@ -22,8 +22,10 @@ public class ItemFetcher extends AsyncTask<HashMap<String, String>, String, Item
 	private CopyOnWriteArrayList<CallbackListener> listeners;
 	private ProgressDialog mDialog;
 	private Handler handler;
+	private Activity act;
 	
 	public ItemFetcher(final Activity activity){
+		act = activity;
 		this.listeners = new CopyOnWriteArrayList<CallbackListener>();
 		this.mDialog = new ProgressDialog(activity);
 		
@@ -53,7 +55,7 @@ public class ItemFetcher extends AsyncTask<HashMap<String, String>, String, Item
 	protected Item doInBackground(HashMap<String, String>... params) {
 		Item item = null;
 		try {
-			item = TransportManager.downloadItem(params[0]);
+			item = TransportManager.downloadItem(params[0], act);
 		} catch (ClientProtocolException e) {
 		} catch (IOException e) {
 			handler.sendEmptyMessage(0);

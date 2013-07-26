@@ -6,10 +6,12 @@ import java.util.HashMap;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.example.myauto.FirstPageActivity;
 import com.example.myauto.MainActivity;
+import com.example.myauto.R;
 import com.example.myauto.event.MyChangeEvent;
 import com.example.myauto.fetcher.ListFetcher;
 import com.example.myauto.item.CarFacade;
