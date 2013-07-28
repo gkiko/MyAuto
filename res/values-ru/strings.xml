@@ -161,5 +161,9 @@
     <string name="alarm">Сигнализация</string>
     <string name="hydraulics">Гидравлика</string>
     <string name="turbo">Турбо</string>
+    
+    <!-- Detail Activity image numbering -->
+	<string name="next">След</string>
+	<string name="prev">Пред</string>
 
 </resources>

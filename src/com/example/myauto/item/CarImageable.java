@@ -11,7 +11,7 @@ public class CarImageable implements Imageable, Serializable {
 
 	@Override
 	public void setImage(Bitmap img) {
-		bitmap = img;/*img.copy(img.getConfig(), true);*/
+		bitmap = img;
 	}
 
 	@Override

@@ -1,26 +1,24 @@
 package com.example.myauto;
 
 import com.example.myauto.adapter.DetailAdapter;
-import com.example.myauto.event.MyChangeEvent;
-import com.example.myauto.fetcher.DetailImageDownloader;
 import com.example.myauto.item.CarItem;
 import com.example.myauto.item.Item;
-import com.example.myauto.listener.ImageDownloadListener;
 
-import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.webkit.WebView.FindListener;
+import android.view.View;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.LinearLayout.LayoutParams;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TabHost;
 
-public class DetailActivity extends MasterPageActivity implements
-		ImageDownloadListener {
+public class DetailActivity extends MasterPageActivity {
 	private TabHost tabhost;
-	private DetailImageDownloader imgDownloader;
+	private int imageCount, curImgNum=1, lowestPosition = 1;
+	private WebView webView;
+	private String url;
+	private Button prev, next;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,13 +27,17 @@ public class DetailActivity extends MasterPageActivity implements
 
 		Bundle bundle = getIntent().getExtras();
 		Item itm = (Item) bundle.get(FirstPageActivity.bundleKey);
-		imgDownloader = new DetailImageDownloader(
-				itm.getValueFromProperty(CarItem.PHOTO), Integer.parseInt(itm
-						.getValueFromProperty(CarItem.PHOTOSCNT)));
-		imgDownloader.addMyChangeListener(this);
+
+		webView = (WebView) findViewById(R.id.detail_img);
+		webView.setWebViewClient(new WebViewClient());
+		webView.loadUrl(itm.getValueFromProperty(CarItem.PHOTO));
+		
+		prev = (Button) findViewById(R.id.button1);
+		next = (Button) findViewById(R.id.button2);
 
 		setUpTabs();
 		addDataTab1(itm);
+		getImageInfo(itm);
 	}
 
 	/**
@@ -52,7 +54,7 @@ public class DetailActivity extends MasterPageActivity implements
 		tabhost.addTab(spec);
 
 		spec = tabhost.newTabSpec("tab2");
-		spec.setContent(R.id.activity_detail_tab20);
+		spec.setContent(R.id.activity_detail_tab2);
 		spec.setIndicator("pics", null);
 		tabhost.addTab(spec);
 
@@ -100,23 +102,65 @@ public class DetailActivity extends MasterPageActivity implements
 		return details;
 	}
 
-	@Override
-	public void imageDownloaded(MyChangeEvent evt) {
-		Bitmap img = (Bitmap) evt.source;
-
-		LinearLayout tab2 = (LinearLayout) findViewById(R.id.activity_detail_tab2);
-		ImageView imageView = new ImageView(this);
-		LinearLayout.LayoutParams vp = new LinearLayout.LayoutParams(
-				LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-		imageView.setLayoutParams(vp);
-		imageView.setImageBitmap(img);
-		tab2.addView(imageView);
+	private void getImageInfo(Item itm) {
+		getImageUrl(itm);
+		getImageCount(itm);
 	}
 
-	@Override
-	protected void onPause() {
-		super.onPause();
-		imgDownloader.removeMyChangeListener(this);
+	private void getImageUrl(Item itm) {
+		url = itm.getValueFromProperty(CarItem.PHOTO);
+	}
+
+	private void getImageCount(Item itm) {
+		imageCount = Integer.parseInt(itm
+				.getValueFromProperty(CarItem.PHOTOSCNT));
+	}
+
+	public void prevImg(View v) {
+		if(!next.isEnabled())
+			next.setEnabled(true);
+		
+		String url = composeUrl(--curImgNum);
+		System.out.println(url);
+		webView.loadUrl(url);
+
+		if (limitReached(curImgNum))
+			prev.setEnabled(false);
+	}
+
+	private String composeUrl(int i) {
+		int index1 = indexOf(url, '.');
+		int index0 = indexOf(url, '_');
+		StringBuilder builder = new StringBuilder(url);
+		builder.replace(index0 + 1, index1, "" + i);
+		return builder.toString();
+	}
+
+	private int indexOf(String str, char ch) {
+		for (int i = str.length() - 1; i >= 0; i--) {
+			if (str.charAt(i) == ch) {
+				return i;
+			}
+		}
+		return -1;
+	}
+
+	private boolean limitReached(int i) {
+		if (i == lowestPosition || i == imageCount)
+			return true;
+		return false;
+	}
+
+	public void nextImg(View v){
+		if(!prev.isEnabled())
+			prev.setEnabled(true);
+		
+		String url = composeUrl(++curImgNum);
+		System.out.println(url);
+		webView.loadUrl(url);
+		
+		if(limitReached(curImgNum))
+			next.setEnabled(false);
 	}
 	/**
 	 * Set up the {@link android.app.ActionBar}, if the API is available.

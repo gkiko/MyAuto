@@ -177,5 +177,9 @@
     <string name="alarm">Alarm</string>
     <string name="hydraulics">Hydraulics</string>
     <string name="turbo">Turbo</string>
+    
+    <!-- Detail Activity image numbering -->
+	<string name="next">Next</string>
+	<string name="prev">Prev</string>
 
 </resources>

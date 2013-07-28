@@ -163,4 +163,7 @@
 	<string name="hydraulics">ჰიდრავლიკა</string>
 	<string name="turbo">ტურბო</string>
     
+	<!-- Detail Activity image numbering -->
+	<string name="next">შემდეგი</string>
+	<string name="prev">წინა</string>
 </resources>
