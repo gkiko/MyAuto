@@ -494,6 +494,7 @@ public class SearchPageActivity extends MasterPageActivity {
 					LayoutParams.WRAP_CONTENT));
 			group.addView(rdbtn);
 		}
+		selectFirstElementInRadioGroup(group, list);
 	}
 
 	/**
@@ -728,6 +729,7 @@ public class SearchPageActivity extends MasterPageActivity {
 					LayoutParams.WRAP_CONTENT));
 			group.addView(rdbtn);
 		}
+		selectFirstElementInRadioGroup(group, list);
 	}
 
 	/**
@@ -800,6 +802,7 @@ public class SearchPageActivity extends MasterPageActivity {
 					LayoutParams.WRAP_CONTENT));
 			group.addView(rdbtn);
 		}
+		selectFirstElementInRadioGroup(group, list);
 	}
 
 	/**
@@ -850,6 +853,7 @@ public class SearchPageActivity extends MasterPageActivity {
 		RadioButton yes = (RadioButton) dialog
 				.findViewById(R.id.dialog_customs_and_wheel_yes);
 		yes.setId(DIALOG_CUSTOMS_AND_WHEEL_BTN_YES_ID);
+		yes.setChecked(true);
 		RadioButton no = (RadioButton) dialog
 				.findViewById(R.id.dialog_customs_and_wheel_no);
 		no.setId(DIALOG_CUSTOMS_AND_WHEEL_BTN_NO_ID);
@@ -927,6 +931,7 @@ public class SearchPageActivity extends MasterPageActivity {
 					LayoutParams.WRAP_CONTENT));
 			group.addView(rdbtn);
 		}
+		selectFirstElementInRadioGroup(group, fuelTypes);
 	}
 
 	/**
@@ -1002,6 +1007,7 @@ public class SearchPageActivity extends MasterPageActivity {
 					LayoutParams.WRAP_CONTENT));
 			group.addView(rdbtn);
 		}
+		selectFirstElementInRadioGroup(group, categories);
 	}
 
 	/**
@@ -1013,6 +1019,7 @@ public class SearchPageActivity extends MasterPageActivity {
 		dialog.setTitle("Transmission");
 
 		fillTransmissionDialog(dialog);
+		
 
 		Button cancel = (Button) dialog
 				.findViewById(R.id.dialog_trans_btn_cancel);
@@ -1075,6 +1082,11 @@ public class SearchPageActivity extends MasterPageActivity {
 					LayoutParams.WRAP_CONTENT));
 			group.addView(rdbtn);
 		}
+		selectFirstElementInRadioGroup(group, gears);
+	}
+	
+	private void selectFirstElementInRadioGroup(RadioGroup group, ArrayList<String []> array){
+		group.check(Integer.parseInt(array.get(0)[0]));
 	}
 
 	/**
