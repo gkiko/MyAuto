@@ -24,6 +24,7 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.example.myauto.data.DataContainer;
 import com.example.myauto.requests.LoginRequest;
 
 public class MasterPageActivity extends Activity {
@@ -35,12 +36,14 @@ public class MasterPageActivity extends Activity {
 	private Menu menu;
 	private LoginRequest lr;
 	private Resources resources;
+	private Activity thisActivity;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_master_page);
 		resources = getResources();
+		thisActivity = this;
 	}
 
 	@Override
@@ -146,7 +149,9 @@ public class MasterPageActivity extends Activity {
 				}
 				dialog.dismiss();
 				finish();
-				startActivity(getIntent());
+				DataContainer.clearSavedList();
+				Intent newInt = new Intent (getApplicationContext(), FirstPageActivity.class);
+				startActivity(newInt);
 			}
 		});
 

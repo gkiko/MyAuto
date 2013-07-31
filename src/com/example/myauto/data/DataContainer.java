@@ -23,4 +23,8 @@ public class DataContainer {
 	public static boolean hasNewList(){
 		return newList != null;
 	}
+	
+	public static void clearSavedList(){
+		newList = null;
+	}
 }
