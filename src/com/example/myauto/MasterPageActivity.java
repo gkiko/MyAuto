@@ -1,8 +1,6 @@
 package com.example.myauto;
 
-
 import java.util.Locale;
-
 
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -96,7 +94,7 @@ public class MasterPageActivity extends Activity {
 		case R.id.menu_register:
 			nextIntent = new Intent(MasterPageActivity.this,
 					RegisterPageActivity.class);
-			startActivity(nextIntent);
+			startActivityForResult(nextIntent, 1);
 			break;
 		case R.id.menu_add_car:
 			break;
@@ -104,6 +102,20 @@ public class MasterPageActivity extends Activity {
 			break;
 		}
 		return super.onMenuItemSelected(featureId, item);
+	}
+
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+		if (requestCode == 1) {
+
+			if (resultCode == RESULT_OK) {
+				Toast.makeText(getApplicationContext(),resources.getString(R.string.registration_finish), 
+						Toast.LENGTH_LONG).show();
+			} else if (resultCode == RESULT_CANCELED) {
+				Toast.makeText(getApplicationContext(), "Error",
+						Toast.LENGTH_LONG).show();
+			}
+		}
 	}
 
 	/**
@@ -150,7 +162,8 @@ public class MasterPageActivity extends Activity {
 				dialog.dismiss();
 				finish();
 				DataContainer.clearSavedList();
-				Intent newInt = new Intent (getApplicationContext(), FirstPageActivity.class);
+				Intent newInt = new Intent(getApplicationContext(),
+						FirstPageActivity.class);
 				startActivity(newInt);
 			}
 		});
@@ -258,7 +271,8 @@ public class MasterPageActivity extends Activity {
 			MenuItem car = menu.findItem(R.id.menu_add_car);
 			car.setVisible(true);
 			saveUserToSession(userName);
-			Toast.makeText(getApplicationContext(), resources.getString(R.string.login_success),
+			Toast.makeText(getApplicationContext(),
+					resources.getString(R.string.login_success),
 					Toast.LENGTH_LONG).show();
 		} else {
 			Toast.makeText(getApplicationContext(),
@@ -286,6 +300,6 @@ public class MasterPageActivity extends Activity {
 				.getDefaultSharedPreferences(getApplicationContext());
 		SharedPreferences.Editor editor = settings.edit();
 		editor.remove("username");
-		
+
 	}
 }

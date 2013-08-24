@@ -8,6 +8,7 @@ import com.example.myauto.requests.RegisterRequest;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.view.Menu;
 import android.view.View;
@@ -81,8 +82,49 @@ public class RegisterPageActivity extends Activity {
 			String surname = et6.getText().toString();
 			String[]params = new String[]{userName, pass1, name, surname, email, Long.toString(gender.getSelectedItemId() + 1),Integer.toString((Integer)years.getSelectedItem())};
 			RegisterRequest rr = new RegisterRequest(params);
-			rr.sendRegistrationRequest();
+			int res = rr.sendRegistrationRequest();
+			checkRes(res);
 		}
+	}
+
+	private void checkRes(int res) {
+		Intent returnIntent;
+		switch (res) {
+		case 0:
+			returnIntent = new Intent();
+			setResult(RESULT_OK, returnIntent);
+			finish();
+			break;
+		case 1:
+			Toast.makeText(getApplicationContext(), resources.getString(R.string.username_empty),
+					Toast.LENGTH_LONG).show();
+			break;
+		case 2:
+			Toast.makeText(getApplicationContext(), resources.getString(R.string.email_empty),
+					Toast.LENGTH_LONG).show();
+			break;
+		case 3:
+			Toast.makeText(getApplicationContext(), resources.getString(R.string.password_empty),
+					Toast.LENGTH_LONG).show();
+			break;
+		case 4:
+			//gender
+			break;
+		case 5:
+			Toast.makeText(getApplicationContext(), resources.getString(R.string.username_exist),
+					Toast.LENGTH_LONG).show();
+			break;
+		case 6:
+			Toast.makeText(getApplicationContext(), resources.getString(R.string.passwords_fail),
+					Toast.LENGTH_LONG).show();
+			break;
+		default:
+			returnIntent = new Intent();
+			setResult(RESULT_CANCELED, returnIntent);
+			finish();
+			break;
+		}
+		
 	}
 
 	@Override

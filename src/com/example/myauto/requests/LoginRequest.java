@@ -63,8 +63,9 @@ public class LoginRequest {
 
 			String responseText = EntityUtils.toString(entity);
 			// System.out.println(responseText);
-			if (Integer.parseInt(responseText) == 0)
+			if (Integer.parseInt(responseText) == 0){
 				logined = true;
+			}
 
 		} catch (ClientProtocolException e) {
 			// TODO Auto-generated catch block

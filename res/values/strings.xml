@@ -114,6 +114,7 @@
     <string name="birthyear_empty">გთხოვთ აირჩიოთ დაბადების წელი</string>
     <string name="passwords_fail">პაროლები არ ემთხვევა ერთმანეთს</string>
     <string name="username_exist">ასეთი მომხმარებელი უკვე არსებობს</string>
+    <string name="registration_finish">რეგისტრაცია წარმატებით დასრულდა</string>
 
     <string-array name="gender_array">
         <item>მამრობითი</item>
