@@ -15,23 +15,21 @@ import org.apache.http.util.EntityUtils;
  * 
  * @author Kote. Created Jul 21, 2013.
  */
-public class LoginRequest {
+public class UserAuthRequests {
 
-	private String userName;
-	private String password;
+	private String loginedUser;
 	private boolean logined;
 
-	public LoginRequest(String userName, String password) {
-		this.userName = userName;
-		this.password = password;
+	public UserAuthRequests() {
+	
 		logined = false;
 	}
 
-	public boolean sendLoginRequest() {
+	public boolean sendLoginRequest(final String userName, final String password) {
 		Thread th = new Thread() {
 			@Override
 			public void run() {
-				doPostR();
+				doPostR(userName, password);
 			}
 		};
 		th.start();
@@ -46,11 +44,13 @@ public class LoginRequest {
 
 	/**
 	 * TODO Put here a description of what this method does.
+	 * @param password 
+	 * @param userName 
 	 * 
 	 * @param userName
 	 * @param pass
 	 */
-	private void doPostR() {
+	private void doPostR(String userName, String password) {
 		HttpClient httpclient = new DefaultHttpClient();
 		HttpGet httpget = new HttpGet(
 				"http://myauto.ge/android/login.php?username=" + userName
@@ -63,7 +63,7 @@ public class LoginRequest {
 
 			String responseText = EntityUtils.toString(entity);
 			// System.out.println(responseText);
-			if (Integer.parseInt(responseText) == 0){
+			if (Integer.parseInt(responseText) == 0) {
 				logined = true;
 			}
 
@@ -122,6 +122,42 @@ public class LoginRequest {
 			// TODO Auto-generated catch-block stub.
 			exception.printStackTrace();
 		}
+
+	}
+
+	public String checkSession() {
+		Thread th = new Thread() {
+			@Override
+			public void run() {
+				HttpClient httpclient = new DefaultHttpClient();
+				HttpGet httpget = new HttpGet(
+						"http://www.myauto.ge/android/check_session_user.php");
+				try {
+
+					HttpResponse response = httpclient.execute(httpget);
+					HttpEntity entity = response.getEntity();
+
+					String responseText = EntityUtils.toString(entity);
+					if (responseText != "")
+						loginedUser = responseText;
+					else
+						loginedUser = null;
+
+				} catch (ClientProtocolException e) {
+					// TODO Auto-generated catch block
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+				}
+			}
+		};
+		th.start();
+		try {
+			th.join();
+		} catch (InterruptedException exception) {
+			// TODO Auto-generated catch-block stub.
+			exception.printStackTrace();
+		}
+		return loginedUser;
 
 	}
 

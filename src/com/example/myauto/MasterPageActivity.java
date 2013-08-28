@@ -23,7 +23,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.myauto.data.DataContainer;
-import com.example.myauto.requests.LoginRequest;
+import com.example.myauto.requests.UserAuthRequests;
 
 public class MasterPageActivity extends Activity {
 
@@ -32,7 +32,7 @@ public class MasterPageActivity extends Activity {
 	private static final int LANG_GE = 2;
 	private static final int LANG_RU = 3;
 	private Menu menu;
-	private LoginRequest lr;
+	private UserAuthRequests lr;
 	private Resources resources;
 	private Activity thisActivity;
 
@@ -42,6 +42,8 @@ public class MasterPageActivity extends Activity {
 		setContentView(R.layout.activity_master_page);
 		resources = getResources();
 		thisActivity = this;
+		
+		
 	}
 
 	@Override
@@ -49,6 +51,12 @@ public class MasterPageActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.myauto_menu, menu);
 		this.menu = menu;
+		lr = new UserAuthRequests();
+		String user = lr.checkSession();
+		//System.out.println("asdasasdasd " + user);
+		if(user != ""){
+			showLoginedUser(user);
+		}
 		return true;
 	}
 
@@ -109,12 +117,10 @@ public class MasterPageActivity extends Activity {
 		if (requestCode == 1) {
 
 			if (resultCode == RESULT_OK) {
-				Toast.makeText(getApplicationContext(),resources.getString(R.string.registration_finish), 
+				String result=data.getStringExtra("result"); 
+				Toast.makeText(getApplicationContext(), result, 
 						Toast.LENGTH_LONG).show();
-			} else if (resultCode == RESULT_CANCELED) {
-				Toast.makeText(getApplicationContext(), "Error",
-						Toast.LENGTH_LONG).show();
-			}
+			} 
 		}
 	}
 
@@ -256,20 +262,9 @@ public class MasterPageActivity extends Activity {
 				.findViewById(R.id.password_edittext);
 		String userName = usrname.getText().toString();
 		String pass = pswd.getText().toString();
-		lr = new LoginRequest(userName, pass);
-		boolean logined = lr.sendLoginRequest();
+		boolean logined = lr.sendLoginRequest(userName, pass);
 		if (logined) {
-			MenuItem login = menu.findItem(R.id.menu_login);
-			login.setVisible(false);
-			MenuItem register = menu.findItem(R.id.menu_register);
-			register.setVisible(false);
-			MenuItem logout = menu.findItem(R.id.menu_logout);
-			logout.setVisible(true);
-			MenuItem userOpt = menu.findItem(R.id.menu_user);
-			userOpt.setTitle(userName);
-			userOpt.setVisible(true);
-			MenuItem car = menu.findItem(R.id.menu_add_car);
-			car.setVisible(true);
+			showLoginedUser(userName);
 			saveUserToSession(userName);
 			Toast.makeText(getApplicationContext(),
 					resources.getString(R.string.login_success),
@@ -280,6 +275,20 @@ public class MasterPageActivity extends Activity {
 					.show();
 		}
 
+	}
+
+	private void showLoginedUser(String userName) {
+		MenuItem login = menu.findItem(R.id.menu_login);
+		login.setVisible(false);
+		MenuItem register = menu.findItem(R.id.menu_register);
+		register.setVisible(false);
+		MenuItem logout = menu.findItem(R.id.menu_logout);
+		logout.setVisible(true);
+		MenuItem userOpt = menu.findItem(R.id.menu_user);
+		userOpt.setTitle(userName);
+		userOpt.setVisible(true);
+		MenuItem car = menu.findItem(R.id.menu_add_car);
+		car.setVisible(true);
 	}
 
 	/**

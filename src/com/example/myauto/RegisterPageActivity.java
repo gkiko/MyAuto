@@ -17,7 +17,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-public class RegisterPageActivity extends Activity {
+public class RegisterPageActivity extends MasterPageActivity {
 
 	private Spinner years;
 	private Resources resources;
@@ -89,9 +89,12 @@ public class RegisterPageActivity extends Activity {
 
 	private void checkRes(int res) {
 		Intent returnIntent;
+		String result = "";
 		switch (res) {
 		case 0:
 			returnIntent = new Intent();
+			result = resources.getString(R.string.registration_finish);
+			returnIntent.putExtra("result", result);
 			setResult(RESULT_OK, returnIntent);
 			finish();
 			break;
@@ -118,20 +121,19 @@ public class RegisterPageActivity extends Activity {
 			Toast.makeText(getApplicationContext(), resources.getString(R.string.passwords_fail),
 					Toast.LENGTH_LONG).show();
 			break;
+		case 7:
+			// birth_year
+			break;
 		default:
 			returnIntent = new Intent();
-			setResult(RESULT_CANCELED, returnIntent);
+			result = "error";
+			returnIntent.putExtra("result", result);
+			setResult(RESULT_OK, returnIntent);
 			finish();
 			break;
 		}
 		
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.register_page, menu);
-		return true;
-	}
 
 }
