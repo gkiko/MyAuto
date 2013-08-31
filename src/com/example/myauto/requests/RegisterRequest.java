@@ -47,17 +47,11 @@ public class RegisterRequest {
 
 	private void register() {
 		HttpClient httpclient = new DefaultHttpClient();
-		// String cookies =
-		// "__unam=656d566-13e3db44333-30d82f5f-21; ad_date_2=2013-07-24; PHPSESSID=rv5fdi0a47an0u3p9fs646bg55; __utma=229565184.1943488099.1366831465.1374063221.1374077020.43; __utmb=229565184.15.10.1374077020; __utmc=229565184; __utmz=229565184.1367865217.10.5.utmcsr=google|utmccn=(organic)|utmcmd=organic|utmctr=(not%20provided)";
 		HttpPost httppost = new HttpPost(
 				"http://www.myauto.ge/android/register.php");
 
 		try {
 			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-			// nameValuePairs.add(new BasicNameValuePair("ad_date_2",
-			// "2013-07-17"));
-			// nameValuePairs.add(new BasicNameValuePair("action",
-			// "do_register"));
 			nameValuePairs.add(new BasicNameValuePair("password", params[1]));
 			nameValuePairs.add(new BasicNameValuePair("username", params[0]));
 			nameValuePairs.add(new BasicNameValuePair("confirmpass", params[1]));
@@ -78,9 +72,6 @@ public class RegisterRequest {
 			} catch (NumberFormatException e) {
 				res = -1;
 			}
-			// System.out.println("code " +
-			// response.getStatusLine().getStatusCode());
-			// System.out.println(responseText);
 
 		} catch (ClientProtocolException e) {
 			// TODO Auto-generated catch block

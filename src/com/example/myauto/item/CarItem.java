@@ -60,11 +60,10 @@ public class CarItem extends Observable implements Item, Serializable {
 
 	@Override
 	public String getValueFromProperty(String property) {
-		String val = null;
+		String val = "";
 		if (itemData.containsKey(property)) {
 			val = itemData.get(property);
 		}
 		return val;
 	}
-
 }

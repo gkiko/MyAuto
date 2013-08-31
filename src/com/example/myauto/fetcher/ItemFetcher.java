@@ -75,7 +75,6 @@ public class ItemFetcher extends AsyncTask<HashMap<String, String>, String, Item
 		MyChangeEvent evt = new MyChangeEvent(item);
 
 		for (CallbackListener l : listeners) {
-			System.out.println(item.getValueFromProperty("manufacturer"));
 			l.onFinished(evt);
 		}
 	}

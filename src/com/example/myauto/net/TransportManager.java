@@ -14,16 +14,17 @@ import com.example.myauto.item.CarFacade;
 import com.example.myauto.item.Item;
 
 public class TransportManager {
-	private static final String LIST_URL_GE = "http://myauto.ge/android/car_list_xml.php?set_lang_id=4";
-	private static final String LIST_URL_EN = "http://myauto.ge/android/car_list_xml.php?set_lang_id=1";
-	private static final String LIST_URL_RU = "http://myauto.ge/android/car_list_xml.php?set_lang_id=5";
+	private static final String LIST_URL = "http://www.myauto.ge/android/car_list_xml.php";
+	private static final String LIST_URL_GE = LIST_URL+"?set_lang_id=4";
+	private static final String LIST_URL_EN = LIST_URL+"?set_lang_id=1";
+	private static final String LIST_URL_RU = LIST_URL+"?set_lang_id=5";
 	private static final String ITEM_URL_GE = "http://www.myauto.ge/details_xml.php?set_lang_id=4";
 	private static final String ITEM_URL_EN = "http://www.myauto.ge/details_xml.php?set_lang_id=1";
 	private static final String ITEM_URL_RU = "http://www.myauto.ge/details_xml.php?set_lang_id=5";
 	private static final int LANG_EN = 1;
 	private static final int LANG_GE = 2;
 	private static final int LANG_RU = 3;
-	private static Parser reader = new Parser();
+	private static Parser parser = new Parser();
 	
 	public static ArrayList<CarFacade> downloadCarList(HashMap<String, String> params, Activity activity) throws ClientProtocolException, IOException{
 		String ListUrl = "";
@@ -43,7 +44,7 @@ public class TransportManager {
 			break;
 		}
 		String resultXml = HttpClient.getHttpClientDoGetResponse(ListUrl, params);
-		ArrayList<CarFacade> ls = reader.parse(resultXml);
+		ArrayList<CarFacade> ls = parser.parse(resultXml);
 		return ls;
 	}
 	
@@ -65,7 +66,7 @@ public class TransportManager {
 			break;
 		}
 		String resultXml = HttpClient.getHttpClientDoGetResponse(ItemUrl, params);
-		Item item = reader.parse2(resultXml);
+		Item item = parser.parse2(resultXml);
 		return item;
 	}
 	
