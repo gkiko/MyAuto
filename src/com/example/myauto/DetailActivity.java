@@ -121,7 +121,6 @@ public class DetailActivity extends MasterPageActivity {
 			next.setEnabled(true);
 		
 		String url = composeUrl(--curImgNum);
-		System.out.println(url);
 		webView.loadUrl(url);
 
 		if (limitReached(curImgNum))
@@ -156,7 +155,6 @@ public class DetailActivity extends MasterPageActivity {
 			prev.setEnabled(true);
 		
 		String url = composeUrl(++curImgNum);
-		System.out.println(url);
 		webView.loadUrl(url);
 		
 		if(limitReached(curImgNum))
