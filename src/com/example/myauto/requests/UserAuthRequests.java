@@ -45,7 +45,7 @@ public class UserAuthRequests {
 	/**
 	 * TODO Put here a description of what this method does.
 	 * @param password 
-	 * @param userName 
+	 * @param userName s
 	 * 
 	 * @param userName
 	 * @param pass
@@ -62,8 +62,10 @@ public class UserAuthRequests {
 			HttpEntity entity = response.getEntity();
 
 			String responseText = EntityUtils.toString(entity);
+			String k = checkSession();
 			// System.out.println(responseText);
 			if (Integer.parseInt(responseText) == 0) {
+				System.out.println("aeeeeeeee " + k);
 				logined = true;
 			}
 
@@ -138,11 +140,9 @@ public class UserAuthRequests {
 					HttpEntity entity = response.getEntity();
 
 					String responseText = EntityUtils.toString(entity);
-					if (responseText != "")
-						loginedUser = responseText;
-					else
-						loginedUser = null;
-
+					System.out.println("buzuuu " + responseText);
+					loginedUser = responseText;
+					
 				} catch (ClientProtocolException e) {
 					// TODO Auto-generated catch block
 				} catch (IOException e) {

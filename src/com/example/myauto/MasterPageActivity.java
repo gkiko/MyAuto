@@ -35,6 +35,7 @@ public class MasterPageActivity extends Activity {
 	private UserAuthRequests lr;
 	private Resources resources;
 	private Activity thisActivity;
+	private SharedPreferences settings;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +43,8 @@ public class MasterPageActivity extends Activity {
 		setContentView(R.layout.activity_master_page);
 		resources = getResources();
 		thisActivity = this;
-		
-		
+		settings = getSharedPreferences("session", 0);
+
 	}
 
 	@Override
@@ -52,9 +53,9 @@ public class MasterPageActivity extends Activity {
 		getMenuInflater().inflate(R.menu.myauto_menu, menu);
 		this.menu = menu;
 		lr = new UserAuthRequests();
-		String user = lr.checkSession();
-		//System.out.println("asdasasdasd " + user);
-		if(user != ""){
+		String user = getUserFromSession();
+		// System.out.println("asdasasdasd" + user + "t");
+		if (!user.equals("")) {
 			showLoginedUser(user);
 		}
 		return true;
@@ -117,10 +118,10 @@ public class MasterPageActivity extends Activity {
 		if (requestCode == 1) {
 
 			if (resultCode == RESULT_OK) {
-				String result=data.getStringExtra("result"); 
-				Toast.makeText(getApplicationContext(), result, 
+				String result = data.getStringExtra("result");
+				Toast.makeText(getApplicationContext(), result,
 						Toast.LENGTH_LONG).show();
-			} 
+			}
 		}
 	}
 
@@ -296,19 +297,18 @@ public class MasterPageActivity extends Activity {
 	 * 
 	 */
 	private void saveUserToSession(String username) {
-		SharedPreferences settings = PreferenceManager
-				.getDefaultSharedPreferences(getApplicationContext());
-		SharedPreferences.Editor editor = settings.edit();
-		editor.putString("username", username);
 
+		settings.edit().putString("username", username).commit();
+
+	}
+
+	private String getUserFromSession() {
+		return settings.getString("username", "");
 	}
 
 	/**  */
 	private void removeUserFromSession() {
-		SharedPreferences settings = PreferenceManager
-				.getDefaultSharedPreferences(getApplicationContext());
-		SharedPreferences.Editor editor = settings.edit();
-		editor.remove("username");
+		settings.edit().clear().commit();
 
 	}
 }
