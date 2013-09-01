@@ -75,6 +75,14 @@
             android:name="com.example.myauto.RegisterPageActivity"
             android:label="@string/title_activity_register_page" >
         </activity>
+        <activity
+            android:name="com.example.myauto.MyPageActivity"
+            android:label="@string/title_activity_my_page" >
+        </activity>
+        <activity
+            android:name="com.example.myauto.EditAccountActivity"
+            android:label="@string/title_activity_edit_account" >
+        </activity>
     </application>
 
 </manifest>

@@ -17,9 +17,7 @@
     <string name="steer">მარჯვენა საჭე</string>
     <string name="button">ფილტრი</string>
     <string name="transmission_null">ტრანსმისია</string>
-
     <string name="fuel_null">საწვავის ტიპი</string>
-
     <string name="title_activity_filtered">FilteredActivity</string>
     <string name="title_activity_catalog_page">CatalogPageActivity</string>
     <string name="title_activity_search">SearchActivity</string>
@@ -31,8 +29,8 @@
     <string name="menu_catalog">კატალოგი</string>
     <string name="menu_about">ჩვენს შესახებ</string>
     <string name="menu_language">ენა</string>
-    
-    <!--  Language Strings -->
+
+    <!-- Language Strings -->
     <string name="dialog_lang_ge">ქართული</string>
     <string name="dialog_lang_en">English</string>
     <string name="dialog_lang_ru">Русский</string>
@@ -97,7 +95,6 @@
     <string name="menu_logout">გამოსვლა</string>
     <string name="menu_register">რეგისტრაცია</string>
     <string name="menu_add_car">მანქანის დამატება</string>
-    
     <string name="title_activity_register_page">RegisterPageActivity</string>
     <string name="username_register">მომხმარებელი*</string>
     <string name="pass_register">პაროლი*:</string>
@@ -120,8 +117,8 @@
         <item>მამრობითი</item>
         <item>მდედრობითი</item>
     </string-array>
-    <string name="registration_btn_str">დარეგისტრირება</string>
 
+    <string name="registration_btn_str">დარეგისტრირება</string>
     <string name="title_activity_detail">DetailActivity</string>
     <!-- DetailActivity -->
     <string-array name="details">
@@ -161,10 +158,13 @@
     <string name="aircond">კონდიციონერი</string>
     <string name="climate">კლიმატკონტროლი</string>
     <string name="alarm">სიგნალიზაცია</string>
-	<string name="hydraulics">ჰიდრავლიკა</string>
-	<string name="turbo">ტურბო</string>
-    
-	<!-- Detail Activity image numbering -->
-	<string name="next">შემდეგი</string>
-	<string name="prev">წინა</string>
+    <string name="hydraulics">ჰიდრავლიკა</string>
+    <string name="turbo">ტურბო</string>
+
+    <!-- Detail Activity image numbering -->
+    <string name="next">შემდეგი</string>
+    <string name="prev">წინა</string>
+    <string name="title_activity_my_page">MyPageActivity</string>
+    <string name="title_activity_edit_account">EditAccountActivity</string>
+
 </resources>
