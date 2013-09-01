@@ -10,6 +10,9 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
+import com.example.myauto.user.Profile;
+import com.thoughtworks.xstream.XStream;
+
 /**
  * TODO Put here a description of what this class does.
  * 
@@ -178,7 +181,9 @@ public class UserAuthRequests {
 					HttpEntity entity = response.getEntity();
 
 					String responseText = EntityUtils.toString(entity);
-					System.out.println("buzuu " + responseText);
+//					XStream xstream = new XStream();
+//					Profile newJoe = (Profile)xstream.fromXML(responseText);
+//					System.out.println("buzuu " + newJoe.toString());
 
 				} catch (ClientProtocolException e) {
 					// TODO Auto-generated catch block
