@@ -52,7 +52,6 @@ public class MasterPageActivity extends Activity {
 		this.menu = menu;
 		lr = UserAuthRequests.getInstance();
 		String user = lr.checkSession();
-		// System.out.println("asdasasdasd" + user + "t");
 		if (!user.equals("")) {
 			showLoginedUser(user);
 		}

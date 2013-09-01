@@ -3,17 +3,20 @@ package com.example.myauto.net;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 import org.apache.http.client.ClientProtocolException;
+import org.xmlpull.v1.XmlPullParserException;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
 
 import com.example.myauto.R;
 import com.example.myauto.item.CarFacade;
+import com.example.myauto.item.CarImageable;
+import com.example.myauto.item.CarItem;
+import com.example.myauto.item.Imageable;
 import com.example.myauto.item.Item;
-import com.thoughtworks.xstream.XStream;
 
 public class TransportManager {
 	private static final String LIST_URL = "http://www.myauto.ge/android/car_list_xml.php";
@@ -26,7 +29,7 @@ public class TransportManager {
 	private static final int LANG_EN = 1;
 	private static final int LANG_GE = 2;
 	private static final int LANG_RU = 3;
-	private static Parser parser = new Parser();
+	private static Parser p = new Parser();
 
 	public static ArrayList<CarFacade> downloadCarList(
 			HashMap<String, String> params, Activity activity)
@@ -50,8 +53,28 @@ public class TransportManager {
 		}
 		String resultXml = HttpClient.getHttpClientDoGetResponse(ListUrl,
 				params);
-		ArrayList<CarFacade> ls = parser.parse(resultXml);
+		ArrayList<CarFacade> ls = null;
+		
+		try {
+			p.setSourceToParse(resultXml);
+			List<Item> itemList = p.parseAsList();
+			ls = initializeFacade(itemList);
+		} catch (XmlPullParserException e) {
+			e.printStackTrace();
+		}
 
+		return ls;
+	}
+	
+	private static ArrayList<CarFacade> initializeFacade(List<Item> itemList){
+		ArrayList<CarFacade> ls = new ArrayList<CarFacade>();
+		for(Item item : itemList){
+			Imageable imageable = new CarImageable();
+			imageable.setURL(item.getValueFromProperty(CarItem.PHOTO));
+			CarFacade cf = new CarFacade((CarImageable)imageable, (CarItem)item);
+			
+			ls.add(cf);
+		}
 		return ls;
 	}
 
@@ -76,8 +99,15 @@ public class TransportManager {
 		}
 		String resultXml = HttpClient.getHttpClientDoGetResponse(ItemUrl,
 				params);
-		Item item = parser.parse2(resultXml);
-		return item;
+		Item itm = null;
+		
+		try {
+			p.setSourceToParse(resultXml);
+			List<Item> itemList = p.parseAsList();
+			itm = itemList.get(0);
+		} catch (XmlPullParserException e) {
+			e.printStackTrace();
+		}
+		return itm;
 	}
-
 }

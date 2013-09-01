@@ -11,7 +11,6 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
 import com.example.myauto.user.Profile;
-import com.thoughtworks.xstream.XStream;
 
 /**
  * TODO Put here a description of what this class does.

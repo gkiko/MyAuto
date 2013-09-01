@@ -33,7 +33,6 @@ public class FirstPageActivity extends MasterPageActivity implements CallbackLis
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.firstpage);
 		DBManager.init(getApplicationContext());
-		
 		updateLanguage();
 		
 		getButtons();
