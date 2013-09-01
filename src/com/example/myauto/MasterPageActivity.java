@@ -3,7 +3,6 @@ package com.example.myauto;
 import java.util.Locale;
 
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -44,7 +43,6 @@ public class MasterPageActivity extends Activity {
 		resources = getResources();
 		thisActivity = this;
 		settings = getSharedPreferences("session", 0);
-
 	}
 
 	@Override
@@ -52,8 +50,8 @@ public class MasterPageActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.myauto_menu, menu);
 		this.menu = menu;
-		lr = new UserAuthRequests();
-		String user = getUserFromSession();
+		lr = UserAuthRequests.getInstance();
+		String user = lr.checkSession();
 		// System.out.println("asdasasdasd" + user + "t");
 		if (!user.equals("")) {
 			showLoginedUser(user);
@@ -267,6 +265,7 @@ public class MasterPageActivity extends Activity {
 		if (logined) {
 			showLoginedUser(userName);
 			saveUserToSession(userName);
+			lr.getProfile();
 			Toast.makeText(getApplicationContext(),
 					resources.getString(R.string.login_success),
 					Toast.LENGTH_LONG).show();

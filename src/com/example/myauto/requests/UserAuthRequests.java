@@ -19,10 +19,16 @@ public class UserAuthRequests {
 
 	private String loginedUser;
 	private boolean logined;
+	private static DefaultHttpClient httpclient;
 
-	public UserAuthRequests() {
-	
-		logined = false;
+	private static UserAuthRequests instance = null;
+
+	public static UserAuthRequests getInstance() {
+		if (instance == null) {
+			instance = new UserAuthRequests();
+			httpclient = new DefaultHttpClient();
+		}
+		return instance;
 	}
 
 	public boolean sendLoginRequest(final String userName, final String password) {
@@ -44,14 +50,15 @@ public class UserAuthRequests {
 
 	/**
 	 * TODO Put here a description of what this method does.
-	 * @param password 
-	 * @param userName s
+	 * 
+	 * @param password
+	 * @param userName
+	 *            s
 	 * 
 	 * @param userName
 	 * @param pass
 	 */
 	private void doPostR(String userName, String password) {
-		HttpClient httpclient = new DefaultHttpClient();
 		HttpGet httpget = new HttpGet(
 				"http://myauto.ge/android/login.php?username=" + userName
 						+ "&password=" + getMD5Hash("fc9" + password + "48c"));
@@ -103,7 +110,6 @@ public class UserAuthRequests {
 		Thread th = new Thread() {
 			@Override
 			public void run() {
-				HttpClient httpclient = new DefaultHttpClient();
 				HttpGet httpget = new HttpGet(
 						"http://www.myauto.ge/android/logout.php");
 				try {
@@ -131,7 +137,6 @@ public class UserAuthRequests {
 		Thread th = new Thread() {
 			@Override
 			public void run() {
-				HttpClient httpclient = new DefaultHttpClient();
 				HttpGet httpget = new HttpGet(
 						"http://www.myauto.ge/android/check_session_user.php");
 				try {
@@ -142,7 +147,7 @@ public class UserAuthRequests {
 					String responseText = EntityUtils.toString(entity);
 					System.out.println("buzuuu " + responseText);
 					loginedUser = responseText;
-					
+
 				} catch (ClientProtocolException e) {
 					// TODO Auto-generated catch block
 				} catch (IOException e) {
@@ -159,6 +164,36 @@ public class UserAuthRequests {
 		}
 		return loginedUser;
 
+	}
+
+	public void getProfile() {
+		Thread th = new Thread() {
+			@Override
+			public void run() {
+				HttpGet httpget = new HttpGet(
+						"http://www.myauto.ge/android/get_user_data.php");
+				try {
+
+					HttpResponse response = httpclient.execute(httpget);
+					HttpEntity entity = response.getEntity();
+
+					String responseText = EntityUtils.toString(entity);
+					System.out.println("buzuu " + responseText);
+
+				} catch (ClientProtocolException e) {
+					// TODO Auto-generated catch block
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+				}
+			}
+		};
+		th.start();
+		try {
+			th.join();
+		} catch (InterruptedException exception) {
+			// TODO Auto-generated catch-block stub.
+			exception.printStackTrace();
+		}
 	}
 
 }
