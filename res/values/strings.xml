@@ -166,5 +166,16 @@
     <string name="prev">წინა</string>
     <string name="title_activity_my_page">MyPageActivity</string>
     <string name="title_activity_edit_account">EditAccountActivity</string>
+    
+     <!-- Edit Account Strings -->
+    <string name="username_txt">მომხმარებელი: </string>
+    <string name="name_txt">სახელი: </string>
+    <string name="surname_txt">გვარი: </string>
+    <string name="email_txt">ელ–ფოსტა: </string>
+    <string name="gender_txt">სქესი: </string>
+    <string name="birthyear_txt">დაბადების წელი: </string>
+    <string name="phone_txt">ტელეფონის ნომერი: </string>
+    <string name="location_txt">მდებარეობა: </string>
+    <string name="save_btn">დამახსოვრება</string>
 
 </resources>

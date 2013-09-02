@@ -55,7 +55,7 @@ public class Parser {
 	}
 	
 	private boolean infoStartOrEnd(){
-		return startOrEndTag("car") || startOrEndTag("details");
+		return startOrEndTag("car") || startOrEndTag("details") || startOrEndTag("user");
 	}
 
 	private boolean startOrEndTag(String tagName) {

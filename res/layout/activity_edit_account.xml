@@ -3,270 +3,198 @@
     android:layout_height="fill_parent"
     android:fillViewport="true" >
 
-    <RelativeLayout
-        android:layout_width="fill_parent"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#fff" >
+        android:orientation="vertical"
+        android:padding="3dip" >
+        
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dip" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="30dip"
+                android:text="@string/username_txt"
+                android:textColor="#372c24" />
+             <TextView
+                android:id="@+id/username_str"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="30dip"
+                android:textColor="#372c24" />
+
+           
+        </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="3dip" >
+            android:orientation="horizontal"
+            android:padding="10dip" >
 
-            <LinearLayout
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="10dip" >
+                android:paddingRight="30dip"
+                android:text="@string/name_txt"
+                android:textColor="#372c24" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingRight="30dip"
-                    android:text="Name: "
-                    android:textColor="#372c24" />
-
-                <EditText
-                    android:id="@+id/name"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:width="150dp" >
-                </EditText>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="10dip" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingRight="30dip"
-                    android:text="Surname: "
-                    android:textColor="#372c24" />
-
-                <EditText
-                    android:id="@+id/surName"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:width="150dp" >
-                </EditText>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="10dip" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingRight="30dip"
-                    android:text="E-Mail: "
-                    android:textColor="#372c24" />
-
-                <EditText
-                    android:id="@+id/email"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:width="150dp" >
-                </EditText>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="10dip" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingRight="30dip"
-                    android:text="Gender: "
-                    android:textColor="#372c24" />
-
-<!-- 				TODO dropdown -->
-
-                <EditText
-                    android:id="@+id/name"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:width="150dp" >
-                </EditText>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="10dip" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingRight="30dip"
-                    android:text="Location: "
-                    android:textColor="#372c24" />
-<!-- 				TODO dropdown -->
-                
-                <EditText
-                    android:id="@+id/location"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:width="150dp" >
-                </EditText>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="10dip" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingRight="30dip"
-                    android:text="Birth Year: "
-                    android:textColor="#372c24" />
-<!-- 				TODO dropdown -->
-                
-                <EditText
-                    android:id="@+id/birthyear"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:width="150dp" >
-                </EditText>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="10dip" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingRight="30dip"
-                    android:text="Address: "
-                    android:textColor="#372c24" />
-
-                <EditText
-                    android:id="@+id/addr"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:width="150dp" >
-                </EditText>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="10dip" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingRight="30dip"
-                    android:text="Telefoni 1: "
-                    android:textColor="#372c24" />
-
-                <EditText
-                    android:id="@+id/numb1Edit"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:width="150dp" >
-                </EditText>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="10dip" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingRight="30dip"
-                    android:text="Telefoni 2: "
-                    android:textColor="#372c24" />
-
-                <EditText
-                    android:id="@+id/numb2Edit"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:width="150dp" >
-                </EditText>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="10dip" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingRight="30dip"
-                    android:text="Skype: "
-                    android:textColor="#372c24" />
-
-                <EditText
-                    android:id="@+id/skypeEdit"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:width="150dp" >
-                </EditText>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="10dip" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingRight="30dip"
-                    android:text="About Company: "
-                    android:textColor="#372c24" />
-
-                <EditText
-                    android:id="@+id/aboutCompanyEdit"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:width="150dp" >
-                </EditText>
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/editBtn"
+            <EditText
+                android:id="@+id/name"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dip"
-                android:text="Save" />
+                android:inputType="text"
+                android:width="150dp" >
+            </EditText>
         </LinearLayout>
-    </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dip" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="30dip"
+                android:text="@string/surname_txt"
+                android:textColor="#372c24" />
+
+            <EditText
+                android:id="@+id/surName"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:width="150dp" >
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dip" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="30dip"
+                android:text="@string/email_txt"
+                android:textColor="#372c24" />
+
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:width="150dp" >
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dip" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="30dip"
+                android:text="@string/gender_txt"
+                android:textColor="#372c24" />
+
+            <!-- TODO dropdown -->
+
+            <EditText
+                android:id="@+id/gender_edit"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:width="150dp" >
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dip" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="30dip"
+                android:text="@string/location_txt"
+                android:textColor="#372c24" />
+            <!-- TODO dropdown -->
+
+            <EditText
+                android:id="@+id/location"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:width="150dp" >
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dip" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="30dip"
+                android:text="@string/birthyear_txt"
+                android:textColor="#372c24" />
+            <!-- TODO dropdown -->
+
+            <EditText
+                android:id="@+id/birthyear"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:width="150dp" >
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dip" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="30dip"
+                android:text="@string/phone_txt"
+                android:textColor="#372c24" />
+
+            <EditText
+                android:id="@+id/numb1Edit"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:width="150dp" >
+            </EditText>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/editBtn"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            android:text="@string/save_btn" />
+    </LinearLayout>
 
 </ScrollView>

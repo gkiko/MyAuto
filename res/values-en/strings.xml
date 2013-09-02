@@ -182,5 +182,18 @@
     <!-- Detail Activity image numbering -->
 	<string name="next">Next</string>
 	<string name="prev">Prev</string>
+	
+	
+	 <!-- Edit Account Strings -->
+    <string name="username_txt">Username: </string>
+    <string name="name_txt">Name: </string>
+    <string name="surname_txt">Surname: </string>
+    <string name="email_txt">E-Mail: </string>
+    <string name="gender_txt">Gender: </string>
+    <string name="birthyear_txt">Birth Year: </string>
+    <string name="phone_txt">Phone number: </string>
+    <string name="location_txt">Location: </string>
+    <string name="save_btn">Save</string>
+	
 
 </resources>
