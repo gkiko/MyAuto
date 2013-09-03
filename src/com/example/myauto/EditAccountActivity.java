@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 
-public class EditAccountActivity extends Activity {
+public class EditAccountActivity extends MasterPageActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

@@ -51,7 +51,8 @@ public class MasterPageActivity extends Activity {
 		getMenuInflater().inflate(R.menu.myauto_menu, menu);
 		this.menu = menu;
 		lr = UserAuthRequests.getInstance();
-		String user = lr.checkSession();
+		// String user = lr.checkSession();
+		String user = getUserFromSession();
 		if (!user.equals("")) {
 			showLoginedUser(user);
 		}
@@ -103,6 +104,11 @@ public class MasterPageActivity extends Activity {
 			startActivityForResult(nextIntent, 1);
 			break;
 		case R.id.menu_add_car:
+			break;
+		case R.id.menu_edit_account:
+			nextIntent = new Intent(MasterPageActivity.this,
+					EditAccountActivity.class);
+			startActivityForResult(nextIntent, 2);
 			break;
 		default:
 			break;
@@ -211,6 +217,8 @@ public class MasterPageActivity extends Activity {
 		userOpt.setVisible(false);
 		MenuItem car = menu.findItem(R.id.menu_add_car);
 		car.setVisible(false);
+		MenuItem editAcc = menu.findItem(R.id.menu_edit_account);
+		editAcc.setVisible(false);
 		removeUserFromSession();
 		lr.logOut();
 	}
@@ -288,6 +296,8 @@ public class MasterPageActivity extends Activity {
 		userOpt.setVisible(true);
 		MenuItem car = menu.findItem(R.id.menu_add_car);
 		car.setVisible(true);
+		MenuItem editAcc = menu.findItem(R.id.menu_edit_account);
+		editAcc.setVisible(true);
 	}
 
 	/**

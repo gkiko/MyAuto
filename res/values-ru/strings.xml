@@ -168,6 +168,7 @@
 	<string name="prev">Пред</string>
 	
 	  <!-- Edit Account Strings -->
+	<string name="edit_account_str">Edit Account</string>
     <string name="username_txt">მომხმარებელი: </string>
     <string name="name_txt">სახელი: </string>
     <string name="surname_txt">გვარი: </string>
