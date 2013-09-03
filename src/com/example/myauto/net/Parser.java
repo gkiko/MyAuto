@@ -1,5 +1,7 @@
 package com.example.myauto.net;
 
+import android.util.Log;
+
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
