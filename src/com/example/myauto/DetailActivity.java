@@ -7,7 +7,6 @@ import com.example.myauto.item.Item;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -42,7 +41,7 @@ public class DetailActivity extends MasterPageActivity {
 		next = (Button) findViewById(R.id.button2);
 
 		setUpTabs();
-		addDataTab1(itm);
+		addMainData(itm);
 		getImageInfo(itm);
 	}
 
@@ -67,7 +66,7 @@ public class DetailActivity extends MasterPageActivity {
 		tabhost.setCurrentTab(0);
 	}
 
-	private void addDataTab1(Item itm) {
+	private void addMainData(Item itm) {
         fillNameAndPhone(itm);
 		String[] details = fillDetails(itm);
 		BaseAdapter a = new DetailAdapter(details, getApplicationContext());
@@ -186,12 +185,4 @@ public class DetailActivity extends MasterPageActivity {
 		if(limitReached(curImgNum))
 			next.setEnabled(false);
 	}
-	/**
-	 * Set up the {@link android.app.ActionBar}, if the API is available.
-	 */
-	/*
-	 * @TargetApi(Build.VERSION_CODES.HONEYCOMB) private void setupActionBar() {
-	 * if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-	 * getActionBar().setDisplayHomeAsUpEnabled(true); } }
-	 */
 }
