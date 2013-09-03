@@ -5,7 +5,7 @@
         android:id="@+id/menu_user"
         android:showAsAction="always|withText"
         android:visible="false"/>
-     <item
+    <item
         android:id="@+id/menu_add_car"
         android:title="@string/menu_add_car"
         android:visible="false"/>
@@ -19,8 +19,13 @@
         android:title="@string/menu_register"/>
     <item
         android:id="@+id/menu_logout"
-        android:showAsAction="ifRoom|withText"
+        android:showAsAction="always|withText"
         android:title="@string/menu_logout"
+        android:visible="false"/>
+    <item
+        android:id="@+id/menu_edit_account"
+        android:showAsAction="ifRoom|withText"
+        android:title="@string/edit_account_str"
         android:visible="false"/>
     <item
         android:id="@+id/menu_main"
