@@ -1,64 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_hdpi"
-    android:orientation="vertical" >
+    android:background="@drawable/firstpage_bg">
 
-    <!-- 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="25dip"
-        android:layout_marginTop="20dip"
-        android:text="My Auto"
-        android:textColor="@color/White"
-        android:textSize="60dip"
-        android:textStyle="bold" />
- 	-->
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dip"
         android:layout_marginTop="200dip"
-        android:orientation="horizontal" >
+        android:layout_centerVertical="true">
 
-        <Button
-            android:id="@+id/main_button"
-            android:layout_width="90dip"
-            android:layout_height="72dip"
-            android:background="@drawable/car_button_ldpi"
-             />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true">
 
-        <Button
-            android:id="@+id/search_button"
-            android:layout_width="90dip"
-            android:layout_height="72dip"
-            android:layout_marginLeft="10dip"
-            android:background="@drawable/magnify_ldpi" />
-            
-            <!-- 
-            android:background="@color/Orange"
-            android:text="Search"
-            android:textColor="@color/White"
-            android:textStyle="bold" />
-            
-             -->
+            <Button
+                android:id="@+id/main_button"
+                android:layout_width="90dip"
+                android:layout_height="72dip"
+                android:background="@drawable/car_button" />
 
-        <Button
-            android:id="@+id/catalog_button"
-            android:layout_width="90dip"
-            android:layout_height="72dip"
-            android:layout_marginLeft="10dip"
-            android:background="@drawable/list_ldpi" />
-            
-            <!-- 
-            android:background="@color/Orange"
-            android:text="Catalog"
-            android:textColor="@color/White"
-            android:textStyle="bold" />
-            
-             -->
-    </LinearLayout>
+            <Button
+                android:id="@+id/search_button"
+                android:layout_width="90dip"
+                android:layout_height="72dip"
+                android:layout_marginLeft="10dip"
+                android:background="@drawable/magnify" />
 
-</LinearLayout>
+            <Button
+                android:id="@+id/catalog_button"
+                android:layout_width="90dip"
+                android:layout_height="72dip"
+                android:layout_marginLeft="10dip"
+                android:background="@drawable/list" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>
