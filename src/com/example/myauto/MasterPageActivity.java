@@ -272,7 +272,6 @@ public class MasterPageActivity extends Activity {
 		if (logined) {
 			showLoginedUser(userName);
 			saveUserToSession(userName);
-			lr.getProfile();
 			Toast.makeText(getApplicationContext(),
 					resources.getString(R.string.login_success),
 					Toast.LENGTH_LONG).show();

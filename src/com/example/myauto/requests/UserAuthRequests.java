@@ -1,6 +1,7 @@
 package com.example.myauto.requests;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -9,7 +10,10 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
+import org.xmlpull.v1.XmlPullParserException;
 
+import com.example.myauto.item.Item;
+import com.example.myauto.net.Parser;
 import com.example.myauto.user.Profile;
 
 /**
@@ -21,7 +25,7 @@ public class UserAuthRequests {
 
 	private String loginedUser;
 	private boolean logined;
-	private String profileXML = "";
+	private Profile pr;
 	private static DefaultHttpClient httpclient;
 
 	private static UserAuthRequests instance = null;
@@ -169,8 +173,9 @@ public class UserAuthRequests {
 
 	}
 
-	public String getProfile() {
+	public Profile getProfile() {
 		Thread th = new Thread() {
+
 			@Override
 			public void run() {
 				HttpGet httpget = new HttpGet(
@@ -181,10 +186,10 @@ public class UserAuthRequests {
 					HttpEntity entity = response.getEntity();
 
 					String responseText = EntityUtils.toString(entity);
-					profileXML = responseText;
-//					XStream xstream = new XStream();
-//					Profile newJoe = (Profile)xstream.fromXML(responseText);
-//					System.out.println("buzuu " + newJoe.toString());
+					pr = parseXML(responseText);
+					// XStream xstream = new XStream();
+					// Profile newJoe = (Profile)xstream.fromXML(responseText);
+					// System.out.println("buzuu " + newJoe.toString());
 
 				} catch (ClientProtocolException e) {
 					// TODO Auto-generated catch block
@@ -200,7 +205,27 @@ public class UserAuthRequests {
 			// TODO Auto-generated catch-block stub.
 			exception.printStackTrace();
 		}
-		return profileXML;
+		return pr;
+	}
+
+	protected Profile parseXML(String xml) {
+		Item itm = null;
+		System.out.println("asdadas: " + xml);
+		
+		try {
+			Parser p = new Parser();
+			p.setSourceToParse(xml);
+			List<Item> itemList = p.parseAsList();
+			itm = itemList.get(0);
+		} catch (XmlPullParserException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("bbbbbbb " + itm.getValueFromProperty(Profile.USERNAME));
+		Profile p = (Profile) itm;
+		return p;
 	}
 
 }

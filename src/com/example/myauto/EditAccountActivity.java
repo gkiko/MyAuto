@@ -1,9 +1,16 @@
 package com.example.myauto;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
+import org.apache.http.ParseException;
+import org.xmlpull.v1.XmlPullParserException;
+
+import com.example.myauto.item.Item;
+import com.example.myauto.net.Parser;
 import com.example.myauto.requests.UserAuthRequests;
 import com.example.myauto.user.Profile;
 
@@ -25,13 +32,12 @@ public class EditAccountActivity extends MasterPageActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_edit_account);
 		UserAuthRequests aur = UserAuthRequests.getInstance();
-		String profileXML = aur.getProfile();
-		System.out.println("aeeeeeeeeeee: " + profileXML);
-		Profile myProfile = new Profile();
-		myProfile.setUser_id(2);
-		myProfile.setUsername("kujmaaaa");
-		myProfile.setGender_id(2);
-		myProfile.setEmail("aee");
+		Profile myProfile = aur.getProfile();
+		System.out.println("aeeeeeeeeeeebu: " + myProfile.getValueFromProperty(Profile.USERNAME));
+	
+		//a.getValueFromProperty(Profile.USER_ID);
+		
+	
 		setDataToView(myProfile);
 	}
 
@@ -41,15 +47,15 @@ public class EditAccountActivity extends MasterPageActivity {
 		EditText et2 = (EditText)findViewById(R.id.surName);
 		EditText et3 = (EditText)findViewById(R.id.email);
 		EditText et4 = (EditText)findViewById(R.id.numb1Edit);
-		setYearsToSpinner(pr.getBirth_year());
+		//setYearsToSpinner(pr.getBirth_year());
 		Spinner gender = (Spinner) findViewById(R.id.spinnerGender);
-		gender.setSelection(pr.getGender_id() - 1);
+		//gender.setSelection(pr.getGender_id() - 1);
 		Spinner locations = (Spinner) findViewById(R.id.spinnerLocation);
-		tv.setText(pr.getUsername());
-		et1.setText(pr.getUser_nm());
-		et2.setText(pr.getUser_surnm());
-		et3.setText(pr.getEmail());
-		et4.setText(pr.getUser_last_phone());
+//		tv.setText(pr.getUsername());
+//		et1.setText(pr.getUser_nm());
+//		et2.setText(pr.getUser_surnm());
+//		et3.setText(pr.getEmail());
+//		et4.setText(pr.getUser_last_phone());
 	}
 	
 	/**
