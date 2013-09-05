@@ -12,12 +12,12 @@ public class Profile implements Item, Serializable{
 	private static final long serialVersionUID = 1L;
 	private int user_id;
 	private String username;
-	private String usern_nm;
+	private String user_nm;
 	private String user_surnm;
 	private String email;
 	private int location_id;
 	private int gender_id;
-	private String birth_year;
+	private int birth_year;
 	private String user_last_phone;
 	public int getUser_id() {
 		return user_id;
@@ -35,12 +35,12 @@ public class Profile implements Item, Serializable{
 		this.username = username;
 	}
 
-	public String getUsern_nm() {
-		return usern_nm;
+	public String getUser_nm() {
+		return user_nm;
 	}
 
-	public void setUsern_nm(String usern_nm) {
-		this.usern_nm = usern_nm;
+	public void setUser_nm(String user_nm) {
+		this.user_nm = user_nm;
 	}
 
 	public String getUser_surnm() {
@@ -75,11 +75,11 @@ public class Profile implements Item, Serializable{
 		this.gender_id = gender_id;
 	}
 
-	public String getBirth_year() {
+	public int getBirth_year() {
 		return birth_year;
 	}
 
-	public void setBirth_year(String birth_year) {
+	public void setBirth_year(int birth_year) {
 		this.birth_year = birth_year;
 	}
 
@@ -131,7 +131,7 @@ public class Profile implements Item, Serializable{
 	@Override
 	public String toString() {
 		return "Profile [user_id=" + user_id + ", username=" + username
-				+ ", usern_nm=" + usern_nm + ", user_surnm=" + user_surnm
+				+ ", usern_nm=" + user_nm + ", user_surnm=" + user_surnm
 				+ ", email=" + email + ", location_id=" + location_id
 				+ ", gender_id=" + gender_id + ", birth_year=" + birth_year
 				+ ", user_last_phone=" + user_last_phone

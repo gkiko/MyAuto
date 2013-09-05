@@ -21,6 +21,7 @@ public class UserAuthRequests {
 
 	private String loginedUser;
 	private boolean logined;
+	private String profileXML = "";
 	private static DefaultHttpClient httpclient;
 
 	private static UserAuthRequests instance = null;
@@ -168,7 +169,7 @@ public class UserAuthRequests {
 
 	}
 
-	public void getProfile() {
+	public String getProfile() {
 		Thread th = new Thread() {
 			@Override
 			public void run() {
@@ -180,6 +181,7 @@ public class UserAuthRequests {
 					HttpEntity entity = response.getEntity();
 
 					String responseText = EntityUtils.toString(entity);
+					profileXML = responseText;
 //					XStream xstream = new XStream();
 //					Profile newJoe = (Profile)xstream.fromXML(responseText);
 //					System.out.println("buzuu " + newJoe.toString());
@@ -198,6 +200,7 @@ public class UserAuthRequests {
 			// TODO Auto-generated catch-block stub.
 			exception.printStackTrace();
 		}
+		return profileXML;
 	}
 
 }

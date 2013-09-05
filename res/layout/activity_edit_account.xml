@@ -8,7 +8,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="3dip" >
-        
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -21,14 +21,13 @@
                 android:paddingRight="30dip"
                 android:text="@string/username_txt"
                 android:textColor="#372c24" />
-             <TextView
+
+            <TextView
                 android:id="@+id/username_str"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingRight="30dip"
                 android:textColor="#372c24" />
-
-           
         </LinearLayout>
 
         <LinearLayout
@@ -110,15 +109,12 @@
                 android:text="@string/gender_txt"
                 android:textColor="#372c24" />
 
-            <!-- TODO dropdown -->
-
-            <EditText
-                android:id="@+id/gender_edit"
-                android:layout_width="fill_parent"
+            <Spinner
+                android:id="@+id/spinnerGender"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
-                android:width="150dp" >
-            </EditText>
+                android:entries="@array/gender_array"
+                android:prompt="@string/gender_prompt" />
         </LinearLayout>
 
         <LinearLayout
@@ -135,13 +131,11 @@
                 android:textColor="#372c24" />
             <!-- TODO dropdown -->
 
-            <EditText
-                android:id="@+id/location"
-                android:layout_width="fill_parent"
+            <Spinner
+                android:id="@+id/spinnerLocation"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
-                android:width="150dp" >
-            </EditText>
+                android:prompt="@string/gender_prompt" />
         </LinearLayout>
 
         <LinearLayout
@@ -158,13 +152,11 @@
                 android:textColor="#372c24" />
             <!-- TODO dropdown -->
 
-            <EditText
-                android:id="@+id/birthyear"
-                android:layout_width="fill_parent"
+            <Spinner
+                android:id="@+id/spinnerBirthYear"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
-                android:width="150dp" >
-            </EditText>
+                android:prompt="@string/birthyear_prompt" />
         </LinearLayout>
 
         <LinearLayout
