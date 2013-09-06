@@ -23,9 +23,10 @@ public class TransportManager {
 	private static final String LIST_URL_GE = LIST_URL + "?set_lang_id=4";
 	private static final String LIST_URL_EN = LIST_URL + "?set_lang_id=1";
 	private static final String LIST_URL_RU = LIST_URL + "?set_lang_id=5";
-	private static final String ITEM_URL_GE = "http://www.myauto.ge/details_xml.php?set_lang_id=4";
-	private static final String ITEM_URL_EN = "http://www.myauto.ge/details_xml.php?set_lang_id=1";
-	private static final String ITEM_URL_RU = "http://www.myauto.ge/details_xml.php?set_lang_id=5";
+	private static final String ITEM_URL = "http://www.myauto.ge/android/details_xml.php";
+	private static final String ITEM_URL_GE = ITEM_URL+"?set_lang_id=4";
+	private static final String ITEM_URL_EN = ITEM_URL+"?set_lang_id=1";
+	private static final String ITEM_URL_RU = ITEM_URL+"?set_lang_id=5";
 	private static final int LANG_EN = 1;
 	private static final int LANG_GE = 2;
 	private static final int LANG_RU = 3;
@@ -57,7 +58,7 @@ public class TransportManager {
 		
 		try {
 			p.setSourceToParse(resultXml);
-			List<Item> itemList = p.parseAsList();
+			List<Item> itemList = p.parseAsList(new CarItem());
 			ls = initializeFacade(itemList);
 		} catch (XmlPullParserException e) {
 			e.printStackTrace();
@@ -103,7 +104,7 @@ public class TransportManager {
 		
 		try {
 			p.setSourceToParse(resultXml);
-			List<Item> itemList = p.parseAsList();
+			List<Item> itemList = p.parseAsList(new CarItem());
 			itm = itemList.get(0);
 		} catch (XmlPullParserException e) {
 			e.printStackTrace();

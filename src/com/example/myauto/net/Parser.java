@@ -1,6 +1,5 @@
 package com.example.myauto.net;
 
-import android.util.Log;
 
 import java.io.IOException;
 import java.io.StringReader;
@@ -11,7 +10,6 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
-import com.example.myauto.item.CarItem;
 import com.example.myauto.item.Item;
 
 public class Parser {
@@ -31,7 +29,7 @@ public class Parser {
 		xpp.setInput(new StringReader(source));
 	}
 
-	public List<Item> parseAsList() throws XmlPullParserException,
+	public List<Item> parseAsList(Item i) throws XmlPullParserException,
 			IOException {
 		Item itm = null;
 		List<Item> lst = new ArrayList<Item>();
@@ -42,7 +40,8 @@ public class Parser {
 			if (eventType == XmlPullParser.START_TAG) {
 				lastTagName = xpp.getName();
 				if (infoStartOrEnd()) {
-					itm = new CarItem();
+					itm = i.getInstance();
+				}else{
 				}
 			} else if (eventType == XmlPullParser.END_TAG) {
 				if (infoStartOrEnd()) {

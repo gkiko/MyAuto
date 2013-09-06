@@ -47,15 +47,15 @@ public class EditAccountActivity extends MasterPageActivity {
 		EditText et2 = (EditText)findViewById(R.id.surName);
 		EditText et3 = (EditText)findViewById(R.id.email);
 		EditText et4 = (EditText)findViewById(R.id.numb1Edit);
-		//setYearsToSpinner(pr.getBirth_year());
+		setYearsToSpinner(Integer.parseInt(pr.getValueFromProperty(Profile.BIRTH_YEAR)));
 		Spinner gender = (Spinner) findViewById(R.id.spinnerGender);
-		//gender.setSelection(pr.getGender_id() - 1);
+		gender.setSelection(Integer.parseInt(pr.getValueFromProperty(Profile.GENDER_ID)) - 1);
 		Spinner locations = (Spinner) findViewById(R.id.spinnerLocation);
-//		tv.setText(pr.getUsername());
-//		et1.setText(pr.getUser_nm());
-//		et2.setText(pr.getUser_surnm());
-//		et3.setText(pr.getEmail());
-//		et4.setText(pr.getUser_last_phone());
+		tv.setText(pr.getValueFromProperty(Profile.USERNAME));
+		et1.setText(pr.getValueFromProperty(Profile.NAME));
+		et2.setText(pr.getValueFromProperty(Profile.USER_SURNAME));
+		et3.setText(pr.getValueFromProperty(Profile.EMAIL));
+		et4.setText(pr.getValueFromProperty(Profile.USER_LAST_PHONE));
 	}
 	
 	/**
@@ -79,11 +79,6 @@ public class EditAccountActivity extends MasterPageActivity {
 	}
 
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.myauto_menu, menu);
-		return true;
-	}
+	
 
 }

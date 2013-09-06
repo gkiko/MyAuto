@@ -66,4 +66,10 @@ public class CarItem extends Observable implements Item, Serializable {
 		}
 		return val;
 	}
+
+	@Override
+	public Item getInstance() {
+		// TODO Auto-generated method stub
+		return new CarItem();
+	}
 }

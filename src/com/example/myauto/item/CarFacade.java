@@ -48,4 +48,9 @@ public class CarFacade implements Imageable, Item, Serializable{
 	public String getValueFromProperty(String property) {
 		return cIt.getValueFromProperty(property);
 	}
+
+	@Override
+	public Item getInstance() {
+		return new CarFacade(cIm, cIt);
+	}
 }

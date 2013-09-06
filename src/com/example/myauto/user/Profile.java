@@ -6,9 +6,6 @@ import java.util.HashMap;
 import com.example.myauto.item.Item;
 
 public class Profile implements Item, Serializable{
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	public static final String USER_ID = "user_id";
 	public static final String USERNAME = "username";
@@ -40,5 +37,16 @@ public class Profile implements Item, Serializable{
 			val = itemData.get(property);
 		}
 		return val;
+	}
+
+	@Override
+	public Item getInstance() {
+		return new Profile();
+	}
+	
+	public void masturbate(){
+		for(String i : itemData.keySet()){
+			System.out.println(i+" "+itemData.get(i));
+		}
 	}
 }

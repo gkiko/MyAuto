@@ -179,7 +179,7 @@ public class UserAuthRequests {
 			@Override
 			public void run() {
 				HttpGet httpget = new HttpGet(
-						"http://www.myauto.ge/android/get_user_data.php");
+						"https://dl.dropboxusercontent.com/u/17436923/get_user_data.php.xml");
 				try {
 
 					HttpResponse response = httpclient.execute(httpget);
@@ -215,7 +215,7 @@ public class UserAuthRequests {
 		try {
 			Parser p = new Parser();
 			p.setSourceToParse(xml);
-			List<Item> itemList = p.parseAsList();
+			List<Item> itemList = p.parseAsList(new Profile());
 			itm = itemList.get(0);
 		} catch (XmlPullParserException e) {
 			e.printStackTrace();
@@ -223,8 +223,10 @@ public class UserAuthRequests {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("bbbbbbb " + itm.getValueFromProperty(Profile.USERNAME));
 		Profile p = (Profile) itm;
+		System.out.println("bbbbbbb " + p.getValueFromProperty(Profile.USERNAME));
+		//p.masturbate();
+		
 		return p;
 	}
 
