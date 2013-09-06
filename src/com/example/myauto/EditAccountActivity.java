@@ -72,33 +72,37 @@ public class EditAccountActivity extends MasterPageActivity {
 	private void setLocationsToSpinner(String loc) {
 		Spinner locations = (Spinner) findViewById(R.id.spinnerLocation);
 		ArrayList<String[]> list = DBManager.getLocations();
+		ArrayList<String> arr = new ArrayList<String>();
 		String[] location;
 		for (int i = 0; i < list.size(); i++) {
 			location = list.get(i);
-			RadioButton rdbtn = new RadioButton(this);
-			rdbtn.setId(Integer.parseInt(location[0]));
+//			RadioButton rdbtn = new RadioButton(this);
+//			rdbtn.setId(Integer.parseInt(location[0]));
 			int langID = prefs.getInt("Lang", LANG_EN);
 			switch (langID) {
 			case LANG_EN:
-				rdbtn.setText(location[LANG_EN + 1]);
+				arr.add(location[LANG_EN + 1]);
+				//rdbtn.setText(location[LANG_EN + 1]);
 				break;
 			case LANG_GE:
-				rdbtn.setText(location[LANG_GE + 1]);
+				arr.add(location[LANG_GE + 1]);
+				//rdbtn.setText(location[LANG_GE + 1]);
 				break;
 			case LANG_RU:
-				rdbtn.setText(location[LANG_RU + 1]);
+				arr.add(location[LANG_RU + 1]);
+				//rdbtn.setText(location[LANG_RU + 1]);
 				break;
 			default:
 				break;
 			}
-			rdbtn.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,
-					LayoutParams.WRAP_CONTENT));
+//			rdbtn.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,
+//					LayoutParams.WRAP_CONTENT));
 			//group.addView(rdbtn);
 		}
-//		ArrayAdapter<String> arrayAdapter1 = new ArrayAdapter<String>(this,
-//				android.R.layout.simple_spinner_dropdown_item, arr);
-//		locations.setAdapter(arrayAdapter1);
-//		locations.setSelection(arrayAdapter1.getPosition(loc));
+		ArrayAdapter<String> arrayAdapter1 = new ArrayAdapter<String>(this,
+				android.R.layout.simple_spinner_dropdown_item, arr);
+		locations.setAdapter(arrayAdapter1);
+		locations.setSelection(arrayAdapter1.getPosition(loc));
 	}
 
 	/**
