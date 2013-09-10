@@ -168,15 +168,15 @@
 	<string name="prev">Пред</string>
 	
 	  <!-- Edit Account Strings -->
-	<string name="edit_account_str">Edit Account</string>
-    <string name="username_txt">მომხმარებელი: </string>
-    <string name="name_txt">სახელი: </string>
-    <string name="surname_txt">გვარი: </string>
-    <string name="email_txt">ელ–ფოსტა: </string>
-    <string name="gender_txt">სქესი: </string>
-    <string name="birthyear_txt">დაბადების წელი: </string>
-    <string name="phone_txt">ტელეფონის ნომერი: </string>
-    <string name="location_txt">მდებარეობა: </string>
-    <string name="save_btn">დამახსოვრება</string>
+	<string name="edit_account_str">Редактированье</string>
+    <string name="username_txt">Ползователь: </string>
+    <string name="name_txt">Имя: </string>
+    <string name="surname_txt">Фамилия: </string>
+    <string name="email_txt">Эл-почтаა: </string>
+    <string name="gender_txt">Пол: </string>
+    <string name="birthyear_txt">Год Рождения: </string>
+    <string name="phone_txt">Тел. : </string>
+    <string name="location_txt">Местонахождения: </string>
+    <string name="save_btn">Запомнить</string>
 
 </resources>

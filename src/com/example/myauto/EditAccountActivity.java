@@ -19,7 +19,9 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.view.Menu;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
@@ -30,6 +32,7 @@ public class EditAccountActivity extends MasterPageActivity {
 
 	private Spinner years;
 	private SharedPreferences prefs;
+	private EditText et1;
 	private static final int LANG_EN = 1;
 	private static final int LANG_GE = 2;
 	private static final int LANG_RU = 3;
@@ -43,17 +46,12 @@ public class EditAccountActivity extends MasterPageActivity {
 				getResources().getString(R.string.shared_prefs), 0);
 		UserAuthRequests aur = UserAuthRequests.getInstance();
 		Profile myProfile = aur.getProfile();
-		System.out.println("aeeeeeeeeeeebu: " + myProfile.getValueFromProperty(Profile.USERNAME));
-	
-		//a.getValueFromProperty(Profile.USER_ID);
-		
-	
 		setDataToView(myProfile);
 	}
 
 	private void setDataToView(Profile pr) {
 		TextView tv = (TextView)findViewById(R.id.username_str);
-		EditText et1 = (EditText)findViewById(R.id.name);
+		et1 = (EditText)findViewById(R.id.name);
 		EditText et2 = (EditText)findViewById(R.id.surName);
 		EditText et3 = (EditText)findViewById(R.id.email);
 		EditText et4 = (EditText)findViewById(R.id.numb1Edit);
@@ -76,33 +74,26 @@ public class EditAccountActivity extends MasterPageActivity {
 		String[] location;
 		for (int i = 0; i < list.size(); i++) {
 			location = list.get(i);
-//			RadioButton rdbtn = new RadioButton(this);
-//			rdbtn.setId(Integer.parseInt(location[0]));
 			int langID = prefs.getInt("Lang", LANG_EN);
 			switch (langID) {
 			case LANG_EN:
 				arr.add(location[LANG_EN + 1]);
-				//rdbtn.setText(location[LANG_EN + 1]);
 				break;
 			case LANG_GE:
 				arr.add(location[LANG_GE + 1]);
-				//rdbtn.setText(location[LANG_GE + 1]);
 				break;
 			case LANG_RU:
 				arr.add(location[LANG_RU + 1]);
-				//rdbtn.setText(location[LANG_RU + 1]);
 				break;
 			default:
 				break;
 			}
-//			rdbtn.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,
-//					LayoutParams.WRAP_CONTENT));
-			//group.addView(rdbtn);
+
 		}
 		ArrayAdapter<String> arrayAdapter1 = new ArrayAdapter<String>(this,
 				android.R.layout.simple_spinner_dropdown_item, arr);
 		locations.setAdapter(arrayAdapter1);
-		locations.setSelection(arrayAdapter1.getPosition(loc));
+		locations.setSelection(Integer.parseInt(loc) -1);
 	}
 
 	/**
@@ -124,8 +115,12 @@ public class EditAccountActivity extends MasterPageActivity {
 		years.setAdapter(arrayAdapter1);
 		years.setSelection(arrayAdapter1.getPosition(myYear));
 	}
-
-
 	
-
+	
+	public void saveForm(View v) {
+	
+	}
+	
+	
+	
 }
