@@ -1,14 +1,19 @@
 package com.example.myauto.requests;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -24,7 +29,7 @@ import com.example.myauto.user.Profile;
 public class UserAuthRequests {
 
 	private String loginedUser;
-	private boolean logined;
+	private boolean logined, edited;
 	private Profile pr;
 	private static DefaultHttpClient httpclient;
 
@@ -76,10 +81,7 @@ public class UserAuthRequests {
 			HttpEntity entity = response.getEntity();
 
 			String responseText = EntityUtils.toString(entity);
-			String k = checkSession();
-			// System.out.println(responseText);
 			if (Integer.parseInt(responseText) == 0) {
-				System.out.println("aeeeeeeee " + k);
 				logined = true;
 			}
 
@@ -179,7 +181,7 @@ public class UserAuthRequests {
 			@Override
 			public void run() {
 				HttpGet httpget = new HttpGet(
-						"https://dl.dropboxusercontent.com/u/17436923/get_user_data.php.xml");
+						"http://www.myauto.ge/android/get_user_data.php");
 				try {
 
 					HttpResponse response = httpclient.execute(httpget);
@@ -187,14 +189,9 @@ public class UserAuthRequests {
 
 					String responseText = EntityUtils.toString(entity);
 					pr = parseXML(responseText);
-					// XStream xstream = new XStream();
-					// Profile newJoe = (Profile)xstream.fromXML(responseText);
-					// System.out.println("buzuu " + newJoe.toString());
 
 				} catch (ClientProtocolException e) {
-					// TODO Auto-generated catch block
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 				}
 			}
 		};
@@ -202,7 +199,6 @@ public class UserAuthRequests {
 		try {
 			th.join();
 		} catch (InterruptedException exception) {
-			// TODO Auto-generated catch-block stub.
 			exception.printStackTrace();
 		}
 		return pr;
@@ -210,8 +206,6 @@ public class UserAuthRequests {
 
 	protected Profile parseXML(String xml) {
 		Item itm = null;
-		System.out.println("asdadas: " + xml);
-		
 		try {
 			Parser p = new Parser();
 			p.setSourceToParse(xml);
@@ -220,14 +214,45 @@ public class UserAuthRequests {
 		} catch (XmlPullParserException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		Profile p = (Profile) itm;
-		System.out.println("bbbbbbb " + p.getValueFromProperty(Profile.USERNAME));
-		//p.masturbate();
-		
+
 		return p;
+	}
+
+	public void editProfile(final String[] params) {
+		Thread th = new Thread() {
+
+			@Override
+			public void run() {
+				HttpPost httppost = new HttpPost(
+						"http://www.myauto.ge/android/update_user.php");
+
+				try {
+					List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+					nameValuePairs.add(new BasicNameValuePair("user_surnm", params[1]));
+					nameValuePairs.add(new BasicNameValuePair("user_nm", params[0]));
+					nameValuePairs.add(new BasicNameValuePair("email", params[2]));
+					nameValuePairs.add(new BasicNameValuePair("location_id", params[3]));
+					nameValuePairs.add(new BasicNameValuePair("gender_id", params[4]));
+					nameValuePairs.add(new BasicNameValuePair("birth_year", params[5]));
+
+					httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+
+					httpclient.execute(httppost);
+					
+				} catch (ClientProtocolException e) {
+				} catch (IOException e) {
+				}
+			}
+		};
+		th.start();
+		try {
+			th.join();
+		} catch (InterruptedException exception) {
+			exception.printStackTrace();
+		}
 	}
 
 }
