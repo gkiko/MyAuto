@@ -4,17 +4,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.util.EntityUtils;
 import org.xmlpull.v1.XmlPullParserException;
 
 import com.example.myauto.item.Item;
@@ -24,10 +21,21 @@ import com.example.myauto.user.Profile;
 
 public class UserAuthRequests {
 
+	private static final String userDataUpdateUrl = "http://myauto.ge/android/update_user.php";
+	private static final String userDataUrl = "http://myauto.ge/android/get_user_data.php";
+	private static final String checkSessionUrl = "http://myauto.ge/android/check_session_user.php";
 	private static final String logOutUrl = "http://myauto.ge/android/logout.php";
 	private static final String logInUrl = "http://myauto.ge/android/login.php";
 	private static final String paramUserName = "username";
 	private static final String paramUserPassword = "password";
+	private static final String paramSurname = "user_surnm";
+	private static final String paramName = "user_nm";
+	private static final String paramEmail = "email";
+	private static final String paramLocation = "location_id";
+	private static final String paramGender = "gender_id";
+	private static final String paramBirth = "birth_year";
+	
+	private static final int logInSuccess = 0;
 
 	private static DefaultHttpClient httpclient;
 	private static UserAuthRequests instance = null;
@@ -48,7 +56,15 @@ public class UserAuthRequests {
 		Thread th = new Thread() {
 			@Override
 			public void run() {
-				doPostR(userName, password);
+				HashMap<String, String> params = new HashMap<String, String>();
+				params.put(paramUserName, userName);
+				params.put(paramUserPassword, getMD5Hash("fc9" + password + "48c"));
+				
+				String responseText = doPostR(logInUrl, params);
+				
+				if (logInSuccessful(Integer.parseInt(responseText))) {
+					loggedIn = true;
+				}
 			}
 		};
 		th.start();
@@ -61,23 +77,21 @@ public class UserAuthRequests {
 		return loggedIn;
 	}
 
-	private void doPostR(String userName, String password) {
-		HashMap<String, String> params = new HashMap<String, String>();
-		params.put(paramUserName, userName);
-		params.put(paramUserPassword, getMD5Hash("fc9" + password + "48c"));
-
+	private String doPostR(String url, Map<String, String> params) {
 		String responseText = "";
 		try {
 			responseText = com.example.myauto.net.HttpClient
-					.getHttpClientDoGetResponse(logInUrl, params);
+					.getHttpClientDoGetResponse(url, params);
 		} catch (ClientProtocolException e1) {
 			e1.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		if (Integer.parseInt(responseText) == 0) {
-			loggedIn = true;
-		}
+		return responseText;
+	}
+	
+	private boolean logInSuccessful(int response){
+		return response == logInSuccess;
 	}
 
 	private String getMD5Hash(String pass) {
@@ -123,22 +137,8 @@ public class UserAuthRequests {
 		Thread th = new Thread() {
 			@Override
 			public void run() {
-				HttpGet httpget = new HttpGet(
-						"http://www.myauto.ge/android/check_session_user.php");
-				try {
-
-					HttpResponse response = httpclient.execute(httpget);
-					HttpEntity entity = response.getEntity();
-
-					String responseText = EntityUtils.toString(entity);
-					System.out.println("buzuuu " + responseText);
-					loginedUser = responseText;
-
-				} catch (ClientProtocolException e) {
-					// TODO Auto-generated catch block
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-				}
+				String responseText = doPostR(checkSessionUrl, null);
+				loginedUser = responseText;
 			}
 		};
 		th.start();
@@ -157,19 +157,8 @@ public class UserAuthRequests {
 
 			@Override
 			public void run() {
-				HttpGet httpget = new HttpGet(
-						"http://www.myauto.ge/android/get_user_data.php");
-				try {
-
-					HttpResponse response = httpclient.execute(httpget);
-					HttpEntity entity = response.getEntity();
-
-					String responseText = EntityUtils.toString(entity);
-					pr = parseXML(responseText);
-
-				} catch (ClientProtocolException e) {
-				} catch (IOException e) {
-				}
+				String responseText = doPostR(userDataUrl, null);
+				pr = parseXML(responseText);
 			}
 		};
 		th.start();
@@ -204,25 +193,15 @@ public class UserAuthRequests {
 
 			@Override
 			public void run() {
-				HttpPost httppost = new HttpPost(
-						"http://www.myauto.ge/android/update_user.php");
-
-				try {
-					List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-					nameValuePairs.add(new BasicNameValuePair("user_surnm", params[1]));
-					nameValuePairs.add(new BasicNameValuePair("user_nm", params[0]));
-					nameValuePairs.add(new BasicNameValuePair("email", params[2]));
-					nameValuePairs.add(new BasicNameValuePair("location_id", params[3]));
-					nameValuePairs.add(new BasicNameValuePair("gender_id", params[4]));
-					nameValuePairs.add(new BasicNameValuePair("birth_year", params[5]));
-
-					httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-
-					httpclient.execute(httppost);
+					Map<String, String> paramsAsMap = new HashMap<String, String>();
+					paramsAsMap.put(paramName, params[0]);
+					paramsAsMap.put(paramSurname, params[1]);
+					paramsAsMap.put(paramEmail, params[2]);
+					paramsAsMap.put(paramLocation, params[3]);
+					paramsAsMap.put(paramGender, params[4]);
+					paramsAsMap.put(paramBirth, params[5]);
 					
-				} catch (ClientProtocolException e) {
-				} catch (IOException e) {
-				}
+					doPostR(userDataUpdateUrl, paramsAsMap);
 			}
 		};
 		th.start();
