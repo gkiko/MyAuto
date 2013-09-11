@@ -1,34 +1,35 @@
 package com.example.myauto.requests;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 import org.xmlpull.v1.XmlPullParserException;
 
 import com.example.myauto.item.Item;
+import com.example.myauto.net.HttpClient;
 import com.example.myauto.net.Parser;
 import com.example.myauto.user.Profile;
 
-/**
- * TODO Put here a description of what this class does.
- * 
- * @author Kote. Created Jul 21, 2013.
- */
 public class UserAuthRequests {
 
-	private String loginedUser;
-	private boolean logined;
-	private Profile pr;
-	private static DefaultHttpClient httpclient;
+	private static final String logOutUrl = "http://myauto.ge/android/logout.php";
+	private static final String logInUrl = "http://myauto.ge/android/login.php";
+	private static final String paramUserName = "username";
+	private static final String paramUserPassword = "password";
 
+	private static DefaultHttpClient httpclient;
 	private static UserAuthRequests instance = null;
+
+	private String loginedUser;
+	private boolean loggedIn;
+	private Profile pr;
 
 	public static UserAuthRequests getInstance() {
 		if (instance == null) {
@@ -52,50 +53,28 @@ public class UserAuthRequests {
 			// TODO Auto-generated catch-block stub.
 			exception.printStackTrace();
 		}
-		return logined;
+		return loggedIn;
 	}
 
-	/**
-	 * TODO Put here a description of what this method does.
-	 * 
-	 * @param password
-	 * @param userName
-	 *            s
-	 * 
-	 * @param userName
-	 * @param pass
-	 */
 	private void doPostR(String userName, String password) {
-		HttpGet httpget = new HttpGet(
-				"http://myauto.ge/android/login.php?username=" + userName
-						+ "&password=" + getMD5Hash("fc9" + password + "48c"));
+		HashMap<String, String> params = new HashMap<String, String>();
+		params.put(paramUserName, userName);
+		params.put(paramUserPassword, getMD5Hash("fc9" + password + "48c"));
 
+		String responseText = "";
 		try {
-
-			HttpResponse response = httpclient.execute(httpget);
-			HttpEntity entity = response.getEntity();
-
-			String responseText = EntityUtils.toString(entity);
-			String k = checkSession();
-			// System.out.println(responseText);
-			if (Integer.parseInt(responseText) == 0) {
-				System.out.println("aeeeeeeee " + k);
-				logined = true;
-			}
-
-		} catch (ClientProtocolException e) {
-			// TODO Auto-generated catch block
+			responseText = com.example.myauto.net.HttpClient
+					.getHttpClientDoGetResponse(logInUrl, params);
+		} catch (ClientProtocolException e1) {
+			e1.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if (Integer.parseInt(responseText) == 0) {
+			loggedIn = true;
 		}
 	}
 
-	/**
-	 * TODO Put here a description of what this method does.
-	 * 
-	 * @param password2
-	 * @return
-	 */
 	private String getMD5Hash(String pass) {
 		try {
 			java.security.MessageDigest md = java.security.MessageDigest
@@ -117,16 +96,12 @@ public class UserAuthRequests {
 		Thread th = new Thread() {
 			@Override
 			public void run() {
-				HttpGet httpget = new HttpGet(
-						"http://www.myauto.ge/android/logout.php");
 				try {
-
-					httpclient.execute(httpget);
-
-				} catch (ClientProtocolException e) {
-					// TODO Auto-generated catch block
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
+					HttpClient.getHttpClientDoGetResponse(logOutUrl, null);
+				} catch (ClientProtocolException e1) {
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					e1.printStackTrace();
 				}
 			}
 		};
@@ -134,7 +109,6 @@ public class UserAuthRequests {
 		try {
 			th.join();
 		} catch (InterruptedException exception) {
-			// TODO Auto-generated catch-block stub.
 			exception.printStackTrace();
 		}
 
@@ -210,8 +184,7 @@ public class UserAuthRequests {
 
 	protected Profile parseXML(String xml) {
 		Item itm = null;
-		System.out.println("asdadas: " + xml);
-		
+
 		try {
 			Parser p = new Parser();
 			p.setSourceToParse(xml);
@@ -220,13 +193,10 @@ public class UserAuthRequests {
 		} catch (XmlPullParserException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		Profile p = (Profile) itm;
-		System.out.println("bbbbbbb " + p.getValueFromProperty(Profile.USERNAME));
-		//p.masturbate();
-		
+
 		return p;
 	}
 
