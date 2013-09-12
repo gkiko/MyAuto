@@ -1,17 +1,11 @@
 package com.example.myauto.requests;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
 import org.xmlpull.v1.XmlPullParserException;
 
 import com.example.myauto.item.Item;
@@ -37,7 +31,6 @@ public class UserAuthRequests {
 	
 	private static final int logInSuccess = 0;
 
-	private static DefaultHttpClient httpclient;
 	private static UserAuthRequests instance = null;
 
 	private String loginedUser;
@@ -47,7 +40,6 @@ public class UserAuthRequests {
 	public static UserAuthRequests getInstance() {
 		if (instance == null) {
 			instance = new UserAuthRequests();
-			httpclient = new DefaultHttpClient();
 		}
 		return instance;
 	}
@@ -71,7 +63,6 @@ public class UserAuthRequests {
 		try {
 			th.join();
 		} catch (InterruptedException exception) {
-			// TODO Auto-generated catch-block stub.
 			exception.printStackTrace();
 		}
 		return loggedIn;
