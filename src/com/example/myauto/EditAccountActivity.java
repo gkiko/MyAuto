@@ -1,33 +1,21 @@
 package com.example.myauto;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
-
-import org.apache.http.ParseException;
-import org.xmlpull.v1.XmlPullParserException;
 
 import com.example.myauto.database.DBManager;
-import com.example.myauto.item.Item;
-import com.example.myauto.net.Parser;
 import com.example.myauto.requests.UserAuthRequests;
 import com.example.myauto.user.Profile;
 
 import android.os.Bundle;
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.TableLayout.LayoutParams;
 
 public class EditAccountActivity extends MasterPageActivity {
 
@@ -37,7 +25,6 @@ public class EditAccountActivity extends MasterPageActivity {
 	private UserAuthRequests aur;
 	private EditText et2;
 	private EditText et3;
-	private EditText et4;
 	private Spinner gender;
 	private Spinner locations;
 	private static final int LANG_EN = 1;
@@ -61,7 +48,6 @@ public class EditAccountActivity extends MasterPageActivity {
 		et1 = (EditText)findViewById(R.id.name);
 		et2 = (EditText)findViewById(R.id.surName);
 		et3 = (EditText)findViewById(R.id.email);
-		et4 = (EditText)findViewById(R.id.numb1Edit);
 		setYearsToSpinner(Integer.parseInt(pr.getValueFromProperty(Profile.BIRTH_YEAR)));
 		gender = (Spinner) findViewById(R.id.spinnerGender);
 		gender.setSelection(Integer.parseInt(pr.getValueFromProperty(Profile.GENDER_ID)) - 1);
@@ -71,13 +57,11 @@ public class EditAccountActivity extends MasterPageActivity {
 		et1.setText(pr.getValueFromProperty(Profile.NAME));
 		et2.setText(pr.getValueFromProperty(Profile.USER_SURNAME));
 		et3.setText(pr.getValueFromProperty(Profile.EMAIL));
-		et4.setText(pr.getValueFromProperty(Profile.USER_LAST_PHONE));
 	}
 	
 	private void setLocationsToSpinner(String loc) {
 		locations = (Spinner) findViewById(R.id.spinnerLocation);
 		ArrayList<String[]> list = DBManager.getLocations();
-		System.out.println("aeeeeeeeeeeeeee: " + list.size());
 		ArrayList<String> arr = new ArrayList<String>();
 		String[] location;
 		for (int i = 0; i < list.size(); i++) {
@@ -105,7 +89,6 @@ public class EditAccountActivity extends MasterPageActivity {
 	}
 
 	/**
-	 * TODO Put here a description of what this method does.
 	 * 
 	 */
 	private void setYearsToSpinner(int myYear) {
