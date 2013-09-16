@@ -20,13 +20,11 @@ import com.example.myauto.item.Item;
 
 public class TransportManager {
 	private static final String LIST_URL = "http://www.myauto.ge/android/car_list_xml.php";
-	private static final String LIST_URL_GE = LIST_URL + "?set_lang_id=4";
-	private static final String LIST_URL_EN = LIST_URL + "?set_lang_id=1";
-	private static final String LIST_URL_RU = LIST_URL + "?set_lang_id=5";
 	private static final String ITEM_URL = "http://www.myauto.ge/android/details_xml.php";
-	private static final String ITEM_URL_GE = ITEM_URL+"?set_lang_id=4";
-	private static final String ITEM_URL_EN = ITEM_URL+"?set_lang_id=1";
-	private static final String ITEM_URL_RU = ITEM_URL+"?set_lang_id=5";
+	private static final String LANG_PARAM = "set_lang_id";
+	private static final String GE_PARAM = "4";
+	private static final String EN_PARAM = "1";
+	private static final String RU_PARAM = "5";
 	private static final int LANG_EN = 1;
 	private static final int LANG_GE = 2;
 	private static final int LANG_RU = 3;
@@ -35,24 +33,9 @@ public class TransportManager {
 	public static ArrayList<CarFacade> downloadCarList(
 			HashMap<String, String> params, Activity activity)
 			throws ClientProtocolException, IOException {
-		String ListUrl = "";
-		SharedPreferences prefs = activity.getSharedPreferences(activity
-				.getResources().getString(R.string.shared_prefs), 0);
-		int langID = prefs.getInt("Lang", LANG_EN);
-		switch (langID) {
-		case LANG_EN:
-			ListUrl = LIST_URL_EN;
-			break;
-		case LANG_GE:
-			ListUrl = LIST_URL_GE;
-			break;
-		case LANG_RU:
-			ListUrl = LIST_URL_RU;
-			break;
-		default:
-			break;
-		}
-		String resultXml = HttpClient.getHttpClientDoGetResponse(ListUrl,
+		
+		setLanguageParam(params, activity);
+		String resultXml = HttpClient.getHttpClientDoGetResponse(LIST_URL,
 				params);
 		ArrayList<CarFacade> ls = null;
 		
@@ -81,24 +64,9 @@ public class TransportManager {
 
 	public static Item downloadItem(HashMap<String, String> params,
 			Activity activity) throws ClientProtocolException, IOException {
-		String ItemUrl = "";
-		SharedPreferences prefs = activity.getSharedPreferences(activity
-				.getResources().getString(R.string.shared_prefs), 0);
-		int langID = prefs.getInt("Lang", LANG_EN);
-		switch (langID) {
-		case LANG_EN:
-			ItemUrl = ITEM_URL_EN;
-			break;
-		case LANG_GE:
-			ItemUrl = ITEM_URL_GE;
-			break;
-		case LANG_RU:
-			ItemUrl = ITEM_URL_RU;
-			break;
-		default:
-			break;
-		}
-		String resultXml = HttpClient.getHttpClientDoGetResponse(ItemUrl,
+		setLanguageParam(params, activity);
+		
+		String resultXml = HttpClient.getHttpClientDoGetResponse(ITEM_URL,
 				params);
 		Item itm = null;
 		
@@ -110,5 +78,27 @@ public class TransportManager {
 			e.printStackTrace();
 		}
 		return itm;
+	}
+	
+	private static void setLanguageParam(HashMap<String, String> params, Activity activity){
+		SharedPreferences prefs = activity.getSharedPreferences(activity
+				.getResources().getString(R.string.shared_prefs), 0);
+		int langID = prefs.getInt("Lang", LANG_EN);
+		System.out.println(langID);
+		switch (langID) {
+		case LANG_EN:
+			System.out.println("yle");
+			params.put(LANG_PARAM, EN_PARAM);
+			System.out.println(params);
+			break;
+		case LANG_GE:
+			params.put(LANG_PARAM, GE_PARAM);
+			break;
+		case LANG_RU:
+			params.put(LANG_PARAM, RU_PARAM);
+			break;
+		default:
+			break;
+		}
 	}
 }

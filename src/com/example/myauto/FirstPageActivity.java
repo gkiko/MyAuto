@@ -131,7 +131,7 @@ public class FirstPageActivity extends MasterPageActivity implements CallbackLis
 	
 	private void runDownloader(){
 		lf.addMyChangeListener(this);
-		lf.execute((HashMap<String, String>) null);
+		lf.execute(new HashMap<String, String>());
 	}
 	
 	@Override

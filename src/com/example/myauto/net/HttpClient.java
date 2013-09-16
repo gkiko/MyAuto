@@ -94,6 +94,7 @@ public class HttpClient {
 			IOException {
 		if (httpclient == null)
 			httpclient = newMultiThreadedHttpClient();
+		System.out.println(composeUrl(url, params));
 		HttpGet httpget = new HttpGet(composeUrl(url, params));
 
 		HttpResponse response = httpclient.execute(httpget);
