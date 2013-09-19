@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,6 +19,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -104,6 +106,7 @@ public class MasterPageActivity extends Activity {
 			startActivityForResult(nextIntent, 1);
 			break;
 		case R.id.menu_add_car:
+            addCarDialog();
 			break;
 		case R.id.menu_edit_account:
 			nextIntent = new Intent(MasterPageActivity.this,
@@ -316,6 +319,53 @@ public class MasterPageActivity extends Activity {
 	/**  */
 	private void removeUserFromSession() {
 		settings.edit().clear().commit();
-
 	}
+
+    private void addCarDialog(){
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_add_car_type);
+        dialog.setTitle(R.string.add_car_type);
+
+        Button cancel = (Button) dialog
+                .findViewById(R.id.dialog_generic_btn_cancel);
+        Button ok = (Button) dialog
+                .findViewById(R.id.dialog_generic_btn_ok);
+
+        ok.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RadioGroup group = (RadioGroup) dialog
+                        .findViewById(R.id.dialog_generic_rdgroup);
+                int id = group.getCheckedRadioButtonId();
+                RadioButton button = (RadioButton) dialog.findViewById(id);
+                Intent nextIntent;
+                switch(button.getId()){
+                    case R.id.adtype1:
+                        nextIntent = new Intent(MasterPageActivity.this, CarInsertActivity.class);
+                       // nextIntent.putExtra("InsertType", );
+                        startActivity(nextIntent);
+                        break;
+                    case R.id.adtype2:
+                        Log.i("mda", " " + button.getId());
+                        break;
+                    case R.id.adtype3:
+                        Log.i("mda", " " + button.getId());
+                        break;
+                    case R.id.request_insert:
+
+                        break;
+                }
+                dialog.dismiss();
+            }
+        });
+
+        cancel.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
 }

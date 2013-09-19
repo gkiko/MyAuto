@@ -179,4 +179,18 @@
     <string name="location_txt">Местонахождения: </string>
     <string name="save_btn">Запомнить</string>
 
+    <!-- Add Car Strings -->
+    <string name="add_car_type">Выбрать тип объявление</string>
+    <string name="adtype1">Автомобили (продаю)</string>
+    <string name="adtype2">спец. техника (продаю)</string>
+    <string name="adtype3">мототехника (продаю)</string>
+    <string name="request_insert">куплю</string>
+    <string name="add_button">Добавить</string>
+    <string name="issued_year">Год выпуска</string>
+    <string name="issued_month">Месяц выпуска</string>
+    <string-array name="mileage_type">
+        <item>км.</item>
+        <item>мили</item>
+    </string-array>
+
 </resources>

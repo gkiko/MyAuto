@@ -195,6 +195,20 @@
     <string name="phone_txt">Phone number: </string>
     <string name="location_txt">Location: </string>
     <string name="save_btn">Save</string>
+
+    <!-- Add Car Strings -->
+    <string name="add_car_type">Choose Advertisment Type</string>
+    <string name="adtype1">Cars (selling)</string>
+    <string name="adtype2">Spec. vehicles (selling)</string>
+    <string name="adtype3">Moto (selling)</string>
+    <string name="request_insert">Buying</string>
+    <string name="add_button">Add</string>
+    <string name="issued_year">Prod. Year</string>
+    <string name="issued_month">Prod. Month</string>
+    <string-array name="mileage_type">
+        <item>km.</item>
+        <item>miles</item>
+    </string-array>
 	
 
 </resources>

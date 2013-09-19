@@ -21,6 +21,7 @@
     <string name="title_activity_filtered">FilteredActivity</string>
     <string name="title_activity_catalog_page">CatalogPageActivity</string>
     <string name="title_activity_search">SearchActivity</string>
+    <string name="title_activity_car_insert">განცხადების დამატება</string>
 
     <!-- Menu Bar Strings -->
     <string name="menu_first">მთავარი</string>
@@ -179,5 +180,19 @@
     <string name="location_txt">მდებარეობა: </string>
     <string name="save_btn">დამახსოვრება</string>
   
+
+    <!-- Add Car Strings -->
+    <string name="add_car_type">აირჩიეთ განცხადების ტიპი</string>
+    <string name="adtype1">ავტომობილები (ვყიდი)</string>
+    <string name="adtype2">სპეც. ტექნიკა (ვყიდი)</string>
+    <string name="adtype3">მოტოტექნიკა (ვყიდი)</string>
+    <string name="request_insert">შევიძენ</string>
+    <string name="add_button">დამატება</string>
+    <string name="issued_year">გამოშვების წელი</string>
+    <string name="issued_month">გამოშვების თვე</string>
+    <string-array name="mileage_type">
+        <item>კმ.</item>
+        <item>მილი</item>
+    </string-array>
 
 </resources>
