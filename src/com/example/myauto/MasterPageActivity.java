@@ -51,11 +51,11 @@ public class MasterPageActivity extends Activity {
 		getMenuInflater().inflate(R.menu.myauto_menu, menu);
 		this.menu = menu;
 		lr = UserAuthRequests.getInstance();
-		String user = lr.checkSession();
+//		String user = lr.checkSession();
 		//String user = getUserFromSession();
-		if (!user.equals("")) {
-			showLoginedUser(user);
-		}
+//		if (!user.equals("")) {
+//			showLoginedUser(user);
+//		}
 		return true;
 	}
 
