@@ -476,6 +476,8 @@ public class SearchPageActivity extends MasterPageActivity {
 			days = list.get(i);
 			RadioButton rdbtn = new RadioButton(this);
 			rdbtn.setId(Integer.parseInt(days[0]));
+            if(i == 0)
+                rdbtn.setChecked(true);
 			int langID = prefs.getInt("Lang", LANG_EN);
 			switch (langID) {
 			case LANG_EN:
@@ -710,6 +712,8 @@ public class SearchPageActivity extends MasterPageActivity {
 			door = list.get(i);
 			RadioButton rdbtn = new RadioButton(this);
 			rdbtn.setId(Integer.parseInt(door[0]));
+            if(i == 0)
+                rdbtn.setChecked(true);
 			int langID = prefs.getInt("Lang", LANG_EN);
 			switch (langID) {
 			case LANG_EN:
@@ -782,6 +786,8 @@ public class SearchPageActivity extends MasterPageActivity {
 			location = list.get(i);
 			RadioButton rdbtn = new RadioButton(this);
 			rdbtn.setId(Integer.parseInt(location[0]));
+            if(i == 0)
+                rdbtn.setChecked(true);
 			int langID = prefs.getInt("Lang", LANG_EN);
 			switch (langID) {
 			case LANG_EN:
@@ -850,6 +856,7 @@ public class SearchPageActivity extends MasterPageActivity {
 		RadioButton yes = (RadioButton) dialog
 				.findViewById(R.id.dialog_customs_and_wheel_yes);
 		yes.setId(DIALOG_CUSTOMS_AND_WHEEL_BTN_YES_ID);
+        yes.setChecked(true);
 		RadioButton no = (RadioButton) dialog
 				.findViewById(R.id.dialog_customs_and_wheel_no);
 		no.setId(DIALOG_CUSTOMS_AND_WHEEL_BTN_NO_ID);
@@ -909,6 +916,8 @@ public class SearchPageActivity extends MasterPageActivity {
 			fuelType = fuelTypes.get(i);
 			RadioButton rdbtn = new RadioButton(this);
 			rdbtn.setId(Integer.parseInt(fuelType[0]));
+            if(i == 0)
+                rdbtn.setChecked(true);
 			int langID = prefs.getInt("Lang", LANG_EN);
 			switch (langID) {
 			case LANG_EN:
@@ -984,6 +993,8 @@ public class SearchPageActivity extends MasterPageActivity {
 			cat = categories.get(i);
 			RadioButton rdbtn = new RadioButton(this);
 			rdbtn.setId(Integer.parseInt(cat[0]));
+            if(i == 0)
+                rdbtn.setChecked(true);
 			int langID = prefs.getInt("Lang", LANG_EN);
 			switch (langID) {
 			case LANG_EN:
@@ -1057,6 +1068,8 @@ public class SearchPageActivity extends MasterPageActivity {
 			gearTypes = gears.get(i);
 			RadioButton rdbtn = new RadioButton(this);
 			rdbtn.setId(Integer.parseInt(gearTypes[0]));
+            if(i == 0)
+                rdbtn.setChecked(true);
 			int langID = prefs.getInt("Lang", LANG_EN);
 			switch (langID) {
 			case LANG_EN:
