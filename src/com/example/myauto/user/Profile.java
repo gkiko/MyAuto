@@ -43,10 +43,4 @@ public class Profile implements Item, Serializable{
 	public Item getInstance() {
 		return new Profile();
 	}
-	
-	public void masturbate(){
-		for(String i : itemData.keySet()){
-			System.out.println(i+" "+itemData.get(i));
-		}
-	}
 }

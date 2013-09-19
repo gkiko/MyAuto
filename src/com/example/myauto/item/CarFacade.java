@@ -6,10 +6,10 @@ import android.graphics.Bitmap;
 
 public class CarFacade implements Imageable, Item, Serializable{
 	private static final long serialVersionUID = 1L;
-	private CarImageable cIm;
-	private CarItem cIt;
+	private Imageable cIm;
+	private Item cIt;
 	
-	public CarFacade(CarImageable cIm, CarItem cIt){
+	public CarFacade(Imageable cIm, Item cIt){
 		this.cIm = cIm;
 		this.cIt = cIt;
 	}
