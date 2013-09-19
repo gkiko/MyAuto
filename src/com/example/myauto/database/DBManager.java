@@ -6,7 +6,6 @@ import java.util.List;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteQueryBuilder;
 
 public class DBManager {
 	private static DBHelper dbHelper;
@@ -39,12 +38,12 @@ public class DBManager {
 	}
 
 	public static void dropTable() {
-		db.execSQL("drop table " + dbHelper.MAKE_TABLE);
+		db.execSQL("drop table " + DBHelper.MAKE_TABLE);
 	}
 
 	public static List<String[]> getManufacturers() {
 		List<String[]> list = new ArrayList<String[]>();
-		String selectQuery = "select * from " + dbHelper.MAKE_TABLE;
+		String selectQuery = "select * from " + DBHelper.MAKE_TABLE;
 
 		Cursor cursor = db.rawQuery(selectQuery, null);
 		if (cursor.moveToFirst()) {
@@ -61,18 +60,18 @@ public class DBManager {
 
 	public static Cursor getManufacturersRaw() {
 		Cursor cursor = db
-				.rawQuery("select " + dbHelper.MAKE_ID_SPINNER + " as _id,"
-						+ dbHelper.MAKE_NAME + " from " + dbHelper.MAKE_TABLE
-						+ " order by " + dbHelper.MAKE_NAME, null);
+				.rawQuery("select " + DBHelper.MAKE_ID_SPINNER + " as _id,"
+						+ DBHelper.MAKE_NAME + " from " + DBHelper.MAKE_TABLE
+						+ " order by " + DBHelper.MAKE_NAME, null);
 
 		return cursor;
 	}
 
 	public static Cursor filterModelsByManufacturersRaw(String manID) {
-		String selectQuery = "select " + dbHelper.MOD_ID + " as _id, "
-				+ dbHelper.MOD_ID_MAN + " as _id_man, " + dbHelper.MOD_NAME
-				+ " from " + dbHelper.MODELS_TABLE + " where "
-				+ dbHelper.MOD_ID_MAN + " in (" + manID + ")";
+		String selectQuery = "select " + DBHelper.MOD_ID + " as _id, "
+				+ DBHelper.MOD_ID_MAN + " as _id_man, " + DBHelper.MOD_NAME
+				+ " from " + DBHelper.MODELS_TABLE + " where "
+				+ DBHelper.MOD_ID_MAN + " in (" + manID + ")";
 		Cursor cursor = db.rawQuery(selectQuery, null);
 		return cursor;
 	}
@@ -192,17 +191,6 @@ public class DBManager {
 		return list;
 	}
 
-	private static Cursor getData(String tableName) {
-		String[] tableColumns = new String[] { "id as _id", "img_url", "price",
-				"name", "year" };
-		SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
-		queryBuilder.setTables(tableName);
-		queryBuilder.appendColumns(new StringBuilder(), tableColumns);
-		Cursor cursor = queryBuilder.query(db, tableColumns, null, null, null,
-				null, null);
-		return cursor;
-	}
-
 	public static void fillTables() {
 		putTestData();
 	}
@@ -221,17 +209,17 @@ public class DBManager {
 
 	private static void putTestMake() {
 		for (int i = 0; i < asd.length - 1; i += 2) {
-			db.execSQL("INSERT INTO " + dbHelper.MAKE_TABLE + " ("
-					+ dbHelper.MAKE_ID + "," + dbHelper.MAKE_NAME + ") VALUES "
+			db.execSQL("INSERT INTO " + DBHelper.MAKE_TABLE + " ("
+					+ DBHelper.MAKE_ID + "," + DBHelper.MAKE_NAME + ") VALUES "
 					+ asd[i] + "," + asd[i + 1]);
 		}
 	}
 
 	private static void putTestModel() {
 		for (int i = 0; i < qwe.length - 3; i += 4) {
-			db.execSQL("INSERT INTO " + dbHelper.MODELS_TABLE + " ("
-					+ dbHelper.MOD_ID + "," + dbHelper.MOD_ID_MAN + ","
-					+ dbHelper.MOD_NAME + "," + dbHelper.MOD_GROUP
+			db.execSQL("INSERT INTO " + DBHelper.MODELS_TABLE + " ("
+					+ DBHelper.MOD_ID + "," + DBHelper.MOD_ID_MAN + ","
+					+ DBHelper.MOD_NAME + "," + DBHelper.MOD_GROUP
 					+ ") VALUES " + qwe[i] + "," + qwe[i + 1] + ","
 					+ qwe[i + 2] + "," + qwe[i + 3]);
 		}
@@ -242,7 +230,7 @@ public class DBManager {
 				"(8,'Diesel/Turbodiesel', 'დიზელი/ტურბოდიზელი', 'Дизель/Турбодиэель')", "(5,'Gas/Petrol', 'გაზი/ბენზინი', 'Газ/Бензин')", 
 				"(6,'Hybrid', 'ჰიბრიდი', 'Гибрид')", "(7,'Electric', 'ელექტრო', 'Электро')" };
 		for (String a : arr) {
-			db.execSQL("insert into " + dbHelper.FUEL_TABLE + " values" + a);
+			db.execSQL("insert into " + DBHelper.FUEL_TABLE + " values" + a);
 		}
 	}
 
@@ -250,7 +238,7 @@ public class DBManager {
 		String[] arr1 = new String[] { "(1,'Manual', 'მექანიკური', 'Механика')", "(2,'Automatic', 'ავტომატიკა', 'Автоматика')",
 				"(3,'Tiptronic', 'ტიპტრონიკი', 'Типтроник')", "(4,'Auto or Tipt', 'ავტ. ან ტიპტ.', 'Авт. или Типт.')" };
 		for (String a : arr1)
-			db.execSQL("insert into " + dbHelper.GEAR_TABLE + " values" + a);
+			db.execSQL("insert into " + DBHelper.GEAR_TABLE + " values" + a);
 	}
 
 	private static void putTestDoorTypes() {
