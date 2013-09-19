@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RadioGroup
+        android:id="@+id/dialog_generic_rdgroup"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <RadioButton
+            android:id="@+id/adtype1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/adtype1"
+            android:checked="true"/>
+
+        <RadioButton
+            android:id="@+id/adtype2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/adtype2"/>
+
+        <RadioButton
+            android:id="@+id/adtype3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/adtype3"/>
+
+        <RadioButton
+            android:id="@+id/request_insert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/request_insert"/>
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/dialog_generic_btn_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/search_dialog_btn_cancel" />
+
+        <Button
+            android:id="@+id/dialog_generic_btn_ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/search_dialog_btn_ok" />
+    </LinearLayout>
+
+</LinearLayout>
