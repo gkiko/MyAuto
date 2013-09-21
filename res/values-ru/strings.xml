@@ -18,6 +18,7 @@
     <string name="menu_catalog">Каталог</string>
     <string name="menu_about">О Программе</string>
     <string name="menu_language">Язык</string>
+    <string name="menu_close">Выход</string>
 
     <!-- Language Strings -->
     <string name="dialog_lang_ge">ქართული</string>

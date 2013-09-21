@@ -21,6 +21,7 @@
     <string name="menu_catalog">კატალოგი</string>
     <string name="menu_about">ჩვენს შესახებ</string>
     <string name="menu_language">ენა</string>
+    <string name="menu_close">გასვლა</string>
 
     <!-- Language Strings -->
     <string name="dialog_lang_ge">ქართული</string>

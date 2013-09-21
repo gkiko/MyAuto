@@ -54,10 +54,10 @@ public class MasterPageActivity extends Activity {
 		this.menu = menu;
 		lr = UserAuthRequests.getInstance();
 //		String user = lr.checkSession();
-		//String user = getUserFromSession();
-//		if (!user.equals("")) {
-//			showLoginedUser(user);
-//		}
+		String user = getUserFromSession();
+		if (!user.equals("")) {
+			showLoginedUser(user);
+		}
 		return true;
 	}
 
@@ -113,6 +113,9 @@ public class MasterPageActivity extends Activity {
 					EditAccountActivity.class);
 			startActivityForResult(nextIntent, 2);
 			break;
+		case R.id.menu_close:
+			finish();
+			System.exit(0);
 		default:
 			break;
 		}

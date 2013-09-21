@@ -34,6 +34,7 @@
     <string name="menu_catalog">Catalog</string>
     <string name="menu_about">About</string>
     <string name="menu_language">Language</string>
+    <string name="menu_close">Exit</string>
 
     <!-- Language Strings -->
     <string name="dialog_lang_ge">ქართული</string>
@@ -179,7 +180,7 @@
     <string name="save_btn">Save</string>
 
     <!-- Add Car Strings -->
-    <string name="add_car_type">Choose Advertisment Type</string>
+    <string name="add_car_type">Choose Advertisement Type</string>
     <string name="adtype1">Cars (selling)</string>
     <string name="adtype2">Spec. vehicles (selling)</string>
     <string name="adtype3">Moto (selling)</string>

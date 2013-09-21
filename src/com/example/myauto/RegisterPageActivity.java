@@ -24,6 +24,7 @@ public class RegisterPageActivity extends MasterPageActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_register_page);
+		System.out.println("aeeeeeeeeeeeeee");
 		resources = getResources();
 		setYearsToSpinner();
 	}
