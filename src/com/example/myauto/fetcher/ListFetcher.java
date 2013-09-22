@@ -9,17 +9,17 @@ import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Message;
-import android.widget.Toast;
 
 import com.example.myauto.event.MyChangeEvent;
 import com.example.myauto.item.CarFacade;
 import com.example.myauto.listener.CallbackListener;
+import com.example.myauto.message.Toaster;
 import com.example.myauto.net.TransportManager;
 
 public class ListFetcher extends AsyncTask<HashMap<String, String>, String, ArrayList<CarFacade>>{
+	private static Handler handler;
 	private CopyOnWriteArrayList<CallbackListener> listeners;
 	private ProgressDialog mDialog;
-	private Handler handler;
 	private Activity act;
 
 	/**
@@ -33,7 +33,7 @@ public class ListFetcher extends AsyncTask<HashMap<String, String>, String, Arra
 		mDialog = new ProgressDialog(activity);
 		handler = new Handler(){
 			public void handleMessage(Message msg) {
-				Toast.makeText(activity.getApplicationContext(), "No Internet connection", Toast.LENGTH_LONG).show();
+				Toaster.toastOnCallerThread("No Internet connection");
 			}
 		};
 	}

@@ -9,6 +9,7 @@ import org.apache.http.client.ClientProtocolException;
 import com.example.myauto.event.MyChangeEvent;
 import com.example.myauto.item.Item;
 import com.example.myauto.listener.CallbackListener;
+import com.example.myauto.message.Toaster;
 import com.example.myauto.net.TransportManager;
 
 import android.app.Activity;
@@ -31,7 +32,7 @@ public class ItemFetcher extends AsyncTask<HashMap<String, String>, String, Item
 		
 		handler = new Handler(){
 			public void handleMessage(Message msg) {
-				Toast.makeText(activity.getApplicationContext(), "No Internet connection", Toast.LENGTH_LONG).show();
+				Toaster.toastOnCallerThread("No Internet connection");
 			}
 		};
 	}

@@ -13,7 +13,7 @@
     <string name="title_activity_detail">DetailActivity</string>
     <string name="title_activity_my_page">MyPageActivity</string>
     <string name="title_activity_edit_account">EditAccountActivity</string>
-
+    
     <!-- Menu Bar Strings -->
     <string name="menu_first">მთავარი</string>
     <string name="menu_main">მანქანების სია</string>

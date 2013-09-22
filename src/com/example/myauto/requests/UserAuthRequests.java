@@ -8,7 +8,10 @@ import java.util.Map;
 import org.apache.http.client.ClientProtocolException;
 import org.xmlpull.v1.XmlPullParserException;
 
+import android.R;
+
 import com.example.myauto.item.Item;
+import com.example.myauto.message.Toaster;
 import com.example.myauto.net.HttpClient;
 import com.example.myauto.net.Parser;
 import com.example.myauto.user.Profile;
@@ -52,10 +55,18 @@ public class UserAuthRequests {
 				params.put(paramUserName, userName);
 				params.put(paramUserPassword, getMD5Hash("fc9" + password + "48c"));
 				
-				String responseText = doPostR(logInUrl, params);
-				
-				if (logInSuccessful(Integer.parseInt(responseText))) {
-					loggedIn = true;
+				String responseText = "";
+				try {
+					responseText = doPostR(logInUrl, params);
+					
+					if (logInSuccessful(Integer.parseInt(responseText))) {
+						loggedIn = true;
+					}
+				} catch (ClientProtocolException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					Toaster.toastOnUIThread("No internet connection");
+					e.printStackTrace();
 				}
 			}
 		};
@@ -68,16 +79,10 @@ public class UserAuthRequests {
 		return loggedIn;
 	}
 
-	private String doPostR(String url, Map<String, String> params) {
+	private String doPostR(String url, Map<String, String> params) throws ClientProtocolException, IOException {
 		String responseText = "";
-		try {
 			responseText = com.example.myauto.net.HttpClient
 					.getHttpClientDoGetResponse(url, params);
-		} catch (ClientProtocolException e1) {
-			e1.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 		return responseText;
 	}
 	
@@ -128,7 +133,14 @@ public class UserAuthRequests {
 		Thread th = new Thread() {
 			@Override
 			public void run() {
-				String responseText = doPostR(checkSessionUrl, null);
+				String responseText = "";
+				try {
+					responseText = doPostR(checkSessionUrl, null);
+				} catch (ClientProtocolException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 				loginedUser = responseText;
 			}
 		};
@@ -136,7 +148,6 @@ public class UserAuthRequests {
 		try {
 			th.join();
 		} catch (InterruptedException exception) {
-			// TODO Auto-generated catch-block stub.
 			exception.printStackTrace();
 		}
 		return loginedUser;
@@ -148,7 +159,14 @@ public class UserAuthRequests {
 
 			@Override
 			public void run() {
-				String responseText = doPostR(userDataUrl, null);
+				String responseText = "";
+				try {
+					responseText = doPostR(userDataUrl, null);
+				} catch (ClientProtocolException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 				pr = parseXML(responseText);
 			}
 		};
@@ -192,7 +210,13 @@ public class UserAuthRequests {
 					paramsAsMap.put(paramGender, params[4]);
 					paramsAsMap.put(paramBirth, params[5]);
 					
-					doPostR(userDataUpdateUrl, paramsAsMap);
+					try {
+						doPostR(userDataUpdateUrl, paramsAsMap);
+					} catch (ClientProtocolException e) {
+						e.printStackTrace();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 			}
 		};
 		th.start();

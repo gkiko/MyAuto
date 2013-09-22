@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import com.example.myauto.message.Toaster;
 import com.example.myauto.requests.RegisterRequest;
 
 import android.os.Bundle;
@@ -59,31 +60,18 @@ public class RegisterPageActivity extends MasterPageActivity {
 		String pass2 = et3.getText().toString();
 		String email = et4.getText().toString();
 
-		if (userName.equals("")) {
-			Toast.makeText(getApplicationContext(), resources.getString(R.string.username_empty),
-					Toast.LENGTH_LONG).show();
-		} else if (pass1.equals("")) {
-			Toast.makeText(getApplicationContext(), resources.getString(R.string.password_empty),
-					Toast.LENGTH_LONG).show();
-		} else if (pass2.equals("")) {
-			Toast.makeText(getApplicationContext(), resources.getString(R.string.password_empty),
-					Toast.LENGTH_LONG).show();
-		} else if (email.equals("")) {
-			Toast.makeText(getApplicationContext(), resources.getString(R.string.email_empty),
-					Toast.LENGTH_LONG).show();
-		} else if (!pass1.equals(pass2)) {
-			Toast.makeText(getApplicationContext(), resources.getString(R.string.passwords_fail),
-					Toast.LENGTH_LONG).show();
-		} else {
-			EditText et5 = (EditText) findViewById(R.id.reg_name);
-			EditText et6 = (EditText) findViewById(R.id.reg_surname);
-			String name = et5.getText().toString();
-			String surname = et6.getText().toString();
-			String[]params = new String[]{userName, pass1, name, surname, email, Long.toString(gender.getSelectedItemId() + 1),Integer.toString((Integer)years.getSelectedItem())};
-			RegisterRequest rr = new RegisterRequest(params);
-			int res = rr.sendRegistrationRequest();
-			checkRes(res);
-		}
+		EditText et5 = (EditText) findViewById(R.id.reg_name);
+		EditText et6 = (EditText) findViewById(R.id.reg_surname);
+		String name = et5.getText().toString();
+		String surname = et6.getText().toString();
+		String location = ""; // TODO
+		String[] params = new String[] { userName, pass1, name, surname, email,
+				Long.toString(gender.getSelectedItemId() + 1),
+				Integer.toString((Integer) years.getSelectedItem()), pass2,
+				location };
+		RegisterRequest rr = new RegisterRequest(params);
+		int res = rr.sendRegistrationRequest();
+		checkRes(res);
 	}
 
 	private void checkRes(int res) {
@@ -98,27 +86,27 @@ public class RegisterPageActivity extends MasterPageActivity {
 			finish();
 			break;
 		case 1:
-			Toast.makeText(getApplicationContext(), resources.getString(R.string.username_empty),
-					Toast.LENGTH_LONG).show();
+			Toaster.toastOnCallerThread(resources
+					.getString(R.string.username_empty));
 			break;
 		case 2:
-			Toast.makeText(getApplicationContext(), resources.getString(R.string.email_empty),
-					Toast.LENGTH_LONG).show();
+			Toaster.toastOnCallerThread(resources
+					.getString(R.string.email_empty));
 			break;
 		case 3:
-			Toast.makeText(getApplicationContext(), resources.getString(R.string.password_empty),
-					Toast.LENGTH_LONG).show();
+			Toaster.toastOnCallerThread(resources
+					.getString(R.string.password_empty));
 			break;
 		case 4:
-			//gender
+			// gender
 			break;
 		case 5:
-			Toast.makeText(getApplicationContext(), resources.getString(R.string.username_exist),
-					Toast.LENGTH_LONG).show();
+			Toaster.toastOnCallerThread(resources
+					.getString(R.string.username_exist));
 			break;
 		case 6:
-			Toast.makeText(getApplicationContext(), resources.getString(R.string.passwords_fail),
-					Toast.LENGTH_LONG).show();
+			Toaster.toastOnCallerThread(resources
+					.getString(R.string.passwords_fail));
 			break;
 		case 7:
 			// birth_year
@@ -131,8 +119,7 @@ public class RegisterPageActivity extends MasterPageActivity {
 			finish();
 			break;
 		}
-		
-	}
 
+	}
 
 }

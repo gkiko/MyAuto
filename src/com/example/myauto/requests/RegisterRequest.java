@@ -36,11 +36,14 @@ public class RegisterRequest {
 	private void register() {
 		Map<String, String> paramsAsMap = new HashMap<String, String>();
 		paramsAsMap.put("username", params[0]);
-		paramsAsMap.put("confirmpass", params[1]);
+		paramsAsMap.put("password", params[1]);
 		paramsAsMap.put("name", params[2]);
 		paramsAsMap.put("surname", params[3]);
 		paramsAsMap.put("email", params[4]);
+		paramsAsMap.put("gender_id", params[5]);
 		paramsAsMap.put("birth_year", params[6]);
+		paramsAsMap.put("confirmpass", params[7]);
+		paramsAsMap.put("location_id", params[8]);
 
 		String responseText = doPostR(userRegisterUrl, paramsAsMap);
 		try {

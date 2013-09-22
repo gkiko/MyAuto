@@ -3,7 +3,7 @@
 
     <string name="app_name">MyAuto</string>
     <string name="action_settings">Настройки</string>
-
+    
     <string name="title_activity_filtered">FilteredActivity</string>
     <string name="title_activity_catalog_page">CatalogPageActivity</string>
     <string name="title_activity_search">SearchActivity</string>

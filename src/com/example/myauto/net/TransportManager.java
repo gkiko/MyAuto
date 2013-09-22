@@ -84,12 +84,9 @@ public class TransportManager {
 		SharedPreferences prefs = activity.getSharedPreferences(activity
 				.getResources().getString(R.string.shared_prefs), 0);
 		int langID = prefs.getInt("Lang", LANG_EN);
-		System.out.println(langID);
 		switch (langID) {
 		case LANG_EN:
-			System.out.println("yle");
 			params.put(LANG_PARAM, EN_PARAM);
-			System.out.println(params);
 			break;
 		case LANG_GE:
 			params.put(LANG_PARAM, GE_PARAM);

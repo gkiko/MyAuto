@@ -10,6 +10,7 @@ import com.example.myauto.event.MyChangeEvent;
 import com.example.myauto.fetcher.ListFetcher;
 import com.example.myauto.item.CarFacade;
 import com.example.myauto.listener.CallbackListener;
+import com.example.myauto.message.Toaster;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -36,6 +37,8 @@ public class FirstPageActivity extends MasterPageActivity implements CallbackLis
 		updateLanguage();
 		getButtons();
 		setButtonClickListeners();
+		
+		Toaster.init(this);
 	}
 	
 	/**

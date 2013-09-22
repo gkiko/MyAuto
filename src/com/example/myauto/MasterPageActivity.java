@@ -24,6 +24,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.myauto.data.DataContainer;
+import com.example.myauto.message.Toaster;
 import com.example.myauto.requests.UserAuthRequests;
 
 public class MasterPageActivity extends Activity {
@@ -128,8 +129,7 @@ public class MasterPageActivity extends Activity {
 
 			if (resultCode == RESULT_OK) {
 				String result = data.getStringExtra("result");
-				Toast.makeText(getApplicationContext(), result,
-						Toast.LENGTH_LONG).show();
+				Toaster.toastOnCallerThread(result);
 			}
 		}
 	}
@@ -278,13 +278,9 @@ public class MasterPageActivity extends Activity {
 		if (logined) {
 			showLoginedUser(userName);
 			saveUserToSession(userName);
-			Toast.makeText(getApplicationContext(),
-					resources.getString(R.string.login_success),
-					Toast.LENGTH_LONG).show();
+			Toaster.toastOnCallerThread(resources.getString(R.string.login_success));
 		} else {
-			Toast.makeText(getApplicationContext(),
-					resources.getString(R.string.login_fail), Toast.LENGTH_LONG)
-					.show();
+			Toaster.toastOnCallerThread(resources.getString(R.string.login_fail));
 		}
 
 	}
