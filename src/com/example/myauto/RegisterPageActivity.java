@@ -14,7 +14,6 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 public class RegisterPageActivity extends MasterPageActivity {
 
@@ -25,7 +24,6 @@ public class RegisterPageActivity extends MasterPageActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_register_page);
-		System.out.println("aeeeeeeeeeeeeee");
 		resources = getResources();
 		setYearsToSpinner();
 	}
@@ -64,11 +62,9 @@ public class RegisterPageActivity extends MasterPageActivity {
 		EditText et6 = (EditText) findViewById(R.id.reg_surname);
 		String name = et5.getText().toString();
 		String surname = et6.getText().toString();
-		String location = ""; // TODO
 		String[] params = new String[] { userName, pass1, name, surname, email,
 				Long.toString(gender.getSelectedItemId() + 1),
-				Integer.toString((Integer) years.getSelectedItem()), pass2,
-				location };
+				Integer.toString((Integer) years.getSelectedItem()), pass2};
 		RegisterRequest rr = new RegisterRequest(params);
 		int res = rr.sendRegistrationRequest();
 		checkRes(res);

@@ -9,9 +9,8 @@ import org.apache.http.client.ClientProtocolException;
 import org.xmlpull.v1.XmlPullParserException;
 
 import android.app.Activity;
-import android.content.SharedPreferences;
 
-import com.example.myauto.R;
+import com.example.myauto.data.LanguageDataContainer;
 import com.example.myauto.item.CarFacade;
 import com.example.myauto.item.CarImageable;
 import com.example.myauto.item.CarItem;
@@ -22,12 +21,6 @@ public class TransportManager {
 	private static final String LIST_URL = "http://www.myauto.ge/android/car_list_xml.php";
 	private static final String ITEM_URL = "http://www.myauto.ge/android/details_xml.php";
 	private static final String LANG_PARAM = "set_lang_id";
-	private static final String GE_PARAM = "4";
-	private static final String EN_PARAM = "1";
-	private static final String RU_PARAM = "5";
-	private static final int LANG_EN = 1;
-	private static final int LANG_GE = 2;
-	private static final int LANG_RU = 3;
 	private static Parser p = new Parser();
 
 	public static ArrayList<CarFacade> downloadCarList(
@@ -81,21 +74,7 @@ public class TransportManager {
 	}
 	
 	private static void setLanguageParam(HashMap<String, String> params, Activity activity){
-		SharedPreferences prefs = activity.getSharedPreferences(activity
-				.getResources().getString(R.string.shared_prefs), 0);
-		int langID = prefs.getInt("Lang", LANG_EN);
-		switch (langID) {
-		case LANG_EN:
-			params.put(LANG_PARAM, EN_PARAM);
-			break;
-		case LANG_GE:
-			params.put(LANG_PARAM, GE_PARAM);
-			break;
-		case LANG_RU:
-			params.put(LANG_PARAM, RU_PARAM);
-			break;
-		default:
-			break;
-		}
+		String langId = Integer.toString(LanguageDataContainer.getLangId());
+		params.put(LANG_PARAM, langId);
 	}
 }

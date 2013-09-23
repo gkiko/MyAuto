@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import com.example.myauto.data.LanguageDataContainer;
 import com.example.myauto.database.DBManager;
 import com.example.myauto.requests.UserAuthRequests;
 import com.example.myauto.user.Profile;
 
 import android.os.Bundle;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -20,24 +20,18 @@ import android.widget.TextView;
 public class EditAccountActivity extends MasterPageActivity {
 
 	private Spinner years;
-	private SharedPreferences prefs;
 	private EditText et1;
 	private UserAuthRequests aur;
 	private EditText et2;
 	private EditText et3;
 	private Spinner gender;
 	private Spinner locations;
-	private static final int LANG_EN = 1;
-	private static final int LANG_GE = 2;
-	private static final int LANG_RU = 3;
 
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_edit_account);
-		prefs = getSharedPreferences(
-				getResources().getString(R.string.shared_prefs), 0);
 		aur = UserAuthRequests.getInstance();
 		Profile myProfile = aur.getProfile();
 		setDataToView(myProfile);
@@ -59,38 +53,6 @@ public class EditAccountActivity extends MasterPageActivity {
 		et3.setText(pr.getValueFromProperty(Profile.EMAIL));
 	}
 	
-	private void setLocationsToSpinner(String loc) {
-		locations = (Spinner) findViewById(R.id.spinnerLocation);
-		ArrayList<String[]> list = DBManager.getLocations();
-		ArrayList<String> arr = new ArrayList<String>();
-		String[] location;
-		for (int i = 0; i < list.size(); i++) {
-			location = list.get(i);
-			int langID = prefs.getInt("Lang", LANG_EN);
-			switch (langID) {
-			case LANG_EN:
-				arr.add(location[LANG_EN + 1]);
-				break;
-			case LANG_GE:
-				arr.add(location[LANG_GE + 1]);
-				break;
-			case LANG_RU:
-				arr.add(location[LANG_RU + 1]);
-				break;
-			default:
-				break;
-			}
-
-		}
-		ArrayAdapter<String> arrayAdapter1 = new ArrayAdapter<String>(this,
-				android.R.layout.simple_spinner_dropdown_item, arr);
-		locations.setAdapter(arrayAdapter1);
-		locations.setSelection(Integer.parseInt(loc) -1);
-	}
-
-	/**
-	 * 
-	 */
 	private void setYearsToSpinner(int myYear) {
 		years = (Spinner) findViewById(R.id.spinnerBirthYear);
 		ArrayList<Integer> arr = new ArrayList<Integer>();
@@ -107,6 +69,32 @@ public class EditAccountActivity extends MasterPageActivity {
 		years.setSelection(arrayAdapter1.getPosition(myYear));
 	}
 	
+	private void setLocationsToSpinner(String loc) {
+		locations = (Spinner) findViewById(R.id.spinnerLocation);
+		ArrayList<String[]> list = DBManager.getLocations();
+		ArrayList<String> arr = new ArrayList<String>();
+		String[] location;
+		for (int i = 0; i < list.size(); i++) {
+			location = list.get(i);
+			int langId = LanguageDataContainer.getLangId();
+			arr.add(location[getColumnIndexByLanguage(langId)+1]);
+		}
+		ArrayAdapter<String> arrayAdapter1 = new ArrayAdapter<String>(this,
+				android.R.layout.simple_spinner_dropdown_item, arr);
+		locations.setAdapter(arrayAdapter1);
+		locations.setSelection(Integer.parseInt(loc) -1);
+	}
+
+	// es metodi dzalian ar momwons. uketesi ver movipiqre
+	private int getColumnIndexByLanguage(int langId){
+		if(langId == LanguageDataContainer.LANG_EN)
+			return 1;
+		else
+			if(langId == LanguageDataContainer.LANG_GE)
+				return 2;
+			else 
+				return 3;
+	}
 	
 	public void saveForm(View v) {
 		String[]params = new String[]{
@@ -117,7 +105,5 @@ public class EditAccountActivity extends MasterPageActivity {
 		setResult(RESULT_OK, returnIntent);
 		finish();
 	}
-	
-	
 	
 }

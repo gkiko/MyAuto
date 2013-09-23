@@ -1,6 +1,5 @@
 package com.example.myauto;
 
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -8,6 +7,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.example.myauto.data.LanguageDataContainer;
 import com.example.myauto.database.DBHelper;
 import com.example.myauto.database.DBManager;
 
@@ -18,36 +18,17 @@ import java.util.Calendar;
  * Created by g.vakhtangishvili on 9/19/13.
  */
 public class CarInsertActivity extends MasterPageActivity {
-    private SharedPreferences prefs;
     private static final int STARTING_YEAR = 1960;
-    private static final int LANG_EN = 1;
-    private static final int LANG_GE = 2;
-    private static final int LANG_RU = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_car_automobile);
-        prefs = getSharedPreferences(getResources().getString(R.string.shared_prefs), 0);
         initViews();
     }
 
     private void initViews() {
-        int langID = prefs.getInt("Lang", LANG_EN);
-        int langInd = 0;
-        switch (langID) {
-            case LANG_EN:
-                langInd = LANG_EN;
-                break;
-            case LANG_GE:
-                langInd = LANG_GE;
-                break;
-            case LANG_RU:
-                langInd = LANG_RU;
-                break;
-            default:
-                break;
-        }
+    	int langInd = LanguageDataContainer.getLangId();
         initCategorySpinner(langInd);
         initManufacturerSpinner(langInd);
         initModelSpinner(langInd);

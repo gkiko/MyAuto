@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Locale;
 
 import com.example.myauto.data.DataContainer;
+import com.example.myauto.data.LanguageDataContainer;
 import com.example.myauto.database.DBManager;
 import com.example.myauto.event.MyChangeEvent;
 import com.example.myauto.fetcher.ListFetcher;
@@ -13,7 +14,6 @@ import com.example.myauto.listener.CallbackListener;
 import com.example.myauto.message.Toaster;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
@@ -23,9 +23,6 @@ import android.widget.Button;
 public class FirstPageActivity extends MasterPageActivity implements CallbackListener{
 	private Button mainButton, searchButton, catalogButton;
 	public static final String bundleKey = "myKey";
-	private static final int LANG_EN = 1;
-	private static final int LANG_GE = 2;
-	private static final int LANG_RU = 3;
 	
 	private ListFetcher lf;
 	
@@ -33,35 +30,20 @@ public class FirstPageActivity extends MasterPageActivity implements CallbackLis
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.firstpage);
+		Toaster.init(this);
+		LanguageDataContainer.init(this);
 		DBManager.init(getApplicationContext());
+
 		updateLanguage();
 		getButtons();
 		setButtonClickListeners();
-		
-		Toaster.init(this);
 	}
 	
 	/**
 	 * bolos archeuli enis mixedvit icyeba aplikacia
 	 */
 	private void updateLanguage(){
-		SharedPreferences prefs = getSharedPreferences(
-				getResources().getString(R.string.shared_prefs), 0);
-		String lang = "";
-		int langID = prefs.getInt("Lang", LANG_EN);
-		switch (langID) {
-		case LANG_EN:
-			lang = "en";
-			break;
-		case LANG_GE:
-			lang = "ge";
-			break;
-		case LANG_RU:
-			lang = "ru";
-			break;
-		default:
-			break;
-		}
+		String lang = LanguageDataContainer.getLangName();
 		setLangLocale(lang);
 	}
 	

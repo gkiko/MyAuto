@@ -27,7 +27,6 @@ public class RegisterRequest {
 		try {
 			th.join();
 		} catch (InterruptedException exception) {
-			// TODO Auto-generated catch-block stub.
 			exception.printStackTrace();
 		}
 		return res;
@@ -43,7 +42,6 @@ public class RegisterRequest {
 		paramsAsMap.put("gender_id", params[5]);
 		paramsAsMap.put("birth_year", params[6]);
 		paramsAsMap.put("confirmpass", params[7]);
-		paramsAsMap.put("location_id", params[8]);
 
 		String responseText = doPostR(userRegisterUrl, paramsAsMap);
 		try {

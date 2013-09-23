@@ -17,7 +17,6 @@ import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Message;
-import android.widget.Toast;
 
 public class ItemFetcher extends AsyncTask<HashMap<String, String>, String, Item>{
 	private CopyOnWriteArrayList<CallbackListener> listeners;

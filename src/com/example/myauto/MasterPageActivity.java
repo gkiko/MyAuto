@@ -1,7 +1,5 @@
 package com.example.myauto;
 
-import java.util.Locale;
-
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -9,7 +7,6 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,22 +18,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 
 import com.example.myauto.data.DataContainer;
+import com.example.myauto.data.LanguageDataContainer;
 import com.example.myauto.message.Toaster;
 import com.example.myauto.requests.UserAuthRequests;
 
 public class MasterPageActivity extends Activity {
 
-	private static final String MY_PREFS = "MyPrefs";
-	private static final int LANG_EN = 1;
-	private static final int LANG_GE = 2;
-	private static final int LANG_RU = 3;
 	private Menu menu;
 	private UserAuthRequests lr;
 	private Resources resources;
-	private Activity thisActivity;
 	private SharedPreferences settings;
 
 	@Override
@@ -44,7 +36,6 @@ public class MasterPageActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_master_page);
 		resources = getResources();
-		thisActivity = this;
 		settings = getSharedPreferences("session", 0);
 	}
 
@@ -159,22 +150,25 @@ public class MasterPageActivity extends Activity {
 				RadioGroup group = (RadioGroup) dialog
 						.findViewById(R.id.dialog_lang);
 				int id = group.getCheckedRadioButtonId();
+				int langId;
+				String langName;
 				switch (id) {
 				case R.id.dialog_lang_ge:
-					setLangLocale("ge");
-					saveLanguageID(LANG_GE);
-					break;
-				case R.id.dialog_lang_en:
-					setLangLocale("en");
-					saveLanguageID(LANG_EN);
+					langName = LanguageDataContainer.LANG_GE_;
+					langId = LanguageDataContainer.LANG_GE;
 					break;
 				case R.id.dialog_lang_ru:
-					setLangLocale("ru");
-					saveLanguageID(LANG_RU);
+					langName = LanguageDataContainer.LANG_RU_;
+					langId = LanguageDataContainer.LANG_RU;
 					break;
 				default:
+					langName = LanguageDataContainer.LANG_EN_;
+					langId = LanguageDataContainer.LANG_EN;
 					break;
 				}
+				LanguageDataContainer.setLangLocale(langName);
+				LanguageDataContainer.setLang(langId);
+				
 				dialog.dismiss();
 				finish();
 				DataContainer.clearSavedList();
@@ -187,27 +181,6 @@ public class MasterPageActivity extends Activity {
 		dialog.show();
 	}
 
-	/**
-	 * vinaxav archeuli enis ID-s sxva monacemebis shevsebisas rom gamoviyeno
-	 */
-	private void saveLanguageID(int langID) {
-		SharedPreferences myPrefs = getSharedPreferences(MY_PREFS, 0);
-		SharedPreferences.Editor editor = myPrefs.edit();
-		editor.putInt("Lang", langID);
-		editor.apply();
-	}
-
-	/**
-	 * vayeneb enis Default-s
-	 */
-	private void setLangLocale(String lang) {
-		Locale locale = new Locale(lang);
-		Locale.setDefault(locale);
-		Configuration config = new Configuration();
-		config.locale = locale;
-		getBaseContext().getResources().updateConfiguration(config,
-				getBaseContext().getResources().getDisplayMetrics());
-	}
 
 	/**
 	 * Log out
