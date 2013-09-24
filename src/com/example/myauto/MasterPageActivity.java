@@ -200,6 +200,16 @@ public class MasterPageActivity extends Activity {
 		editAcc.setVisible(false);
 		removeUserFromSession();
 		lr.logOut();
+		goToFirstPage();
+		
+	}
+
+	private void goToFirstPage() {
+		Intent i = new Intent(this, FirstPageActivity.class);
+		i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		startActivity(i);
+		
 	}
 
 	/**
