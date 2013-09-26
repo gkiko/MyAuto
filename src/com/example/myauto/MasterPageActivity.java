@@ -45,7 +45,7 @@ public class MasterPageActivity extends Activity {
 		getMenuInflater().inflate(R.menu.myauto_menu, menu);
 		this.menu = menu;
 		lr = UserAuthRequests.getInstance();
-//		String user = lr.checkSession();
+		// String user = lr.checkSession();
 		String user = getUserFromSession();
 		if (!user.equals("")) {
 			showLoginedUser(user);
@@ -98,7 +98,7 @@ public class MasterPageActivity extends Activity {
 			startActivityForResult(nextIntent, 1);
 			break;
 		case R.id.menu_add_car:
-            addCarDialog();
+			addCarDialog();
 			break;
 		case R.id.menu_edit_account:
 			nextIntent = new Intent(MasterPageActivity.this,
@@ -168,7 +168,7 @@ public class MasterPageActivity extends Activity {
 				}
 				LanguageDataContainer.setLangLocale(langName);
 				LanguageDataContainer.setLang(langId);
-				
+
 				dialog.dismiss();
 				finish();
 				DataContainer.clearSavedList();
@@ -181,10 +181,6 @@ public class MasterPageActivity extends Activity {
 		dialog.show();
 	}
 
-
-	/**
-	 * Log out
-	 */
 	private void logOutUser() {
 		MenuItem login = menu.findItem(R.id.menu_login);
 		login.setVisible(true);
@@ -201,7 +197,7 @@ public class MasterPageActivity extends Activity {
 		removeUserFromSession();
 		lr.logOut();
 		goToFirstPage();
-		
+
 	}
 
 	private void goToFirstPage() {
@@ -209,11 +205,11 @@ public class MasterPageActivity extends Activity {
 		i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		startActivity(i);
-		
+
 	}
 
 	/**
-	 * /** აგდებს ლოგინის დიალოგბოქსს, სადაც მომხმარებელს შეეძლება დალოგინება.
+	 *  აგდებს ლოგინის დიალოგბოქსს, სადაც მომხმარებელს შეეძლება დალოგინება.
 	 * 
 	 */
 	private void createLoginBox() {
@@ -261,9 +257,11 @@ public class MasterPageActivity extends Activity {
 		if (logined) {
 			showLoginedUser(userName);
 			saveUserToSession(userName);
-			Toaster.toastOnCallerThread(resources.getString(R.string.login_success));
+			Toaster.toastOnCallerThread(resources
+					.getString(R.string.login_success));
 		} else {
-			Toaster.toastOnCallerThread(resources.getString(R.string.login_fail));
+			Toaster.toastOnCallerThread(resources
+					.getString(R.string.login_fail));
 		}
 
 	}
@@ -303,51 +301,51 @@ public class MasterPageActivity extends Activity {
 		settings.edit().clear().commit();
 	}
 
-    private void addCarDialog(){
-        final Dialog dialog = new Dialog(this);
-        dialog.setContentView(R.layout.dialog_add_car_type);
-        dialog.setTitle(R.string.add_car_type);
+	private void addCarDialog() {
+		final Dialog dialog = new Dialog(this);
+		dialog.setContentView(R.layout.dialog_add_car_type);
+		dialog.setTitle(R.string.add_car_type);
 
-        Button cancel = (Button) dialog
-                .findViewById(R.id.dialog_generic_btn_cancel);
-        Button ok = (Button) dialog
-                .findViewById(R.id.dialog_generic_btn_ok);
+		Button cancel = (Button) dialog
+				.findViewById(R.id.dialog_generic_btn_cancel);
+		Button ok = (Button) dialog.findViewById(R.id.dialog_generic_btn_ok);
 
-        ok.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                RadioGroup group = (RadioGroup) dialog
-                        .findViewById(R.id.dialog_generic_rdgroup);
-                int id = group.getCheckedRadioButtonId();
-                RadioButton button = (RadioButton) dialog.findViewById(id);
-                Intent nextIntent;
-                switch(button.getId()){
-                    case R.id.adtype1:
-                        nextIntent = new Intent(MasterPageActivity.this, CarInsertActivity.class);
-                       // nextIntent.putExtra("InsertType", );
-                        startActivity(nextIntent);
-                        break;
-                    case R.id.adtype2:
-                        Log.i("mda", " " + button.getId());
-                        break;
-                    case R.id.adtype3:
-                        Log.i("mda", " " + button.getId());
-                        break;
-                    case R.id.request_insert:
+		ok.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				RadioGroup group = (RadioGroup) dialog
+						.findViewById(R.id.dialog_generic_rdgroup);
+				int id = group.getCheckedRadioButtonId();
+				RadioButton button = (RadioButton) dialog.findViewById(id);
+				Intent nextIntent;
+				switch (button.getId()) {
+				case R.id.adtype1:
+					nextIntent = new Intent(MasterPageActivity.this,
+							CarInsertActivity.class);
+					// nextIntent.putExtra("InsertType", );
+					startActivity(nextIntent);
+					break;
+				case R.id.adtype2:
+					Log.i("mda", " " + button.getId());
+					break;
+				case R.id.adtype3:
+					Log.i("mda", " " + button.getId());
+					break;
+				case R.id.request_insert:
 
-                        break;
-                }
-                dialog.dismiss();
-            }
-        });
+					break;
+				}
+				dialog.dismiss();
+			}
+		});
 
-        cancel.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
+		cancel.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				dialog.dismiss();
+			}
+		});
 
-        dialog.show();
-    }
+		dialog.show();
+	}
 }

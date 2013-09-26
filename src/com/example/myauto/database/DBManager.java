@@ -1,7 +1,9 @@
 package com.example.myauto.database;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -22,6 +24,7 @@ public class DBManager {
 	private static int LOCATION_NAME_COLUMN_EN = 2;
 	private static int LOCATION_NAME_COLUMN_GE = 3;
 	private static int LOCATION_NAME_COLUMN_RU = 4;
+	private static int CATEGORY_TYPE = 4;
 
 	static String[] asd = "(72,'ALL'), (1, 'ALFA ROMEO'), (2, 'AUDI'), (3, 'BMW'), (4, 'CADILLAC'), (5, 'CHEVROLET'), (6, 'CHRYSLER'), (7, 'CITROEN'), (8, 'DAEWOO'), (9, 'DAIHATSU'), (10, 'DODGE'), (11, 'FIAT'), (12, 'FORD'), (13, 'GMC'), (14, 'HONDA'), (15, 'HUMMER'), (16, 'HYUNDAI'), (17, 'ISUZU'), (18, 'JAGUAR'), (19, 'JEEP'), (20, 'KIA'), (21, 'LANCIA'), (22, 'LAND ROVER'), (23, 'LEXUS'), (24, 'MAZDA'), (25, 'MERCEDES'), (26, 'MERCURY'), (28, 'MINI'), (29, 'MITSUBISHI'), (30, 'NISSAN'), (31, 'OPEL'), (32, 'PEUGEOT'), (33, 'PORSCHE'), (34, 'RENAULT'), (35, 'ROVER'), (36, 'SAAB'), (37, 'SEAT'), (38, 'SKODA'), (39, 'SUBARU'), (40, 'SUZUKI'), (41, 'TOYOTA'), (42, 'VOLKSWAGEN'), (43, 'VOLVO'), (44, 'VAZ'), (45, 'GAZ'), (48, 'MOSKVICH'), (53, 'INFINITI'), (54, 'PONTIAC'), (55, 'SCION'), (56, 'OLDSMOBILE'), (57, 'NEOPLAN'), (58, 'LINCOLN'), (59, 'YAMAHA'), (61, 'KAWASAKI'), (62, 'IVECO'), (64, 'SSANGYONG'), (65, 'MAN'), (66, 'DAF'), (67, 'SCHMITZ'), (69, 'BUICK'), (70, 'ACURA'), (71, 'CATERPILLAR'), (73, 'LAMBORGHINI'), (74, 'FERRARI'), (75, 'MASERATI'), (76, 'ASTON MARTIN'), (77, 'SALEEN'), (78, 'BENTLEY'), (79, 'ROLLS-ROYCE'), (80, 'MAYBACH'), (81, 'DUCATI'), (82, 'SCANIA'), (84, 'CHERY'), (85, 'JAC'), (86, 'BOMBARDIER'), (87, 'BYD'), (88, 'ROEWE'), (89, 'GEELI '), (90, 'CHANGFENG'), (92, 'TATA'), (93, 'SATURN'), (94, 'STEYR'), (95, 'UAZ'), (96, 'TAGAZ'), (97, 'ZAZ'), (98, 'BOBCAT'), (99, 'ZIL'), (100, 'BELARUS'), (101, 'KAMAZ'), (102, 'MAZ'), (103, '�THER'), (104, 'HARLEY-DAVIDSON'), (105, 'KTM'), (106, 'JAWA'), (107, 'APRILIA'), (108, 'KRAZ'), (109, 'SETRA'), (110, 'JCB'), (111, 'BOBCAT'), (112, 'KOMATSU'), (113, 'TEREX'), (114, 'NEW HOLLAND'), (115, 'MASSEY FERGUSON'), (116, 'FIAT-HITACHI'), (117, 'FERMEC'), (119, 'CLAAS'), (120, 'BELARUS'), (121, 'CASE'), (122, 'ZEPPELIN'), (123, 'MONDIAL'), (124, 'BRP'), (125, 'LINTEX'), (126, 'VOSKHOD'), (127, 'DNEPR'), (128, 'CZ'), (129, 'MURAVEY'), (130, 'HAFEI'), (131, 'Zoomline'), (132, 'Howo'), (133, 'Liu Gong'), (134, 'Sinotruk � Howo'), (135, 'Dong � fen'), (136, 'POLARIS'), (137, 'ENDURO'), "
 			.split(",");
@@ -151,18 +154,55 @@ public class DBManager {
 	 * 
 	 * [Warning] Cxrilshi monacemebi unda inaxebodes 2 ganzomilebian stringebad
 	 */
-	public static ArrayList<String[]> getDataListFromTable(String tableName) {
+	public static ArrayList<String[]> getDataListFromTable(String tableName, Map<String, String> filter) {
 		ArrayList<String[]> list = new ArrayList<String[]>();
-		String selectQuery = "select * from " + tableName;
+		String selectQuery = "select * from " + tableName + getFilter(filter);
 		Cursor cursor = db.rawQuery(selectQuery, null);
+		int columnCount = cursor.getColumnCount();
 		if (cursor.moveToFirst()) {
 			do {
-				String[] man = new String[4];
+				String[] man = new String[columnCount];
+				
+				for(int i=0;i < columnCount; i++)
+					man[i] = cursor.getString(i);
+				
+				list.add(man);
+			} while (cursor.moveToNext());
+		}
+		return list;
+	}
+	
+	private static String getFilter(Map<String, String> filter){
+		if(filter == null)
+			return "";
+		
+		StringBuilder sb = new StringBuilder();
+		sb.append(" where ");
+		for(String key : filter.keySet()){
+			sb.append(key);
+			sb.append("=");
+			sb.append(filter.get(key));
+			sb.append(",");
+		}
+		sb.deleteCharAt(sb.length()-1);
+		return sb.toString();
+	}
+	
+	public static ArrayList<String[]> getCategoryListFromTable(String tableName, int categoryId) {
+		ArrayList<String[]> list = new ArrayList<String[]>();
+		String selectQuery = "select * from " + tableName + " where " + DBHelper.CATEGORY_TYPE + " = " + categoryId;
+		Cursor cursor = db.rawQuery(selectQuery, null);
+		System.out.println(selectQuery+ " "+cursor.getColumnCount());
+		if (cursor.moveToFirst()) {
+			do {
+				String[] man = new String[5];
 				man[0] = cursor.getString(ID_COLUMN);
 				man[1] = cursor.getString(NAME_COLUMN_EN);
 				man[2] = cursor.getString(NAME_COLUMN_GE);
 				man[3] = cursor.getString(NAME_COLUMN_RU);
+				man[4] = cursor.getString(CATEGORY_TYPE);
 				list.add(man);
+				System.out.println(Arrays.toString(list.get(list.size()-1)));
 			} while (cursor.moveToNext());
 		}
 		return list;
@@ -226,17 +266,25 @@ public class DBManager {
 	}
 
 	private static void putTestFuel() {
-		String[] arr = new String[] { "(2,'Petrol', 'ბენზინი', 'Бензин/Вспрыск')", "(3,'Diesel', 'დიზელი', 'Дизель')", "(4,'Turbodiesel', 'ტურბოდიზელი', 'Турбодиэель')",
-				"(8,'Diesel/Turbodiesel', 'დიზელი/ტურბოდიზელი', 'Дизель/Турбодиэель')", "(5,'Gas/Petrol', 'გაზი/ბენზინი', 'Газ/Бензин')", 
-				"(6,'Hybrid', 'ჰიბრიდი', 'Гибрид')", "(7,'Electric', 'ელექტრო', 'Электро')" };
+		String[] arr = new String[] {
+				"(2,'Petrol', 'ბენზინი', 'Бензин/Вспрыск')",
+				"(3,'Diesel', 'დიზელი', 'Дизель')",
+				"(4,'Turbodiesel', 'ტურბოდიზელი', 'Турбодиэель')",
+				"(8,'Diesel/Turbodiesel', 'დიზელი/ტურბოდიზელი', 'Дизель/Турбодиэель')",
+				"(5,'Gas/Petrol', 'გაზი/ბენზინი', 'Газ/Бензин')",
+				"(6,'Hybrid', 'ჰიბრიდი', 'Гибрид')",
+				"(7,'Electric', 'ელექტრო', 'Электро')" };
 		for (String a : arr) {
 			db.execSQL("insert into " + DBHelper.FUEL_TABLE + " values" + a);
 		}
 	}
 
 	private static void putTestGear() {
-		String[] arr1 = new String[] { "(1,'Manual', 'მექანიკური', 'Механика')", "(2,'Automatic', 'ავტომატიკა', 'Автоматика')",
-				"(3,'Tiptronic', 'ტიპტრონიკი', 'Типтроник')", "(4,'Auto or Tipt', 'ავტ. ან ტიპტ.', 'Авт. или Типт.')" };
+		String[] arr1 = new String[] {
+				"(1,'Manual', 'მექანიკური', 'Механика')",
+				"(2,'Automatic', 'ავტომატიკა', 'Автоматика')",
+				"(3,'Tiptronic', 'ტიპტრონიკი', 'Типтроник')",
+				"(4,'Auto or Tipt', 'ავტ. ან ტიპტ.', 'Авт. или Типт.')" };
 		for (String a : arr1)
 			db.execSQL("insert into " + DBHelper.GEAR_TABLE + " values" + a);
 	}
@@ -247,7 +295,7 @@ public class DBManager {
 		for (int i = 0; i < doorArr.length - 3; i += 4) {
 			db.execSQL("insert into " + DBHelper.DOOR_TYPES_TABLE + " ("
 					+ DBHelper.DOOR_TYPES_ID + ","
-					+ DBHelper.DOOR_TYPES_NAME_ENG +","
+					+ DBHelper.DOOR_TYPES_NAME_ENG + ","
 					+ DBHelper.DOOR_TYPES_NAME_GEO + ","
 					+ DBHelper.DOOR_TYPES_NAME_RUS + ") VALUES " + doorArr[i]
 					+ "," + doorArr[i + 1] + "," + doorArr[i + 2] + ","
@@ -270,15 +318,15 @@ public class DBManager {
 	}
 
 	private static void putTestCategories() {
-		String[] catArr = "(1, 'Sedan', 'სედანი', 'Седан'), (2, 'Hatchback', 'ჰეჩბექი', 'Хэтчбек'), (3, 'Universal', 'უნივერსალი', 'Универсал'), (4, 'Coupe', 'კუპე', 'Купе'), (5, 'Jeep', 'ჯიპი', 'Внедорожник'), (6, 'Cabriolet', 'კაბრიოლეტი', 'Кабриолет'), (7, 'Micro Bus', 'მიკროავტობუსი', 'Микро-автобус'), (13, 'Goods wagon', 'ფურგონი', 'Фургон'), (14, 'Bus', 'ავტობუსი', 'Автобус'), (15, 'Limousine', 'ლიმუზინი', 'Лимузин'), (16, 'Truck', 'სატვირთო', 'Грузовик'), (17, 'Motocycle', 'მოტოციკლეტი', 'Мотоцикл'), (19, 'Trailer', 'მისაბმელი', 'Прицеп'), (20, 'Spec. Machinary', 'სპეც. ტექნიკა', 'Спецтехника'), (21, 'Water transport', 'წყლის ტრანსპორტი', 'Водный транспорт'), (23, 'Cranes', 'ამწე', 'Автокраны'), (24, 'Bulldozers', 'ბულდოზერი', 'Бульдозеры'), (25, 'Excavators', 'ექსკავატორი', 'Экскаваторы'), (26, 'Construction', 'სამშენებლო', 'Строительная'), (27, 'Agricultural', 'სასოფლო-სამეურნეო', 'Сельхоз'), (28, 'Loader', 'დამტვირთველი', 'Погрузчик'), (29, 'Pickup', 'პიკაპი', 'Пикап'), (30, 'Minivan', 'მინივენი', 'Минивэн'), (31, 'Moped', 'მოპედი', 'Мопед'), (32, 'Snowmobile', 'ბურანი', 'Снегоход'), (33, 'Quad bike', 'კვადროციკლი', 'Квадроцикл'), (35, 'Commercial car', 'მსუბუქი კომერციული', 'Коммерческий легковой'), (36, 'Semi-trailer truck', 'გამწევი', 'Tягач'), (37, 'Road', 'საგზაო', 'Дорожный'), "
+		String[] catArr = "(1, 'Sedan', 'სედანი', 'Седан', 0), (2, 'Hatchback', 'ჰეჩბექი', 'Хэтчбек', 0), (3, 'Universal', 'უნივერსალი', 'Универсал', 0), (4, 'Coupe', 'კუპე', 'Купе', 0), (5, 'Jeep', 'ჯიპი', 'Внедорожник', 0), (6, 'Cabriolet', 'კაბრიოლეტი', 'Кабриолет', 0), (7, 'Micro Bus', 'მიკროავტობუსი', 'Микро-автобус', 0), (13, 'Goods wagon', 'ფურგონი', 'Фургон', 0), (14, 'Bus', 'ავტობუსი', 'Автобус', 1), (15, 'Limousine', 'ლიმუზინი', 'Лимузин', 0), (16, 'Truck', 'სატვირთო', 'Грузовик', 1), (17, 'Motocycle', 'მოტოციკლეტი', 'Мотоцикл', 2), (19, 'Trailer', 'მისაბმელი', 'Прицеп', 1), (20, 'Spec. Machinary', 'სპეც. ტექნიკა', 'Спецтехника', 1), (21, 'Water transport', 'წყლის ტრანსპორტი', 'Водный транспорт', 2), (23, 'Cranes', 'ამწე', 'Автокраны', 1), (24, 'Bulldozers', 'ბულდოზერი', 'Бульдозеры', 1), (25, 'Excavators', 'ექსკავატორი', 'Экскаваторы', 1), (26, 'Construction', 'სამშენებლო', 'Строительная', 1), (27, 'Agricultural', 'სასოფლო-სამეურნეო', 'Сельхоз', 1), (28, 'Loader', 'დამტვირთველი', 'Погрузчик', 1), (29, 'Pickup', 'პიკაპი', 'Пикап', 0), (30, 'Minivan', 'მინივენი', 'Минивэн', 0), (31, 'Moped', 'მოპედი', 'Мопед', 2), (32, 'Snowmobile', 'ბურანი', 'Снегоход', 2), (33, 'Quad bike', 'კვადროციკლი', 'Квадроцикл', 2), (35, 'Commercial car', 'მსუბუქი კომერციული', 'Коммерческий легковой', 1), (36, 'Semi-trailer truck', 'გამწევი', 'Tягач', 1), (37, 'Road', 'საგზაო', 'Дорожный', 1), "
 				.split(",");
-		for (int i = 0; i < catArr.length - 3; i += 4) {
+		for (int i = 0; i < catArr.length - 4; i += 5) {
 			db.execSQL("insert into " + DBHelper.CATEGORIES_TABLE + " ("
 					+ DBHelper.CATEGORY_ID + "," + DBHelper.CATEGORY_NAME_ENG
 					+ "," + DBHelper.CATEGORY_NAME_GEO + ","
-					+ DBHelper.CATEGORY_NAME_RUS + ") VALUES " + catArr[i]
+					+ DBHelper.CATEGORY_NAME_RUS + ","+DBHelper.CATEGORY_TYPE+") VALUES " + catArr[i]
 					+ "," + catArr[i + 1] + "," + catArr[i + 2] + ","
-					+ catArr[i + 3]);
+					+ catArr[i + 3]+","+catArr[i + 4]);
 		}
 	}
 
@@ -296,17 +344,16 @@ public class DBManager {
 					+ locArr[i + 3] + "," + locArr[i + 4]);
 		}
 	}
-	
+
 	private static void putTestDays() {
 		String[] daysArr = "(1, 'Added last 1 hour', 'ბოლო 1 საათი', 'добавлено в течений 1 Час'), (2, 'Added last 2 hour', 'ბოლო 2 საათი', 'добавлено в течений 2 Час'), (3, 'Added last 3 hour', 'ბოლო 3 საათი', 'добавлено в течений 3 Час'), (4, 'Added last 1 Days', 'ბოლო 1 დღე', 'добавлено в течений 1 День'),  (5, 'Added last 2 Days', 'ბოლო 2 დღე', 'добавлено в течений 2 День'), (6, 'Added last 3 Days', 'ბოლო 3 დღე', 'добавлено в течений 3 День'), (7, 'Added last 1 Weeks', 'ბოლო 1 კვირა', 'добавлено в течений 1 Неделя'), (8, 'Added last 2 Weeks', 'ბოლო 2 კვირა', 'добавлено в течений 2 Неделя'), (9, 'Added last 3 Weeks', 'ბოლო 3 კვირა', 'добавлено в течений 3 Неделя'), (10, 'Added last 1 Month', 'ბოლო 1 თვე', 'добавлено в течений 1 Месяц'), "
 				.split(",");
 		for (int i = 0; i < daysArr.length - 3; i += 4) {
 			db.execSQL("insert into " + DBHelper.DAYS_TABLE + " ("
-					+ DBHelper.DAYS_ID + "," + DBHelper.DAYS_NAME_ENG
-					+ "," + DBHelper.DAYS_NAME_GEO + ","
-					+ DBHelper.DAYS_NAME_RUS + ") VALUES " + daysArr[i]
-					+ "," + daysArr[i + 1] + "," + daysArr[i + 2] + ","
-					+ daysArr[i + 3]);
+					+ DBHelper.DAYS_ID + "," + DBHelper.DAYS_NAME_ENG + ","
+					+ DBHelper.DAYS_NAME_GEO + "," + DBHelper.DAYS_NAME_RUS
+					+ ") VALUES " + daysArr[i] + "," + daysArr[i + 1] + ","
+					+ daysArr[i + 2] + "," + daysArr[i + 3]);
 		}
 	}
 }

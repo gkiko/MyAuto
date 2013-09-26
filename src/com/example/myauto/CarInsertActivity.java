@@ -1,6 +1,5 @@
 package com.example.myauto;
 
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,12 +12,15 @@ import com.example.myauto.database.DBManager;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
-/**
- * Created by g.vakhtangishvili on 9/19/13.
- */
 public class CarInsertActivity extends MasterPageActivity {
     private static final int STARTING_YEAR = 1960;
+    private static final String CAR_CATEGORY = "0";
+    private static final String BUS_CATEGORY = "1";
+    private static final String MOTO_CATEGORY = "2";
+    private static final String[] months = {"1","2","3","4","5","6","7","8","9","10","11","12"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,60 +30,36 @@ public class CarInsertActivity extends MasterPageActivity {
     }
 
     private void initViews() {
-    	int langInd = LanguageDataContainer.getLangId();
-        initCategorySpinner(langInd);
-        initManufacturerSpinner(langInd);
-        initModelSpinner(langInd);
-        initCarLocation(langInd);
+        initCategorySpinner();
+        initManufacturerSpinner();
+        initCarLocation();
         initIssuedYear();
         initIssuedMonth();
+        initFuelGearDoor();
     }
 
-    private void initCategorySpinner(int index) {
-        Spinner spin = (Spinner) findViewById(R.id.carCategory);
-        ArrayList<String[]> ls = (ArrayList<String[]>) DBManager
-                .getDataListFromTable(DBHelper.CATEGORIES_TABLE);
-
-        ArrayList<String> catNames = new ArrayList<String>();
-        for (int i = 0; i < ls.size(); i++) {
-            catNames.add(ls.get(i)[index]);
-        }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, catNames);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spin.setAdapter(adapter);
+    private void initCategorySpinner() {
+        Map<String, String> filter = new HashMap<String, String>();
+        filter.put(DBHelper.CATEGORY_TYPE, CAR_CATEGORY);
+        
+        String[] data = extractColumn(getData(DBHelper.CATEGORIES_TABLE, filter), getColumnIndexByLanguage(0));
+        initSpinner(R.id.carCategory, data);
     }
 
-    private void initManufacturerSpinner(int index) {
+    private void initManufacturerSpinner() {
+    	String[] data = extractColumn(getData(DBHelper.MAKE_TABLE, null), 2);
+        initSpinner(R.id.carManufacturer, data);
+    	
         Spinner spin = (Spinner) findViewById(R.id.carManufacturer);
-        ArrayList<String[]> ls = (ArrayList<String[]>) DBManager.getManufacturers();
-        ArrayList<String> manNames = new ArrayList<String>();
-        for (int i = 0; i < ls.size(); i++) {
-            manNames.add(ls.get(i)[1]);
-        }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, manNames);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spin.setAdapter(adapter);
 
         spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-                Spinner spinModel = (Spinner) findViewById(R.id.carModel);
-                ArrayList<String[]> ls = new ArrayList<String[]>();
-                Cursor cursor = DBManager.filterModelsByManufacturersRaw(String.valueOf(position));
-                if (cursor.moveToFirst()) {
-                    do {
-                        String[] model = new String[3];
-                        model[0] = cursor.getString(0);
-                        model[1] = cursor.getString(1);
-                        model[2] = cursor.getString(2);
-                        ls.add(model);
-                    } while (cursor.moveToNext());
-                }
-                ArrayAdapter<String> adapter = (ArrayAdapter<String>) spinModel.getAdapter();
-                for (int i = 0; i < ls.size(); i++) {
-                    adapter.add(ls.get(i)[2]);
-                }
-                adapter.notifyDataSetChanged();
+            	Map<String, String> filter = new HashMap<String, String>();
+            	filter.put(DBHelper.MOD_ID_MAN, String.valueOf(position));
+            	
+            	String[] data = extractColumn(getData(DBHelper.MODELS_TABLE, filter), 2);
+                initSpinner(R.id.carModel, data);
             }
 
             @Override
@@ -91,47 +69,66 @@ public class CarInsertActivity extends MasterPageActivity {
         });
     }
 
-    private void initModelSpinner(int index) {
-        Spinner spinModel = (Spinner) findViewById(R.id.carModel);
-        ArrayList<String> manNames = new ArrayList<String>();
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, manNames);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinModel.setAdapter(adapter);
-    }
-
-    private void initCarLocation(int index) {
-        index++;
-        Spinner spinLoc = (Spinner) findViewById(R.id.carLocation);
-        ArrayList<String[]> list = DBManager.getLocations();
-        ArrayList<String> locNames = new ArrayList<String>();
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, locNames);
-        for (int i = 0; i < list.size(); i++) {
-            adapter.add(list.get(i)[index]);
-        }
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinLoc.setAdapter(adapter);
+    private void initCarLocation() {
+    	String[] data = extractColumn(getData(DBHelper.LOCATIONS_TABLE, null), getColumnIndexByLanguage(1));
+        initSpinner(R.id.carLocation, data);
     }
 
     private void initIssuedYear() {
-        Spinner spinModel = (Spinner) findViewById(R.id.carYear);
         ArrayList<String> years = new ArrayList<String>();
         int currentYear = Calendar.getInstance().get(Calendar.YEAR);
         for (int i = currentYear; i >= STARTING_YEAR; i--) {
             years.add("" + i);
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, years);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinModel.setAdapter(adapter);
+        
+        initSpinner(R.id.carYear, years.toArray(new String[years.size()]));
     }
 
     private void initIssuedMonth() {
-        Spinner spinModel = (Spinner) findViewById(R.id.carMonth);
-        ArrayList<String> months = new ArrayList<String>();
-        for (int i = 1; i < 13; i++) {
-            months.add("" + i);
-        }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, months);
+    	initSpinner(R.id.carMonth, months);
+    }
+    
+    private void initFuelGearDoor(){
+    	int columnIndex = getColumnIndexByLanguage(0);
+    	
+    	String[] data = extractColumn(getData(DBHelper.FUEL_TABLE, null), columnIndex);
+        initSpinner(R.id.carFuel, data);
+        
+        data = extractColumn(getData(DBHelper.GEAR_TABLE, null), columnIndex);
+        initSpinner(R.id.carTransmission, data);
+        
+        data = extractColumn(getData(DBHelper.DOOR_TYPES_TABLE, null), columnIndex);
+        initSpinner(R.id.carDoors, data);
+    }
+    
+    private void initSpinner(int spinnerId, String[] data) {
+        Spinner spinModel = (Spinner) findViewById(spinnerId);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, data);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinModel.setAdapter(adapter);
     }
+    
+    private ArrayList<String[]> getData(String tableName, Map<String, String> filter){
+    	 ArrayList<String[]> list = DBManager.getDataListFromTable(tableName, filter);
+    	 return list;
+    }
+    
+    private String[] extractColumn(ArrayList<String[]> list, int columnId){
+    	String[] data = new String[list.size()];
+		for (int i = 0; i < list.size(); i++) {
+			data[i] = list.get(i)[columnId];
+		}
+		return data;
+    }
+    
+    private int getColumnIndexByLanguage(int offset) {
+    	int langId = LanguageDataContainer.getLangId();
+		if (langId == LanguageDataContainer.LANG_EN)
+			return 1+offset;
+		else if (langId == LanguageDataContainer.LANG_GE)
+			return 2+offset;
+		else
+			return 3+offset;
+	}
 }

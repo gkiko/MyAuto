@@ -14,7 +14,6 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
@@ -169,7 +168,7 @@ public class SearchPageActivity extends MasterPageActivity {
 
 	}
 
-	/*
+	/**
 	 * Cacel Button Listeneristvis gadasacemad filtris shesabamis index-is
 	 * array-s vagenerireb.
 	 */
@@ -460,7 +459,7 @@ public class SearchPageActivity extends MasterPageActivity {
 	// vavseb Days filtrs monacemebit
 	private void fillDaysDialog(Dialog dialog) {
 		ArrayList<String[]> list = DBManager
-				.getDataListFromTable(DBHelper.DAYS_TABLE);
+				.getDataListFromTable(DBHelper.DAYS_TABLE, null);
 		RadioGroup group = (RadioGroup) dialog
 				.findViewById(R.id.dialog_generic_rdgroup);
 		String[] days;
@@ -470,7 +469,7 @@ public class SearchPageActivity extends MasterPageActivity {
 			rdbtn.setId(Integer.parseInt(days[0]));
 			if (i == 0)
 				rdbtn.setChecked(true);
-			
+
 			int langId = LanguageDataContainer.getLangId();
 			rdbtn.setText(days[getColumnIndexByLanguage(langId)]);
 			rdbtn.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,
@@ -685,7 +684,7 @@ public class SearchPageActivity extends MasterPageActivity {
 	 * Door -is Dialog-s bazis monacemebit vavseb.
 	 */
 	private void fillDriveAndDoorsDialog(Dialog dialog, String tableName) {
-		ArrayList<String[]> list = DBManager.getDataListFromTable(tableName);
+		ArrayList<String[]> list = DBManager.getDataListFromTable(tableName, null);
 		RadioGroup group = (RadioGroup) dialog
 				.findViewById(R.id.dialog_drive_and_doors_rdgroup);
 		String[] door;
@@ -759,7 +758,7 @@ public class SearchPageActivity extends MasterPageActivity {
 			if (i == 0)
 				rdbtn.setChecked(true);
 			int langId = LanguageDataContainer.getLangId();
-			rdbtn.setText(location[getColumnIndexByLanguage(langId)+1]);
+			rdbtn.setText(location[getColumnIndexByLanguage(langId) + 1]);
 
 			rdbtn.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,
 					LayoutParams.WRAP_CONTENT));
@@ -866,7 +865,7 @@ public class SearchPageActivity extends MasterPageActivity {
 	 */
 	private void fillFuelTypeDialog(Dialog dialog) {
 		ArrayList<String[]> fuelTypes = DBManager
-				.getDataListFromTable(DBHelper.FUEL_TABLE);
+				.getDataListFromTable(DBHelper.FUEL_TABLE, null);
 
 		RadioGroup group = (RadioGroup) dialog
 				.findViewById(R.id.dialog_fuel_rdgroup);
@@ -931,7 +930,7 @@ public class SearchPageActivity extends MasterPageActivity {
 	 */
 	private void fillCategoriesDialog(Dialog dialog) {
 		ArrayList<String[]> categories = DBManager
-				.getDataListFromTable(DBHelper.CATEGORIES_TABLE);
+				.getDataListFromTable(DBHelper.CATEGORIES_TABLE, null);
 
 		RadioGroup group = (RadioGroup) dialog
 				.findViewById(R.id.dialog_category_rdgroup);
@@ -996,7 +995,7 @@ public class SearchPageActivity extends MasterPageActivity {
 	 * Transmisiis Dialog fanjaras vavseb bazashi shenaxuli monacemebit
 	 */
 	private void fillTransmissionDialog(Dialog dialog) {
-		ArrayList<String[]> gears = DBManager.getGearTypes();
+		ArrayList<String[]> gears = DBManager.getDataListFromTable(DBHelper.GEAR_TABLE, null);/*getGearTypes()*/;
 
 		RadioGroup group = (RadioGroup) dialog
 				.findViewById(R.id.dialog_trans_rdgroup);
