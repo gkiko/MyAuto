@@ -5,6 +5,8 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
+
+import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,8 +24,8 @@ public class CollectorController {
      * @param rootView
      * @return
      */
-    public List<BasicNameValuePair> collectViewValues (View rootView) {
-        List<BasicNameValuePair> list = new ArrayList<BasicNameValuePair>();
+    public List<NameValuePair> collectViewValues (View rootView) {
+        List<NameValuePair> list = new ArrayList<NameValuePair>();
         ArrayList<View> allViews = recursion(rootView);
         BasicNameValuePair pair;
 

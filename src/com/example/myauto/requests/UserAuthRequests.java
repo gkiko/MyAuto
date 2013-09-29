@@ -8,8 +8,6 @@ import java.util.Map;
 import org.apache.http.client.ClientProtocolException;
 import org.xmlpull.v1.XmlPullParserException;
 
-import android.R;
-
 import com.example.myauto.item.Item;
 import com.example.myauto.message.Toaster;
 import com.example.myauto.net.HttpClient;
