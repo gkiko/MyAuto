@@ -221,6 +221,13 @@ public class MasterPageActivity extends Activity {
 		LayoutInflater inflater = getLayoutInflater();
 		final View dialoglayout = inflater.inflate(
 				R.layout.login_dialog_layout, null);
+		
+		/* ** test ** */
+		EditText userName = (EditText) dialoglayout.findViewById(R.id.username_edittext);
+		EditText pass = (EditText) dialoglayout.findViewById(R.id.password_edittext);
+		userName.setText("android-0");
+		pass.setText("123456");
+		
 		builder.setView(dialoglayout);
 		builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 			@Override
