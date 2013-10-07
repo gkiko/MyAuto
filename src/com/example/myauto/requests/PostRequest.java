@@ -1,12 +1,13 @@
 package com.example.myauto.requests;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
-import org.apache.http.util.EntityUtils;
+import org.apache.http.entity.mime.HttpMultipartMode;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.apache.http.entity.mime.content.FileBody;
 
 import android.os.AsyncTask;
 
@@ -17,16 +18,26 @@ public class PostRequest extends AsyncTask<List<NameValuePair>, Void, Void>{
 	
 	@Override
 	protected Void doInBackground(List<NameValuePair>... params) {
-		try {
-			HttpResponse response = HttpClient.doPost(url, params[0]);
-			HttpEntity entity = response.getEntity();
-			String responseText = EntityUtils.toString(entity);
+		
+		MultipartEntityBuilder builder = MultipartEntityBuilder.create();
+		builder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
 
-			System.out.println("77777 "+responseText);
+        for(int index=0; index < params[0].size(); index++) {
+            if(params[0].get(index).getName().equalsIgnoreCase("photo1")) {
+                // If the key equals to "image", we use FileBody to transfer the data
+            	File img = new File (params[0].get(index).getValue());
+                builder.addPart(params[0].get(index).getName(), new FileBody(img));
+            } else {
+                // Normal string data
+                builder.addTextBody(params[0].get(index).getName(), params[0].get(index).getValue());
+            }
+        }
+        try {
+			HttpClient.doPost(url, builder.build());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return null;
+        return null;
 	}
 	
 	@Override
