@@ -4,19 +4,18 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import com.example.myauto.message.Toaster;
 import com.example.myauto.requests.RegisterRequest;
 
 import android.os.Bundle;
-import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Resources;
-import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
-public class RegisterPageActivity extends Activity {
+public class RegisterPageActivity extends MasterPageActivity {
 
 	private Spinner years;
 	private Resources resources;
@@ -59,37 +58,64 @@ public class RegisterPageActivity extends Activity {
 		String pass2 = et3.getText().toString();
 		String email = et4.getText().toString();
 
-		if (userName.equals("")) {
-			Toast.makeText(getApplicationContext(), resources.getString(R.string.username_empty),
-					Toast.LENGTH_LONG).show();
-		} else if (pass1.equals("")) {
-			Toast.makeText(getApplicationContext(), resources.getString(R.string.password_empty),
-					Toast.LENGTH_LONG).show();
-		} else if (pass2.equals("")) {
-			Toast.makeText(getApplicationContext(), resources.getString(R.string.password_empty),
-					Toast.LENGTH_LONG).show();
-		} else if (email.equals("")) {
-			Toast.makeText(getApplicationContext(), resources.getString(R.string.email_empty),
-					Toast.LENGTH_LONG).show();
-		} else if (!pass1.equals(pass2)) {
-			Toast.makeText(getApplicationContext(), resources.getString(R.string.passwords_fail),
-					Toast.LENGTH_LONG).show();
-		} else {
-			EditText et5 = (EditText) findViewById(R.id.reg_name);
-			EditText et6 = (EditText) findViewById(R.id.reg_surname);
-			String name = et5.getText().toString();
-			String surname = et6.getText().toString();
-			String[]params = new String[]{userName, pass1, name, surname, email, Long.toString(gender.getSelectedItemId() + 1),Integer.toString((Integer)years.getSelectedItem())};
-			RegisterRequest rr = new RegisterRequest(params);
-			rr.sendRegistrationRequest();
-		}
+		EditText et5 = (EditText) findViewById(R.id.reg_name);
+		EditText et6 = (EditText) findViewById(R.id.reg_surname);
+		String name = et5.getText().toString();
+		String surname = et6.getText().toString();
+		String[] params = new String[] { userName, pass1, name, surname, email,
+				Long.toString(gender.getSelectedItemId() + 1),
+				Integer.toString((Integer) years.getSelectedItem()), pass2};
+		RegisterRequest rr = new RegisterRequest(params);
+		int res = rr.sendRegistrationRequest();
+		checkRes(res);
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.register_page, menu);
-		return true;
+	private void checkRes(int res) {
+		Intent returnIntent;
+		String result = "";
+		switch (res) {
+		case 0:
+			returnIntent = new Intent();
+			result = resources.getString(R.string.registration_finish);
+			returnIntent.putExtra("result", result);
+			setResult(RESULT_OK, returnIntent);
+			finish();
+			break;
+		case 1:
+			Toaster.toastOnCallerThread(resources
+					.getString(R.string.username_empty));
+			break;
+		case 2:
+			Toaster.toastOnCallerThread(resources
+					.getString(R.string.email_empty));
+			break;
+		case 3:
+			Toaster.toastOnCallerThread(resources
+					.getString(R.string.password_empty));
+			break;
+		case 4:
+			// gender
+			break;
+		case 5:
+			Toaster.toastOnCallerThread(resources
+					.getString(R.string.username_exist));
+			break;
+		case 6:
+			Toaster.toastOnCallerThread(resources
+					.getString(R.string.passwords_fail));
+			break;
+		case 7:
+			// birth_year
+			break;
+		default:
+			returnIntent = new Intent();
+			result = "error";
+			returnIntent.putExtra("result", result);
+			setResult(RESULT_OK, returnIntent);
+			finish();
+			break;
+		}
+
 	}
 
 }

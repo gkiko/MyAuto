@@ -4,6 +4,8 @@ import com.example.myauto.adapter.DetailAdapter;
 import com.example.myauto.item.CarItem;
 import com.example.myauto.item.Item;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebView;
@@ -12,6 +14,9 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TabHost;
+import android.widget.TextView;
+
+import java.util.StringTokenizer;
 
 public class DetailActivity extends MasterPageActivity {
 	private TabHost tabhost;
@@ -36,7 +41,7 @@ public class DetailActivity extends MasterPageActivity {
 		next = (Button) findViewById(R.id.button2);
 
 		setUpTabs();
-		addDataTab1(itm);
+		addMainData(itm);
 		getImageInfo(itm);
 	}
 
@@ -61,12 +66,32 @@ public class DetailActivity extends MasterPageActivity {
 		tabhost.setCurrentTab(0);
 	}
 
-	private void addDataTab1(Item itm) {
+	private void addMainData(Item itm) {
+        fillNameAndPhone(itm);
 		String[] details = fillDetails(itm);
 		BaseAdapter a = new DetailAdapter(details, getApplicationContext());
 		ListView listView = (ListView) findViewById(R.id.list);
 		listView.setAdapter(a);
 	}
+
+    private void fillNameAndPhone(Item itm){
+        TextView displayName = (TextView) findViewById(R.id.name);
+        TextView phoneNumber = (TextView) findViewById(R.id.number);
+        displayName.setText(itm.getValueFromProperty(CarItem.CLIENTNAME));
+        String number = itm.getValueFromProperty(CarItem.PHONE);
+        StringTokenizer tk = new StringTokenizer(number);
+        tk.nextToken();
+        number = tk.nextToken();
+        phoneNumber.setText(number);
+        phoneNumber.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                callIntent.setData(Uri.parse("tel:" + String.valueOf(((TextView) view).getText())));
+                startActivity(callIntent);
+            }
+        });
+    }
 
 	/* signalizacia da abs aklia */
 	private String[] fillDetails(Item itm) {
@@ -121,7 +146,6 @@ public class DetailActivity extends MasterPageActivity {
 			next.setEnabled(true);
 		
 		String url = composeUrl(--curImgNum);
-		System.out.println(url);
 		webView.loadUrl(url);
 
 		if (limitReached(curImgNum))
@@ -156,18 +180,9 @@ public class DetailActivity extends MasterPageActivity {
 			prev.setEnabled(true);
 		
 		String url = composeUrl(++curImgNum);
-		System.out.println(url);
 		webView.loadUrl(url);
 		
 		if(limitReached(curImgNum))
 			next.setEnabled(false);
 	}
-	/**
-	 * Set up the {@link android.app.ActionBar}, if the API is available.
-	 */
-	/*
-	 * @TargetApi(Build.VERSION_CODES.HONEYCOMB) private void setupActionBar() {
-	 * if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-	 * getActionBar().setDisplayHomeAsUpEnabled(true); } }
-	 */
 }

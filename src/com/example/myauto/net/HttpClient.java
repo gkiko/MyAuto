@@ -8,34 +8,25 @@ import java.util.Map;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
-import org.apache.http.HttpVersion;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.conn.ClientConnectionManager;
-import org.apache.http.conn.params.ConnManagerParams;
-import org.apache.http.conn.scheme.PlainSocketFactory;
-import org.apache.http.conn.scheme.Scheme;
-import org.apache.http.conn.scheme.SchemeRegistry;
-import org.apache.http.conn.ssl.SSLSocketFactory;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager;
-import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
-import org.apache.http.params.HttpParams;
-import org.apache.http.params.HttpProtocolParams;
+import org.apache.http.protocol.BasicHttpContext;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 public class HttpClient {
 	private static DefaultHttpClient httpclient = null;
-	private static final int TIMEOUT = 30 * 1000;
+	private static final int TIMEOUT = 10 * 1000;
 
 	private static String composeUrl(final String url,
 			final Map<String, String> params) {
 		StringBuilder strBld = new StringBuilder(url);
-		strBld.append("&");
-		if(params != null){
+		strBld.append("?");
+		if (params != null) {
 			for (String key : params.keySet()) {
 				strBld.append(key);
 				strBld.append("=");
@@ -67,6 +58,16 @@ public class HttpClient {
 		return result;
 	}
 
+	public static HttpResponse doPost(final String url,
+			final HttpEntity entity) throws IOException {
+		HttpPost httpPost = new HttpPost(url);
+
+		httpPost.setEntity(entity);
+		HttpResponse response = httpclient.execute(httpPost, new BasicHttpContext());
+
+		return response;
+	}
+
 	public static Bitmap getDoGetResponseBitmap(final String imgUrl)
 			throws IOException {
 		DefaultHttpClient httpclient = new DefaultHttpClient();
@@ -92,8 +93,13 @@ public class HttpClient {
 	public static String getHttpClientDoGetResponse(final String url,
 			final Map<String, String> params) throws ClientProtocolException,
 			IOException {
-		if (httpclient == null)
-			httpclient = newMultiThreadedHttpClient();
+		if (httpclient == null) {
+			httpclient = new DefaultHttpClient();
+			HttpConnectionParams.setConnectionTimeout(httpclient.getParams(),
+					TIMEOUT);
+			HttpConnectionParams.setSoTimeout(httpclient.getParams(), TIMEOUT);
+		}
+
 		HttpGet httpget = new HttpGet(composeUrl(url, params));
 
 		HttpResponse response = httpclient.execute(httpget);
@@ -124,29 +130,4 @@ public class HttpClient {
 
 		return buff.toByteArray();
 	}
-
-	private static DefaultHttpClient newMultiThreadedHttpClient() {
-		// Create and initialize HTTP parameters
-		HttpParams params = new BasicHttpParams();
-		HttpConnectionParams.setConnectionTimeout(params, TIMEOUT);
-		HttpConnectionParams.setSoTimeout(params, TIMEOUT);
-		ConnManagerParams.setMaxTotalConnections(params, 20);
-		HttpProtocolParams.setVersion(params, HttpVersion.HTTP_1_1);
-
-		// Create and initialize scheme registry
-		SchemeRegistry schemeRegistry = new SchemeRegistry();
-		schemeRegistry.register(new Scheme("http", PlainSocketFactory
-				.getSocketFactory(), 80));
-		schemeRegistry.register(new Scheme("https", SSLSocketFactory
-				.getSocketFactory(), 443));
-
-		// Create an HttpClient with the ThreadSafeClientConnManager.
-		// This connection manager must be used if more than one thread will
-		// be using the HttpClient.
-		ClientConnectionManager cm = new ThreadSafeClientConnManager(params,
-				schemeRegistry);
-
-		return new DefaultHttpClient(cm, params);
-	}
-
 }

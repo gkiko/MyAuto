@@ -3,26 +3,13 @@
 
     <string name="app_name">MyAuto</string>
     <string name="action_settings">Настройки</string>
-    <string name="hello_world">asdasd</string>
-    <string name="year_f">Год От</string>
-    <string name="year_t">Год До</string>
-    <string name="butt_negative">Cancel</string>
-    <string name="butt_positive">Set</string>
-    <string name="price">Цена</string>
-    <string name="from">От</string>
-    <string name="to">До</string>
-    <string name="hint1">От</string>
-    <string name="hint2">До</string>
-    <string name="clearance">Расстаможенный</string>
-    <string name="steer">Правый руль</string>
-    <string name="button">Филтр</string>
-    <string name="transmission_null">Трансмиссия</string>
-
-    <string name="fuel_null">Тип Двигателя</string>
-
+    
     <string name="title_activity_filtered">FilteredActivity</string>
     <string name="title_activity_catalog_page">CatalogPageActivity</string>
     <string name="title_activity_search">SearchActivity</string>
+    <string name="title_activity_master_page">MasterPageActivity</string>
+    <string name="title_activity_register_page">RegisterPageActivity</string>
+    <string name="title_activity_detail">DetailActivity</string>
 
     <!-- Menu Bar Strings -->
     <string name="menu_first">Главное</string>
@@ -31,6 +18,7 @@
     <string name="menu_catalog">Каталог</string>
     <string name="menu_about">О Программе</string>
     <string name="menu_language">Язык</string>
+    <string name="menu_close">Выход</string>
 
     <!-- Language Strings -->
     <string name="dialog_lang_ge">ქართული</string>
@@ -39,7 +27,7 @@
     <string name="shared_prefs">MyPrefs</string>
 
     <!-- SearchPageActivity Strings -->
-    <string name="search_search_btn">Поиск</string>
+    <string name="search_search_btn">@string/menu_search</string>
     <string name="search_cancel_btn_txt">X</string>
     <string name="search_carMarkAndModel">Марка</string>
     <string name="search_carModel">Модель</string>
@@ -72,19 +60,13 @@
     <!-- SearchPageActivity Dialog Strings -->
     <string name="search_dialog_btn_cancel">Отмена</string>
     <string name="search_dialog_btn_ok">OK</string>
-    <string name="search_dialog_price_from">От: </string>
-    <string name="search_dialog_price_to">До: </string>
-    <string name="search_dialog_price_cancel">Отмена</string>
-    <string name="search_dialog_price_ok">ОК</string>
     <string name="search_dialog_generic_spinners_from">От: </string>
     <string name="search_dialog_generic_spinners_to">До: </string>
-    <string name="search_dialog_year_cancel">Отмена</string>
-    <string name="search_dialog_year_ok">ОК</string>
     <string name="search_dialog_customs_and_wheel_yes">Да</string>
     <string name="search_dialog_customs_and_wheel_no">Нет</string>
 
     <!-- SearchPageActivity SelectedValues Strings -->
-    <string name="search_selectedValue_yes">Да</string>
+    <string name="search_selectedValue_yes">@string/search_dialog_customs_and_wheel_yes</string>
 
     <!-- Login, Registration And Menu Strings -->
     <string name="menu_login">Логин</string>
@@ -93,11 +75,13 @@
     <string name="login_dialog_title">Логин</string>
     <string name="login_success">Авторизация прошла успешно</string>
     <string name="login_fail">Пользователь или пароль неверный!</string>
-    <string name="title_activity_master_page">MasterPageActivity</string>
+    
+    <!-- Menu Strings -->
     <string name="menu_logout">Выход</string>
     <string name="menu_register">Регистрация</string>
     <string name="menu_add_car">Добавить</string>
-    <string name="title_activity_register_page">RegisterPageActivity</string>
+
+    <!-- Registration Strings -->
     <string name="username_register">Ползователь*</string>
     <string name="pass_register">Пароль*</string>
     <string name="rpt_pass_register">Повторить Пароль*</string>
@@ -113,14 +97,14 @@
     <string name="birthyear_empty">Укажите год рождения</string>
     <string name="passwords_fail">Пароли не совподают</string>
     <string name="username_exist">Пользователь с таким именем уже зарегистрирован</string>
+    <string name="registration_finish">Регистрация успешно завершена</string>
+    <string name="registration_btn_str">Регистрация</string>
 
     <string-array name="gender_array">
         <item>Мужской</item>
         <item>Женский</item>
     </string-array>
 
-    <string name="registration_btn_str">Регистрация</string>
-    <string name="title_activity_detail">DetailActivity</string>
     <!-- DetailActivity -->
     <string-array name="details">
         <item>@string/search_carMarkAndModel</item>
@@ -165,5 +149,31 @@
     <!-- Detail Activity image numbering -->
 	<string name="next">След</string>
 	<string name="prev">Пред</string>
+	
+	  <!-- Edit Account Strings -->
+	<string name="edit_account_str">Редактированье</string>
+    <string name="username_txt">@string/username_login </string>
+    <string name="name_txt">Имя: </string>
+    <string name="surname_txt">Фамилия: </string>
+    <string name="email_txt">Эл-почтаა: </string>
+    <string name="gender_txt">Пол: </string>
+    <string name="birthyear_txt">Год Рождения: </string>
+    <string name="phone_txt">Тел. : </string>
+    <string name="location_txt">Местонахождения: </string>
+    <string name="save_btn">Запомнить</string>
+
+    <!-- Add Car Strings -->
+    <string name="add_car_type">Выбрать тип объявление</string>
+    <string name="adtype1">Автомобили (продаю)</string>
+    <string name="adtype2">спец. техника (продаю)</string>
+    <string name="adtype3">мототехника (продаю)</string>
+    <string name="request_insert">куплю</string>
+    <string name="add_button">Добавить</string>
+    <string name="issued_year">Год выпуска</string>
+    <string name="issued_month">Месяц выпуска</string>
+    <string-array name="mileage_type">
+        <item>км.</item>
+        <item>мили</item>
+    </string-array>
 
 </resources>

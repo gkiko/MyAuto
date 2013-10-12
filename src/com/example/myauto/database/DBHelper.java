@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBHelper extends SQLiteOpenHelper {
 	private static final String DATABASE_NAME = "MyAutoDatabase";
-	private static final int DATABASE_VERSION = 6;
+	private static final int DATABASE_VERSION = 7;
 
 	// Table MANUFACTURERS (spinner)
 	public static final String MAKE_TABLE = "MANUFACTURERS";
@@ -35,6 +35,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	public static final String CATEGORY_NAME_ENG = "name_en";
 	public static final String CATEGORY_NAME_GEO = "name_ge";
 	public static final String CATEGORY_NAME_RUS = "name_ru";
+	public static final String CATEGORY_TYPE = "category_type";
 	
 	// Table Door Types
 	public static final String DOOR_TYPES_TABLE = "DOOR_TYPES";
@@ -80,7 +81,7 @@ public class DBHelper extends SQLiteOpenHelper {
 			+ " text not null," + FUEL_NAME_GEO + " tetx not null," + FUEL_NAME_RUS + " text not null);";
 	public static final String CATEGORIES_CREATE = "create table if not exists " 
 			+ CATEGORIES_TABLE + " ("+CATEGORY_ID+" integer primary key," + CATEGORY_NAME_ENG
-			+ " text not null," + CATEGORY_NAME_GEO + " text not null," + CATEGORY_NAME_RUS + " text not null);";
+			+ " text not null," + CATEGORY_NAME_GEO + " text not null," + CATEGORY_NAME_RUS + " text not null," + CATEGORY_TYPE + " integer);";
 	public static final String DOOR_TYPES_CREATE = "create table if not exists "
 			+ DOOR_TYPES_TABLE + " (" + DOOR_TYPES_ID + " integer primary key," + DOOR_TYPES_NAME_ENG
 			+ " text not null," + DOOR_TYPES_NAME_GEO + " text not null," + DOOR_TYPES_NAME_RUS + " text not null);";

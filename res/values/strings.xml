@@ -2,28 +2,18 @@
 <resources>
 
     <string name="app_name">MyAuto</string>
-    <string name="action_settings"></string>
-    <string name="hello_world">ასდასდ</string>
-    <string name="year_f">წელი დან</string>
-    <string name="year_t">წელი მდე</string>
-    <string name="butt_negative">გაუქმება</string>
-    <string name="butt_positive">დაყენება</string>
-    <string name="price">ფასი</string>
-    <string name="from">დან</string>
-    <string name="to">მდე</string>
-    <string name="hint1">დან</string>
-    <string name="hint2">მდე</string>
-    <string name="clearance">Customs</string>
-    <string name="steer">მარჯვენა საჭე</string>
-    <string name="button">ფილტრი</string>
-    <string name="transmission_null">ტრანსმისია</string>
-
-    <string name="fuel_null">საწვავის ტიპი</string>
-
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">asshole fever</string>
     <string name="title_activity_filtered">FilteredActivity</string>
     <string name="title_activity_catalog_page">CatalogPageActivity</string>
     <string name="title_activity_search">SearchActivity</string>
-
+    <string name="title_activity_car_insert">განცხადების დამატება</string>
+    <string name="title_activity_master_page">MasterPageActivity</string>
+    <string name="title_activity_register_page">RegisterPageActivity</string>
+    <string name="title_activity_detail">DetailActivity</string>
+    <string name="title_activity_my_page">MyPageActivity</string>
+    <string name="title_activity_edit_account">EditAccountActivity</string>
+    
     <!-- Menu Bar Strings -->
     <string name="menu_first">მთავარი</string>
     <string name="menu_main">მანქანების სია</string>
@@ -31,15 +21,16 @@
     <string name="menu_catalog">კატალოგი</string>
     <string name="menu_about">ჩვენს შესახებ</string>
     <string name="menu_language">ენა</string>
-    
-    <!--  Language Strings -->
+    <string name="menu_close">გასვლა</string>
+
+    <!-- Language Strings -->
     <string name="dialog_lang_ge">ქართული</string>
     <string name="dialog_lang_en">English</string>
     <string name="dialog_lang_ru">Русский</string>
     <string name="shared_prefs">MyPrefs</string>
 
     <!-- SearchPageActivity Strings -->
-    <string name="search_search_btn">ძებნა</string>
+    <string name="search_search_btn">@string/menu_search</string>
     <string name="search_cancel_btn_txt">X</string>
     <string name="search_carMarkAndModel">მწარმოებელი</string>
     <string name="search_carModel">მოდელი</string>
@@ -72,33 +63,28 @@
     <!-- SearchPageActivity Dialog Strings -->
     <string name="search_dialog_btn_cancel">გაუქმება</string>
     <string name="search_dialog_btn_ok">OK</string>
-    <string name="search_dialog_price_from">დან: </string>
-    <string name="search_dialog_price_to">მდე: </string>
-    <string name="search_dialog_price_cancel">Cancel</string>
-    <string name="search_dialog_price_ok">OK</string>
     <string name="search_dialog_generic_spinners_from">დან: </string>
     <string name="search_dialog_generic_spinners_to">მდე: </string>
-    <string name="search_dialog_year_cancel">Cancel</string>
-    <string name="search_dialog_year_ok">OK</string>
     <string name="search_dialog_customs_and_wheel_yes">კი</string>
     <string name="search_dialog_customs_and_wheel_no">არა</string>
 
     <!-- SearchPageActivity SelectedValues Strings -->
-    <string name="search_selectedValue_yes">კი</string>
+    <string name="search_selectedValue_yes">@string/search_dialog_customs_and_wheel_yes</string>
 
-    <!-- Login, Registration And Menu Strings -->
+    <!-- Login Strings -->
     <string name="menu_login">შესვლა</string>
     <string name="username_login">მომხმარებელი:</string>
     <string name="password_login">პაროლი:</string>
     <string name="login_dialog_title">ავტორიზაცია</string>
     <string name="login_success">თქვენ წარმატებით გაიარეთ ავტორიზაცია</string>
     <string name="login_fail">მომხმარებელი ან პაროლი არასწორია!</string>
-    <string name="title_activity_master_page">MasterPageActivity</string>
+    
+    <!-- Master page Strings -->
     <string name="menu_logout">გამოსვლა</string>
     <string name="menu_register">რეგისტრაცია</string>
     <string name="menu_add_car">მანქანის დამატება</string>
     
-    <string name="title_activity_register_page">RegisterPageActivity</string>
+    <!-- Registration Strings -->
     <string name="username_register">მომხმარებელი*</string>
     <string name="pass_register">პაროლი*:</string>
     <string name="rpt_pass_register">გაიმეორეთ პაროლი*</string>
@@ -114,14 +100,14 @@
     <string name="birthyear_empty">გთხოვთ აირჩიოთ დაბადების წელი</string>
     <string name="passwords_fail">პაროლები არ ემთხვევა ერთმანეთს</string>
     <string name="username_exist">ასეთი მომხმარებელი უკვე არსებობს</string>
+    <string name="registration_finish">რეგისტრაცია წარმატებით დასრულდა</string>
+    <string name="registration_btn_str">დარეგისტრირება</string>
 
     <string-array name="gender_array">
         <item>მამრობითი</item>
         <item>მდედრობითი</item>
     </string-array>
-    <string name="registration_btn_str">დარეგისტრირება</string>
 
-    <string name="title_activity_detail">DetailActivity</string>
     <!-- DetailActivity -->
     <string-array name="details">
         <item>@string/search_carMarkAndModel</item>
@@ -160,10 +146,38 @@
     <string name="aircond">კონდიციონერი</string>
     <string name="climate">კლიმატკონტროლი</string>
     <string name="alarm">სიგნალიზაცია</string>
-	<string name="hydraulics">ჰიდრავლიკა</string>
-	<string name="turbo">ტურბო</string>
+    <string name="hydraulics">ჰიდრავლიკა</string>
+    <string name="turbo">ტურბო</string>
+
+    <!-- Detail Activity image numbering -->
+    <string name="next">შემდეგი</string>
+    <string name="prev">წინა</string>
     
-	<!-- Detail Activity image numbering -->
-	<string name="next">შემდეგი</string>
-	<string name="prev">წინა</string>
+     <!-- Edit Account Strings -->
+    <string name="edit_account_str">ანგარიშის რედაქტირება</string>
+    <string name="username_txt">@string/username_login </string>
+    <string name="name_txt">სახელი: </string>
+    <string name="surname_txt">გვარი: </string>
+    <string name="email_txt">ელ–ფოსტა: </string>
+    <string name="gender_txt">სქესი: </string>
+    <string name="birthyear_txt">დაბადების წელი: </string>
+    <string name="phone_txt">ტელეფონის ნომერი: </string>
+    <string name="location_txt">მდებარეობა: </string>
+    <string name="save_btn">დამახსოვრება</string>
+  
+
+    <!-- Add Car Strings -->
+    <string name="add_car_type">აირჩიეთ განცხადების ტიპი</string>
+    <string name="adtype1">ავტომობილები (ვყიდი)</string>
+    <string name="adtype2">სპეც. ტექნიკა (ვყიდი)</string>
+    <string name="adtype3">მოტოტექნიკა (ვყიდი)</string>
+    <string name="request_insert">შევიძენ</string>
+    <string name="add_button">დამატება</string>
+    <string name="issued_year">გამოშვების წელი</string>
+    <string name="issued_month">გამოშვების თვე</string>
+    <string-array name="mileage_type">
+        <item>კმ.</item>
+        <item>მილი</item>
+    </string-array>
+
 </resources>

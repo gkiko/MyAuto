@@ -2,79 +2,80 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.myauto"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="1.0">
 
     <uses-sdk
         android:minSdkVersion="10"
         android:targetSdkVersion="17" />
 
-    <uses-permission android:name="android.permission.INTERNET" >
-    </uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
+        android:name="com.example.myauto.app.MyAutoApp"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name="com.example.myauto.FirstPageActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.myauto.MainActivity" >
-        </activity>
+        <activity android:name="com.example.myauto.MainActivity"></activity>
         <activity
             android:name="com.example.myauto.filter.FilteredActivity"
             android:label="@string/title_activity_filtered"
-            android:parentActivityName="com.example.myauto.MainActivity" >
+            android:parentActivityName="com.example.myauto.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.myauto.MainActivity" />
         </activity>
         <activity
             android:name="com.example.myauto.CatalogPageActivity"
-            android:label="@string/title_activity_catalog_page" >
-        </activity>
+            android:label="@string/title_activity_catalog_page"></activity>
         <activity
             android:name="com.example.myauto.filter.SearchActivity"
             android:label="@string/title_activity_search"
             android:parentActivityName="com.example.myauto.FirstPageActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.myauto.FirstPageActivity" />
         </activity>
-        <activity android:name="com.example.myauto.AboutPageActivity" >
-        </activity>
-        <activity android:name="com.example.myauto.SearchPageActivity" >
-        </activity>
-        <activity android:name="com.example.myauto.CarPageActivity" >
-        </activity>
-        <activity android:name="com.example.myauto.filter.CarMarkFiltPage" >
-        </activity>
-        <activity android:name="com.example.myauto.filter.CarModelFiltPage" >
-        </activity>
+        <activity android:name="com.example.myauto.AboutPageActivity"></activity>
+        <activity android:name="com.example.myauto.SearchPageActivity"></activity>
+        <activity android:name="com.example.myauto.CarPageActivity"></activity>
+        <activity android:name="com.example.myauto.filter.CarMarkFiltPage"></activity>
+        <activity android:name="com.example.myauto.filter.CarModelFiltPage"></activity>
         <activity
             android:name="com.example.myauto.MasterPageActivity"
-            android:label="@string/title_activity_master_page" >
-        </activity>
+            android:label="@string/title_activity_master_page"></activity>
         <activity
             android:name="com.example.myauto.DetailActivity"
-            android:label="@string/title_activity_detail"
-            android:parentActivityName="com.example.myauto.MainActivity" >
+            android:label="@string/title_activity_detail">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.myauto.MainActivity" />
         </activity>
         <activity
             android:name="com.example.myauto.RegisterPageActivity"
-            android:label="@string/title_activity_register_page" >
+            android:label="@string/title_activity_register_page"></activity>
+        <activity
+            android:name="com.example.myauto.MyPageActivity"
+            android:label="@string/title_activity_my_page"></activity>
+        <activity
+            android:name="com.example.myauto.EditAccountActivity"
+            android:label="@string/title_activity_edit_account"></activity>
+        <activity
+            android:name="com.example.myauto.CarInsertActivity"
+            android:label="@string/title_activity_car_insert">
         </activity>
-    </application>
+</application>
 
-</manifest>
+    </manifest>

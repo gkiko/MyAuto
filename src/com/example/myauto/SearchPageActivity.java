@@ -3,6 +3,7 @@ package com.example.myauto;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import com.example.myauto.data.LanguageDataContainer;
 import com.example.myauto.database.DBHelper;
 import com.example.myauto.database.DBManager;
 import com.example.myauto.filter.CarMarkFiltPage;
@@ -13,9 +14,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.Resources;
-import android.opengl.Visibility;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -28,7 +27,6 @@ import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.TableLayout.LayoutParams;
 
 public class SearchPageActivity extends MasterPageActivity {
@@ -66,10 +64,6 @@ public class SearchPageActivity extends MasterPageActivity {
 	private Activity a;
 	private String[] manufacturer;
 	private Resources res;
-	private SharedPreferences prefs;
-	private static final int LANG_EN = 1;
-	private static final int LANG_GE = 2;
-	private static final int LANG_RU = 3;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -82,9 +76,6 @@ public class SearchPageActivity extends MasterPageActivity {
 		filteredData = new String[NUMBER_OF_FILTER_BUTTONS];
 		getFilterLayoutViews();
 		getButtonViews();
-
-		prefs = getSharedPreferences(
-				getResources().getString(R.string.shared_prefs), 0);
 	}
 
 	private void setButtonClickListeners() {
@@ -177,7 +168,7 @@ public class SearchPageActivity extends MasterPageActivity {
 
 	}
 
-	/*
+	/**
 	 * Cacel Button Listeneristvis gadasacemad filtris shesabamis index-is
 	 * array-s vagenerireb.
 	 */
@@ -432,13 +423,12 @@ public class SearchPageActivity extends MasterPageActivity {
 		final Dialog dialog = new Dialog(ctx);
 		dialog.setContentView(R.layout.dialog_car_generic_for_radiobuttons);
 		dialog.setTitle(DIALOG_DAYS_TITLE_EN);
-		
+
 		fillDaysDialog(dialog);
-		
+
 		Button cancel = (Button) dialog
 				.findViewById(R.id.dialog_generic_btn_cancel);
-		Button ok = (Button) dialog
-				.findViewById(R.id.dialog_generic_btn_ok);
+		Button ok = (Button) dialog.findViewById(R.id.dialog_generic_btn_ok);
 
 		ok.setOnClickListener(new OnClickListener() {
 			@Override
@@ -465,10 +455,11 @@ public class SearchPageActivity extends MasterPageActivity {
 
 		dialog.show();
 	}
-	
+
 	// vavseb Days filtrs monacemebit
-	private void fillDaysDialog(Dialog dialog){
-		ArrayList<String[]> list = DBManager.getDataListFromTable(DBHelper.DAYS_TABLE);
+	private void fillDaysDialog(Dialog dialog) {
+		ArrayList<String[]> list = DBManager
+				.getDataListFromTable(DBHelper.DAYS_TABLE, null);
 		RadioGroup group = (RadioGroup) dialog
 				.findViewById(R.id.dialog_generic_rdgroup);
 		String[] days;
@@ -476,20 +467,11 @@ public class SearchPageActivity extends MasterPageActivity {
 			days = list.get(i);
 			RadioButton rdbtn = new RadioButton(this);
 			rdbtn.setId(Integer.parseInt(days[0]));
-			int langID = prefs.getInt("Lang", LANG_EN);
-			switch (langID) {
-			case LANG_EN:
-				rdbtn.setText(days[LANG_EN]);
-				break;
-			case LANG_GE:
-				rdbtn.setText(days[LANG_GE]);
-				break;
-			case LANG_RU:
-				rdbtn.setText(days[LANG_RU]);
-				break;
-			default:
-				break;
-			}
+			if (i == 0)
+				rdbtn.setChecked(true);
+
+			int langId = LanguageDataContainer.getLangId();
+			rdbtn.setText(days[getColumnIndexByLanguage(langId)]);
 			rdbtn.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,
 					LayoutParams.WRAP_CONTENT));
 			group.addView(rdbtn);
@@ -703,7 +685,7 @@ public class SearchPageActivity extends MasterPageActivity {
 	 * Door -is Dialog-s bazis monacemebit vavseb.
 	 */
 	private void fillDriveAndDoorsDialog(Dialog dialog, String tableName) {
-		ArrayList<String[]> list = DBManager.getDataListFromTable(tableName);
+		ArrayList<String[]> list = DBManager.getDataListFromTable(tableName, null);
 		RadioGroup group = (RadioGroup) dialog
 				.findViewById(R.id.dialog_drive_and_doors_rdgroup);
 		String[] door;
@@ -711,20 +693,11 @@ public class SearchPageActivity extends MasterPageActivity {
 			door = list.get(i);
 			RadioButton rdbtn = new RadioButton(this);
 			rdbtn.setId(Integer.parseInt(door[0]));
-			int langID = prefs.getInt("Lang", LANG_EN);
-			switch (langID) {
-			case LANG_EN:
-				rdbtn.setText(door[LANG_EN]);
-				break;
-			case LANG_GE:
-				rdbtn.setText(door[LANG_GE]);
-				break;
-			case LANG_RU:
-				rdbtn.setText(door[LANG_RU]);
-				break;
-			default:
-				break;
-			}
+			if (i == 0)
+				rdbtn.setChecked(true);
+			int langId = LanguageDataContainer.getLangId();
+			rdbtn.setText(door[getColumnIndexByLanguage(langId)]);
+
 			rdbtn.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,
 					LayoutParams.WRAP_CONTENT));
 			group.addView(rdbtn);
@@ -784,20 +757,11 @@ public class SearchPageActivity extends MasterPageActivity {
 			location = list.get(i);
 			RadioButton rdbtn = new RadioButton(this);
 			rdbtn.setId(Integer.parseInt(location[0]));
-			int langID = prefs.getInt("Lang", LANG_EN);
-			switch (langID) {
-			case LANG_EN:
-				rdbtn.setText(location[LANG_EN + 1]);
-				break;
-			case LANG_GE:
-				rdbtn.setText(location[LANG_GE + 1]);
-				break;
-			case LANG_RU:
-				rdbtn.setText(location[LANG_RU + 1]);
-				break;
-			default:
-				break;
-			}
+			if (i == 0)
+				rdbtn.setChecked(true);
+			int langId = LanguageDataContainer.getLangId();
+			rdbtn.setText(location[getColumnIndexByLanguage(langId) + 1]);
+
 			rdbtn.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,
 					LayoutParams.WRAP_CONTENT));
 			group.addView(rdbtn);
@@ -904,7 +868,7 @@ public class SearchPageActivity extends MasterPageActivity {
 	 */
 	private void fillFuelTypeDialog(Dialog dialog) {
 		ArrayList<String[]> fuelTypes = DBManager
-				.getDataListFromTable(DBHelper.FUEL_TABLE);
+				.getDataListFromTable(DBHelper.FUEL_TABLE, null);
 
 		RadioGroup group = (RadioGroup) dialog
 				.findViewById(R.id.dialog_fuel_rdgroup);
@@ -913,20 +877,11 @@ public class SearchPageActivity extends MasterPageActivity {
 			fuelType = fuelTypes.get(i);
 			RadioButton rdbtn = new RadioButton(this);
 			rdbtn.setId(Integer.parseInt(fuelType[0]));
-			int langID = prefs.getInt("Lang", LANG_EN);
-			switch (langID) {
-			case LANG_EN:
-				rdbtn.setText(fuelType[LANG_EN]);
-				break;
-			case LANG_GE:
-				rdbtn.setText(fuelType[LANG_GE]);
-				break;
-			case LANG_RU:
-				rdbtn.setText(fuelType[LANG_RU]);
-				break;
-			default:
-				break;
-			}
+			if (i == 0)
+				rdbtn.setChecked(true);
+			int langId = LanguageDataContainer.getLangId();
+			rdbtn.setText(fuelType[getColumnIndexByLanguage(langId)]);
+
 			rdbtn.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,
 					LayoutParams.WRAP_CONTENT));
 			group.addView(rdbtn);
@@ -979,7 +934,7 @@ public class SearchPageActivity extends MasterPageActivity {
 	 */
 	private void fillCategoriesDialog(Dialog dialog) {
 		ArrayList<String[]> categories = DBManager
-				.getDataListFromTable(DBHelper.CATEGORIES_TABLE);
+				.getDataListFromTable(DBHelper.CATEGORIES_TABLE, null);
 
 		RadioGroup group = (RadioGroup) dialog
 				.findViewById(R.id.dialog_category_rdgroup);
@@ -989,20 +944,11 @@ public class SearchPageActivity extends MasterPageActivity {
 			cat = categories.get(i);
 			RadioButton rdbtn = new RadioButton(this);
 			rdbtn.setId(Integer.parseInt(cat[0]));
-			int langID = prefs.getInt("Lang", LANG_EN);
-			switch (langID) {
-			case LANG_EN:
-				rdbtn.setText(cat[LANG_EN]);
-				break;
-			case LANG_GE:
-				rdbtn.setText(cat[LANG_GE]);
-				break;
-			case LANG_RU:
-				rdbtn.setText(cat[LANG_RU]);
-				break;
-			default:
-				break;
-			}
+			if (i == 0)
+				rdbtn.setChecked(true);
+			int langId = LanguageDataContainer.getLangId();
+			rdbtn.setText(cat[langId]);
+
 			rdbtn.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,
 					LayoutParams.WRAP_CONTENT));
 			group.addView(rdbtn);
@@ -1055,7 +1001,7 @@ public class SearchPageActivity extends MasterPageActivity {
 	 * Transmisiis Dialog fanjaras vavseb bazashi shenaxuli monacemebit
 	 */
 	private void fillTransmissionDialog(Dialog dialog) {
-		ArrayList<String[]> gears = DBManager.getGearTypes();
+		ArrayList<String[]> gears = DBManager.getDataListFromTable(DBHelper.GEAR_TABLE, null);/*getGearTypes()*/;
 
 		RadioGroup group = (RadioGroup) dialog
 				.findViewById(R.id.dialog_trans_rdgroup);
@@ -1064,20 +1010,11 @@ public class SearchPageActivity extends MasterPageActivity {
 			gearTypes = gears.get(i);
 			RadioButton rdbtn = new RadioButton(this);
 			rdbtn.setId(Integer.parseInt(gearTypes[0]));
-			int langID = prefs.getInt("Lang", LANG_EN);
-			switch (langID) {
-			case LANG_EN:
-				rdbtn.setText(gearTypes[LANG_EN]);
-				break;
-			case LANG_GE:
-				rdbtn.setText(gearTypes[LANG_GE]);
-				break;
-			case LANG_RU:
-				rdbtn.setText(gearTypes[LANG_RU]);
-				break;
-			default:
-				break;
-			}
+			if (i == 0)
+				rdbtn.setChecked(true);
+			int langId = LanguageDataContainer.getLangId();
+			rdbtn.setText(gearTypes[getColumnIndexByLanguage(langId)]);
+
 			rdbtn.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,
 					LayoutParams.WRAP_CONTENT));
 			group.addView(rdbtn);
@@ -1410,6 +1347,16 @@ public class SearchPageActivity extends MasterPageActivity {
 					.findViewById(R.id.search_selector))
 					.findViewById(R.id.search_selectedValue)).setText("");
 		}
+	}
+
+	// es metodi dzalian ar momwons. uketesi ver movipiqre
+	private int getColumnIndexByLanguage(int langId) {
+		if (langId == LanguageDataContainer.LANG_EN)
+			return 1;
+		else if (langId == LanguageDataContainer.LANG_GE)
+			return 2;
+		else
+			return 3;
 	}
 
 }

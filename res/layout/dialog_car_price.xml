@@ -8,14 +8,14 @@
         android:id="@+id/dialog_price_from"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/search_dialog_price_from"
+        android:hint="@string/search_dialog_generic_spinners_from"
         android:inputType="number" />
 
     <EditText
         android:id="@+id/dialog_price_to"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/search_dialog_price_to"
+        android:hint="@string/search_dialog_generic_spinners_to"
         android:inputType="number" />
 
     <LinearLayout
@@ -28,14 +28,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/search_dialog_price_cancel" />
+            android:text="@string/search_dialog_btn_cancel" />
 
         <Button
             android:id="@+id/dialog_price_btn_ok"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/search_dialog_price_ok" />
+            android:text="@string/search_dialog_btn_ok" />
     </LinearLayout>
 
 </LinearLayout>
