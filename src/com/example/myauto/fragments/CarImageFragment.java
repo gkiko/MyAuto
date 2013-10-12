@@ -18,9 +18,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import com.example.myauto.R;
-
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.Serializable;
@@ -56,7 +54,7 @@ public class CarImageFragment extends Fragment implements Serializable{
             if(bitmap != null)
                 previewCapturedImage(bitmap);
         }
-
+        
         return rootView;
     }
 
@@ -76,6 +74,14 @@ public class CarImageFragment extends Fragment implements Serializable{
             }
         });
 
+        pickImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pickImage();
+                dialog.dismiss();
+            }
+        });
+
         dialog.show();
     }
 
@@ -83,6 +89,11 @@ public class CarImageFragment extends Fragment implements Serializable{
     private void captureImage(){
         Intent intent = new Intent (MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(intent, CAMERA_CAPTURE_IMAGE_REQUEST_CODE);
+    }
+
+    private void pickImage(){
+        Intent intent = new Intent (Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(intent, PICK_IMAGE_REQUEST_CODE);
     }
 
     private void previewCapturedImage(Bitmap image){
