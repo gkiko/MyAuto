@@ -54,7 +54,7 @@ public class CarImageFragment extends Fragment implements Serializable{
             if(bitmap != null)
                 previewCapturedImage(bitmap);
         }
-        
+
         return rootView;
     }
 
