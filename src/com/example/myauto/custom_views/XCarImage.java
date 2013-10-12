@@ -21,7 +21,7 @@ public class XCarImage extends LinearLayout {
     public XCarImage(Context context, AttributeSet attrs) {
         super(context, attrs);
 //        this.context = context;
-//        initViews();
+        initViews();
     }
 
     public String getXValue(){
