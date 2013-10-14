@@ -147,53 +147,56 @@ public class CarInsertActivity extends MasterPageActivity {
 	}
     
     public void onSubmit(View v){
-//    	List<NameValuePair> nameValuePairs = collector.collectViewValues(findViewById(android.R.id.content));
+    	List<NameValuePair> nameValuePairs = collector.collectViewValues(findViewById(android.R.id.content));
     	
-    	List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-		nameValuePairs.add(new BasicNameValuePair("dtype", "0"));
-		nameValuePairs.add(new BasicNameValuePair("category_id", ""));
-		nameValuePairs.add(new BasicNameValuePair("man_id", "103"));
-		nameValuePairs.add(new BasicNameValuePair("price", ""));
-		nameValuePairs.add(new BasicNameValuePair("currency_id", "0"));
-
-		nameValuePairs.add(new BasicNameValuePair("man_model_id", "0"));
-		nameValuePairs.add(new BasicNameValuePair("model", ""));
-		nameValuePairs.add(new BasicNameValuePair("location_id", "2"));
-		nameValuePairs.add(new BasicNameValuePair("prod_year", ""));
-		nameValuePairs.add(new BasicNameValuePair("prod_month", ""));
-		nameValuePairs.add(new BasicNameValuePair("engine_volume", "2000"));
-		nameValuePairs.add(new BasicNameValuePair("car_run", ""));
-		nameValuePairs.add(new BasicNameValuePair("car_run_dim", "1"));
-		nameValuePairs.add(new BasicNameValuePair("cylinders", "0"));
-		nameValuePairs.add(new BasicNameValuePair("door_type_id", "2"));
-		nameValuePairs.add(new BasicNameValuePair("drive_type_id", "1"));
-		nameValuePairs.add(new BasicNameValuePair("airbags", "0"));
-		nameValuePairs.add(new BasicNameValuePair("fuel_type_id", "2"));
-		nameValuePairs.add(new BasicNameValuePair("color_id", "16"));
-		nameValuePairs.add(new BasicNameValuePair("gear_type_id", "1"));
-		nameValuePairs.add(new BasicNameValuePair("client_nm", ""));
-		nameValuePairs.add(new BasicNameValuePair("area_code", "599"));
-		nameValuePairs.add(new BasicNameValuePair("client_phone_1", "000000"));
-		nameValuePairs.add(new BasicNameValuePair("videourl", ""));
-		nameValuePairs.add(new BasicNameValuePair("import_year", ""));
-		nameValuePairs.add(new BasicNameValuePair("import_month", ""));
-		nameValuePairs.add(new BasicNameValuePair("vin", ""));
-		nameValuePairs.add(new BasicNameValuePair("car_desc", ""));
-		nameValuePairs.add(new BasicNameValuePair("photo1", "/mnt/sdcard/Koala.jpg"));
-		nameValuePairs.add(new BasicNameValuePair("photo2", ""));
-		nameValuePairs.add(new BasicNameValuePair("photo3", ""));
-		nameValuePairs.add(new BasicNameValuePair("photo4", ""));
-		nameValuePairs.add(new BasicNameValuePair("photo5", ""));
-		nameValuePairs.add(new BasicNameValuePair("photo6", ""));
-		nameValuePairs.add(new BasicNameValuePair("photo7", ""));
-		nameValuePairs.add(new BasicNameValuePair("photo8", ""));
-		nameValuePairs.add(new BasicNameValuePair("photo9", ""));
-		nameValuePairs.add(new BasicNameValuePair("photo10", ""));
-		nameValuePairs.add(new BasicNameValuePair("period_in_days", "30"));
-		nameValuePairs.add(new BasicNameValuePair("allow_comments", "1"));
-		nameValuePairs.add(new BasicNameValuePair("action", "insert"));
-		nameValuePairs.add(new BasicNameValuePair("columns", ""));
-		nameValuePairs.add(new BasicNameValuePair("values", ""));
+//    	List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+//		nameValuePairs.add(new BasicNameValuePair("dtype", "0"));
+//		nameValuePairs.add(new BasicNameValuePair("category_id", ""));
+//		nameValuePairs.add(new BasicNameValuePair("man_id", "103"));
+//		nameValuePairs.add(new BasicNameValuePair("price", ""));
+//		nameValuePairs.add(new BasicNameValuePair("currency_id", "0"));
+//
+//		nameValuePairs.add(new BasicNameValuePair("man_model_id", "0"));
+//		nameValuePairs.add(new BasicNameValuePair("model", ""));
+//		nameValuePairs.add(new BasicNameValuePair("location_id", "2"));
+//		nameValuePairs.add(new BasicNameValuePair("prod_year", ""));
+//		nameValuePairs.add(new BasicNameValuePair("prod_month", ""));
+//		nameValuePairs.add(new BasicNameValuePair("engine_volume", "2000"));
+//		nameValuePairs.add(new BasicNameValuePair("car_run", ""));
+//		nameValuePairs.add(new BasicNameValuePair("car_run_dim", "1"));
+//		nameValuePairs.add(new BasicNameValuePair("cylinders", "0"));
+//		nameValuePairs.add(new BasicNameValuePair("door_type_id", "2"));
+//		nameValuePairs.add(new BasicNameValuePair("drive_type_id", "1"));
+//		nameValuePairs.add(new BasicNameValuePair("airbags", "0"));
+//		nameValuePairs.add(new BasicNameValuePair("fuel_type_id", "2"));
+//		nameValuePairs.add(new BasicNameValuePair("color_id", "16"));
+//		nameValuePairs.add(new BasicNameValuePair("gear_type_id", "1"));
+//		nameValuePairs.add(new BasicNameValuePair("client_nm", ""));
+//		nameValuePairs.add(new BasicNameValuePair("area_code", ""));
+//		nameValuePairs.add(new BasicNameValuePair("client_phone_1", "000000"));
+//		nameValuePairs.add(new BasicNameValuePair("videourl", ""));
+//		nameValuePairs.add(new BasicNameValuePair("import_year", ""));
+//		nameValuePairs.add(new BasicNameValuePair("import_month", ""));
+//		nameValuePairs.add(new BasicNameValuePair("vin", ""));
+//		nameValuePairs.add(new BasicNameValuePair("car_desc", ""));
+//		nameValuePairs.add(new BasicNameValuePair("photo1", "/mnt/sdcard/Koala.jpg"));
+//		nameValuePairs.add(new BasicNameValuePair("photo2", ""));
+//		nameValuePairs.add(new BasicNameValuePair("photo3", ""));
+//		nameValuePairs.add(new BasicNameValuePair("photo4", ""));
+//		nameValuePairs.add(new BasicNameValuePair("photo5", ""));
+//		nameValuePairs.add(new BasicNameValuePair("photo6", ""));
+//		nameValuePairs.add(new BasicNameValuePair("photo7", ""));
+//		nameValuePairs.add(new BasicNameValuePair("photo8", ""));
+//		nameValuePairs.add(new BasicNameValuePair("photo9", ""));
+//		nameValuePairs.add(new BasicNameValuePair("photo10", ""));
+//		nameValuePairs.add(new BasicNameValuePair("period_in_days", "30"));
+//		nameValuePairs.add(new BasicNameValuePair("allow_comments", "1"));
+//		nameValuePairs.add(new BasicNameValuePair("action", "insert"));
+//		nameValuePairs.add(new BasicNameValuePair("columns", ""));
+//		nameValuePairs.add(new BasicNameValuePair("values", ""));
+		
+//		for(NameValuePair b : nameValuePairs)
+//			System.out.println(b.getName()+" "+b.getValue());
 		
     	PostRequest post = new PostRequest();
     	post.execute(nameValuePairs);

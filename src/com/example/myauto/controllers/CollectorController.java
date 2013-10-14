@@ -50,8 +50,10 @@ public class CollectorController {
         if(view == null)
             return null;
 
-        if(view.getTag() != null)
+        if(view.getTag() != null){
             key = String.valueOf(view.getTag());
+        System.out.println(key);
+        }
 
         if(view instanceof EditText){
             value = String.valueOf(((EditText) view).getText());
